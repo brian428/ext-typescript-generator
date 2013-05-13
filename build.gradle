@@ -1,0 +1,385 @@
+// Run at command line using 'gradle -q'
+
+import groovy.json.*
+
+defaultTasks 'build'
+
+project.ext {
+	libraryName = "ExtJS"
+	libraryVersion = "4.2.0"
+	definitionPath = "./definition"
+	definitionFile = new File( "${definitionPath}/${ libraryName }-${ libraryVersion }.d.ts" )
+	currentModule = ""
+	includePrivate = false
+	singleDefinition = true
+	forceAllParamsToOptional = true
+	useFullTyping = true
+}
+
+// TASKS
+
+/*
+task wrapper( type: Wrapper ) {
+	gradleVersion = '1.4'
+}
+*/
+
+task initialize() << {
+	new File( definitionPath ).deleteDir()
+	new File( definitionPath ).mkdir()
+
+	println " "
+	println "Creating ExtJS Definition File..."
+	println " "
+
+	if( project.singleDefinition ) {
+		project.definitionFile.write( "" )
+		writeToDefinition( "// ${ libraryName } ${ libraryVersion } TypeScript Library Definition\n" )
+	}
+}
+
+task readFiles( dependsOn: initialize ) << {
+
+	def jsonDocPath = new File( "./jsondocs" )
+	def jsonDocCollection = files { jsonDocPath.listFiles() }
+	def jsonDocFiles = jsonDocCollection.getFiles()
+
+	jsonDocFiles.each { file ->
+		def slurper = new JsonSlurper()
+    	def fileJson = slurper.parseText( file.text )
+
+		// Only handle classes, not JS primitives like String
+		if( fileJson.name.contains( "Ext" ) ) {
+			def aliases = getAliases( fileJson )
+			println( "Processing ${ fileJson.name }" )
+			processModule( fileJson.name, fileJson )
+
+			// Also generate definitions for alternate class names, since crazy ExtJS swaps them out all over the docs...
+			fileJson.alternateClassNames.each { thisAlias ->
+
+				// Some aliases are absurdly the same as the original, but with different package case, so skip these
+				if( thisAlias.toLowerCase() != fileJson.name.toLowerCase() )
+					processModule( thisAlias, fileJson )
+			}
+		}
+	}
+}
+
+def processModule( className, fileJson ) {
+	project.currentModule = getModule( className )
+	writeToDefinition( "module ${ getModule( className ) } {" )
+	def processedNames
+
+	// Ext class has special handling to turn it into Ext module-level properties and methods.
+	if( className == "Ext" ) {
+		processedNames = writeProperties( fileJson, false, true )
+		writeMethods( fileJson, processedNames, false, true )
+	}
+	else {
+		processClass( className, fileJson )
+	}
+
+	writeToDefinition( "}" )
+}
+
+def processClass( className, fileJson ) {
+	def processedNames
+	writeToDefinition( "\texport interface I${ getClassName( className ) } ${ getExtends( fileJson, true ) } {" )
+	processedNames = writeProperties( fileJson, true, false )
+	writeMethods( fileJson, processedNames, true, false )
+	writeToDefinition( "\t}" )
+
+	writeToDefinition( "\texport class ${ getClassName( className ) } ${ getExtends( fileJson, false ) } ${getImplementedInterfaces( fileJson ) } {" )
+	processedNames = writeProperties( fileJson, false, false )
+	writeMethods( fileJson, processedNames, false, false )
+	writeToDefinition( "\t}" )
+}
+
+def getExtends( fileJson, isInterface ) {
+	// fileJson.superclasses.last() for extends
+	def result = ""
+	if( fileJson.superclasses?.size() > 0 ) {
+		if( isInterface ) {
+			if( fileJson.superclasses.last().contains( "Ext." ) )
+				result = "extends ${ normalizeType( convertToInterface( fileJson.superclasses.last() ) ) }"
+		}
+		else {
+			if( getClassName( fileJson.name ) != fileJson.superclasses.last() )
+				result = "extends ${ normalizeType( fileJson.superclasses.last() ) }"
+		}
+	}
+	return result
+}
+
+def getImplementedInterfaces( fileJson ) {
+	def result = "implements ${ normalizeType( convertToInterface( fileJson.name ) ) }"
+	def implementedInterfaces = []
+
+	fileJson.mixins?.each { thisMixin ->
+		implementedInterfaces.add( normalizeType( convertToInterface( thisMixin ) ) )
+	}
+
+	if( implementedInterfaces.size() > 0 ) {
+		result += ",${ implementedInterfaces.join( ',' ) }"
+	}
+
+	return result
+}
+
+task build( dependsOn: readFiles ) << {
+	println " "
+	println "Build complete"
+	println " "
+}
+
+
+// HELPER METHODS
+
+def getModule( name ) {
+	def tokenizedName = name.tokenize( "." )
+	if( tokenizedName.size() == 1 ) return name
+
+	tokenizedName.pop()
+
+	// Some package names absurdly duplicate class names like Ext.data.Store, so lowercase them...
+	tokenizedName.eachWithIndex { thisName, i ->
+		if( thisName != "Ext" ) tokenizedName[ i ] = thisName.toLowerCase()
+	}
+	return tokenizedName.join( "." )
+}
+
+def getClassName( name ) {
+	def tokenizedName = name.tokenize( "." )
+	def className = tokenizedName.last()
+	return className
+}
+
+def getAliases( fileJson ) {
+	return fileJson.aliases.widget
+}
+
+def writeProperties( fileJson, isInterface, useExport ) {
+	def classConfig = fileJson.members.cfg
+	def classProperties = fileJson.members.property
+	def optionalFlag = isInterface ? "?" : ""
+	def thisType
+	def processedConfigNames = [:]
+	def exportString = useExport ? "export var " : ""
+
+	classConfig.each { value ->
+		if( value.owner == fileJson.name ) {
+			if( !includePrivate && value.private != true ) {
+				thisType = value.type
+
+				// Property type conversions
+				if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
+
+				writeToDefinition( "\t\t/** [Config Option] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
+				writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ normalizeType( convertToInterface( thisType ) ) };" )
+				processedConfigNames[ value.name ] = true
+
+				//def tokenizedTypes = value.type.tokenize( "/" )
+				//tokenizedTypes.each { thisType ->
+				//	writeToDefinition( "\t\t/** [Config Option] ${ formatCommentText( value.shortDoc ) } */" )
+				//	writeToDefinition( "\t\t${ value.name }${ optionalFlag }: ${ convertToInterface( thisType ) };" )
+				//}
+			}
+		}
+	}
+
+	classProperties.each { value ->
+		if( value.owner == fileJson.name ) {
+			if( !includePrivate && value.private != true ) {
+				if( !processedConfigNames[ value.name ] ) {
+					thisType = value.type
+					if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
+
+					writeToDefinition( "\t\t/** [Property] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
+					writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ normalizeType( convertToInterface( thisType ) ) };" )
+					processedConfigNames[ value.name ] = true
+
+					//def tokenizedTypes = value.type.tokenize( "/" )
+					//tokenizedTypes.each { thisType ->
+					//	writeToDefinition( "\t\t/** [Property] ${ formatCommentText( value.shortDoc ) } */" )
+					//	writeToDefinition( "\t\t${ value.name }${ optionalFlag }: ${ convertToInterface( thisType ) };" )
+					//}
+				}
+			}
+		}
+	}
+	return processedConfigNames
+}
+
+def writeMethods( fileJson, processedNames, isInterface, useExport ) {
+	def classMethods = fileJson.members.method
+	def optionalFlag = isInterface ? "?" : ""
+	def shouldUseExport = useExport
+
+	classMethods.each { value ->
+		if( value.owner == fileJson.name || ( fileJson.mixins && value.owner in fileJson.mixins ) ) {
+			if( !includePrivate && value.private != true ) {
+				if( !processedNames[ value.name ] ) {
+					def tokenizedTypes = getTokenizedTypes( value.return.type )
+					tokenizedTypes.each { thisType ->
+
+						// Return type conversions
+						if( thisType == "undefined" ) thisType = "void"
+
+						def paramNames = []
+						def paramTypes = []
+						def requiresOverrides = false
+
+						value.params.each { thisParam ->
+							paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
+							def tokenizedParamTypes = getTokenizedTypes( thisParam.type )
+							if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) requiresOverrides = true
+							paramTypes.add( tokenizedParamTypes )
+						}
+
+						if( requiresOverrides ) {
+							def overrideTypes = []
+							paramNames.each { thisParamName ->
+								overrideTypes.add( "any" )
+							}
+							writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, overrideTypes, "any", shouldUseExport )
+						}
+
+						def paramPermutations = GroovyCollections.combinations( paramTypes )
+
+						paramPermutations.each { thisPermutation ->
+							writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, thisPermutation, thisType, shouldUseExport )
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+def getTokenizedTypes( types ) {
+	return types.replaceAll( "\\|", "/").tokenize( "/" )
+}
+
+def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, returnType, useExport ) {
+
+	def exportString = useExport ? "export function " : ""
+	comment = "\t\t/** [Method] ${ comment?.replaceAll( "[\\W]", " " ) }"
+
+	def paramsDoc = ""
+	def methodOutput = "${ methodName }${ optionalFlag }("
+
+	paramNames.eachWithIndex { thisParam, i ->
+		def thisParamType = convertToInterface( paramTypes[ i ] )
+
+		paramsDoc += "\t\t* @param ${ thisParam.name } ${ thisParamType } ${ formatCommentText( thisParam.doc ) }"
+		if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
+
+		//func(...args: any[]): void;
+		def spread = ""
+		if( thisParamType.contains( "..." ) ) {
+			thisParamType = thisParamType.replaceAll( "\\.\\.\\.", "" )
+			spread = "..."
+		}
+
+		def thisParamName = thisParam.name
+
+		// Param name conversions
+		if( thisParamName == "class" ) thisParamName = "clazz"
+
+		def optionalParamFlag = thisParam.optional ? "?" : ""
+		if( spread.size() == 0 && forceAllParamsToOptional ) optionalParamFlag = "?"
+		methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.length() > 0 ? "any[]" : normalizeType( thisParamType ) }"
+
+		if( thisParam == paramNames.last() ) {
+			methodOutput += " "
+		}
+		else {
+			methodOutput += ","
+			paramsDoc += "\n"
+		}
+	}
+
+	if( paramsDoc.length() > 0 ) {
+		writeToDefinition( comment )
+		writeToDefinition( paramsDoc )
+		writeToDefinition( "\t\t*/" )
+	}
+	else {
+		writeToDefinition( "${ comment }*/" )
+	}
+
+	if( methodName != "constructor" ) {
+		writeToDefinition( "\t\t${exportString}${ methodOutput }): ${ normalizeType( returnType ) };" )
+	}
+	else {
+		writeToDefinition( "\t\t${ methodOutput });" )
+	}
+}
+
+def normalizeType( typeName ) {
+	if( typeName.contains( "Ext." ) )
+		typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
+
+	if( typeName == "Mixed" ) typeName = "any"
+	if( typeName == "TextNode" ) typeName = "any"
+	if( typeName == "Arguments" ) typeName = "any"
+
+	return typeName
+}
+
+def convertToInterface( type ) {
+	def result = type
+	if( type.contains( "Ext." ) ) {
+		result = "${ getModule( type ) }.I${ getClassName( type ) }"
+	}
+	return result
+}
+
+def formatCommentText( comment ) {
+	def result = ""
+	if( comment ) result += comment.replaceAll("<(.|\n)*?>", "").replaceAll( "[\\n\\t]", " " )
+	return result
+}
+
+def writeToDefinition( value ) {
+	if( singleDefinition ) {
+		definitionFile.withWriterAppend( "UTF-8" ) { writer ->
+			writer << value + "\n"
+		}
+	}
+	else {
+		def currentDefinitionFile = new File( "${ definitionPath }/${ currentModule }.d.ts" )
+		if( !currentDefinitionFile.exists() ) currentDefinitionFile.createNewFile()
+
+		currentDefinitionFile.withWriterAppend( "UTF-8" ) { writer ->
+			writer << value + "\n"
+		}
+	}
+}
+
+
+// TODO: Remove when not needed for testing any longer...
+
+def iterateSections( fileJson ) {
+	println( "Sections:" )
+	fileJson.members.each { key, value ->
+		println( key )
+		//iterateSectionElements( value )
+	}
+	println( " " )
+}
+
+def iterateSection( section ) {
+	section.each { value ->
+		iterateSectionElements( value )
+	}
+	println( " " )
+}
+
+def iterateSectionElements( section ) {
+	println( section.name )
+	section.each { key, value ->
+		//println( key )
+	}
+	println( " " )
+}

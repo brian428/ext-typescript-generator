@@ -7,13 +7,35 @@ defaultTasks 'build'
 project.ext {
 	libraryName = "ExtJS"
 	libraryVersion = "4.2.0"
-	definitionPath = "./definition"
-	definitionFile = new File( "${definitionPath}/${ libraryName }-${ libraryVersion }.d.ts" )
-	currentModule = ""
+
+	// False to omit private methods/properties
 	includePrivate = false
-	singleDefinition = true
-	forceAllParamsToOptional = true
+
+	// True to include full type values for properties, params, and return types.
+	// Generates method overrides where necessary
+	// WARNING: enabling types creates a definition with hundreds of compile errors due to incorrect docs or invalid scenarios in ExtJS itself
+	// False to omit all types and set everything to "any"
 	useFullTyping = true
+
+	// Force all parameter types to "any" where possible
+	forceAllParamsToOptional = true
+
+	// False to generate separate definitions for each package
+	singleDefinition = true
+	currentModule = ""
+
+
+	definitionPath = "./definition"
+	definitionFile = new File( "${definitionPath}/${ libraryName }-${ libraryVersion }-${ useFullTyping ? 'Typed' : 'Untyped' }.d.ts" )
+
+	// Handle one-off cases where ExtJS (or its JSDuck docs) create invalid scenarios...
+	specialCases = [:]
+	specialCases[ "Ext.grid.column.Action" ] = [:]
+	specialCases[ "Ext.grid.column.Action" ][ "isDisabled" ] = "delete" // cfg item
+	specialCases[ "Ext.AbstractComponent" ] = [:]
+	specialCases[ "Ext.AbstractComponent" ][ "animate" ] = "toProperty" // method
+	specialCases[ "Ext.util.Animate" ] = [:]
+	specialCases[ "Ext.util.Animate" ][ "animate" ] = "toProperty" // method
 }
 
 // TASKS
@@ -22,6 +44,21 @@ project.ext {
 task wrapper( type: Wrapper ) {
 	gradleVersion = '1.4'
 }
+*/
+
+
+/*
+Special cases:
+
+In Ext.grid.column.(I)Action, omit isDisabled cfg item
+In Ext.grid.(I)ActionColumn, omit isDisabled cfg item (alias for Ext.grid.column.Action)
+In Ext.(I)AbstractComponent, turn animate() method into animate:any
+In Ext.util.(I)Animate, turn animate() method into animate:any
+
+Ext.zip(), delete, or don't allow spread because it has varargs first???
+? Ext.create() has ( name, ...args ) so name can't be optional
+? Ext.log() has ( name, ...args ) so name can't be optional
+
 */
 
 task initialize() << {
@@ -67,7 +104,7 @@ task readFiles( dependsOn: initialize ) << {
 
 def processModule( className, fileJson ) {
 	project.currentModule = getModule( className )
-	writeToDefinition( "module ${ getModule( className ) } {" )
+	writeToDefinition( "declare module ${ getModule( className ) } {" )
 	def processedNames
 
 	// Ext class has special handling to turn it into Ext module-level properties and methods.
@@ -85,8 +122,10 @@ def processModule( className, fileJson ) {
 def processClass( className, fileJson ) {
 	def processedNames
 	writeToDefinition( "\texport interface I${ getClassName( className ) } ${ getExtends( fileJson, true ) } {" )
-	processedNames = writeProperties( fileJson, true, false )
-	writeMethods( fileJson, processedNames, true, false )
+	if( !fileJson.singleton ) {
+		processedNames = writeProperties( fileJson, true, false )
+		writeMethods( fileJson, processedNames, true, false )
+	}
 	writeToDefinition( "\t}" )
 
 	writeToDefinition( "\texport class ${ getClassName( className ) } ${ getExtends( fileJson, false ) } ${getImplementedInterfaces( fileJson ) } {" )
@@ -101,22 +140,22 @@ def getExtends( fileJson, isInterface ) {
 	if( fileJson.superclasses?.size() > 0 ) {
 		if( isInterface ) {
 			if( fileJson.superclasses.last().contains( "Ext." ) )
-				result = "extends ${ normalizeType( convertToInterface( fileJson.superclasses.last() ) ) }"
+				result = "extends ${ normalizeType( convertToInterface( fileJson.superclasses.last() ), true ) }"
 		}
 		else {
 			if( getClassName( fileJson.name ) != fileJson.superclasses.last() )
-				result = "extends ${ normalizeType( fileJson.superclasses.last() ) }"
+				result = "extends ${ normalizeType( fileJson.superclasses.last(), true ) }"
 		}
 	}
 	return result
 }
 
 def getImplementedInterfaces( fileJson ) {
-	def result = "implements ${ normalizeType( convertToInterface( fileJson.name ) ) }"
+	def result = "implements ${ normalizeType( convertToInterface( fileJson.name ), true ) }"
 	def implementedInterfaces = []
 
 	fileJson.mixins?.each { thisMixin ->
-		implementedInterfaces.add( normalizeType( convertToInterface( thisMixin ) ) )
+		implementedInterfaces.add( normalizeType( convertToInterface( thisMixin ), true ) )
 	}
 
 	if( implementedInterfaces.size() > 0 ) {
@@ -169,20 +208,19 @@ def writeProperties( fileJson, isInterface, useExport ) {
 	classConfig.each { value ->
 		if( value.owner == fileJson.name ) {
 			if( !includePrivate && value.private != true ) {
-				thisType = value.type
 
-				// Property type conversions
-				if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
+				// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
+				if( !( specialCases[ fileJson.name ] && specialCases[ fileJson.name ][ value.name ] == "delete" ) ) {
+					thisType = value.type
 
-				writeToDefinition( "\t\t/** [Config Option] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
-				writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ normalizeType( convertToInterface( thisType ) ) };" )
+					// Property type conversions
+					if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
+
+					writeToDefinition( "\t\t/** [Config Option] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
+					writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ normalizeType( convertToInterface( thisType ) ) };" )
+				}
+
 				processedConfigNames[ value.name ] = true
-
-				//def tokenizedTypes = value.type.tokenize( "/" )
-				//tokenizedTypes.each { thisType ->
-				//	writeToDefinition( "\t\t/** [Config Option] ${ formatCommentText( value.shortDoc ) } */" )
-				//	writeToDefinition( "\t\t${ value.name }${ optionalFlag }: ${ convertToInterface( thisType ) };" )
-				//}
 			}
 		}
 	}
@@ -197,12 +235,6 @@ def writeProperties( fileJson, isInterface, useExport ) {
 					writeToDefinition( "\t\t/** [Property] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
 					writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ normalizeType( convertToInterface( thisType ) ) };" )
 					processedConfigNames[ value.name ] = true
-
-					//def tokenizedTypes = value.type.tokenize( "/" )
-					//tokenizedTypes.each { thisType ->
-					//	writeToDefinition( "\t\t/** [Property] ${ formatCommentText( value.shortDoc ) } */" )
-					//	writeToDefinition( "\t\t${ value.name }${ optionalFlag }: ${ convertToInterface( thisType ) };" )
-					//}
 				}
 			}
 		}
@@ -214,40 +246,70 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 	def classMethods = fileJson.members.method
 	def optionalFlag = isInterface ? "?" : ""
 	def shouldUseExport = useExport
+	def isSingleton = fileJson.singleton && !isInterface
 
 	classMethods.each { value ->
+
 		if( value.owner == fileJson.name || ( fileJson.mixins && value.owner in fileJson.mixins ) ) {
 			if( !includePrivate && value.private != true ) {
-				if( !processedNames[ value.name ] ) {
-					def tokenizedTypes = getTokenizedTypes( value.return.type )
-					tokenizedTypes.each { thisType ->
+				if( !processedNames[ value.name ] && !value?.meta?.deprecated ) {
 
-						// Return type conversions
-						if( thisType == "undefined" ) thisType = "void"
+					// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
+					if( specialCases[ fileJson.name ] && specialCases[ fileJson.name ][ value.name ] == "toProperty" ) {
+						writeToDefinition( "\t\t/** [Method] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
+						writeToDefinition( "\t\t${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
+					}
+					else {
 
-						def paramNames = []
-						def paramTypes = []
-						def requiresOverrides = false
+						def tokenizedTypes = useFullTyping ? getTokenizedTypes( value.return.type ) : [ "any" ]
 
-						value.params.each { thisParam ->
-							paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
-							def tokenizedParamTypes = getTokenizedTypes( thisParam.type )
-							if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) requiresOverrides = true
-							paramTypes.add( tokenizedParamTypes )
-						}
+						tokenizedTypes.each { thisType ->
 
-						if( requiresOverrides ) {
-							def overrideTypes = []
-							paramNames.each { thisParamName ->
-								overrideTypes.add( "any" )
+							// Return type conversions
+							if( thisType == "undefined" ) thisType = "void"
+
+							def paramNames = []
+							def paramTypes = []
+							def requiresOverrides = false
+
+							value.params.each { thisParam ->
+								paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
+
+								if( useFullTyping ) {
+									def tokenizedParamTypes = getTokenizedTypes( thisParam.type )
+									if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) requiresOverrides = true
+									paramTypes.add( tokenizedParamTypes )
+								}
+								else {
+									paramTypes.add( thisParam.type )
+								}
 							}
-							writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, overrideTypes, "any", shouldUseExport )
-						}
 
-						def paramPermutations = GroovyCollections.combinations( paramTypes )
+							def usedPermutations = [:]
 
-						paramPermutations.each { thisPermutation ->
-							writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, thisPermutation, thisType, shouldUseExport )
+							if( ( requiresOverrides || useFullTyping ) && tokenizedTypes.first() == thisType ) {
+								def overrideTypes = []
+								paramNames.each { thisParamName ->
+									overrideTypes.add( "any" )
+								}
+								writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, overrideTypes, "any", shouldUseExport, isSingleton )
+								usedPermutations[ overrideTypes.join( ',' ) ] = true
+							}
+							else if( !useFullTyping ) {
+								writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, paramTypes, thisType, shouldUseExport, isSingleton )
+							}
+
+							if( useFullTyping ) {
+								def paramPermutations = GroovyCollections.combinations( paramTypes )
+
+								paramPermutations.each { thisPermutation ->
+									def thisPermutationAsString = thisPermutation.join( ',' )
+									if( !usedPermutations[ thisPermutationAsString ] ) {
+										writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, thisPermutation, thisType, shouldUseExport, isSingleton )
+										usedPermutations[ thisPermutationAsString ] = true
+									}
+								}
+							}
 						}
 					}
 				}
@@ -257,16 +319,20 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 }
 
 def getTokenizedTypes( types ) {
-	return types.replaceAll( "\\|", "/").tokenize( "/" )
+	def result = types.replaceAll( "\\|", "/").tokenize( "/" )
+	if( result.size() > 1 && types.contains( "Object" ) )
+		result = ["any"]
+	return result
 }
 
-def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, returnType, useExport ) {
+def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, returnType, useExport, isStatic=false ) {
 
 	def exportString = useExport ? "export function " : ""
+	def staticString = ( isStatic && !useExport && methodName != "constructor" ) ? "static " : ""
 	comment = "\t\t/** [Method] ${ comment?.replaceAll( "[\\W]", " " ) }"
 
 	def paramsDoc = ""
-	def methodOutput = "${ methodName }${ optionalFlag }("
+	def methodOutput = "${ staticString }${ methodName }${ optionalFlag }("
 
 	paramNames.eachWithIndex { thisParam, i ->
 		def thisParamType = convertToInterface( paramTypes[ i ] )
@@ -276,8 +342,7 @@ def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, retu
 
 		//func(...args: any[]): void;
 		def spread = ""
-		if( thisParamType.contains( "..." ) ) {
-			thisParamType = thisParamType.replaceAll( "\\.\\.\\.", "" )
+		if( thisParamType.startsWith( "..." ) ) {
 			spread = "..."
 		}
 
@@ -316,15 +381,22 @@ def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, retu
 	}
 }
 
-def normalizeType( typeName ) {
+def normalizeType( typeName, forceFullType=false ) {
+	if( !useFullTyping && !forceFullType )
+		return "any"
+
 	if( typeName.contains( "Ext." ) )
 		typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
 
 	if( typeName == "Mixed" ) typeName = "any"
 	if( typeName == "TextNode" ) typeName = "any"
 	if( typeName == "Arguments" ) typeName = "any"
+	//if( typeName == "Object" ) typeName = "any"
+	if( typeName == "String" ) typeName = "string"
+	if( typeName == "Boolean" ) typeName = "bool"
+	if( typeName == "Number" ) typeName = "number"
 
-	return typeName
+	return typeName.replaceAll( "\\.\\.\\.", "" )
 }
 
 def convertToInterface( type ) {

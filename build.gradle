@@ -30,12 +30,46 @@ project.ext {
 
 	// Handle one-off cases where ExtJS (or its JSDuck docs) create invalid scenarios...
 	specialCases = [:]
+	addSpecialCase( "Ext.grid.column.Action", "isDisabled", "delete" )
+	addSpecialCase( "Ext.AbstractComponent", "animate", "toProperty" )
+	addSpecialCase( "Ext.util.Animate", "animate", "toProperty" )
+	addSpecialCase( "Ext.form.field.Date", "safeParse", "toProperty" )
+
+	//addSpecialCase( "Ext.slider.Single", "setValue", "toProperty" )
+	//addSpecialCase( "Ext.slider.Multi", "setValue", "toProperty" )
+
+	addSpecialCase( "overrideReturnType", "Ext.form.field.Field", "any" )
+	addSpecialCase( "overrideReturnType", "Ext.slider.Multi", "any" )
+	addSpecialCase( "overrideReturnType", "Ext.slider.Single", "any" )
+
+	/*
 	specialCases[ "Ext.grid.column.Action" ] = [:]
 	specialCases[ "Ext.grid.column.Action" ][ "isDisabled" ] = "delete" // cfg item
 	specialCases[ "Ext.AbstractComponent" ] = [:]
 	specialCases[ "Ext.AbstractComponent" ][ "animate" ] = "toProperty" // method
 	specialCases[ "Ext.util.Animate" ] = [:]
 	specialCases[ "Ext.util.Animate" ][ "animate" ] = "toProperty" // method
+	*/
+
+	//specialCases[ "overrideReturnType" ] = [:]
+	//specialCases[ "overrideReturnType" ][ "Ext.form.field.Field" ] = "any"
+}
+
+def addSpecialCase( key1, key2, value ) {
+	if( !specialCases[ key1 ] ) specialCases[ key1 ] = [:]
+	specialCases[ key1 ][ key2 ] = value
+}
+
+def getSpecialCase( key1, key2, value=null ) {
+	if( specialCases[ key1 ] && specialCases[ key1 ][ key2 ] && !value ) {
+		return specialCases[ key1 ][ key2 ]
+	}
+	else if( value && specialCases[ key1 ] && specialCases[ key1 ][ key2 ] == value ) {
+		return true
+	}
+	else {
+		return false
+	}
 }
 
 // TASKS
@@ -55,9 +89,8 @@ In Ext.grid.(I)ActionColumn, omit isDisabled cfg item (alias for Ext.grid.column
 In Ext.(I)AbstractComponent, turn animate() method into animate:any
 In Ext.util.(I)Animate, turn animate() method into animate:any
 
-Ext.zip(), delete, or don't allow spread because it has varargs first???
-? Ext.create() has ( name, ...args ) so name can't be optional
-? Ext.log() has ( name, ...args ) so name can't be optional
+In Ext.form.field.*, setValue() return any (or maybe Ext.form.field.(I)Base?)
+In Ext.form.field.(I)Date, safeParse() return any
 
 */
 
@@ -68,6 +101,9 @@ task initialize() << {
 	println " "
 	println "Creating ExtJS Definition File..."
 	println " "
+
+	def temp = getSpecialCase( "Ext.AbstractComponent", "animate" )
+	def temp2 = getSpecialCase( "Ext.AbstractComponent", "animateXXX" )
 
 	if( project.singleDefinition ) {
 		project.definitionFile.write( "" )
@@ -210,7 +246,7 @@ def writeProperties( fileJson, isInterface, useExport ) {
 			if( !includePrivate && value.private != true ) {
 
 				// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
-				if( !( specialCases[ fileJson.name ] && specialCases[ fileJson.name ][ value.name ] == "delete" ) ) {
+				if( !getSpecialCase( fileJson.name, value.name, "delete" ) ) {
 					thisType = value.type
 
 					// Property type conversions
@@ -248,20 +284,25 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 	def shouldUseExport = useExport
 	def isSingleton = fileJson.singleton && !isInterface
 
-	classMethods.each { value ->
+	classMethods.each { thisMethod ->
 
-		if( value.owner == fileJson.name || ( fileJson.mixins && value.owner in fileJson.mixins ) ) {
-			if( !includePrivate && value.private != true ) {
-				if( !processedNames[ value.name ] && !value?.meta?.deprecated ) {
+		if( thisMethod.owner == fileJson.name || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) ) {
+			if( !includePrivate && thisMethod.private != true ) {
+				if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated ) {
+
+					// Don't output special cases where return type isn't valid
+					if( getSpecialCase( "overrideReturnType", thisMethod.return.type ) ) {
+						thisMethod.return.type = getSpecialCase( "overrideReturnType", thisMethod.return.type )
+					}
 
 					// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
-					if( specialCases[ fileJson.name ] && specialCases[ fileJson.name ][ value.name ] == "toProperty" ) {
-						writeToDefinition( "\t\t/** [Method] (${value.type}) ${ formatCommentText( value.shortDoc ) } */" )
-						writeToDefinition( "\t\t${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
+					if( getSpecialCase( fileJson.name, thisMethod.name, "toProperty" ) ) {
+						writeToDefinition( "\t\t/** [Method] ${ formatCommentText( thisMethod.shortDoc ) } */" )
+						writeToDefinition( "\t\t${ thisMethod.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
 					}
 					else {
 
-						def tokenizedTypes = useFullTyping ? getTokenizedTypes( value.return.type ) : [ "any" ]
+						def tokenizedTypes = useFullTyping ? getTokenizedTypes( thisMethod.return.type ) : [ "any" ]
 
 						tokenizedTypes.each { thisType ->
 
@@ -272,12 +313,14 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 							def paramTypes = []
 							def requiresOverrides = false
 
-							value.params.each { thisParam ->
+							thisMethod.params.each { thisParam ->
 								paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
 
 								if( useFullTyping ) {
 									def tokenizedParamTypes = getTokenizedTypes( thisParam.type )
-									if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) requiresOverrides = true
+									if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) {
+										requiresOverrides = true
+									}
 									paramTypes.add( tokenizedParamTypes )
 								}
 								else {
@@ -287,26 +330,28 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 
 							def usedPermutations = [:]
 
-							if( ( requiresOverrides || useFullTyping ) && tokenizedTypes.first() == thisType ) {
+							if( !useFullTyping ) {
+								writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, thisType, shouldUseExport, isSingleton )
+							}
+							else if( useFullTyping && requiresOverrides && tokenizedTypes.first() == thisType ) {
 								def overrideTypes = []
 								paramNames.each { thisParamName ->
 									overrideTypes.add( "any" )
 								}
-								writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, overrideTypes, "any", shouldUseExport, isSingleton )
+								writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, "any", shouldUseExport, isSingleton )
 								usedPermutations[ overrideTypes.join( ',' ) ] = true
-							}
-							else if( !useFullTyping ) {
-								writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, paramTypes, thisType, shouldUseExport, isSingleton )
 							}
 
 							if( useFullTyping ) {
 								def paramPermutations = GroovyCollections.combinations( paramTypes )
 
 								paramPermutations.each { thisPermutation ->
-									def thisPermutationAsString = thisPermutation.join( ',' )
-									if( !usedPermutations[ thisPermutationAsString ] ) {
-										writeMethod( value.shortDoc, value.name, optionalFlag, paramNames, thisPermutation, thisType, shouldUseExport, isSingleton )
-										usedPermutations[ thisPermutationAsString ] = true
+									if( !requiresOverrides || ( requiresOverrides && thisPermutation.count{ normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
+										def thisPermutationAsString = thisPermutation.join( ',' )
+										if( !usedPermutations[ thisPermutationAsString ] ) {
+											writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, thisType, shouldUseExport, isSingleton )
+											usedPermutations[ thisPermutationAsString ] = true
+										}
 									}
 								}
 							}
@@ -322,7 +367,7 @@ def getTokenizedTypes( types ) {
 	def result = types.replaceAll( "\\|", "/").tokenize( "/" )
 	if( result.size() > 1 && types.contains( "Object" ) )
 		result = ["any"]
-	return result
+	return result.unique()
 }
 
 def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, returnType, useExport, isStatic=false ) {
@@ -385,18 +430,20 @@ def normalizeType( typeName, forceFullType=false ) {
 	if( !useFullTyping && !forceFullType )
 		return "any"
 
+	typeName = typeName.replaceAll( "\\.\\.\\.", "" )
+
 	if( typeName.contains( "Ext." ) )
 		typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
 
 	if( typeName == "Mixed" ) typeName = "any"
 	if( typeName == "TextNode" ) typeName = "any"
 	if( typeName == "Arguments" ) typeName = "any"
-	//if( typeName == "Object" ) typeName = "any"
+	if( typeName == "Object" ) typeName = "any"
 	if( typeName == "String" ) typeName = "string"
 	if( typeName == "Boolean" ) typeName = "bool"
 	if( typeName == "Number" ) typeName = "number"
 
-	return typeName.replaceAll( "\\.\\.\\.", "" )
+	return typeName
 }
 
 def convertToInterface( type ) {

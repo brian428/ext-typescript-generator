@@ -31,28 +31,17 @@ project.ext {
 	// Handle one-off cases where ExtJS (or its JSDuck docs) create invalid scenarios...
 	specialCases = [:]
 	addSpecialCase( "Ext.grid.column.Action", "isDisabled", "delete" )
+	addSpecialCase( "Ext.Component", "draggable", "delete" )
+	addSpecialCase( "Ext.ComponentLoader", "renderer", "delete" )
+
 	addSpecialCase( "Ext.AbstractComponent", "animate", "toProperty" )
 	addSpecialCase( "Ext.util.Animate", "animate", "toProperty" )
 	addSpecialCase( "Ext.form.field.Date", "safeParse", "toProperty" )
-
-	//addSpecialCase( "Ext.slider.Single", "setValue", "toProperty" )
-	//addSpecialCase( "Ext.slider.Multi", "setValue", "toProperty" )
 
 	addSpecialCase( "overrideReturnType", "Ext.form.field.Field", "any" )
 	addSpecialCase( "overrideReturnType", "Ext.slider.Multi", "any" )
 	addSpecialCase( "overrideReturnType", "Ext.slider.Single", "any" )
 
-	/*
-	specialCases[ "Ext.grid.column.Action" ] = [:]
-	specialCases[ "Ext.grid.column.Action" ][ "isDisabled" ] = "delete" // cfg item
-	specialCases[ "Ext.AbstractComponent" ] = [:]
-	specialCases[ "Ext.AbstractComponent" ][ "animate" ] = "toProperty" // method
-	specialCases[ "Ext.util.Animate" ] = [:]
-	specialCases[ "Ext.util.Animate" ][ "animate" ] = "toProperty" // method
-	*/
-
-	//specialCases[ "overrideReturnType" ] = [:]
-	//specialCases[ "overrideReturnType" ][ "Ext.form.field.Field" ] = "any"
 }
 
 def addSpecialCase( key1, key2, value ) {

@@ -30,6 +30,7 @@ project.ext {
 
 	// Handle one-off cases where ExtJS (or its JSDuck docs) create invalid scenarios...
 	specialCases = [:]
+
 	addSpecialCase( "Ext.grid.column.Action", "isDisabled", "delete" )
 	addSpecialCase( "Ext.Component", "draggable", "delete" )
 	addSpecialCase( "Ext.ComponentLoader", "renderer", "delete" )
@@ -42,7 +43,100 @@ project.ext {
 	addSpecialCase( "overrideReturnType", "Ext.slider.Multi", "any" )
 	addSpecialCase( "overrideReturnType", "Ext.slider.Single", "any" )
 
+
+
+
+	specialCases[ "removeProperty" ] = [:]
+	specialCases[ "removeMethod" ] = [:]
+	specialCases[ "methodToProperty" ] = [:]
+	specialCases[ "globalReturnTypeOverride" ] = [:]
+	specialCases[ "returnTypeOverride" ] = [:]
+	specialCases[ "convertParamType" ] = [:]
+
+	addRemovedProperty( "Ext.grid.column.Action", "isDisabled" )
+	addRemovedProperty( "Ext.Component", "draggable" )
+	addRemovedProperty( "Ext.ComponentLoader", "renderer" )
+	addRemovedProperty( "Ext.data.TreeStore", "fields" )
+	addRemovedProperty( "Ext.util.ComponentDragger", "delegate" )
+
+	addRemovedMethod( "Ext.dd.StatusProxy", "hide" )
+	addRemovedMethod( "Ext.tip.Tip", "showAt" )
+	addRemovedMethod( "Ext.tip.Tip", "showBy" )
+	addRemovedMethod( "Ext.tip.ToolTip", "showAt" )
+	addRemovedMethod( "Ext.tip.QuickTip", "showAt" )
+
+	addConvertMethodToProperty( "Ext.AbstractComponent", "animate" )
+	addConvertMethodToProperty( "Ext.util.Animate", "animate" )
+	addConvertMethodToProperty( "Ext.form.field.Date", "safeParse" )
+
+	addGlobalReturnTypeOverride( "Ext.form.field.Field", "any" )
+	addGlobalReturnTypeOverride( "Ext.slider.Multi", "any" )
+	addGlobalReturnTypeOverride( "Ext.slider.Single", "any" )
+
+	addReturnTypeOverride( "Ext.data.proxy.Rest", "buildUrl", "string" )
+	addReturnTypeOverride( "Ext.data.AbstractStore", "load", "void" )
+	addReturnTypeOverride( "Ext.dom.AbstractElement", "hide", "Ext.dom.Element" )
+	addReturnTypeOverride( "Ext.dom.AbstractElement", "setVisible", "Ext.dom.Element" )
+	addReturnTypeOverride( "Ext.dom.AbstractElement", "show", "Ext.dom.Element" )
+	addReturnTypeOverride( "Ext.form.field.Text", "setValue", "any" )
+
 }
+
+def addRemovedProperty( className, propertyName ) {
+	if( !specialCases[ "removeProperty" ][ className ] ) specialCases[ "removeProperty" ][ className ] = [:]
+	specialCases[ "removeProperty" ][ className ][ propertyName ] = true
+}
+
+def addRemovedMethod( className, methodName ) {
+	if( !specialCases[ "removeMethod" ][ className ] ) specialCases[ "removeMethod" ][ className ] = [:]
+	specialCases[ "removeMethod" ][ className ][ methodName ] = true
+}
+
+def addConvertMethodToProperty( className, methodName ) {
+	if( !specialCases[ "methodToProperty" ][ className ] ) specialCases[ "methodToProperty" ][ className ] = [:]
+	specialCases[ "methodToProperty" ][ className ][ methodName ] = true
+}
+
+def addGlobalReturnTypeOverride( className, newReturnType="any" ) {
+	specialCases[ "globalReturnTypeOverride" ][ className ] = newReturnType
+}
+
+def addReturnTypeOverride( className, methodName, newReturnType="any" ) {
+	if( !specialCases[ "returnTypeOverride" ][ className ] ) specialCases[ "returnTypeOverride" ][ className ] = [:]
+	specialCases[ "returnTypeOverride" ][ className ][ methodName ] = newReturnType
+}
+
+def addMethodParameterOverride( className, methodName, parameterName, newType="any" ) {
+	if( !specialCases[ "methodParameterOverride" ][ className ] ) specialCases[ "methodParameterOverride" ][ className ] = [:]
+	if( !specialCases[ "methodParameterOverride" ][ className ][ methodName ] ) specialCases[ "methodParameterOverride" ][ className ][ methodName ] = [:]
+	specialCases[ "methodParameterOverride" ][ className ][ methodName ][ parameterName ] = newType
+}
+
+def shouldRemoveProperty( className, propertyName ) {
+	return ( specialCases[ "removeProperty" ][ className ] && specialCases[ "removeProperty" ][ className ][ propertyName ] )
+}
+
+def shouldRemoveMethod( className, methodName ) {
+	return ( specialCases[ "removeMethod" ][ className ] && specialCases[ "removeMethod" ][ className ][ methodName ] )
+}
+
+def shouldConvertToProperty( className, methodName ) {
+	return ( specialCases[ "methodToProperty" ][ className ] && specialCases[ "methodToProperty" ][ className ][ methodName ] )
+}
+
+def getReturnTypeOverride( className, methodName=null ) {
+	if( methodName && specialCases[ "returnTypeOverride" ][ className ] && specialCases[ "returnTypeOverride" ][ className ][ methodName ] )
+		return specialCases[ "returnTypeOverride" ][ className ][ methodName ]
+	return specialCases[ "globalReturnTypeOverride" ][ className ]
+}
+
+def getMethodParameterOverride( className, methodName, parameterName ) {
+	if( specialCases[ "methodParameterOverride" ][ className ] && specialCases[ "methodParameterOverride" ][ className ][ methodName ] && specialCases[ "methodParameterOverride" ][ className ][ methodName ][ parameterName ] )
+		return specialCases[ "methodParameterOverride" ][ className ][ methodName ][ parameterName ]
+
+	return null
+}
+
 
 def addSpecialCase( key1, key2, value ) {
 	if( !specialCases[ key1 ] ) specialCases[ key1 ] = [:]
@@ -91,8 +185,8 @@ task initialize() << {
 	println "Creating ExtJS Definition File..."
 	println " "
 
-	def temp = getSpecialCase( "Ext.AbstractComponent", "animate" )
-	def temp2 = getSpecialCase( "Ext.AbstractComponent", "animateXXX" )
+	def temp = shouldConvertToProperty( "Ext.AbstractComponent", "animate" )
+	def temp2 = shouldConvertToProperty( "Ext.AbstractComponent", "animateXXX" )
 
 	if( project.singleDefinition ) {
 		project.definitionFile.write( "" )
@@ -235,7 +329,7 @@ def writeProperties( fileJson, isInterface, useExport ) {
 			if( !includePrivate && value.private != true ) {
 
 				// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
-				if( !getSpecialCase( fileJson.name, value.name, "delete" ) ) {
+				if( !shouldRemoveProperty( fileJson.name, value.name ) ) {
 					thisType = value.type
 
 					// Property type conversions
@@ -253,7 +347,7 @@ def writeProperties( fileJson, isInterface, useExport ) {
 	classProperties.each { value ->
 		if( value.owner == fileJson.name ) {
 			if( !includePrivate && value.private != true ) {
-				if( !processedConfigNames[ value.name ] ) {
+				if( !processedConfigNames[ value.name ] && !shouldRemoveProperty( fileJson.name, value.name ) ) {
 					thisType = value.type
 					if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
 
@@ -277,15 +371,20 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 
 		if( thisMethod.owner == fileJson.name || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) ) {
 			if( !includePrivate && thisMethod.private != true ) {
-				if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated ) {
+				if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
 
-					// Don't output special cases where return type isn't valid
-					if( getSpecialCase( "overrideReturnType", thisMethod.return.type ) ) {
-						thisMethod.return.type = getSpecialCase( "overrideReturnType", thisMethod.return.type )
+					// Convert return types for special cases where original return type isn't valid
+					if( getReturnTypeOverride( thisMethod.return.type ) ) {
+						thisMethod.return.type = getReturnTypeOverride( thisMethod.return.type )
 					}
 
-					// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
-					if( getSpecialCase( fileJson.name, thisMethod.name, "toProperty" ) ) {
+					// Convert return types for special cases where an overridden subclass method returns an invalid type
+					if( getReturnTypeOverride( fileJson.name, thisMethod.name ) ) {
+						thisMethod.return.type = getReturnTypeOverride( fileJson.name, thisMethod.name )
+					}
+
+					// Convert methods to property fields for special cases where an item has incompatible ExtJS API overrides in subclasses
+					if( shouldConvertToProperty( fileJson.name, thisMethod.name ) ) {
 						writeToDefinition( "\t\t/** [Method] ${ formatCommentText( thisMethod.shortDoc ) } */" )
 						writeToDefinition( "\t\t${ thisMethod.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
 					}
@@ -429,8 +528,15 @@ def normalizeType( typeName, forceFullType=false ) {
 	if( typeName == "Arguments" ) typeName = "any"
 	if( typeName == "Object" ) typeName = "any"
 	if( typeName == "String" ) typeName = "string"
+	if( typeName == '"SINGLE"' ) typeName = "string"
 	if( typeName == "Boolean" ) typeName = "bool"
 	if( typeName == "Number" ) typeName = "number"
+	if( typeName == "Date" ) typeName = "any"
+
+	if( typeName == "String[]" ) typeName = "string[]"
+	if( typeName == "Boolean[]" ) typeName = "bool[]"
+	if( typeName == "Number[]" ) typeName = "number[]"
+	if( typeName == "Date[]" ) typeName = "any"
 
 	return typeName
 }

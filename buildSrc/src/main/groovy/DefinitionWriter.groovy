@@ -11,10 +11,10 @@ class DefinitionWriter
 	File definitionFile
 
 	def init() {
-		new File( config.definitionPath ).deleteDir()
-		new File( config.definitionPath ).mkdir()
+		new File( config.outputPath ).deleteDir()
+		new File( config.outputPath ).mkdir()
 
-		definitionFile = new File( "${ config.definitionPath }/${ config.libraryName }-${ config.libraryVersion }-${ config.useFullTyping ? 'Typed' : 'Untyped' }.d.ts" )
+		definitionFile = new File( "${ config.outputPath }/${ config.libraryName }-${ config.libraryVersion }-${ config.useFullTyping ? 'Typed' : 'Untyped' }.d.ts" )
 
 		if( config.singleDefinition ) {
 			definitionFile.write( "" )
@@ -29,7 +29,7 @@ class DefinitionWriter
 			}
 		}
 		else {
-			def currentDefinitionFile = new File( "${ config.definitionPath }/${ config.currentModule }.d.ts" )
+			def currentDefinitionFile = new File( "${ config.outputPath }/${ config.currentModule }.d.ts" )
 			if( !currentDefinitionFile.exists() ) currentDefinitionFile.createNewFile()
 
 			currentDefinitionFile.withWriterAppend( "UTF-8" ) { writer ->

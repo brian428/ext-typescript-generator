@@ -11,11 +11,11 @@ project.ext {
 	config = new Config(
 		libraryName: "ExtJS",
 		libraryVersion: "4.2.0",
-		includePrivate: false,
-		useFullTyping: true,
-		forceAllParamsToOptional: true,
 		singleDefinition: true,
-		definitionPath: "./definition",
+		useFullTyping: true,
+		includePrivate: false,
+		forceAllParamsToOptional: true,
+		outputPath: "./target",
 		omitOverrideComments: true
 	)
 

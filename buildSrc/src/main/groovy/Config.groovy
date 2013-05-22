@@ -6,24 +6,24 @@ class Config
 	def libraryVersion
 
 	// False to omit private methods/properties
-	def includePrivate
+	def includePrivate = false
 
 	// True to include full type values for properties, params, and return types.
 	// Generates method overrides where necessary
 	// False to omit all types and set everything to "any"
-	def useFullTyping
+	def useFullTyping = false
 
-	// Force all parameter types to "any" where possible
-	def forceAllParamsToOptional
+	// Force all method parameters to optional where possible (basically any time variable arguments/"spreads" aren't used)
+	def forceAllParamsToOptional = true
 
 	// False to generate separate definitions for each package
-	def singleDefinition
+	def singleDefinition = true
 	def currentModule = ""
 
 	// Path to save definition into
-	def definitionPath = "./definition"
+	def outputPath = "./target"
 
-	// True to only output JSDoc comments once for each method (and not for overrides).
+	// True to only output JSDoc comments once for each method (and not for overrides) to reduce file size.
 	def omitOverrideComments = false
 
 }

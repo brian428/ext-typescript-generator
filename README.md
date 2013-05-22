@@ -4,7 +4,7 @@
 ## Quick (Temporary) Initial Notes
 Untyped and fully typed definition files are available in the /definition folder.
 
-Add a reference to the definition at the top of your .ts file, e.g.: /// <reference path="./definitions/ExtJS-4.2.0-Typed.d.ts" />
+Add a reference to the definition at the top of your .ts file.
 
 Cast configuration blocks to the appropriate interface to enable code hinting.
 

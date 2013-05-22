@@ -2,13 +2,13 @@
 
 
 ## Quick (Temporary) Initial Notes
-Untyped and fully typed definition files are available in the /definition folder.
+* Untyped and fully typed definition files are available in the /definition folder.
+* Add a reference to the definition at the top of your .ts file.
+* Cast configuration blocks to the appropriate interface to enable code hinting.
+* Since methods in a TS file are added to the prototype and not the instance, it's necessary to declare functions as properties (see example).
 
-Add a reference to the definition at the top of your .ts file.
 
-Cast configuration blocks to the appropriate interface to enable code hinting.
-
-MyCompanyGridPanel.ts:
+Example: MyCompanyGridPanel.ts:
 ```
 /// <reference path="./definitions/ExtJS-4.2.0-Typed.d.ts" />
 
@@ -21,6 +21,8 @@ class MyCompanyGridPanel extends Ext.grid.Panel {
         super();
     }
 
+    // Decalare methods as properties, as shown below. 
+    // Otherwise, they'll be lost when ExtJS rewrites the Object's prototype.
     initComponent = function (cfg: Object = {}) {
         Ext.apply(this, <Ext.grid.IPanel>{
             itemId: "companyGridPanel",

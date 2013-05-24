@@ -11,6 +11,8 @@ class TypeManager
 		if( typeName.contains( "Ext." ) )
 			typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
 
+		// TypeScript gets confused between native Function type and Ext.Function class...
+		if( typeName == "Function" ) typeName = "any"
 		if( typeName == "Mixed" ) typeName = "any"
 		if( typeName == "TextNode" ) typeName = "any"
 		if( typeName == "Arguments" ) typeName = "any"

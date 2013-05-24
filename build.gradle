@@ -266,6 +266,7 @@ def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, retu
 	DefinitionWriter definitionWriter = project.definitionWriter
 	TypeManager typeManager = project.typeManager
 
+	def paramsContainSpread = paramTypes.count{ ( it.startsWith( "..." ) || it.endsWith( "..." ) ) } > 0
 	def exportString = useExport ? "export function " : ""
 	def staticString = ( isStatic && !useExport && methodName != "constructor" ) ? "static " : ""
 	comment = "\t\t/** [Method] ${ comment?.replaceAll( "[\\W]", " " ) }"
@@ -275,24 +276,28 @@ def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, retu
 
 	paramNames.eachWithIndex { thisParam, i ->
 		def thisParamType = typeManager.convertToInterface( paramTypes[ i ] )
+		def thisParamName = thisParam.name
 
-		paramsDoc += "\t\t* @param ${ thisParam.name } ${ thisParamType } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
+		paramsDoc += "\t\t* @param ${ thisParamName } ${ thisParamType } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
 		if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
 
-		//func(...args: any[]): void;
 		def spread = ""
-		if( thisParamType.startsWith( "..." ) ) {
+		if( paramNames.last() == thisParam && ( thisParamType.startsWith( "..." ) || thisParamType.endsWith( "..." ) ) ) {
 			spread = "..."
 		}
-
-		def thisParamName = thisParam.name
 
 		// Param name conversions
 		if( thisParamName == "class" ) thisParamName = "clazz"
 
-		def optionalParamFlag = thisParam.optional ? "?" : ""
-		if( spread.size() == 0 && config.forceAllParamsToOptional ) optionalParamFlag = "?"
-		methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.length() > 0 ? "any[]" : typeManager.normalizeType( thisParamType ) }"
+		def optionalParamFlag = ( thisParam.optional || spread.size() > 0 ) ? "?" : ""
+		if( spread.size() == 0 && config.forceAllParamsToOptional ) {
+			optionalParamFlag = "?"
+		}
+		if( paramsContainSpread ) {
+			optionalParamFlag = ""
+		}
+
+		methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.size() > 0 ? "any[]" : typeManager.normalizeType( thisParamType ) }"
 
 		if( thisParam == paramNames.last() ) {
 			methodOutput += " "

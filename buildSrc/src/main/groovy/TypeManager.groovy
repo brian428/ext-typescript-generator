@@ -23,6 +23,7 @@ class TypeManager
 		if( typeName == "Number" ) typeName = "number"
 		if( typeName == "Date" ) typeName = "any"
 
+		if( typeName == "Array" ) typeName = "any[]"
 		if( typeName == "String[]" ) typeName = "string[]"
 		if( typeName == "Boolean[]" ) typeName = "bool[]"
 		if( typeName == "Number[]" ) typeName = "number[]"

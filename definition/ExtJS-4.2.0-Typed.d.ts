@@ -527,7 +527,7 @@ declare module Ext {
 		*/
 		setLocalXY?( x?:any, y?:any ): any;
 		setLocalXY?( x?:number, y?:number ): Ext.util.Positionable;
-		setLocalXY?( x?:Array, y?:number ): Ext.util.Positionable;
+		setLocalXY?( x?:any[], y?:number ): Ext.util.Positionable;
 		/** [Method] Sets the local y coordinate of this element using CSS style  
 		* @param y Number The y coordinate. A value of null sets the top style to 'auto'. 
 		*/
@@ -590,7 +590,7 @@ declare module Ext {
 		*/
 		translatePoints?( x?:any, y?:any ): any;
 		translatePoints?( x?:number, y?:number ): any;
-		translatePoints?( x?:Array, y?:number ): any;
+		translatePoints?( x?:any[], y?:number ): any;
 		/** [Method] Shorthand for removeListener  
 		* @param eventName String The type of event the handler was associated with. 
 		* @param fn Function The handler to remove. This must be a reference to the function passed into the Ext.util.Observable.addListener call. 
@@ -1137,7 +1137,7 @@ declare module Ext {
 		*/
 		setLocalXY( x?:any, y?:any ): any;
 		setLocalXY( x?:number, y?:number ): Ext.util.Positionable;
-		setLocalXY( x?:Array, y?:number ): Ext.util.Positionable;
+		setLocalXY( x?:any[], y?:number ): Ext.util.Positionable;
 		/** [Method] Sets the local y coordinate of this element using CSS style  
 		* @param y Number The y coordinate. A value of null sets the top style to 'auto'. 
 		*/
@@ -1200,7 +1200,7 @@ declare module Ext {
 		*/
 		translatePoints( x?:any, y?:any ): any;
 		translatePoints( x?:number, y?:number ): any;
-		translatePoints( x?:Array, y?:number ): any;
+		translatePoints( x?:any[], y?:number ): any;
 		/** [Method] Shorthand for removeListener  
 		* @param eventName String The type of event the handler was associated with. 
 		* @param fn Function The handler to remove. This must be a reference to the function passed into the Ext.util.Observable.addListener call. 
@@ -1962,21 +1962,21 @@ declare module Ext {
 		/** [Method] Filter through an array and remove empty item as defined in Ext isEmpty See filter 
 		* @param array Array 
 		*/
-		static clean( array?:Array ): Array;
+		static clean( array?:any[] ): any[];
 		/** [Method] Clone a flat array without referencing the previous one  
 		* @param array Array The array 
 		*/
-		static clone( array?:Array ): Array;
+		static clone( array?:any[] ): any[];
 		/** [Method] Checks whether or not the given array contains the specified item 
 		* @param array Array The array to check 
 		* @param item Object The item to look for 
 		*/
-		static contains( array?:Array, item?:any ): bool;
+		static contains( array?:any[], item?:any ): bool;
 		/** [Method] Perform a set difference A B by subtracting all items in array B from array A  
 		* @param arrayA Array 
 		* @param arrayB Array 
 		*/
-		static difference( arrayA?:Array, arrayB?:Array ): Array;
+		static difference( arrayA?:any[], arrayB?:any[] ): any[];
 		/** [Method] Iterates an array or an iterable value and invoke the given callback function for each item  
 		* @param iterable any The value to be iterated. If this argument is not iterable, the callback function is called once. 
 		* @param fn Function The callback function. If it returns false, the iteration stops and this method returns the current index. 
@@ -1988,183 +1988,183 @@ declare module Ext {
 		* @param array1 Array 
 		* @param array2 Array 
 		*/
-		static equals( array1?:Array, array2?:Array ): bool;
+		static equals( array1?:any[], array2?:any[] ): bool;
 		/** [Method] Removes items from an array  
 		* @param array Array The Array on which to replace. 
 		* @param index Number The index in the array at which to operate. 
 		* @param removeCount Number The number of items to remove at index. 
 		*/
-		static erase( array?:Array, index?:number, removeCount?:number ): Array;
+		static erase( array?:any[], index?:number, removeCount?:number ): any[];
 		/** [Method] Executes the specified function for each array element until the function returns a falsy value  
 		* @param array Array 
 		* @param fn Function Callback function for each item 
 		* @param scope Object Callback function scope 
 		*/
-		static every( array?:Array, fn?:any, scope?:any ): bool;
+		static every( array?:any[], fn?:any, scope?:any ): bool;
 		/** [Method] Creates a new array with all of the elements of this array for which the provided filtering function returns true  
 		* @param array Array 
 		* @param fn Function Callback function for each item 
 		* @param scope Object Callback function scope 
 		*/
-		static filter( array?:Array, fn?:any, scope?:any ): Array;
+		static filter( array?:any[], fn?:any, scope?:any ): any[];
 		/** [Method] Returns the first item in the array which elicits a true return value from the passed selection function  
 		* @param array Array The array to search 
 		* @param fn Function The selection function to execute for each item. 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the array 
 		*/
-		static findBy( array?:Array, fn?:any, scope?:any ): any;
+		static findBy( array?:any[], fn?:any, scope?:any ): any;
 		/** [Method] Recursively flattens into 1 d Array  
 		* @param array Array The array to flatten 
 		*/
-		static flatten( array?:Array ): Array;
+		static flatten( array?:any[] ): any[];
 		/** [Method] Iterates an array and invoke the given callback function for each item  
 		* @param array Array The array to iterate 
 		* @param fn Function The callback function. 
 		* @param scope Object The execution scope (this) in which the specified function is executed. 
 		*/
-		static forEach( array?:Array, fn?:any, scope?:any ): void;
+		static forEach( array?:any[], fn?:any, scope?:any ): void;
 		/** [Method] Converts a value to an array if it s not already an array returns An empty array if given value is undefined or n  
 		* @param value Object The value to convert to an array if it's not already is an array 
 		* @param newReference Boolean True to clone the given array and return a new reference if necessary, defaults to false 
 		*/
-		static from( value?:any, newReference?:bool ): Array;
+		static from( value?:any, newReference?:bool ): any[];
 		/** [Method] Push an item into the array only if the array doesn t contain it yet 
 		* @param array Array The array 
 		* @param item Object The item to include 
 		*/
-		static include( array?:Array, item?:any ): void;
+		static include( array?:any[], item?:any ): void;
 		/** [Method] Get the index of the provided item in the given array a supplement for the missing arrayPrototype indexOf in Interne  
 		* @param array Array The array to check 
 		* @param item Object The item to look for 
 		* @param from Number The index at which to begin the search 
 		*/
-		static indexOf( array?:Array, item?:any, from?:number ): number;
+		static indexOf( array?:any[], item?:any, from?:number ): number;
 		/** [Method] Inserts items in to an array  
 		* @param array Array The Array in which to insert. 
 		* @param index Number The index in the array at which to operate. 
 		* @param items Array The array of items to insert at index. 
 		*/
-		static insert( array?:Array, index?:number, items?:Array ): Array;
+		static insert( array?:any[], index?:number, items?:any[] ): any[];
 		/** [Method] Merge multiple arrays into one with unique items that exist in all of the arrays  
 		* @param array1 Array 
 		* @param array2 Array 
 		* @param etc Array 
 		*/
-		static intersect( array1?:Array, array2?:Array, etc?:Array ): Array;
+		static intersect( array1?:any[], array2?:any[], etc?:any[] ): any[];
 		/** [Method] Creates a new array with the results of calling a provided function on every element in this array  
 		* @param array Array 
 		* @param fn Function Callback function for each item 
 		* @param scope Object Callback function scope 
 		*/
-		static map( array?:Array, fn?:any, scope?:any ): Array;
+		static map( array?:any[], fn?:any, scope?:any ): any[];
 		/** [Method] Returns the maximum value in the Array  
 		* @param array any The Array from which to select the maximum value. 
 		* @param comparisonFn any a function to perform the comparision which determines maximization. If omitted the ">" operator will be used. Note: gt = 1; eq = 0; lt = -1 
 		*/
 		static max( array?:any, comparisonFn?:any ): any;
-		static max( array?:Array, comparisonFn?:any ): any;
+		static max( array?:any[], comparisonFn?:any ): any;
 		static max( array?:NodeList, comparisonFn?:any ): any;
 		/** [Method] Calculates the mean of all items in the array  
 		* @param array Array The Array to calculate the mean value of. 
 		*/
-		static mean( array?:Array ): number;
+		static mean( array?:any[] ): number;
 		/** [Method] Merge multiple arrays into one with unique items  
 		* @param array1 Array 
 		* @param array2 Array 
 		* @param etc Array 
 		*/
-		static merge( array1?:Array, array2?:Array, etc?:Array ): Array;
+		static merge( array1?:any[], array2?:any[], etc?:any[] ): any[];
 		/** [Method] Returns the minimum value in the Array  
 		* @param array any The Array from which to select the minimum value. 
 		* @param comparisonFn any a function to perform the comparision which determines minimization. If omitted the "&lt;" operator will be used. Note: gt = 1; eq = 0; lt = -1 
 		*/
 		static min( array?:any, comparisonFn?:any ): any;
-		static min( array?:Array, comparisonFn?:any ): any;
+		static min( array?:any[], comparisonFn?:any ): any;
 		static min( array?:NodeList, comparisonFn?:any ): any;
 		/** [Method] Plucks the value of a property from each item in the Array  
 		* @param array any The Array of items to pluck the value from. 
 		* @param propertyName any The property name to pluck from each element. 
 		*/
 		static pluck( array?:any, propertyName?:any ): any;
-		static pluck( array?:Array, propertyName?:string ): Array;
-		static pluck( array?:NodeList, propertyName?:string ): Array;
+		static pluck( array?:any[], propertyName?:string ): any[];
+		static pluck( array?:NodeList, propertyName?:string ): any[];
 		/** [Method] Pushes new items onto the end of an Array  
 		* @param target Array The Array onto which to push new items 
 		* @param elements Object... The elements to add to the array. Each parameter may be an Array, in which case all the elements of that Array will be pushed into the end of the destination Array. 
 		*/
-		static push( target:Array, ...elements:any[] ): Array;
+		static push( target:any[], ...elements:any[] ): any[];
 		/** [Method] Removes the specified item from the array if it exists 
 		* @param array Array The array 
 		* @param item Object The item to remove 
 		*/
-		static remove( array?:Array, item?:any ): Array;
+		static remove( array?:any[], item?:any ): any[];
 		/** [Method] Replaces items in an array  
 		* @param array Array The Array on which to replace. 
 		* @param index Number The index in the array at which to operate. 
 		* @param removeCount Number The number of items to remove at index (can be 0). 
 		* @param insert Array An array of items to insert at index. 
 		*/
-		static replace( array?:Array, index?:number, removeCount?:number, insert?:Array ): Array;
+		static replace( array?:any[], index?:number, removeCount?:number, insert?:any[] ): any[];
 		/** [Method] Returns a shallow copy of a part of an array  
 		* @param array Array The array (or arguments object). 
 		* @param begin Number The index at which to begin. Negative values are offsets from the end of the array. 
 		* @param end Number The index at which to end. The copied items do not include end. Negative values are offsets from the end of the array. If end is omitted, all items up to the end of the array are copied. 
 		*/
-		static slice( array?:Array, begin?:number, end?:number ): Array;
+		static slice( array?:any[], begin?:number, end?:number ): any[];
 		/** [Method] Executes the specified function for each array element until the function returns a truthy value  
 		* @param array Array 
 		* @param fn Function Callback function for each item 
 		* @param scope Object Callback function scope 
 		*/
-		static some( array?:Array, fn?:any, scope?:any ): bool;
+		static some( array?:any[], fn?:any, scope?:any ): bool;
 		/** [Method] Sorts the elements of an Array  
 		* @param array Array The array to sort. 
 		* @param sortFn Function The comparison function. 
 		*/
-		static sort( array?:Array, sortFn?:any ): Array;
+		static sort( array?:any[], sortFn?:any ): any[];
 		/** [Method] Replaces items in an array  
 		* @param array Array The Array on which to replace. 
 		* @param index Number The index in the array at which to operate. 
 		* @param removeCount Number The number of items to remove at index (can be 0). 
 		* @param elements Object... The elements to add to the array. If you don't specify any elements, splice simply removes elements from the array. 
 		*/
-		static splice( array:Array, index:number, removeCount:number, ...elements:any[] ): Array;
+		static splice( array:any[], index:number, removeCount:number, ...elements:any[] ): any[];
 		/** [Method] Calculates the sum of all items in the given array  
 		* @param array Array The Array to calculate the sum value of. 
 		*/
-		static sum( array?:Array ): number;
+		static sum( array?:any[] ): number;
 		/** [Method] Converts any iterable numeric indices and a length property into a true array  
 		* @param iterable Object the iterable object to be turned into a true Array. 
 		* @param start Number a zero-based index that specifies the start of extraction. Defaults to 0 
 		* @param end Number a 1-based index that specifies the end of extraction. Defaults to the last index of the iterable value 
 		*/
-		static toArray( iterable?:any, start?:number, end?:number ): Array;
+		static toArray( iterable?:any, start?:number, end?:number ): any[];
 		/** [Method] Creates a map object keyed by the elements of the given array  
 		* @param array any The Array to create the map from. 
 		* @param getKey any Name of the object property to use as a key or a function to extract the key. 
 		* @param scope any Value of this inside callback. 
 		*/
 		static toMap( array?:any, getKey?:any, scope?:any ): any;
-		static toMap( array?:Array, getKey?:string, scope?:any ): any;
-		static toMap( array?:Array, getKey?:any, scope?:any ): any;
+		static toMap( array?:any[], getKey?:string, scope?:any ): any;
+		static toMap( array?:any[], getKey?:any, scope?:any ): any;
 		/** [Method] Creates a map object keyed by a property of elements of the given array  
 		* @param array any The Array to create the map from. 
 		* @param getKey any Name of the object property to use as a key or a function to extract the key. 
 		* @param scope any Value of this inside callback. 
 		*/
 		static toValueMap( array?:any, getKey?:any, scope?:any ): any;
-		static toValueMap( array?:Array, getKey?:string, scope?:any ): any;
-		static toValueMap( array?:Array, getKey?:any, scope?:any ): any;
+		static toValueMap( array?:any[], getKey?:string, scope?:any ): any;
+		static toValueMap( array?:any[], getKey?:any, scope?:any ): any;
 		/** [Method] Merge multiple arrays into one with unique items  
 		* @param array1 Array 
 		* @param array2 Array 
 		* @param etc Array 
 		*/
-		static union( array1?:Array, array2?:Array, etc?:Array ): Array;
+		static union( array1?:any[], array2?:any[], etc?:any[] ): any[];
 		/** [Method] Returns a new array with unique items 
 		* @param array Array 
 		*/
-		static unique( array?:Array ): Array;
+		static unique( array?:any[] ): any[];
 	}
 }
 declare module Ext {
@@ -2175,12 +2175,12 @@ declare module Ext {
 		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
 		*/
 		callParent?( args?:any ): any;
-		callParent?( args?:Array ): any;
+		callParent?( args?:any[] ): any;
 		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
 		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
 		*/
 		callSuper?( args?:any ): any;
-		callSuper?( args?:Array ): any;
+		callSuper?( args?:any[] ): any;
 		/** [Method] Returns the initial configuration passed to constructor when instantiating this class  
 		* @param name String Name of the config option to return. 
 		*/
@@ -2197,12 +2197,12 @@ declare module Ext {
 		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
 		*/
 		callParent( args?:any ): any;
-		callParent( args?:Array ): any;
+		callParent( args?:any[] ): any;
 		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
 		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
 		*/
 		callSuper( args?:any ): any;
-		callSuper( args?:Array ): any;
+		callSuper( args?:any[] ): any;
 		/** [Method] Returns the initial configuration passed to constructor when instantiating this class  
 		* @param name String Name of the config option to return. 
 		*/
@@ -3316,7 +3316,7 @@ declare module Ext.chart.axis {
 		/** [Config Option] (Date) The starting date for the time axis. ... */
 		fromDate?: any;
 		/** [Config Option] (Array) An array with two components: The first is the unit of the step (day, month, year, etc). ... */
-		step?: Array;
+		step?: any[];
 		/** [Config Option] (Date) The ending date for the time axis. ... */
 		toDate?: any;
 		/** [Method] Creates new Axis  
@@ -3332,7 +3332,7 @@ declare module Ext.chart.axis {
 		/** [Config Option] (Date) The starting date for the time axis. ... */
 		fromDate: any;
 		/** [Config Option] (Array) An array with two components: The first is the unit of the step (day, month, year, etc). ... */
-		step: Array;
+		step: any[];
 		/** [Config Option] (Date) The ending date for the time axis. ... */
 		toDate: any;
 		/** [Method] Creates new Axis  
@@ -3350,7 +3350,7 @@ declare module Ext.chart {
 		/** [Config Option] (Date) The starting date for the time axis. ... */
 		fromDate?: any;
 		/** [Config Option] (Array) An array with two components: The first is the unit of the step (day, month, year, etc). ... */
-		step?: Array;
+		step?: any[];
 		/** [Config Option] (Date) The ending date for the time axis. ... */
 		toDate?: any;
 		/** [Method] Creates new Axis  
@@ -3366,7 +3366,7 @@ declare module Ext.chart {
 		/** [Config Option] (Date) The starting date for the time axis. ... */
 		fromDate: any;
 		/** [Config Option] (Array) An array with two components: The first is the unit of the step (day, month, year, etc). ... */
-		step: Array;
+		step: any[];
 		/** [Config Option] (Date) The ending date for the time axis. ... */
 		toDate: any;
 		/** [Method] Creates new Axis  
@@ -4626,7 +4626,7 @@ declare module Ext.chart.series {
 		/** [Config Option] (String) The store record field name to be used for the pie angles. ... */
 		angleField?: string;
 		/** [Config Option] (Array) */
-		colorSet?: Array;
+		colorSet?: any[];
 		/** [Config Option] (Boolean/Number) Whether to set the pie chart as donut chart. ... */
 		donut?: any;
 		/** [Config Option] (String) */
@@ -4664,7 +4664,7 @@ declare module Ext.chart.series {
 		/** [Config Option] (String) The store record field name to be used for the pie angles. ... */
 		angleField: string;
 		/** [Config Option] (Array) */
-		colorSet: Array;
+		colorSet: any[];
 		/** [Config Option] (Boolean/Number) Whether to set the pie chart as donut chart. ... */
 		donut: any;
 		/** [Config Option] (String) */
@@ -4704,7 +4704,7 @@ declare module Ext.chart {
 		/** [Config Option] (String) The store record field name to be used for the pie angles. ... */
 		angleField?: string;
 		/** [Config Option] (Array) */
-		colorSet?: Array;
+		colorSet?: any[];
 		/** [Config Option] (Boolean/Number) Whether to set the pie chart as donut chart. ... */
 		donut?: any;
 		/** [Config Option] (String) */
@@ -4742,7 +4742,7 @@ declare module Ext.chart {
 		/** [Config Option] (String) The store record field name to be used for the pie angles. ... */
 		angleField: string;
 		/** [Config Option] (Array) */
-		colorSet: Array;
+		colorSet: any[];
 		/** [Config Option] (Boolean/Number) Whether to set the pie chart as donut chart. ... */
 		donut: any;
 		/** [Config Option] (String) */
@@ -4782,7 +4782,7 @@ declare module Ext.chart {
 		/** [Config Option] (String) The store record field name to be used for the pie angles. ... */
 		angleField?: string;
 		/** [Config Option] (Array) */
-		colorSet?: Array;
+		colorSet?: any[];
 		/** [Config Option] (Boolean/Number) Whether to set the pie chart as donut chart. ... */
 		donut?: any;
 		/** [Config Option] (String) */
@@ -4820,7 +4820,7 @@ declare module Ext.chart {
 		/** [Config Option] (String) The store record field name to be used for the pie angles. ... */
 		angleField: string;
 		/** [Config Option] (Array) */
-		colorSet: Array;
+		colorSet: any[];
 		/** [Config Option] (Boolean/Number) Whether to set the pie chart as donut chart. ... */
 		donut: any;
 		/** [Config Option] (String) */
@@ -4916,7 +4916,7 @@ declare module Ext.chart.series {
 		/** [Config Option] (Function) A function that can be overridden to set custom styling properties to each rendered element. ... */
 		renderer?: any;
 		/** [Config Option] (Array) */
-		shadowAttributes?: Array;
+		shadowAttributes?: any[];
 		/** [Config Option] (Boolean) Whether to show this series in the legend. ... */
 		showInLegend?: bool;
 		/** [Config Option] (Object) Add tooltips to the visualization's markers. ... */
@@ -5085,7 +5085,7 @@ declare module Ext.chart.series {
 		/** [Config Option] (Function) A function that can be overridden to set custom styling properties to each rendered element. ... */
 		renderer: any;
 		/** [Config Option] (Array) */
-		shadowAttributes: Array;
+		shadowAttributes: any[];
 		/** [Config Option] (Boolean) Whether to show this series in the legend. ... */
 		showInLegend: bool;
 		/** [Config Option] (Object) Add tooltips to the visualization's markers. ... */
@@ -5376,7 +5376,7 @@ declare module Ext {
 		/** [Method] Get the aliases of a class by the class name 
 		* @param name String 
 		*/
-		static getAliasesByName( name?:string ): Array;
+		static getAliasesByName( name?:string ): any[];
 		/** [Method] Get a reference to the class by its alias  
 		* @param alias String 
 		*/
@@ -5503,7 +5503,7 @@ declare module Ext {
 		* @param scope Object The scope of the function. Defaults to current node. 
 		* @param args Array The args to call the function with. Defaults to passing the current component. 
 		*/
-		bubble?( fn?:any, scope?:any, args?:Array ): Ext.Component;
+		bubble?( fn?:any, scope?:any, args?:any[] ): Ext.Component;
 		/** [Method] Clone the current component using the original config values passed into this instance by default  
 		* @param overrides Object A new config containing any properties to override in the cloned version. An id property can be passed on this object, otherwise one will be generated to avoid duplicates. 
 		*/
@@ -5711,7 +5711,7 @@ declare module Ext {
 		* @param scope Object The scope of the function. Defaults to current node. 
 		* @param args Array The args to call the function with. Defaults to passing the current component. 
 		*/
-		bubble( fn?:any, scope?:any, args?:Array ): Ext.Component;
+		bubble( fn?:any, scope?:any, args?:any[] ): Ext.Component;
 		/** [Method] Clone the current component using the original config values passed into this instance by default  
 		* @param overrides Object A new config containing any properties to override in the cloned version. An id property can be passed on this object, otherwise one will be generated to avoid duplicates. 
 		*/
@@ -5978,7 +5978,7 @@ declare module Ext.container {
 		* @param scope Object The scope of the function (defaults to current component) 
 		* @param args Array The args to call the function with. The current component always passed as the last argument. 
 		*/
-		cascade?( fn?:any, scope?:any, args?:Array ): Ext.Container;
+		cascade?( fn?:any, scope?:any, args?:any[] ): Ext.Container;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
 		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
@@ -6125,7 +6125,7 @@ declare module Ext.container {
 		* @param scope Object The scope of the function (defaults to current component) 
 		* @param args Array The args to call the function with. The current component always passed as the last argument. 
 		*/
-		cascade( fn?:any, scope?:any, args?:Array ): Ext.Container;
+		cascade( fn?:any, scope?:any, args?:any[] ): Ext.Container;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
 		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
@@ -7810,7 +7810,7 @@ declare module Ext.data.flash {
 		/** [Property] (number) The connection's simulated readyState. ... */
 		readyState?: number;
 		/** [Property] (Array) */
-		responseBytes?: Array;
+		responseBytes?: any[];
 		/** [Property] (number) Connection status code returned by flash or the server. ... */
 		status?: number;
 		/** [Property] (String) Status text (if any) returned by flash or the server. ... */
@@ -7838,7 +7838,7 @@ declare module Ext.data.flash {
 		/** [Method] Initiate the request  
 		* @param body Array an array of byte values to send. 
 		*/
-		send?( body?:Array ): void;
+		send?( body?:any[] ): void;
 		/** [Method] As in XMLHttpRequest  
 		* @param header Object 
 		* @param value Object 
@@ -7849,7 +7849,7 @@ declare module Ext.data.flash {
 		/** [Property] (number) The connection's simulated readyState. ... */
 		readyState: number;
 		/** [Property] (Array) */
-		responseBytes: Array;
+		responseBytes: any[];
 		/** [Property] (number) Connection status code returned by flash or the server. ... */
 		status: number;
 		/** [Property] (String) Status text (if any) returned by flash or the server. ... */
@@ -7877,7 +7877,7 @@ declare module Ext.data.flash {
 		/** [Method] Initiate the request  
 		* @param body Array an array of byte values to send. 
 		*/
-		send( body?:Array ): void;
+		send( body?:any[] ): void;
 		/** [Method] As in XMLHttpRequest  
 		* @param header Object 
 		* @param value Object 
@@ -8870,13 +8870,13 @@ declare module Ext.data {
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current Node. 
 		* @param args Array The args to call the function with. Defaults to passing the current Node. 
 		*/
-		bubble?( fn?:any, scope?:any, args?:Array ): void;
+		bubble?( fn?:any, scope?:any, args?:any[] ): void;
 		/** [Method] Cascades down the tree from this node calling the specified function with each node  
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current Node. 
 		* @param args Array The args to call the function with. Defaults to passing the current Node. 
 		*/
-		cascadeBy?( fn?:any, scope?:any, args?:Array ): void;
+		cascadeBy?( fn?:any, scope?:any, args?:any[] ): void;
 		/** [Method] Collapse this node  
 		* @param recursive Boolean True to recursively collapse all the children 
 		* @param callback Function The function to execute once the collapse completes 
@@ -8911,7 +8911,7 @@ declare module Ext.data {
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current Node in iteration. 
 		* @param args Array The args to call the function with. Defaults to passing the current Node. 
 		*/
-		eachChild?( fn?:any, scope?:any, args?:Array ): void;
+		eachChild?( fn?:any, scope?:any, args?:any[] ): void;
 		/** [Method] Expand this node  
 		* @param recursive Boolean True to recursively expand all the children 
 		* @param callback Function The function to execute once the expand completes 
@@ -9071,13 +9071,13 @@ declare module Ext.data {
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current Node. 
 		* @param args Array The args to call the function with. Defaults to passing the current Node. 
 		*/
-		bubble( fn?:any, scope?:any, args?:Array ): void;
+		bubble( fn?:any, scope?:any, args?:any[] ): void;
 		/** [Method] Cascades down the tree from this node calling the specified function with each node  
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current Node. 
 		* @param args Array The args to call the function with. Defaults to passing the current Node. 
 		*/
-		cascadeBy( fn?:any, scope?:any, args?:Array ): void;
+		cascadeBy( fn?:any, scope?:any, args?:any[] ): void;
 		/** [Method] Collapse this node  
 		* @param recursive Boolean True to recursively collapse all the children 
 		* @param callback Function The function to execute once the collapse completes 
@@ -9112,7 +9112,7 @@ declare module Ext.data {
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current Node in iteration. 
 		* @param args Array The args to call the function with. Defaults to passing the current Node. 
 		*/
-		eachChild( fn?:any, scope?:any, args?:Array ): void;
+		eachChild( fn?:any, scope?:any, args?:any[] ): void;
 		/** [Method] Expand this node  
 		* @param recursive Boolean True to recursively expand all the children 
 		* @param callback Function The function to execute once the expand completes 
@@ -9568,7 +9568,7 @@ declare module Ext.data.proxy {
 		/** [Method] Encodes an array of records into a value suitable to be added to the request params as the recordParam parameter  
 		* @param records Ext.data.IModel[] The records array 
 		*/
-		encodeRecords?( records?:Ext.data.IModel[] ): Array;
+		encodeRecords?( records?:Ext.data.IModel[] ): any[];
 	}
 	export class JsonP extends Ext.data.proxy.Server implements Ext.data.proxy.IJsonP {
 		/** [Config Option] (Boolean) True to automatically append the request's params to the generated url. ... */
@@ -9588,7 +9588,7 @@ declare module Ext.data.proxy {
 		/** [Method] Encodes an array of records into a value suitable to be added to the request params as the recordParam parameter  
 		* @param records Ext.data.IModel[] The records array 
 		*/
-		encodeRecords( records?:Ext.data.IModel[] ): Array;
+		encodeRecords( records?:Ext.data.IModel[] ): any[];
 	}
 }
 declare module Ext.data {
@@ -9610,7 +9610,7 @@ declare module Ext.data {
 		/** [Method] Encodes an array of records into a value suitable to be added to the request params as the recordParam parameter  
 		* @param records Ext.data.IModel[] The records array 
 		*/
-		encodeRecords?( records?:Ext.data.IModel[] ): Array;
+		encodeRecords?( records?:Ext.data.IModel[] ): any[];
 	}
 	export class ScriptTagProxy extends Ext.data.proxy.Server implements Ext.data.proxy.IJsonP {
 		/** [Config Option] (Boolean) True to automatically append the request's params to the generated url. ... */
@@ -9630,7 +9630,7 @@ declare module Ext.data {
 		/** [Method] Encodes an array of records into a value suitable to be added to the request params as the recordParam parameter  
 		* @param records Ext.data.IModel[] The records array 
 		*/
-		encodeRecords( records?:Ext.data.IModel[] ): Array;
+		encodeRecords( records?:Ext.data.IModel[] ): any[];
 	}
 }
 declare module Ext.data.proxy {
@@ -12598,7 +12598,7 @@ declare module Ext.data {
 		* @param grouped Boolean True to perform the operation for each group in the store. The value returned will be an object literal with the key being the group name and the group average being the value. The grouped parameter is only honored if the store has a groupField. 
 		* @param args Array Any arguments to append to the function call 
 		*/
-		aggregate?( fn?:any, scope?:any, grouped?:bool, args?:Array ): any;
+		aggregate?( fn?:any, scope?:any, grouped?:bool, args?:any[] ): any;
 		/** [Method] Gets the average value in the store  
 		* @param field String The field in each record 
 		* @param grouped Boolean True to perform the operation for each group in the store. The value returned will be an object literal with the key being the group name and the group average being the value. The grouped parameter is only honored if the store has a groupField. 
@@ -12902,7 +12902,7 @@ declare module Ext.data {
 		* @param grouped Boolean True to perform the operation for each group in the store. The value returned will be an object literal with the key being the group name and the group average being the value. The grouped parameter is only honored if the store has a groupField. 
 		* @param args Array Any arguments to append to the function call 
 		*/
-		aggregate( fn?:any, scope?:any, grouped?:bool, args?:Array ): any;
+		aggregate( fn?:any, scope?:any, grouped?:bool, args?:any[] ): any;
 		/** [Method] Gets the average value in the store  
 		* @param field String The field in each record 
 		* @param grouped Boolean True to perform the operation for each group in the store. The value returned will be an object literal with the key being the group name and the group average being the value. The grouped parameter is only honored if the store has a groupField. 
@@ -16495,7 +16495,7 @@ declare module Ext.direct {
 		/** [Method] Takes the arguments for the Direct function and splits the arguments from the scope and the callback  
 		* @param args Array The arguments passed to the direct call 
 		*/
-		getCallData?( args?:Array ): any;
+		getCallData?( args?:any[] ): any;
 	}
 	export class RemotingMethod extends Ext.Base implements Ext.direct.IRemotingMethod {
 		/** [Method]  
@@ -16505,7 +16505,7 @@ declare module Ext.direct {
 		/** [Method] Takes the arguments for the Direct function and splits the arguments from the scope and the callback  
 		* @param args Array The arguments passed to the direct call 
 		*/
-		getCallData( args?:Array ): any;
+		getCallData( args?:any[] ): any;
 	}
 }
 declare module Ext.direct {
@@ -17541,7 +17541,7 @@ declare module Ext.dom {
 		is?( el?:any, selector?:any ): any;
 		is?( el?:string, selector?:string ): bool;
 		is?( el?:HTMLElement, selector?:string ): bool;
-		is?( el?:Array, selector?:string ): bool;
+		is?( el?:any[], selector?:string ): bool;
 		/** [Method] Selects a group of elements  
 		* @param selector any The selector/xpath query (can be a comma separated list of selectors) 
 		* @param root any The start of the query (defaults to document). 
@@ -17565,7 +17565,7 @@ declare module Ext.dom {
 		is( el?:any, selector?:any ): any;
 		is( el?:string, selector?:string ): bool;
 		is( el?:HTMLElement, selector?:string ): bool;
-		is( el?:Array, selector?:string ): bool;
+		is( el?:any[], selector?:string ): bool;
 		/** [Method] Selects a group of elements  
 		* @param selector any The selector/xpath query (can be a comma separated list of selectors) 
 		* @param root any The start of the query (defaults to document). 
@@ -20565,7 +20565,7 @@ declare module Ext.draw {
 		* @param step Array An array with two components: The first is the unit of the step (day, month, year, etc). The second is the number of units for the step (1, 2, etc.). If the number is an integer, it represents the number of units for the step ([Ext.Date.DAY, 2] means "Every other day"). If the number is a fraction, it represents the number of steps per unit ([Ext.Date.DAY, 1/2] means "Twice a day"). If the unit is the month, the steps may be adjusted depending on the month. For instance [Ext.Date.MONTH, 1/3], which means "Three times a month", generates steps on the 1st, the 10th and the 20th of every month regardless of whether a month has 28 days or 31 days. The steps are generated as follows: - [Ext.Date.MONTH, n]: on the current date every 'n' months, maxed to the number of days in the month. - [Ext.Date.MONTH, 1/2]: on the 1st and 15th of every month. - [Ext.Date.MONTH, 1/3]: on the 1st, 10th and 20th of every month. - [Ext.Date.MONTH, 1/4]: on the 1st, 8th, 15th and 22nd of every month. 
 		* @param lockEnds Boolean If true, the 'from' and 'to' parameters will be used as fixed end values  and will not be adjusted 
 		*/
-		static snapEndsByDateAndStep( from?:any, to?:any, step?:Array, lockEnds?:bool ): any;
+		static snapEndsByDateAndStep( from?:any, to?:any, step?:any[], lockEnds?:bool ): any;
 	}
 }
 declare module Ext.draw.engine {
@@ -20577,7 +20577,7 @@ declare module Ext.draw.engine {
 		/** [Property] (String) The name of the height parameter to be sent to the server. ... */
 		heightParam: string;
 		/** [Property] (Array) A list of export types supported by the server ... */
-		supportedTypes: Array;
+		supportedTypes: any[];
 		/** [Property] (String) The name of the svg parameter to be sent to the server. ... */
 		svgParam: string;
 		/** [Property] (String) The name of the type parameter to be sent to the server. ... */
@@ -29967,8 +29967,8 @@ declare module Ext {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static bind( fn?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		static bind( fn?:any, scope?:any, args?:Array, appendArgs?:bool ): any;
-		static bind( fn?:any, scope?:any, args?:Array, appendArgs?:number ): any;
+		static bind( fn?:any, scope?:any, args?:any[], appendArgs?:bool ): any;
+		static bind( fn?:any, scope?:any, args?:any[], appendArgs?:number ): any;
 		/** [Method] Create a clone of the provided method  
 		* @param method Function 
 		*/
@@ -29979,7 +29979,7 @@ declare module Ext {
 		* @param scope Object The scope (this reference) in which the passed function is executed. If omitted, defaults to the scope specified by the caller. 
 		* @param args Array Override arguments for the call. Defaults to the arguments passed by the caller. 
 		*/
-		static createBuffered( fn?:any, buffer?:number, scope?:any, args?:Array ): any;
+		static createBuffered( fn?:any, buffer?:number, scope?:any, args?:any[] ): any;
 		/** [Method] Creates a delegate callback which when called executes after a specific delay  
 		* @param fn any The function which will be called on a delay when the returned function is called. Optionally, a replacement (or additional) argument list may be specified. 
 		* @param delay any The number of milliseconds to defer execution by whenever called. 
@@ -29988,8 +29988,8 @@ declare module Ext {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position. 
 		*/
 		static createDelayed( fn?:any, delay?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		static createDelayed( fn?:any, delay?:number, scope?:any, args?:Array, appendArgs?:bool ): any;
-		static createDelayed( fn?:any, delay?:number, scope?:any, args?:Array, appendArgs?:number ): any;
+		static createDelayed( fn?:any, delay?:number, scope?:any, args?:any[], appendArgs?:bool ): any;
+		static createDelayed( fn?:any, delay?:number, scope?:any, args?:any[], appendArgs?:number ): any;
 		/** [Method] Creates an interceptor function  
 		* @param origFn Function The original function. 
 		* @param newFn Function The function to call before the original 
@@ -30017,8 +30017,8 @@ declare module Ext {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static defer( fn?:any, millis?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		static defer( fn?:any, millis?:number, scope?:any, args?:Array, appendArgs?:bool ): number;
-		static defer( fn?:any, millis?:number, scope?:any, args?:Array, appendArgs?:number ): number;
+		static defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:bool ): number;
+		static defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:number ): number;
 		/** [Method] A very commonly used method throughout the framework  
 		* @param setter Function 
 		*/
@@ -30042,7 +30042,7 @@ declare module Ext {
 		* @param args Array The arguments to pass to new callback 
 		* @param scope Object The scope (this reference) in which the function is executed. 
 		*/
-		static pass( fn?:any, args?:Array, scope?:any ): any;
+		static pass( fn?:any, args?:any[], scope?:any ): any;
 	}
 }
 declare module Ext.util {
@@ -30061,8 +30061,8 @@ declare module Ext.util {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static bind( fn?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		static bind( fn?:any, scope?:any, args?:Array, appendArgs?:bool ): any;
-		static bind( fn?:any, scope?:any, args?:Array, appendArgs?:number ): any;
+		static bind( fn?:any, scope?:any, args?:any[], appendArgs?:bool ): any;
+		static bind( fn?:any, scope?:any, args?:any[], appendArgs?:number ): any;
 		/** [Method] Create a clone of the provided method  
 		* @param method Function 
 		*/
@@ -30073,7 +30073,7 @@ declare module Ext.util {
 		* @param scope Object The scope (this reference) in which the passed function is executed. If omitted, defaults to the scope specified by the caller. 
 		* @param args Array Override arguments for the call. Defaults to the arguments passed by the caller. 
 		*/
-		static createBuffered( fn?:any, buffer?:number, scope?:any, args?:Array ): any;
+		static createBuffered( fn?:any, buffer?:number, scope?:any, args?:any[] ): any;
 		/** [Method] Creates a delegate callback which when called executes after a specific delay  
 		* @param fn any The function which will be called on a delay when the returned function is called. Optionally, a replacement (or additional) argument list may be specified. 
 		* @param delay any The number of milliseconds to defer execution by whenever called. 
@@ -30082,8 +30082,8 @@ declare module Ext.util {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position. 
 		*/
 		static createDelayed( fn?:any, delay?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		static createDelayed( fn?:any, delay?:number, scope?:any, args?:Array, appendArgs?:bool ): any;
-		static createDelayed( fn?:any, delay?:number, scope?:any, args?:Array, appendArgs?:number ): any;
+		static createDelayed( fn?:any, delay?:number, scope?:any, args?:any[], appendArgs?:bool ): any;
+		static createDelayed( fn?:any, delay?:number, scope?:any, args?:any[], appendArgs?:number ): any;
 		/** [Method] Creates an interceptor function  
 		* @param origFn Function The original function. 
 		* @param newFn Function The function to call before the original 
@@ -30111,8 +30111,8 @@ declare module Ext.util {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static defer( fn?:any, millis?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		static defer( fn?:any, millis?:number, scope?:any, args?:Array, appendArgs?:bool ): number;
-		static defer( fn?:any, millis?:number, scope?:any, args?:Array, appendArgs?:number ): number;
+		static defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:bool ): number;
+		static defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:number ): number;
 		/** [Method] A very commonly used method throughout the framework  
 		* @param setter Function 
 		*/
@@ -30136,7 +30136,7 @@ declare module Ext.util {
 		* @param args Array The arguments to pass to new callback 
 		* @param scope Object The scope (this reference) in which the function is executed. 
 		*/
-		static pass( fn?:any, args?:Array, scope?:any ): any;
+		static pass( fn?:any, args?:any[], scope?:any ): any;
 	}
 }
 declare module Ext.fx {
@@ -30872,7 +30872,7 @@ declare module Ext.grid.column {
 		* @param scope Object The scope of the function (defaults to current component) 
 		* @param args Array The args to call the function with. The current component always passed as the last argument. 
 		*/
-		cascade?( fn?:any, scope?:any, args?:Array ): Ext.Container;
+		cascade?( fn?:any, scope?:any, args?:any[] ): Ext.Container;
 		/** [Method] Disables this ActionColumn s action at the specified index  
 		* @param index Number 
 		* @param silent Boolean 
@@ -30926,7 +30926,7 @@ declare module Ext.grid.column {
 		* @param scope Object The scope of the function (defaults to current component) 
 		* @param args Array The args to call the function with. The current component always passed as the last argument. 
 		*/
-		cascade( fn?:any, scope?:any, args?:Array ): Ext.Container;
+		cascade( fn?:any, scope?:any, args?:any[] ): Ext.Container;
 		/** [Method] Disables this ActionColumn s action at the specified index  
 		* @param index Number 
 		* @param silent Boolean 
@@ -30982,7 +30982,7 @@ declare module Ext.grid {
 		* @param scope Object The scope of the function (defaults to current component) 
 		* @param args Array The args to call the function with. The current component always passed as the last argument. 
 		*/
-		cascade?( fn?:any, scope?:any, args?:Array ): Ext.Container;
+		cascade?( fn?:any, scope?:any, args?:any[] ): Ext.Container;
 		/** [Method] Disables this ActionColumn s action at the specified index  
 		* @param index Number 
 		* @param silent Boolean 
@@ -31036,7 +31036,7 @@ declare module Ext.grid {
 		* @param scope Object The scope of the function (defaults to current component) 
 		* @param args Array The args to call the function with. The current component always passed as the last argument. 
 		*/
-		cascade( fn?:any, scope?:any, args?:Array ): Ext.Container;
+		cascade( fn?:any, scope?:any, args?:any[] ): Ext.Container;
 		/** [Method] Disables this ActionColumn s action at the specified index  
 		* @param index Number 
 		* @param silent Boolean 
@@ -32061,7 +32061,7 @@ declare module Ext.grid.header {
 		* @param inResult Object 
 		* @param hiddenAncestor Object 
 		*/
-		getGridColumns?( inResult?:any, hiddenAncestor?:any ): Array;
+		getGridColumns?( inResult?:any, hiddenAncestor?:any ): any[];
 		/** [Method] Get a leaf level header by index regardless of what the nesting structure is  
 		* @param index Number The column index for which to retrieve the column. 
 		*/
@@ -32121,7 +32121,7 @@ declare module Ext.grid.header {
 		* @param inResult Object 
 		* @param hiddenAncestor Object 
 		*/
-		getGridColumns( inResult?:any, hiddenAncestor?:any ): Array;
+		getGridColumns( inResult?:any, hiddenAncestor?:any ): any[];
 		/** [Method] Get a leaf level header by index regardless of what the nesting structure is  
 		* @param index Number The column index for which to retrieve the column. 
 		*/
@@ -32305,7 +32305,7 @@ declare module Ext.grid.locking {
 		* @param inResult Object 
 		* @param hiddenAncestor Object 
 		*/
-		getGridColumns?( inResult?:any, hiddenAncestor?:any ): Array;
+		getGridColumns?( inResult?:any, hiddenAncestor?:any ): any[];
 	}
 	export class HeaderContainer extends Ext.grid.header.Container implements Ext.grid.locking.IHeaderContainer {
 		/** [Method] Creates new Component  
@@ -32316,7 +32316,7 @@ declare module Ext.grid.locking {
 		* @param inResult Object 
 		* @param hiddenAncestor Object 
 		*/
-		getGridColumns( inResult?:any, hiddenAncestor?:any ): Array;
+		getGridColumns( inResult?:any, hiddenAncestor?:any ): any[];
 	}
 }
 declare module Ext.grid.locking {
@@ -34112,15 +34112,15 @@ declare module Ext {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		export function bind( fn?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		export function bind( fn?:any, scope?:any, args?:Array, appendArgs?:bool ): any;
-		export function bind( fn?:any, scope?:any, args?:Array, appendArgs?:number ): any;
+		export function bind( fn?:any, scope?:any, args?:any[], appendArgs?:bool ): any;
+		export function bind( fn?:any, scope?:any, args?:any[], appendArgs?:number ): any;
 		/** [Method] Execute a callback function in a particular scope  
 		* @param callback Function The callback to execute 
 		* @param scope Object The scope to execute in 
 		* @param args Array The arguments to pass to the function 
 		* @param delay Number Pass a number to delay the call by a number of milliseconds. 
 		*/
-		export function callback( callback?:any, scope?:any, args?:Array, delay?:number ): void;
+		export function callback( callback?:any, scope?:any, args?:any[], delay?:number ): void;
 		/** [Method] Clone simple variables including array  like objects DOM nodes and Date without keeping the old reference  
 		* @param item Object The variable to clone 
 		*/
@@ -34162,8 +34162,8 @@ declare module Ext {
 		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		export function defer( fn?:any, millis?:any, scope?:any, args?:any, appendArgs?:any ): any;
-		export function defer( fn?:any, millis?:number, scope?:any, args?:Array, appendArgs?:bool ): number;
-		export function defer( fn?:any, millis?:number, scope?:any, args?:Array, appendArgs?:number ): number;
+		export function defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:bool ): number;
+		export function defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:number ): number;
 		/** [Method] Defines a class or override  
 		* @param className String The class name to create in string dot-namespaced format, for example: 'My.very.awesome.Class', 'FeedViewer.plugin.CoolPager' It is highly recommended to follow this simple convention: - The root and the class name are 'CamelCased' - Everything else is lower-cased Pass null to create an anonymous class. 
 		* @param data Object The key - value pairs of properties to apply to this class. Property names can be of any valid strings, except those in the reserved listed below: - mixins - statics - config - alias - self - singleton - alternateClassName - override 
@@ -34203,7 +34203,7 @@ declare module Ext {
 		/** [Method] Convenient shortcut to Ext Loader exclude Explicitly exclude files from being loaded  
 		* @param excludes Array 
 		*/
-		export function exclude( excludes?:Array ): any;
+		export function exclude( excludes?:any[] ): any;
 		/** [Method] Gets the singleton flyweight element with the passed node as the active element  
 		* @param dom any The dom node or id 
 		* @param named any Allows for creation of named reusable flyweights to prevent conflicts (e.g. internally Ext uses "_global") 
@@ -34374,7 +34374,7 @@ declare module Ext {
 		* @param args Array The arguments to pass to new callback 
 		* @param scope Object The scope (this reference) in which the function is executed. 
 		*/
-		export function pass( fn?:any, args?:Array, scope?:any ): any;
+		export function pass( fn?:any, args?:any[], scope?:any ): any;
 		/** [Method] Shorthand for Ext PluginManager registerType 
 		* @param ptype String The ptype mnemonic string by which the Plugin class may be looked up. 
 		* @param cls Function The new Plugin class. 
@@ -34403,9 +34403,9 @@ declare module Ext {
 		* @param excludes String Classes to be excluded, useful when being used with expressions 
 		*/
 		export function require( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
-		export function require( expressions?:Array, fn?:any, scope?:any, excludes?:string ): void;
-		export function require( expressions?:string, fn?:any, scope?:any, excludes?:Array ): void;
-		export function require( expressions?:Array, fn?:any, scope?:any, excludes?:Array ): void;
+		export function require( expressions?:any[], fn?:any, scope?:any, excludes?:string ): void;
+		export function require( expressions?:string, fn?:any, scope?:any, excludes?:any[] ): void;
+		export function require( expressions?:any[], fn?:any, scope?:any, excludes?:any[] ): void;
 		/** [Method]  
 		* @param flush Object 
 		*/
@@ -34433,15 +34433,15 @@ declare module Ext {
 		* @param excludes String Classes to be excluded, useful when being used with expressions 
 		*/
 		export function syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
-		export function syncRequire( expressions?:Array, fn?:any, scope?:any, excludes?:string ): void;
-		export function syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:Array ): void;
-		export function syncRequire( expressions?:Array, fn?:any, scope?:any, excludes?:Array ): void;
+		export function syncRequire( expressions?:any[], fn?:any, scope?:any, excludes?:string ): void;
+		export function syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:any[] ): void;
+		export function syncRequire( expressions?:any[], fn?:any, scope?:any, excludes?:any[] ): void;
 		/** [Method] Converts any iterable numeric indices and a length property into a true array  
 		* @param iterable Object the iterable object to be turned into a true Array. 
 		* @param start Number a zero-based index that specifies the start of extraction. Defaults to 0 
 		* @param end Number a 1-based index that specifies the end of extraction. Defaults to the last index of the iterable value 
 		*/
-		export function toArray( iterable?:any, start?:number, end?:number ): Array;
+		export function toArray( iterable?:any, start?:number, end?:number ): any[];
 		/** [Method] Returns the type of the given variable in string format  
 		* @param value Object 
 		*/
@@ -35804,7 +35804,7 @@ declare module Ext.layout.container.boxoverflow {
 		/** [Config Option] (String) */
 		triggerButtonCls?: string;
 		/** [Property] (Array) */
-		menuItems?: Array;
+		menuItems?: any[];
 		/** [Property] (String) HTML fragment to render into the toolbar overflow menu if there are no items to display ... */
 		noItemsMenuText?: string;
 		/** [Method]  
@@ -35816,7 +35816,7 @@ declare module Ext.layout.container.boxoverflow {
 		/** [Config Option] (String) */
 		triggerButtonCls: string;
 		/** [Property] (Array) */
-		menuItems: Array;
+		menuItems: any[];
 		/** [Property] (String) HTML fragment to render into the toolbar overflow menu if there are no items to display ... */
 		noItemsMenuText: string;
 		/** [Method]  
@@ -35830,7 +35830,7 @@ declare module Ext.layout.boxoverflow {
 		/** [Config Option] (String) */
 		triggerButtonCls?: string;
 		/** [Property] (Array) */
-		menuItems?: Array;
+		menuItems?: any[];
 		/** [Property] (String) HTML fragment to render into the toolbar overflow menu if there are no items to display ... */
 		noItemsMenuText?: string;
 		/** [Method]  
@@ -35842,7 +35842,7 @@ declare module Ext.layout.boxoverflow {
 		/** [Config Option] (String) */
 		triggerButtonCls: string;
 		/** [Property] (Array) */
-		menuItems: Array;
+		menuItems: any[];
 		/** [Property] (String) HTML fragment to render into the toolbar overflow menu if there are no items to display ... */
 		noItemsMenuText: string;
 		/** [Method]  
@@ -37219,7 +37219,7 @@ declare module Ext.layout {
 		* @param full Boolean True if all properties should be invalidated, otherwise only those calculated by the component should be invalidated. 
 		*/
 		invalidate?( components?:Ext.IComponent, full?:bool ): void;
-		invalidate?( components?:Array, full?:bool ): void;
+		invalidate?( components?:any[], full?:bool ): void;
 		/** [Method] Removes the ContextItem for an element from the cache and from the parent s children array  
 		* @param parent Ext.layout.IContextItem 
 		* @param el Ext.dom.IElement 
@@ -37265,7 +37265,7 @@ declare module Ext.layout {
 		* @param full Boolean True if all properties should be invalidated, otherwise only those calculated by the component should be invalidated. 
 		*/
 		invalidate( components?:Ext.IComponent, full?:bool ): void;
-		invalidate( components?:Array, full?:bool ): void;
+		invalidate( components?:any[], full?:bool ): void;
 		/** [Method] Removes the ContextItem for an element from the cache and from the parent s children array  
 		* @param parent Ext.layout.IContextItem 
 		* @param el Ext.dom.IElement 
@@ -37774,7 +37774,7 @@ declare module Ext {
 		/** [Config Option] (String) */
 		scriptCharset: string;
 		/** [Property] (Array) An array of class names to keep track of the dependency loading order. ... */
-		history: Array;
+		history: any[];
 		/** [Method] Sets a batch of path entries 
 		* @param paths Object a set of className: path mappings 
 		*/
@@ -37782,7 +37782,7 @@ declare module Ext {
 		/** [Method] Explicitly exclude files from being loaded  
 		* @param excludes Array 
 		*/
-		static exclude( excludes?:Array ): any;
+		static exclude( excludes?:any[] ): any;
 		/** [Method] Get the config value corresponding to the specified name  
 		* @param name String The config property name 
 		*/
@@ -37808,9 +37808,9 @@ declare module Ext {
 		* @param excludes String Classes to be excluded, useful when being used with expressions 
 		*/
 		static require( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
-		static require( expressions?:Array, fn?:any, scope?:any, excludes?:string ): void;
-		static require( expressions?:string, fn?:any, scope?:any, excludes?:Array ): void;
-		static require( expressions?:Array, fn?:any, scope?:any, excludes?:Array ): void;
+		static require( expressions?:any[], fn?:any, scope?:any, excludes?:string ): void;
+		static require( expressions?:string, fn?:any, scope?:any, excludes?:any[] ): void;
+		static require( expressions?:any[], fn?:any, scope?:any, excludes?:any[] ): void;
 		/** [Method] Set the configuration for the loader  
 		* @param config Object The config object to override the default values 
 		*/
@@ -37827,9 +37827,9 @@ declare module Ext {
 		* @param excludes String Classes to be excluded, useful when being used with expressions 
 		*/
 		static syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
-		static syncRequire( expressions?:Array, fn?:any, scope?:any, excludes?:string ): void;
-		static syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:Array ): void;
-		static syncRequire( expressions?:Array, fn?:any, scope?:any, excludes?:Array ): void;
+		static syncRequire( expressions?:any[], fn?:any, scope?:any, excludes?:string ): void;
+		static syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:any[] ): void;
+		static syncRequire( expressions?:any[], fn?:any, scope?:any, excludes?:any[] ): void;
 	}
 }
 declare module Ext {
@@ -38769,7 +38769,7 @@ declare module Ext {
 		/** [Method] Gets all values of the given object as an array  
 		* @param object Object 
 		*/
-		static getValues( object?:any ): Array;
+		static getValues( object?:any ): any[];
 		/** [Method] Checks if there are any properties on this object  
 		* @param object Object 
 		*/
@@ -38784,7 +38784,7 @@ declare module Ext {
 		* @param value any 
 		* @param recursive Boolean True to traverse object recursively 
 		*/
-		static toQueryObjects( name?:string, value?:any, recursive?:bool ): Array;
+		static toQueryObjects( name?:string, value?:any, recursive?:bool ): any[];
 		/** [Method] Takes an object and converts it to an encoded query string  
 		* @param object Object The object to encode 
 		* @param recursive Boolean Whether or not to interpret the object in recursive format. (PHP / Ruby on Rails servers and similar). 
@@ -42463,7 +42463,7 @@ declare module Ext.slider {
 		/** [Property] (Boolean) True while the thumb is in a drag operation ... */
 		dragging?: bool;
 		/** [Property] (Array) */
-		thumbs?: Array;
+		thumbs?: any[];
 		/** [Method] Creates a new thumb and adds it to the slider 
 		* @param value Number The initial value to set on the thumb. 
 		*/
@@ -42532,7 +42532,7 @@ declare module Ext.slider {
 		/** [Property] (Boolean) True while the thumb is in a drag operation ... */
 		dragging: bool;
 		/** [Property] (Array) */
-		thumbs: Array;
+		thumbs: any[];
 		/** [Method] Creates a new thumb and adds it to the slider 
 		* @param value Number The initial value to set on the thumb. 
 		*/
@@ -42603,7 +42603,7 @@ declare module Ext.slider {
 		/** [Property] (Boolean) True while the thumb is in a drag operation ... */
 		dragging?: bool;
 		/** [Property] (Array) */
-		thumbs?: Array;
+		thumbs?: any[];
 		/** [Method] Creates a new thumb and adds it to the slider 
 		* @param value Number The initial value to set on the thumb. 
 		*/
@@ -42672,7 +42672,7 @@ declare module Ext.slider {
 		/** [Property] (Boolean) True while the thumb is in a drag operation ... */
 		dragging: bool;
 		/** [Property] (Array) */
-		thumbs: Array;
+		thumbs: any[];
 		/** [Method] Creates a new thumb and adds it to the slider 
 		* @param value Number The initial value to set on the thumb. 
 		*/
@@ -42817,7 +42817,7 @@ declare module Ext.slider {
 		/** [Config Option] (Number) The minimum width of the tip in pixels. ... */
 		minWidth?: number;
 		/** [Config Option] (Array) Offsets for aligning the tip to the slider. ... */
-		offsets?: Array;
+		offsets?: any[];
 		/** [Config Option] (String) Sets the position for where the tip will be displayed related to the thumb. ... */
 		position?: string;
 		/** [Method] Used to create the text that appears in the Tip s body  
@@ -42831,7 +42831,7 @@ declare module Ext.slider {
 		/** [Config Option] (Number) The minimum width of the tip in pixels. ... */
 		minWidth: number;
 		/** [Config Option] (Array) Offsets for aligning the tip to the slider. ... */
-		offsets: Array;
+		offsets: any[];
 		/** [Config Option] (String) Sets the position for where the tip will be displayed related to the thumb. ... */
 		position: string;
 		/** [Method] Used to create the text that appears in the Tip s body  
@@ -43555,7 +43555,7 @@ declare module Ext {
 		* @param words String 
 		*/
 		static splitWords( words?:string ): void;
-		static splitWords( words?:Array ): void;
+		static splitWords( words?:any[] ): void;
 		/** [Method] Checks if a string starts with a substring 
 		* @param s String The original string 
 		* @param start String The substring to check 
@@ -44007,7 +44007,7 @@ declare module Ext {
 		* @param values any The template values. See apply. 
 		* @param out Array The array to which output is pushed. 
 		*/
-		applyOut?( values?:any, out?:Array ): Array;
+		applyOut?( values?:any, out?:any[] ): any[];
 		/** [Method] Alias for apply  
 		* @param values any The template values. Can be an array if your params are numeric:  var tpl = new Ext.Template('Name: {0}, Age: {1}'); tpl.apply(['John', 25]); or an object:  var tpl = new Ext.Template('Name: {name}, Age: {age}'); tpl.apply({name: 'John', age: 25});  
 		*/
@@ -44123,7 +44123,7 @@ declare module Ext {
 		* @param values any The template values. See apply. 
 		* @param out Array The array to which output is pushed. 
 		*/
-		applyOut( values?:any, out?:Array ): Array;
+		applyOut( values?:any, out?:any[] ): any[];
 		/** [Method] Alias for apply  
 		* @param values any The template values. Can be an array if your params are numeric:  var tpl = new Ext.Template('Name: {0}, Age: {1}'); tpl.apply(['John', 25]); or an object:  var tpl = new Ext.Template('Name: {name}, Age: {age}'); tpl.apply({name: 'John', age: 25});  
 		*/
@@ -45936,7 +45936,7 @@ declare module Ext.util {
 		* @param root String 'root' property to extract the first argument from. This is used mainly when summing fields in records, where the fields are all stored inside the 'data' object 
 		* @param allowBlank Boolean Pass true to allow null, undefined or empty string values 
 		*/
-		collect?( property?:string, root?:string, allowBlank?:bool ): Array;
+		collect?( property?:string, root?:string, allowBlank?:bool ): any[];
 		/** [Method] Returns true if the collection contains the passed Object as an item  
 		* @param o Object The Object to look for in the collection. 
 		*/
@@ -46031,7 +46031,7 @@ declare module Ext.util {
 		* @param startIndex Number The starting index. Defaults to 0. 
 		* @param endIndex Number The ending index. Defaults to the last item. 
 		*/
-		getRange?( startIndex?:number, endIndex?:number ): Array;
+		getRange?( startIndex?:number, endIndex?:number ): any[];
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
@@ -46088,7 +46088,7 @@ declare module Ext.util {
 		/** [Method] Remove all items in the collection  
 		* @param items Array An array of items to be removed. 
 		*/
-		removeAll?( items?:Array ): Ext.util.MixedCollection;
+		removeAll?( items?:any[] ): Ext.util.MixedCollection;
 		/** [Method] Remove an item from a specified index in the collection  
 		* @param index Number The index within the collection of the item to remove. 
 		*/
@@ -46197,7 +46197,7 @@ declare module Ext.util {
 		* @param root String 'root' property to extract the first argument from. This is used mainly when summing fields in records, where the fields are all stored inside the 'data' object 
 		* @param allowBlank Boolean Pass true to allow null, undefined or empty string values 
 		*/
-		collect( property?:string, root?:string, allowBlank?:bool ): Array;
+		collect( property?:string, root?:string, allowBlank?:bool ): any[];
 		/** [Method] Returns true if the collection contains the passed Object as an item  
 		* @param o Object The Object to look for in the collection. 
 		*/
@@ -46292,7 +46292,7 @@ declare module Ext.util {
 		* @param startIndex Number The starting index. Defaults to 0. 
 		* @param endIndex Number The ending index. Defaults to the last item. 
 		*/
-		getRange( startIndex?:number, endIndex?:number ): Array;
+		getRange( startIndex?:number, endIndex?:number ): any[];
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
@@ -46349,7 +46349,7 @@ declare module Ext.util {
 		/** [Method] Remove all items in the collection  
 		* @param items Array An array of items to be removed. 
 		*/
-		removeAll( items?:Array ): Ext.util.MixedCollection;
+		removeAll( items?:any[] ): Ext.util.MixedCollection;
 		/** [Method] Remove an item from a specified index in the collection  
 		* @param index Number The index within the collection of the item to remove. 
 		*/
@@ -46675,14 +46675,14 @@ declare module Ext.util {
 		* @param args Array The default Array of arguments. 
 		* @param cancelOnDelay Boolean By default, each call to delay cancels any pending invocation and reschedules a new invocation. Specifying this as false means that calls to delay when an invocation is pending just update the call settings, newDelay, newFn, newScope or newArgs, whichever are passed. 
 		*/
-		constructor?( fn?:any, scope?:any, args?:Array, cancelOnDelay?:bool );
+		constructor?( fn?:any, scope?:any, args?:any[], cancelOnDelay?:bool );
 		/** [Method] By default cancels any pending timeout and queues a new one  
 		* @param newDelay Number The milliseconds to delay 
 		* @param newFn Function Overrides function passed to constructor 
 		* @param newScope Object Overrides scope passed to constructor. Remember that if no scope is specified, this will refer to the browser window. 
 		* @param newArgs Array Overrides args passed to constructor 
 		*/
-		delay?( newDelay?:number, newFn?:any, newScope?:any, newArgs?:Array ): void;
+		delay?( newDelay?:number, newFn?:any, newScope?:any, newArgs?:any[] ): void;
 	}
 	export class DelayedTask implements Ext.util.IDelayedTask {
 		/** [Method] The parameters to this constructor serve as defaults and are not required  
@@ -46691,14 +46691,14 @@ declare module Ext.util {
 		* @param args Array The default Array of arguments. 
 		* @param cancelOnDelay Boolean By default, each call to delay cancels any pending invocation and reschedules a new invocation. Specifying this as false means that calls to delay when an invocation is pending just update the call settings, newDelay, newFn, newScope or newArgs, whichever are passed. 
 		*/
-		constructor( fn?:any, scope?:any, args?:Array, cancelOnDelay?:bool );
+		constructor( fn?:any, scope?:any, args?:any[], cancelOnDelay?:bool );
 		/** [Method] By default cancels any pending timeout and queues a new one  
 		* @param newDelay Number The milliseconds to delay 
 		* @param newFn Function Overrides function passed to constructor 
 		* @param newScope Object Overrides scope passed to constructor. Remember that if no scope is specified, this will refer to the browser window. 
 		* @param newArgs Array Overrides args passed to constructor 
 		*/
-		delay( newDelay?:number, newFn?:any, newScope?:any, newArgs?:Array ): void;
+		delay( newDelay?:number, newFn?:any, newScope?:any, newArgs?:any[] ): void;
 	}
 }
 declare module Ext.util {
@@ -48534,7 +48534,7 @@ declare module Ext.util {
 		*/
 		setLocalXY?( x?:any, y?:any ): any;
 		setLocalXY?( x?:number, y?:number ): Ext.util.Positionable;
-		setLocalXY?( x?:Array, y?:number ): Ext.util.Positionable;
+		setLocalXY?( x?:any[], y?:number ): Ext.util.Positionable;
 		/** [Method] Sets the local y coordinate of this element using CSS style  
 		* @param y Number The y coordinate. A value of null sets the top style to 'auto'. 
 		*/
@@ -48565,7 +48565,7 @@ declare module Ext.util {
 		*/
 		translatePoints?( x?:any, y?:any ): any;
 		translatePoints?( x?:number, y?:number ): any;
-		translatePoints?( x?:Array, y?:number ): any;
+		translatePoints?( x?:any[], y?:number ): any;
 	}
 	export class Positionable extends Ext.Base implements Ext.util.IPositionable {
 		/** [Method] Aligns the element with another element relative to the specified anchor points  
@@ -48671,7 +48671,7 @@ declare module Ext.util {
 		*/
 		setLocalXY( x?:any, y?:any ): any;
 		setLocalXY( x?:number, y?:number ): Ext.util.Positionable;
-		setLocalXY( x?:Array, y?:number ): Ext.util.Positionable;
+		setLocalXY( x?:any[], y?:number ): Ext.util.Positionable;
 		/** [Method] Sets the local y coordinate of this element using CSS style  
 		* @param y Number The y coordinate. A value of null sets the top style to 'auto'. 
 		*/
@@ -48702,7 +48702,7 @@ declare module Ext.util {
 		*/
 		translatePoints( x?:any, y?:any ): any;
 		translatePoints( x?:number, y?:number ): any;
-		translatePoints( x?:Array, y?:number ): any;
+		translatePoints( x?:any[], y?:number ): any;
 	}
 }
 declare module Ext.util {
@@ -51011,7 +51011,7 @@ declare module Ext {
 		* @param values any The template values. See apply. 
 		* @param out Array The array to which output is pushed. 
 		*/
-		applyOut?( values?:any, out?:Array ): Array;
+		applyOut?( values?:any, out?:any[] ): any[];
 	}
 	export class XTemplate extends Ext.Template implements Ext.IXTemplate {
 		/** [Config Option] (String/Array) Optional. ... */
@@ -51020,7 +51020,7 @@ declare module Ext {
 		* @param values any The template values. See apply. 
 		* @param out Array The array to which output is pushed. 
 		*/
-		applyOut( values?:any, out?:Array ): Array;
+		applyOut( values?:any, out?:any[] ): any[];
 	}
 }
 declare module Ext {
@@ -51288,7 +51288,7 @@ declare module Ext {
 		* @param fn Function The search function 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the Component being tested. That gets passed to the function if not specified. 
 		*/
-		getBy?( fn?:any, scope?:any ): Array;
+		getBy?( fn?:any, scope?:any ): any[];
 		/** [Method] Registers a floating Ext Component with this ZIndexManager  
 		* @param comp Ext.IComponent The Component to register. 
 		*/
@@ -51334,7 +51334,7 @@ declare module Ext {
 		* @param fn Function The search function 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the Component being tested. That gets passed to the function if not specified. 
 		*/
-		getBy( fn?:any, scope?:any ): Array;
+		getBy( fn?:any, scope?:any ): any[];
 		/** [Method] Registers a floating Ext Component with this ZIndexManager  
 		* @param comp Ext.IComponent The Component to register. 
 		*/
@@ -51382,7 +51382,7 @@ declare module Ext {
 		* @param fn Function The search function 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the Component being tested. That gets passed to the function if not specified. 
 		*/
-		getBy?( fn?:any, scope?:any ): Array;
+		getBy?( fn?:any, scope?:any ): any[];
 		/** [Method] Registers a floating Ext Component with this ZIndexManager  
 		* @param comp Ext.IComponent The Component to register. 
 		*/
@@ -51428,7 +51428,7 @@ declare module Ext {
 		* @param fn Function The search function 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the Component being tested. That gets passed to the function if not specified. 
 		*/
-		getBy( fn?:any, scope?:any ): Array;
+		getBy( fn?:any, scope?:any ): any[];
 		/** [Method] Registers a floating Ext Component with this ZIndexManager  
 		* @param comp Ext.IComponent The Component to register. 
 		*/

@@ -23,6 +23,8 @@ project.ext {
 	definitionWriter.init()
 	typeManager = new TypeManager( config: config )
 	specialCases = new SpecialCasesExtJS420()
+	aliasManager = new AliasManager( config: config, typeManager: typeManager )
+	aliasManager.init()
 }
 
 
@@ -92,7 +94,9 @@ def processModule( className, fileJson ) {
 def processClass( className, fileJson ) {
 	DefinitionWriter definitionWriter = project.definitionWriter
 	TypeManager typeManager = project.typeManager
+	AliasManager aliasManager = project.aliasManager
 	def processedNames
+	aliasManager.addAliases( className, fileJson )
 
 	definitionWriter.writeToDefinition( "\texport interface I${ typeManager.getClassName( className ) } ${ typeManager.getExtends( fileJson, true ) } {" )
 	if( !fileJson.singleton ) {

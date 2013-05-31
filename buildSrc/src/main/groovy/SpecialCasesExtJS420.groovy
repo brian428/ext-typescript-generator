@@ -13,6 +13,7 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		specialCases[ "globalReturnTypeOverride" ] = [:]
 		specialCases[ "returnTypeOverride" ] = [:]
 		specialCases[ "convertParamType" ] = [:]
+		specialCases[ "forcedInclude" ] = [:]
 
 		addRemovedProperty( "Ext.grid.column.Action", "isDisabled" )
 		addRemovedProperty( "Ext.Component", "draggable" )
@@ -25,6 +26,7 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		addRemovedMethod( "Ext.tip.Tip", "showBy" )
 		addRemovedMethod( "Ext.tip.ToolTip", "showAt" )
 		addRemovedMethod( "Ext.tip.QuickTip", "showAt" )
+		addRemovedMethod( "Ext.Base", "statics" )
 
 		addConvertMethodToProperty( "Ext.AbstractComponent", "animate" )
 		addConvertMethodToProperty( "Ext.util.Animate", "animate" )
@@ -40,6 +42,7 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		addReturnTypeOverride( "Ext.dom.AbstractElement", "setVisible", "Ext.dom.Element" )
 		addReturnTypeOverride( "Ext.dom.AbstractElement", "show", "Ext.dom.Element" )
 		addReturnTypeOverride( "Ext.form.field.Text", "setValue", "any" )
+
 	}
 
 	def addRemovedProperty( className, propertyName ) {
@@ -72,6 +75,11 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		specialCases[ "methodParameterOverride" ][ className ][ methodName ][ parameterName ] = newType
 	}
 
+	def addForcedInclude( className, methodName ) {
+		if( !specialCases[ "forcedInclude" ][ className ] ) specialCases[ "forcedInclude" ][ className ] = [:]
+		specialCases[ "forcedInclude" ][ className ][ methodName ] = true
+	}
+
 	def shouldRemoveProperty( className, propertyName ) {
 		return ( specialCases[ "removeProperty" ][ className ] && specialCases[ "removeProperty" ][ className ][ propertyName ] )
 	}
@@ -82,6 +90,10 @@ class SpecialCasesExtJS420 implements ISpecialCases
 
 	def shouldConvertToProperty( className, methodName ) {
 		return ( specialCases[ "methodToProperty" ][ className ] && specialCases[ "methodToProperty" ][ className ][ methodName ] )
+	}
+
+	def shouldForceInclude( className, methodName ) {
+		return ( specialCases[ "forcedInclude" ][ className ] && specialCases[ "forcedInclude" ][ className ][ methodName ] )
 	}
 
 	def getReturnTypeOverride( className, methodName=null ) {

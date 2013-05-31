@@ -14,9 +14,13 @@ public interface ISpecialCases {
 
 	def addMethodParameterOverride( className, methodName, parameterName, newType )
 
+	def addForcedInclude( className, methodName )
+
 	def shouldRemoveProperty( className, propertyName )
 
 	def shouldRemoveMethod( className, methodName )
+
+	def shouldForceInclude( className, methodName )
 
 	def shouldConvertToProperty( className, methodName )
 

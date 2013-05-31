@@ -13,6 +13,10 @@ class Config
 	// False to omit all types and set everything to "any"
 	def useFullTyping = false
 
+	// True to define only interfaces and static classes/fields in the definition.
+	// False to define classes as well as interfaces.
+	def interfaceOnly = false
+
 	// Force all method parameters to optional where possible (basically any time variable arguments/"spreads" aren't used)
 	def forceAllParamsToOptional = true
 

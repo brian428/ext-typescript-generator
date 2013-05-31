@@ -14,7 +14,7 @@ class DefinitionWriter
 		new File( config.outputPath ).deleteDir()
 		new File( config.outputPath ).mkdir()
 
-		definitionFile = new File( "${ config.outputPath }/${ config.libraryName }-${ config.libraryVersion }-${ config.useFullTyping ? 'Typed' : 'Untyped' }.d.ts" )
+		definitionFile = new File( "${ config.outputPath }/${ config.libraryName }-${ config.libraryVersion }-${ config.useFullTyping ? 'Typed' : 'Untyped' }${ config.interfaceOnly ? '-Interfaces' : '' }.d.ts" )
 
 		if( config.singleDefinition ) {
 			definitionFile.write( "" )

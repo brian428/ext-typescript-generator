@@ -71,8 +71,11 @@ class TypeManager
 	}
 
 	def getExtends( fileJson, isInterface ) {
-		// fileJson.superclasses.last() for extends
 		def result = ""
+
+		if( fileJson.name == "Ext.Base" )
+			fileJson.superclasses = [ "Ext.Class" ]
+
 		if( fileJson.superclasses?.size() > 0 ) {
 			if( isInterface ) {
 				if( fileJson.superclasses.last().contains( "Ext." ) )
@@ -83,11 +86,26 @@ class TypeManager
 					result = "extends ${ normalizeType( fileJson.superclasses.last(), true ) }"
 			}
 		}
+		if( isInterface ) {
+			def interfaces = getImplementedInterfaces( fileJson )
+			if( !result.length() && interfaces.length() ) {
+				result = "extends "
+			}
+			else if( result.length() && interfaces.length() ) {
+				result += ","
+			}
+			if( interfaces.length() )
+				result += interfaces
+		}
 		return result
 	}
 
 	def getImplementedInterfaces( fileJson ) {
-		def result = "implements ${ normalizeType( convertToInterface( fileJson.name ), true ) }"
+		def result = ""
+
+		if( !config.interfaceOnly )
+			result = normalizeType( convertToInterface( fileJson.name ), true )
+
 		def implementedInterfaces = []
 
 		fileJson.mixins?.each { thisMixin ->
@@ -95,7 +113,25 @@ class TypeManager
 		}
 
 		if( implementedInterfaces.size() > 0 ) {
-			result += ",${ implementedInterfaces.join( ',' ) }"
+			if( !config.interfaceOnly )
+				result += ","
+			result += implementedInterfaces.join( ',' )
+		}
+
+		return result
+	}
+
+	def isOwner( fileJson, candidate ) {
+		def result = false
+
+		if( fileJson.name == candidate ) {
+			result = true
+		}
+		else if( fileJson?.alternateClassNames ) {
+			fileJson.alternateClassNames.each { thisClassName ->
+				if( thisClassName == candidate )
+					result = true
+			}
 		}
 
 		return result

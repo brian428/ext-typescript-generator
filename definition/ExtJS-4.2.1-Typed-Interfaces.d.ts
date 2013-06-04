@@ -4,7 +4,7 @@
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
 declare module Ext {
-	export interface IAbstractComponent extends Ext.util.IPositionable,Ext.util.IObservable,Ext.util.IAnimate,Ext.util.IElementContainer,Ext.util.IRenderable,Ext.state.IStateful {
+	export interface IAbstractComponent extends Ext.IBase,Ext.util.IPositionable,Ext.util.IObservable,Ext.util.IAnimate,Ext.util.IElementContainer,Ext.util.IRenderable,Ext.state.IStateful {
 		/** [Config Option] (String/Object) */
 		autoEl?: any;
 		/** [Config Option] (Ext.ComponentLoader/Object/String/Boolean) */
@@ -747,7 +747,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IAbstractManager {
+	export interface IAbstractManager extends Ext.IBase {
 		/** [Property] (Ext.util.HashMap) */
 		all?: Ext.util.IHashMap;
 		/** [Method] Creates and returns an instance of whatever this manager manages based on the supplied type and config object  
@@ -792,7 +792,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IAbstractPlugin {
+	export interface IAbstractPlugin extends Ext.IBase {
 		/** [Config Option] (String) */
 		pluginId?: string;
 		/** [Property] (Boolean) */
@@ -820,7 +820,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IAction {
+	export interface IAction extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		disabled?: bool;
 		/** [Config Option] (Function) */
@@ -884,13 +884,13 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IAjax {
+	export interface IAjax extends Ext.data.IConnection {
 	}
 	export class Ajax {
 	}
 }
 declare module Ext.app {
-	export interface IApplication {
+	export interface IApplication extends Ext.app.IController {
 		/** [Config Option] (String) */
 		appFolder?: string;
 		/** [Config Option] (String) */
@@ -922,7 +922,7 @@ declare module Ext.app {
 	}
 }
 declare module Ext.app {
-	export interface IController extends Ext.util.IObservable {
+	export interface IController extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		id?: string;
 		/** [Config Option] (String/String[]) */
@@ -1093,7 +1093,7 @@ declare module Ext.app {
 	}
 }
 declare module Ext.app.domain {
-	export interface IComponent {
+	export interface IComponent extends Ext.app.IEventDomain {
 	}
 	export class Component {
 		/** [Method]  */
@@ -1106,7 +1106,7 @@ declare module Ext.app.domain {
 	}
 }
 declare module Ext.app.domain {
-	export interface IController {
+	export interface IController extends Ext.app.IEventDomain {
 	}
 	export class Controller {
 		/** [Method]  */
@@ -1114,7 +1114,7 @@ declare module Ext.app.domain {
 	}
 }
 declare module Ext.app.domain {
-	export interface IDirect {
+	export interface IDirect extends Ext.app.IEventDomain {
 	}
 	export class Direct {
 		/** [Method]  */
@@ -1122,7 +1122,7 @@ declare module Ext.app.domain {
 	}
 }
 declare module Ext.app.domain {
-	export interface IGlobal {
+	export interface IGlobal extends Ext.app.IEventDomain {
 	}
 	export class Global {
 		/** [Method]  */
@@ -1132,7 +1132,7 @@ declare module Ext.app.domain {
 	}
 }
 declare module Ext.app.domain {
-	export interface IStore {
+	export interface IStore extends Ext.app.IEventDomain {
 	}
 	export class Store {
 		/** [Method]  */
@@ -1140,7 +1140,7 @@ declare module Ext.app.domain {
 	}
 }
 declare module Ext.app {
-	export interface IEventBus {
+	export interface IEventBus extends Ext.IBase {
 	}
 	export class EventBus {
 		/** [Method]  */
@@ -1162,7 +1162,7 @@ declare module Ext.app {
 	}
 }
 declare module Ext.app {
-	export interface IEventDomain {
+	export interface IEventDomain extends Ext.IBase {
 		/** [Config Option] (String) */
 		idProperty?: string;
 		/** [Property] (Object) */
@@ -1443,7 +1443,7 @@ declare module Ext {
 	}
 }
 declare module Ext.button {
-	export interface IButton extends Ext.IQueryable {
+	export interface IButton extends Ext.IComponent,Ext.IQueryable {
 		/** [Config Option] (Boolean) */
 		allowDepress?: bool;
 		/** [Config Option] (String) */
@@ -1642,7 +1642,7 @@ declare module Ext.button {
 	}
 }
 declare module Ext {
-	export interface IButton extends Ext.IQueryable {
+	export interface IButton extends Ext.IComponent,Ext.IQueryable {
 		/** [Config Option] (Boolean) */
 		allowDepress?: bool;
 		/** [Config Option] (String) */
@@ -1841,7 +1841,7 @@ declare module Ext {
 	}
 }
 declare module Ext.button {
-	export interface ICycle {
+	export interface ICycle extends Ext.button.ISplit {
 		/** [Config Option] (Function) */
 		changeHandler?: any;
 		/** [Config Option] (Number/String) */
@@ -1868,7 +1868,7 @@ declare module Ext.button {
 	}
 }
 declare module Ext {
-	export interface ICycleButton {
+	export interface ICycleButton extends Ext.button.ISplit {
 		/** [Config Option] (Function) */
 		changeHandler?: any;
 		/** [Config Option] (Number/String) */
@@ -1895,19 +1895,19 @@ declare module Ext {
 	}
 }
 declare module Ext.button {
-	export interface IManager {
+	export interface IManager extends Ext.IBase {
 	}
 	export class Manager {
 	}
 }
 declare module Ext {
-	export interface IButtonToggleManager {
+	export interface IButtonToggleManager extends Ext.IBase {
 	}
 	export class ButtonToggleManager {
 	}
 }
 declare module Ext.button {
-	export interface ISplit {
+	export interface ISplit extends Ext.button.IButton {
 		/** [Config Option] (Function) */
 		arrowHandler?: any;
 		/** [Config Option] (String) */
@@ -1920,7 +1920,7 @@ declare module Ext.button {
 	}
 }
 declare module Ext {
-	export interface ISplitButton {
+	export interface ISplitButton extends Ext.button.IButton {
 		/** [Config Option] (Function) */
 		arrowHandler?: any;
 		/** [Config Option] (String) */
@@ -1933,7 +1933,7 @@ declare module Ext {
 	}
 }
 declare module Ext.chart.axis {
-	export interface IAbstract {
+	export interface IAbstract extends Ext.IBase {
 		/** [Config Option] (String[]) */
 		fields?: string[];
 		/** [Config Option] (Ext.chart.Label) */
@@ -1941,7 +1941,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart.axis {
-	export interface IAxis {
+	export interface IAxis extends Ext.chart.axis.IAbstract {
 		/** [Config Option] (Boolean) */
 		adjustEnd?: bool;
 		/** [Config Option] (Number) */
@@ -1977,7 +1977,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart {
-	export interface IAxis {
+	export interface IAxis extends Ext.chart.axis.IAbstract {
 		/** [Config Option] (Boolean) */
 		adjustEnd?: bool;
 		/** [Config Option] (Number) */
@@ -2013,7 +2013,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.axis {
-	export interface ICategory {
+	export interface ICategory extends Ext.chart.axis.IAxis {
 		/** [Config Option] (Boolean) */
 		calculateCategoryCount?: bool;
 		/** [Config Option] (String) */
@@ -2021,7 +2021,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart {
-	export interface ICategoryAxis {
+	export interface ICategoryAxis extends Ext.chart.axis.IAxis {
 		/** [Config Option] (Boolean) */
 		calculateCategoryCount?: bool;
 		/** [Config Option] (String) */
@@ -2029,7 +2029,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.axis {
-	export interface IGauge {
+	export interface IGauge extends Ext.chart.axis.IAbstract {
 		/** [Config Option] (Number) */
 		margin?: number;
 		/** [Config Option] (Number) */
@@ -2047,7 +2047,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart.axis {
-	export interface INumeric {
+	export interface INumeric extends Ext.chart.axis.IAxis {
 		/** [Config Option] (Boolean) */
 		adjustMaximumByMajorUnit?: bool;
 		/** [Config Option] (Boolean) */
@@ -2065,7 +2065,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart {
-	export interface INumericAxis {
+	export interface INumericAxis extends Ext.chart.axis.IAxis {
 		/** [Config Option] (Boolean) */
 		adjustMaximumByMajorUnit?: bool;
 		/** [Config Option] (Boolean) */
@@ -2083,7 +2083,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.axis {
-	export interface IRadial {
+	export interface IRadial extends Ext.chart.axis.INumeric {
 		/** [Config Option] (Number) */
 		maximum?: number;
 		/** [Config Option] (String) */
@@ -2095,7 +2095,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart.axis {
-	export interface ITime {
+	export interface ITime extends Ext.chart.axis.INumeric {
 		/** [Config Option] (Boolean) */
 		constrain?: bool;
 		/** [Config Option] (String/Boolean) */
@@ -2109,7 +2109,7 @@ declare module Ext.chart.axis {
 	}
 }
 declare module Ext.chart {
-	export interface ITimeAxis {
+	export interface ITimeAxis extends Ext.chart.axis.INumeric {
 		/** [Config Option] (Boolean) */
 		constrain?: bool;
 		/** [Config Option] (String/Boolean) */
@@ -2123,11 +2123,11 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface ICallout {
+	export interface ICallout extends Ext.IBase {
 	}
 }
 declare module Ext.chart {
-	export interface IChart extends Ext.chart.theme.ITheme,Ext.chart.IMask,Ext.chart.INavigation,Ext.util.IBindable,Ext.util.IObservable {
+	export interface IChart extends Ext.draw.IComponent,Ext.chart.theme.ITheme,Ext.chart.IMask,Ext.chart.INavigation,Ext.util.IBindable,Ext.util.IObservable {
 		/** [Config Option] (Boolean/Object) */
 		animate?: any;
 		/** [Config Option] (Ext.chart.axis.Axis[]) */
@@ -2306,7 +2306,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IHighlight {
+	export interface IHighlight extends Ext.IBase {
 		/** [Config Option] (Boolean/Object) */
 		highlight?: any;
 		/** [Property] (Object) */
@@ -2320,7 +2320,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface ILabel {
+	export interface ILabel extends Ext.IBase {
 		/** [Config Option] (Object) */
 		label?: any;
 		/** [Method] Called each time a new label is created  
@@ -2343,7 +2343,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface ILegend {
+	export interface ILegend extends Ext.IBase {
 		/** [Config Option] (String) */
 		boxFill?: string;
 		/** [Config Option] (String) */
@@ -2379,7 +2379,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface ILegendItem {
+	export interface ILegendItem extends Ext.draw.ICompositeSprite {
 		/** [Method] Creates all the individual sprites for this legend item 
 		* @param config Object 
 		*/
@@ -2391,19 +2391,19 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IMask {
+	export interface IMask extends Ext.IBase {
 		/** [Config Option] (Boolean/String) */
 		mask?: any;
 	}
 }
 declare module Ext.chart {
-	export interface IMaskLayer {
+	export interface IMaskLayer extends Ext.IComponent {
 		/** [Method] The initComponent template method is an important initialization step for a Component  */
 		initComponent?(): void;
 	}
 }
 declare module Ext.chart {
-	export interface INavigation {
+	export interface INavigation extends Ext.IBase {
 		/** [Method] Restores the zoom to the original value  */
 		restoreZoom?(): void;
 		/** [Method] Zooms the chart to the specified selection range  
@@ -2413,7 +2413,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.series {
-	export interface IArea {
+	export interface IArea extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Object) */
 		style?: any;
 		/** [Config Option] (String) */
@@ -2443,7 +2443,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart.series {
-	export interface IBar {
+	export interface IBar extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		column?: bool;
 		/** [Config Option] (Number) */
@@ -2475,7 +2475,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart {
-	export interface IBarSeries {
+	export interface IBarSeries extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		column?: bool;
 		/** [Config Option] (Number) */
@@ -2507,7 +2507,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IBarChart {
+	export interface IBarChart extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		column?: bool;
 		/** [Config Option] (Number) */
@@ -2539,7 +2539,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IStackedBarChart {
+	export interface IStackedBarChart extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		column?: bool;
 		/** [Config Option] (Number) */
@@ -2571,7 +2571,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.series {
-	export interface ICartesian {
+	export interface ICartesian extends Ext.chart.series.ISeries {
 		/** [Config Option] (String/String[]) */
 		axis?: any;
 		/** [Config Option] (String) */
@@ -2595,7 +2595,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart {
-	export interface ICartesianSeries {
+	export interface ICartesianSeries extends Ext.chart.series.ISeries {
 		/** [Config Option] (String/String[]) */
 		axis?: any;
 		/** [Config Option] (String) */
@@ -2619,7 +2619,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface ICartesianChart {
+	export interface ICartesianChart extends Ext.chart.series.ISeries {
 		/** [Config Option] (String/String[]) */
 		axis?: any;
 		/** [Config Option] (String) */
@@ -2643,7 +2643,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.series {
-	export interface IColumn {
+	export interface IColumn extends Ext.chart.series.IBar {
 		/** [Config Option] (String) */
 		axis?: string;
 		/** [Config Option] (Boolean) */
@@ -2657,7 +2657,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart {
-	export interface IColumnSeries {
+	export interface IColumnSeries extends Ext.chart.series.IBar {
 		/** [Config Option] (String) */
 		axis?: string;
 		/** [Config Option] (Boolean) */
@@ -2671,7 +2671,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IColumnChart {
+	export interface IColumnChart extends Ext.chart.series.IBar {
 		/** [Config Option] (String) */
 		axis?: string;
 		/** [Config Option] (Boolean) */
@@ -2685,7 +2685,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IStackedColumnChart {
+	export interface IStackedColumnChart extends Ext.chart.series.IBar {
 		/** [Config Option] (String) */
 		axis?: string;
 		/** [Config Option] (Boolean) */
@@ -2699,7 +2699,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.series {
-	export interface IGauge {
+	export interface IGauge extends Ext.chart.series.ISeries {
 		/** [Config Option] (String) */
 		angleField?: string;
 		/** [Config Option] (Boolean/Number) */
@@ -2727,7 +2727,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart.series {
-	export interface ILine {
+	export interface ILine extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		fill?: bool;
 		/** [Config Option] (Object) */
@@ -2747,7 +2747,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart {
-	export interface ILineSeries {
+	export interface ILineSeries extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		fill?: bool;
 		/** [Config Option] (Object) */
@@ -2767,7 +2767,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface ILineChart {
+	export interface ILineChart extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Boolean) */
 		fill?: bool;
 		/** [Config Option] (Object) */
@@ -2787,7 +2787,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.series {
-	export interface IPie {
+	export interface IPie extends Ext.chart.series.ISeries {
 		/** [Config Option] (String) */
 		angleField?: string;
 		/** [Config Option] (Array) */
@@ -2825,7 +2825,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart {
-	export interface IPieSeries {
+	export interface IPieSeries extends Ext.chart.series.ISeries {
 		/** [Config Option] (String) */
 		angleField?: string;
 		/** [Config Option] (Array) */
@@ -2863,7 +2863,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart {
-	export interface IPieChart {
+	export interface IPieChart extends Ext.chart.series.ISeries {
 		/** [Config Option] (String) */
 		angleField?: string;
 		/** [Config Option] (Array) */
@@ -2901,7 +2901,7 @@ declare module Ext.chart {
 	}
 }
 declare module Ext.chart.series {
-	export interface IRadar {
+	export interface IRadar extends Ext.chart.series.ISeries {
 		/** [Config Option] (Object) */
 		markerConfig?: any;
 		/** [Config Option] (Boolean) */
@@ -2921,7 +2921,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart.series {
-	export interface IScatter {
+	export interface IScatter extends Ext.chart.series.ICartesian {
 		/** [Config Option] (Object) */
 		markerConfig?: any;
 		/** [Config Option] (Object) */
@@ -2933,7 +2933,7 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart.series {
-	export interface ISeries extends Ext.util.IObservable,Ext.chart.ILabel,Ext.chart.IHighlight,Ext.chart.ITip,Ext.chart.ICallout {
+	export interface ISeries extends Ext.IBase,Ext.util.IObservable,Ext.chart.ILabel,Ext.chart.IHighlight,Ext.chart.ITip,Ext.chart.ICallout {
 		/** [Config Option] (Boolean/Object) */
 		highlight?: any;
 		/** [Config Option] (Object) */
@@ -3117,13 +3117,13 @@ declare module Ext.chart.series {
 	}
 }
 declare module Ext.chart {
-	export interface IShape {
+	export interface IShape extends Ext.IBase {
 	}
 	export class Shape {
 	}
 }
 declare module Ext.chart.theme {
-	export interface IBase {
+	export interface IBase extends Ext.IBase {
 	}
 }
 declare module Ext.chart.theme {
@@ -3131,11 +3131,11 @@ declare module Ext.chart.theme {
 	}
 }
 declare module Ext.chart {
-	export interface ITip {
+	export interface ITip extends Ext.IBase {
 	}
 }
 declare module Ext.chart {
-	export interface ITipSurface {
+	export interface ITipSurface extends Ext.draw.IComponent {
 	}
 }
 declare module Ext {
@@ -3245,7 +3245,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IComponent extends Ext.util.IFloating {
+	export interface IComponent extends Ext.IAbstractComponent,Ext.util.IFloating {
 		/** [Config Option] (Boolean) */
 		autoScroll?: bool;
 		/** [Config Option] (Number/String) */
@@ -3480,7 +3480,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IComponentLoader {
+	export interface IComponentLoader extends Ext.IElementLoader {
 		/** [Config Option] (Boolean/Object) */
 		loadMask?: any;
 		/** [Config Option] (Boolean) */
@@ -3496,7 +3496,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IComponentManager {
+	export interface IComponentManager extends Ext.IAbstractManager {
 	}
 	export class ComponentManager {
 		/** [Method] Creates a new Component from the specified config object using the config object s xtype to determine the class to in  
@@ -3512,7 +3512,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IComponentMgr {
+	export interface IComponentMgr extends Ext.IAbstractManager {
 	}
 	export class ComponentMgr {
 		/** [Method] Creates a new Component from the specified config object using the config object s xtype to determine the class to in  
@@ -3528,7 +3528,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IComponentQuery {
+	export interface IComponentQuery extends Ext.IBase {
 	}
 	export class ComponentQuery {
 		/** [Method] Tests whether the passed Component matches the selector string  
@@ -3544,7 +3544,7 @@ declare module Ext {
 	}
 }
 declare module Ext.container {
-	export interface IAbstractContainer extends Ext.IQueryable {
+	export interface IAbstractContainer extends Ext.IComponent,Ext.IQueryable {
 		/** [Config Option] (String/Number) */
 		activeItem?: any;
 		/** [Config Option] (Boolean) */
@@ -3681,7 +3681,7 @@ declare module Ext.container {
 	}
 }
 declare module Ext.container {
-	export interface IButtonGroup {
+	export interface IButtonGroup extends Ext.panel.IPanel {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number) */
@@ -3703,7 +3703,7 @@ declare module Ext.container {
 	}
 }
 declare module Ext {
-	export interface IButtonGroup {
+	export interface IButtonGroup extends Ext.panel.IPanel {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number) */
@@ -3725,7 +3725,7 @@ declare module Ext {
 	}
 }
 declare module Ext.container {
-	export interface IContainer {
+	export interface IContainer extends Ext.container.IAbstractContainer {
 		/** [Config Option] (Number/Object) */
 		anchorSize?: any;
 		/** [Method] Return the immediate child Component in which the passed element is located  
@@ -3739,7 +3739,7 @@ declare module Ext.container {
 	}
 }
 declare module Ext {
-	export interface IContainer {
+	export interface IContainer extends Ext.container.IAbstractContainer {
 		/** [Config Option] (Number/Object) */
 		anchorSize?: any;
 		/** [Method] Return the immediate child Component in which the passed element is located  
@@ -3753,7 +3753,7 @@ declare module Ext {
 	}
 }
 declare module Ext.container {
-	export interface IDockingContainer {
+	export interface IDockingContainer extends Ext.IBase {
 		/** [Config Option] (Object) */
 		defaultDockWeights?: any;
 		/** [Method] Adds docked item s to the container  
@@ -3793,11 +3793,11 @@ declare module Ext.container {
 	}
 }
 declare module Ext.container {
-	export interface IMonitor {
+	export interface IMonitor extends Ext.IBase {
 	}
 }
 declare module Ext.container {
-	export interface IViewport {
+	export interface IViewport extends Ext.container.IContainer {
 		/** [Property] (Boolean) */
 		isViewport?: bool;
 		/** [Method] Template method called when this Component s DOM structure is created  */
@@ -3805,7 +3805,7 @@ declare module Ext.container {
 	}
 }
 declare module Ext {
-	export interface IViewport {
+	export interface IViewport extends Ext.container.IContainer {
 		/** [Property] (Boolean) */
 		isViewport?: bool;
 		/** [Method] Template method called when this Component s DOM structure is created  */
@@ -3813,7 +3813,7 @@ declare module Ext {
 	}
 }
 declare module Ext.data {
-	export interface IAbstractStore extends Ext.util.IObservable,Ext.util.ISortable {
+	export interface IAbstractStore extends Ext.IBase,Ext.util.IObservable,Ext.util.ISortable {
 		/** [Config Option] (Boolean/Object) */
 		autoLoad?: any;
 		/** [Config Option] (Boolean) */
@@ -4016,7 +4016,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IArrayStore {
+	export interface IArrayStore extends Ext.data.IStore {
 		/** [Method] Loads an array of data straight into the Store  
 		* @param data Object 
 		* @param append Object 
@@ -4025,7 +4025,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.association {
-	export interface IAssociation {
+	export interface IAssociation extends Ext.IBase {
 		/** [Config Option] (String) */
 		associatedModel?: string;
 		/** [Config Option] (String) */
@@ -4047,7 +4047,7 @@ declare module Ext.data.association {
 	}
 }
 declare module Ext.data {
-	export interface IAssociation {
+	export interface IAssociation extends Ext.IBase {
 		/** [Config Option] (String) */
 		associatedModel?: string;
 		/** [Config Option] (String) */
@@ -4069,7 +4069,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.association {
-	export interface IBelongsTo {
+	export interface IBelongsTo extends Ext.data.association.IAssociation {
 		/** [Config Option] (String) */
 		foreignKey?: string;
 		/** [Config Option] (String) */
@@ -4081,7 +4081,7 @@ declare module Ext.data.association {
 	}
 }
 declare module Ext.data {
-	export interface IBelongsToAssociation {
+	export interface IBelongsToAssociation extends Ext.data.association.IAssociation {
 		/** [Config Option] (String) */
 		foreignKey?: string;
 		/** [Config Option] (String) */
@@ -4093,7 +4093,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.association {
-	export interface IHasMany {
+	export interface IHasMany extends Ext.data.association.IAssociation {
 		/** [Config Option] (Boolean) */
 		autoLoad?: bool;
 		/** [Config Option] (String) */
@@ -4109,7 +4109,7 @@ declare module Ext.data.association {
 	}
 }
 declare module Ext.data {
-	export interface IHasManyAssociation {
+	export interface IHasManyAssociation extends Ext.data.association.IAssociation {
 		/** [Config Option] (Boolean) */
 		autoLoad?: bool;
 		/** [Config Option] (String) */
@@ -4125,7 +4125,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.association {
-	export interface IHasOne {
+	export interface IHasOne extends Ext.data.association.IAssociation {
 		/** [Config Option] (String) */
 		foreignKey?: string;
 		/** [Config Option] (String) */
@@ -4137,7 +4137,7 @@ declare module Ext.data.association {
 	}
 }
 declare module Ext.data {
-	export interface IHasOneAssociation {
+	export interface IHasOneAssociation extends Ext.data.association.IAssociation {
 		/** [Config Option] (String) */
 		foreignKey?: string;
 		/** [Config Option] (String) */
@@ -4149,7 +4149,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IBatch extends Ext.util.IObservable {
+	export interface IBatch extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		autoStart?: bool;
 		/** [Config Option] (Boolean) */
@@ -4299,7 +4299,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IBufferStore {
+	export interface IBufferStore extends Ext.data.IStore {
 		/** [Config Option] (Boolean) */
 		filterOnLoad?: bool;
 		/** [Config Option] (Boolean) */
@@ -4307,7 +4307,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IConnection extends Ext.util.IObservable {
+	export interface IConnection extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		autoAbort?: bool;
 		/** [Config Option] (Boolean) */
@@ -4476,11 +4476,11 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IDirectStore {
+	export interface IDirectStore extends Ext.data.IStore {
 	}
 }
 declare module Ext.data {
-	export interface IErrors {
+	export interface IErrors extends Ext.util.IMixedCollection {
 		/** [Method] Returns all of the errors for the given field 
 		* @param fieldName String The field to get errors for 
 		*/
@@ -4490,7 +4490,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IField {
+	export interface IField extends Ext.IBase {
 		/** [Config Option] (Function) */
 		convert?: any;
 		/** [Config Option] (String) */
@@ -4520,7 +4520,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.flash {
-	export interface IBinaryXhr {
+	export interface IBinaryXhr extends Ext.IBase {
 		/** [Property] (number) */
 		readyState?: number;
 		/** [Property] (Array) */
@@ -4563,11 +4563,11 @@ declare module Ext.data.flash {
 	}
 }
 declare module Ext.data {
-	export interface IGroup {
+	export interface IGroup extends Ext.util.IObservable {
 	}
 }
 declare module Ext.data {
-	export interface IIdGenerator {
+	export interface IIdGenerator extends Ext.IBase {
 		/** [Config Option] (String) */
 		id?: string;
 		/** [Property] (Boolean) */
@@ -4581,7 +4581,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IJsonP {
+	export interface IJsonP extends Ext.IBase {
 	}
 	export class JsonP {
 		/** [Method] Abort a request  
@@ -4595,15 +4595,15 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IJsonPStore {
+	export interface IJsonPStore extends Ext.data.IStore {
 	}
 }
 declare module Ext.data {
-	export interface IJsonStore {
+	export interface IJsonStore extends Ext.data.IStore {
 	}
 }
 declare module Ext.data {
-	export interface IModel extends Ext.util.IObservable {
+	export interface IModel extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Object[]) */
 		associations?: Object[];
 		/** [Config Option] (String/Object/String[]/Object[]) */
@@ -4863,7 +4863,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IRecord extends Ext.util.IObservable {
+	export interface IRecord extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Object[]) */
 		associations?: Object[];
 		/** [Config Option] (String/Object/String[]/Object[]) */
@@ -5123,7 +5123,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface INodeInterface {
+	export interface INodeInterface extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		allowDrag?: bool;
 		/** [Config Option] (Boolean) */
@@ -5354,7 +5354,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface INodeStore {
+	export interface INodeStore extends Ext.data.IStore {
 		/** [Config Option] (Ext.data.Model) */
 		node?: Ext.data.IModel;
 		/** [Config Option] (Boolean) */
@@ -5372,7 +5372,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IOperation {
+	export interface IOperation extends Ext.IBase {
 		/** [Config Option] (String) */
 		action?: string;
 		/** [Config Option] (Ext.data.Batch) */
@@ -5434,7 +5434,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IPageMap {
+	export interface IPageMap extends Ext.util.ILruCache {
 		/** [Method] Maintain a generation counter so that the Store can reject incoming pages destined for the previous generation 
 		* @param initial Object 
 		*/
@@ -5456,7 +5456,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IAjax {
+	export interface IAjax extends Ext.data.proxy.IServer {
 		/** [Config Option] (Boolean) */
 		binary?: bool;
 		/** [Config Option] (Object) */
@@ -5470,7 +5470,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IHttpProxy {
+	export interface IHttpProxy extends Ext.data.proxy.IServer {
 		/** [Config Option] (Boolean) */
 		binary?: bool;
 		/** [Config Option] (Object) */
@@ -5484,7 +5484,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IAjaxProxy {
+	export interface IAjaxProxy extends Ext.data.proxy.IServer {
 		/** [Config Option] (Boolean) */
 		binary?: bool;
 		/** [Config Option] (Object) */
@@ -5498,7 +5498,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IClient {
+	export interface IClient extends Ext.data.proxy.IProxy {
 		/** [Property] (Boolean) */
 		isSynchronous?: bool;
 		/** [Method] Abstract function that must be implemented by each ClientProxy subclass  */
@@ -5506,7 +5506,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IClientProxy {
+	export interface IClientProxy extends Ext.data.proxy.IProxy {
 		/** [Property] (Boolean) */
 		isSynchronous?: bool;
 		/** [Method] Abstract function that must be implemented by each ClientProxy subclass  */
@@ -5514,7 +5514,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IDirect {
+	export interface IDirect extends Ext.data.proxy.IServer {
 		/** [Config Option] (Object) */
 		api?: any;
 		/** [Config Option] (Function/String) */
@@ -5536,7 +5536,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IDirectProxy {
+	export interface IDirectProxy extends Ext.data.proxy.IServer {
 		/** [Config Option] (Object) */
 		api?: any;
 		/** [Config Option] (Function/String) */
@@ -5558,7 +5558,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IJsonP {
+	export interface IJsonP extends Ext.data.proxy.IServer {
 		/** [Config Option] (Boolean) */
 		autoAppendParams?: bool;
 		/** [Config Option] (String) */
@@ -5578,7 +5578,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IScriptTagProxy {
+	export interface IScriptTagProxy extends Ext.data.proxy.IServer {
 		/** [Config Option] (Boolean) */
 		autoAppendParams?: bool;
 		/** [Config Option] (String) */
@@ -5598,15 +5598,15 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface ILocalStorage {
+	export interface ILocalStorage extends Ext.data.proxy.IWebStorage {
 	}
 }
 declare module Ext.data {
-	export interface ILocalStorageProxy {
+	export interface ILocalStorageProxy extends Ext.data.proxy.IWebStorage {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IMemory {
+	export interface IMemory extends Ext.data.proxy.IClient {
 		/** [Config Option] (Object) */
 		data?: any;
 		/** [Config Option] (Boolean) */
@@ -5640,7 +5640,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IMemoryProxy {
+	export interface IMemoryProxy extends Ext.data.proxy.IClient {
 		/** [Config Option] (Object) */
 		data?: any;
 		/** [Config Option] (Boolean) */
@@ -5674,7 +5674,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IProxy extends Ext.util.IObservable {
+	export interface IProxy extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		batchActions?: bool;
 		/** [Config Option] (String) */
@@ -5853,7 +5853,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IDataProxy extends Ext.util.IObservable {
+	export interface IDataProxy extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		batchActions?: bool;
 		/** [Config Option] (String) */
@@ -6032,7 +6032,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IProxy extends Ext.util.IObservable {
+	export interface IProxy extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		batchActions?: bool;
 		/** [Config Option] (String) */
@@ -6211,7 +6211,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IRest {
+	export interface IRest extends Ext.data.proxy.IAjax {
 		/** [Config Option] (Boolean) */
 		appendId?: bool;
 		/** [Config Option] (Boolean) */
@@ -6227,7 +6227,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IRestProxy {
+	export interface IRestProxy extends Ext.data.proxy.IAjax {
 		/** [Config Option] (Boolean) */
 		appendId?: bool;
 		/** [Config Option] (Boolean) */
@@ -6243,7 +6243,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IServer {
+	export interface IServer extends Ext.data.proxy.IProxy {
 		/** [Config Option] (Object) */
 		api?: any;
 		/** [Config Option] (String) */
@@ -6321,7 +6321,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IServerProxy {
+	export interface IServerProxy extends Ext.data.proxy.IProxy {
 		/** [Config Option] (Object) */
 		api?: any;
 		/** [Config Option] (String) */
@@ -6399,15 +6399,15 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.proxy {
-	export interface ISessionStorage {
+	export interface ISessionStorage extends Ext.data.proxy.IWebStorage {
 	}
 }
 declare module Ext.data {
-	export interface ISessionStorageProxy {
+	export interface ISessionStorageProxy extends Ext.data.proxy.IWebStorage {
 	}
 }
 declare module Ext.data.proxy {
-	export interface IWebStorage {
+	export interface IWebStorage extends Ext.data.proxy.IClient {
 		/** [Config Option] (String) */
 		id?: string;
 		/** [Property] (Object) */
@@ -6446,7 +6446,7 @@ declare module Ext.data.proxy {
 	}
 }
 declare module Ext.data {
-	export interface IWebStorageProxy {
+	export interface IWebStorageProxy extends Ext.data.proxy.IClient {
 		/** [Config Option] (String) */
 		id?: string;
 		/** [Property] (Object) */
@@ -6485,7 +6485,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.reader {
-	export interface IArray {
+	export interface IArray extends Ext.data.reader.IJson {
 		/** [Config Option] (String) */
 		successProperty?: string;
 		/** [Config Option] (String) */
@@ -6493,7 +6493,7 @@ declare module Ext.data.reader {
 	}
 }
 declare module Ext.data {
-	export interface IArrayReader {
+	export interface IArrayReader extends Ext.data.reader.IJson {
 		/** [Config Option] (String) */
 		successProperty?: string;
 		/** [Config Option] (String) */
@@ -6501,7 +6501,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.reader {
-	export interface IJson {
+	export interface IJson extends Ext.data.reader.IReader {
 		/** [Config Option] (String) */
 		metaProperty?: string;
 		/** [Config Option] (String) */
@@ -6523,7 +6523,7 @@ declare module Ext.data.reader {
 	}
 }
 declare module Ext.data {
-	export interface IJsonReader {
+	export interface IJsonReader extends Ext.data.reader.IReader {
 		/** [Config Option] (String) */
 		metaProperty?: string;
 		/** [Config Option] (String) */
@@ -6545,7 +6545,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.reader {
-	export interface IReader extends Ext.util.IObservable {
+	export interface IReader extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		idProperty?: string;
 		/** [Config Option] (Boolean) */
@@ -6691,7 +6691,7 @@ declare module Ext.data.reader {
 	}
 }
 declare module Ext.data {
-	export interface IReader extends Ext.util.IObservable {
+	export interface IReader extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		idProperty?: string;
 		/** [Config Option] (Boolean) */
@@ -6837,7 +6837,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IDataReader extends Ext.util.IObservable {
+	export interface IDataReader extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		idProperty?: string;
 		/** [Config Option] (Boolean) */
@@ -6983,7 +6983,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.reader {
-	export interface IXml {
+	export interface IXml extends Ext.data.reader.IReader {
 		/** [Config Option] (String) */
 		namespace?: string;
 		/** [Config Option] (String) */
@@ -7005,7 +7005,7 @@ declare module Ext.data.reader {
 	}
 }
 declare module Ext.data {
-	export interface IXmlReader {
+	export interface IXmlReader extends Ext.data.reader.IReader {
 		/** [Config Option] (String) */
 		namespace?: string;
 		/** [Config Option] (String) */
@@ -7027,7 +7027,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IRequest {
+	export interface IRequest extends Ext.IBase {
 		/** [Config Option] (String) */
 		action?: string;
 		/** [Config Option] (String) */
@@ -7039,7 +7039,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IResultSet {
+	export interface IResultSet extends Ext.IBase {
 		/** [Config Option] (Number) */
 		count?: number;
 		/** [Config Option] (Boolean) */
@@ -7055,7 +7055,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface ISequentialIdGenerator {
+	export interface ISequentialIdGenerator extends Ext.data.IIdGenerator {
 		/** [Config Option] (String) */
 		prefix?: string;
 		/** [Config Option] (Number) */
@@ -7065,7 +7065,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface ISortTypes {
+	export interface ISortTypes extends Ext.IBase {
 	}
 	export class SortTypes {
 		/** [Method] Date sorting 
@@ -7099,7 +7099,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IStore {
+	export interface IStore extends Ext.data.IAbstractStore {
 		/** [Config Option] (Boolean) */
 		autoDestroy?: bool;
 		/** [Config Option] (Boolean) */
@@ -7423,7 +7423,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IStoreManager {
+	export interface IStoreManager extends Ext.util.IMixedCollection {
 	}
 	export class StoreManager {
 		/** [Method] getKey implementation for MixedCollection 
@@ -7445,7 +7445,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext {
-	export interface IStoreMgr {
+	export interface IStoreMgr extends Ext.util.IMixedCollection {
 	}
 	export class StoreMgr {
 		/** [Method] getKey implementation for MixedCollection 
@@ -7467,7 +7467,7 @@ declare module Ext {
 	}
 }
 declare module Ext.data {
-	export interface IStoreMgr {
+	export interface IStoreMgr extends Ext.util.IMixedCollection {
 	}
 	export class StoreMgr {
 		/** [Method] getKey implementation for MixedCollection 
@@ -7489,7 +7489,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext {
-	export interface IStoreManager {
+	export interface IStoreManager extends Ext.util.IMixedCollection {
 	}
 	export class StoreManager {
 		/** [Method] getKey implementation for MixedCollection 
@@ -7511,7 +7511,7 @@ declare module Ext {
 	}
 }
 declare module Ext.data {
-	export interface ITree extends Ext.util.IObservable {
+	export interface ITree extends Ext.IBase,Ext.util.IObservable {
 		/** [Property] (Ext.data.NodeInterface) */
 		root?: Ext.data.INodeInterface;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
@@ -7641,11 +7641,11 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface ITreeModel {
+	export interface ITreeModel extends Ext.data.IModel {
 	}
 }
 declare module Ext.data {
-	export interface ITreeStore {
+	export interface ITreeStore extends Ext.data.IAbstractStore {
 		/** [Config Option] (Boolean) */
 		clearOnLoad?: bool;
 		/** [Config Option] (Boolean) */
@@ -7689,13 +7689,13 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface ITypes {
+	export interface ITypes extends Ext.IBase {
 	}
 	export class Types {
 	}
 }
 declare module Ext.data {
-	export interface IUuidGenerator {
+	export interface IUuidGenerator extends Ext.data.IIdGenerator {
 		/** [Config Option] (Number) */
 		version?: number;
 		/** [Property] (Number/Object) */
@@ -7709,7 +7709,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface Ivalidations {
+	export interface Ivalidations extends Ext.IBase {
 	}
 	export class validations {
 		/** [Method] Validates that an email string is in the correct format 
@@ -7745,7 +7745,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.writer {
-	export interface IJson {
+	export interface IJson extends Ext.data.writer.IWriter {
 		/** [Config Option] (Boolean) */
 		allowSingle?: bool;
 		/** [Config Option] (Boolean) */
@@ -7761,7 +7761,7 @@ declare module Ext.data.writer {
 	}
 }
 declare module Ext.data {
-	export interface IJsonWriter {
+	export interface IJsonWriter extends Ext.data.writer.IWriter {
 		/** [Config Option] (Boolean) */
 		allowSingle?: bool;
 		/** [Config Option] (Boolean) */
@@ -7777,7 +7777,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.writer {
-	export interface IWriter {
+	export interface IWriter extends Ext.IBase {
 		/** [Config Option] (String) */
 		dateFormat?: string;
 		/** [Config Option] (String) */
@@ -7798,7 +7798,7 @@ declare module Ext.data.writer {
 	}
 }
 declare module Ext.data {
-	export interface IDataWriter {
+	export interface IDataWriter extends Ext.IBase {
 		/** [Config Option] (String) */
 		dateFormat?: string;
 		/** [Config Option] (String) */
@@ -7819,7 +7819,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IWriter {
+	export interface IWriter extends Ext.IBase {
 		/** [Config Option] (String) */
 		dateFormat?: string;
 		/** [Config Option] (String) */
@@ -7840,7 +7840,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data.writer {
-	export interface IXml {
+	export interface IXml extends Ext.data.writer.IWriter {
 		/** [Config Option] (String) */
 		defaultDocumentRoot?: string;
 		/** [Config Option] (String) */
@@ -7852,7 +7852,7 @@ declare module Ext.data.writer {
 	}
 }
 declare module Ext.data {
-	export interface IXmlWriter {
+	export interface IXmlWriter extends Ext.data.writer.IWriter {
 		/** [Config Option] (String) */
 		defaultDocumentRoot?: string;
 		/** [Config Option] (String) */
@@ -7864,7 +7864,7 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface IXmlStore {
+	export interface IXmlStore extends Ext.data.IStore {
 	}
 }
 declare module Ext {
@@ -8007,7 +8007,7 @@ declare module Ext {
 	}
 }
 declare module Ext.dd {
-	export interface IDD {
+	export interface IDD extends Ext.dd.IDragDrop {
 		/** [Property] (Boolean) */
 		scroll?: bool;
 		/** [Method] Sets the element to the location of the mousedown or click event maintaining the cursor location relative to the loc  
@@ -8051,7 +8051,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDDProxy {
+	export interface IDDProxy extends Ext.dd.IDD {
 		/** [Property] (Boolean) */
 		centerFrame?: bool;
 		/** [Property] (Boolean) */
@@ -8077,7 +8077,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDDTarget {
+	export interface IDDTarget extends Ext.dd.IDragDrop {
 		/** [Method] Overridden and disabled  */
 		addInvalidHandleClass?(): void;
 		/** [Method] Overridden and disabled  */
@@ -8137,7 +8137,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDragDrop {
+	export interface IDragDrop extends Ext.IBase {
 		/** [Property] (Boolean) */
 		available?: bool;
 		/** [Property] (Object) */
@@ -8399,7 +8399,7 @@ declare module Ext.dd.dragdropmanager {
 	}
 }
 declare module Ext.dd {
-	export interface IDragDropManager {
+	export interface IDragDropManager extends Ext.IBase {
 	}
 	export class DragDropManager {
 		/** [Method] Helper function for getting the best match from the list of drag and drop objects returned by the drag and drop event  
@@ -8480,7 +8480,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDragDropMgr {
+	export interface IDragDropMgr extends Ext.IBase {
 	}
 	export class DragDropMgr {
 		/** [Method] Helper function for getting the best match from the list of drag and drop objects returned by the drag and drop event  
@@ -8561,7 +8561,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDDM {
+	export interface IDDM extends Ext.IBase {
 	}
 	export class DDM {
 		/** [Method] Helper function for getting the best match from the list of drag and drop objects returned by the drag and drop event  
@@ -8642,7 +8642,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDragSource {
+	export interface IDragSource extends Ext.dd.IDDProxy {
 		/** [Config Option] (Boolean) */
 		animRepair?: bool;
 		/** [Config Option] (String) */
@@ -8745,7 +8745,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDragTracker extends Ext.util.IObservable {
+	export interface IDragTracker extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean/Number) */
 		autoStart?: any;
 		/** [Config Option] (Ext.util.Region/Ext.Element) */
@@ -8909,7 +8909,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDragZone {
+	export interface IDragZone extends Ext.dd.IDragSource {
 		/** [Config Option] (Object/Boolean) */
 		containerScroll?: any;
 		/** [Config Option] (String/HTMLElement/Ext.dom.Element) */
@@ -8932,7 +8932,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDropTarget {
+	export interface IDropTarget extends Ext.dd.IDDTarget {
 		/** [Config Option] (String) */
 		ddGroup?: string;
 		/** [Config Option] (String) */
@@ -8972,7 +8972,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IDropZone {
+	export interface IDropZone extends Ext.dd.IDropTarget {
 		/** [Method] Returns a custom data object associated with the DOM node that is the target of the event  
 		* @param e Event The event 
 		*/
@@ -9044,7 +9044,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IRegistry {
+	export interface IRegistry extends Ext.IBase {
 	}
 	export class Registry {
 		/** [Method]  */
@@ -9085,7 +9085,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IScrollManager {
+	export interface IScrollManager extends Ext.IBase {
 	}
 	export class ScrollManager {
 		/** [Method]  */
@@ -9115,7 +9115,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.dd {
-	export interface IStatusProxy {
+	export interface IStatusProxy extends Ext.IComponent {
 		/** [Config Option] (String) */
 		dropAllowed?: string;
 		/** [Config Option] (String) */
@@ -9151,7 +9151,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.direct {
-	export interface IEvent {
+	export interface IEvent extends Ext.IBase {
 		/** [Method] Return the raw data for this event  */
 		getData?(): any;
 		/** [Method] Return the name for this event  */
@@ -9159,11 +9159,11 @@ declare module Ext.direct {
 	}
 }
 declare module Ext.direct {
-	export interface IExceptionEvent {
+	export interface IExceptionEvent extends Ext.direct.IRemotingEvent {
 	}
 }
 declare module Ext.direct {
-	export interface IJsonProvider {
+	export interface IJsonProvider extends Ext.direct.IProvider {
 		/** [Method] Create an event from a response object 
 		* @param response Object Response object 
 		*/
@@ -9175,7 +9175,7 @@ declare module Ext.direct {
 	}
 }
 declare module Ext.direct {
-	export interface IManager extends Ext.util.IObservable {
+	export interface IManager extends Ext.IBase,Ext.util.IObservable {
 	}
 	export class Manager {
 		/** [Method]  */
@@ -9316,7 +9316,7 @@ declare module Ext.direct {
 	}
 }
 declare module Ext {
-	export interface IDirect extends Ext.util.IObservable {
+	export interface IDirect extends Ext.IBase,Ext.util.IObservable {
 	}
 	export class Direct {
 		/** [Method]  */
@@ -9457,7 +9457,7 @@ declare module Ext {
 	}
 }
 declare module Ext.direct {
-	export interface IPollingProvider {
+	export interface IPollingProvider extends Ext.direct.IJsonProvider {
 		/** [Config Option] (Object) */
 		baseParams?: any;
 		/** [Config Option] (Number) */
@@ -9473,7 +9473,7 @@ declare module Ext.direct {
 	}
 }
 declare module Ext.direct {
-	export interface IProvider extends Ext.util.IObservable {
+	export interface IProvider extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		id?: string;
 		/** [Config Option] (String[]) */
@@ -9599,13 +9599,13 @@ declare module Ext.direct {
 	}
 }
 declare module Ext.direct {
-	export interface IRemotingEvent {
+	export interface IRemotingEvent extends Ext.direct.IEvent {
 		/** [Method] Get the transaction associated with this event  */
 		getTransaction?(): Ext.direct.ITransaction;
 	}
 }
 declare module Ext.direct {
-	export interface IRemotingMethod {
+	export interface IRemotingMethod extends Ext.IBase {
 		/** [Method] Takes the arguments for the Direct function and splits the arguments from the scope and the callback  
 		* @param args Array The arguments passed to the direct call 
 		*/
@@ -9613,7 +9613,7 @@ declare module Ext.direct {
 	}
 }
 declare module Ext.direct {
-	export interface IRemotingProvider {
+	export interface IRemotingProvider extends Ext.direct.IJsonProvider {
 		/** [Config Option] (Object) */
 		actions?: any;
 		/** [Config Option] (Boolean) */
@@ -9639,13 +9639,13 @@ declare module Ext.direct {
 	}
 }
 declare module Ext.direct {
-	export interface ITransaction {
+	export interface ITransaction extends Ext.IBase {
 		/** [Config Option] (Ext.direct.Provider) */
 		provider?: Ext.direct.IProvider;
 	}
 }
 declare module Ext.dom {
-	export interface IAbstractElement {
+	export interface IAbstractElement extends Ext.IBase {
 		/** [Property] (String) */
 		defaultUnit?: string;
 		/** [Property] (HTMLElement) */
@@ -10084,7 +10084,7 @@ declare module Ext.dom {
 	}
 }
 declare module Ext.dom {
-	export interface IAbstractHelper {
+	export interface IAbstractHelper extends Ext.IBase {
 		/** [Method] Creates new DOM element s and appends them to el  
 		* @param el any The context element 
 		* @param o any The DOM object spec (and children) or raw HTML blob 
@@ -10202,7 +10202,7 @@ declare module Ext.dom {
 	}
 }
 declare module Ext.dom {
-	export interface IAbstractQuery {
+	export interface IAbstractQuery extends Ext.IBase {
 		/** [Method] Returns true if the passed element s match the passed simple selector e g  
 		* @param el any An element id, element or array of elements 
 		* @param selector any The simple selector to test 
@@ -10228,15 +10228,15 @@ declare module Ext.dom {
 	}
 }
 declare module Ext.dom {
-	export interface ICompositeElement {
+	export interface ICompositeElement extends Ext.dom.ICompositeElementLite {
 	}
 }
 declare module Ext {
-	export interface ICompositeElement {
+	export interface ICompositeElement extends Ext.dom.ICompositeElementLite {
 	}
 }
 declare module Ext.dom {
-	export interface ICompositeElementLite {
+	export interface ICompositeElementLite extends Ext.IBase {
 		/** [Property] (HTMLElement[]) */
 		elements?: HTMLElement[];
 		/** [Property] (Boolean) */
@@ -10324,7 +10324,7 @@ declare module Ext.dom {
 	}
 }
 declare module Ext {
-	export interface ICompositeElementLite {
+	export interface ICompositeElementLite extends Ext.IBase {
 		/** [Property] (HTMLElement[]) */
 		elements?: HTMLElement[];
 		/** [Property] (Boolean) */
@@ -10412,19 +10412,19 @@ declare module Ext {
 	}
 }
 declare module Ext.dom.element {
-	export interface IFly {
+	export interface IFly extends Ext.dom.IElement {
 		/** [Property] (Boolean) */
 		isFly?: bool;
 	}
 }
 declare module Ext.dom.abstractelement {
-	export interface IFly {
+	export interface IFly extends Ext.dom.IElement {
 		/** [Property] (Boolean) */
 		isFly?: bool;
 	}
 }
 declare module Ext.dom {
-	export interface IElement {
+	export interface IElement extends Ext.dom.IAbstractElement {
 		/** [Property] (Boolean) */
 		autoBoxAdjust?: bool;
 		/** [Property] (String) */
@@ -10907,7 +10907,7 @@ declare module Ext.dom {
 	}
 }
 declare module Ext {
-	export interface IElement {
+	export interface IElement extends Ext.dom.IAbstractElement {
 		/** [Property] (Boolean) */
 		autoBoxAdjust?: bool;
 		/** [Property] (String) */
@@ -11390,7 +11390,7 @@ declare module Ext {
 	}
 }
 declare module Ext.core {
-	export interface IElement {
+	export interface IElement extends Ext.dom.IAbstractElement {
 		/** [Property] (Boolean) */
 		autoBoxAdjust?: bool;
 		/** [Property] (String) */
@@ -11873,7 +11873,7 @@ declare module Ext.core {
 	}
 }
 declare module Ext.dom {
-	export interface IHelper {
+	export interface IHelper extends Ext.dom.IAbstractHelper {
 		/** [Property] (Boolean) */
 		useDom?: bool;
 		/** [Method] Creates new DOM element s without inserting them to the document  
@@ -11908,7 +11908,7 @@ declare module Ext.dom {
 	}
 }
 declare module Ext.dom {
-	export interface ILayer {
+	export interface ILayer extends Ext.IElement {
 		/** [Config Option] (String) */
 		cls?: string;
 		/** [Config Option] (Boolean) */
@@ -11995,7 +11995,7 @@ declare module Ext.dom {
 	}
 }
 declare module Ext {
-	export interface ILayer {
+	export interface ILayer extends Ext.IElement {
 		/** [Config Option] (String) */
 		cls?: string;
 		/** [Config Option] (Boolean) */
@@ -12250,19 +12250,19 @@ declare module Ext.core {
 	}
 }
 declare module Ext {
-	export interface IDomHelper {
+	export interface IDomHelper extends Ext.dom.IHelper {
 	}
 	export class DomHelper {
 	}
 }
 declare module Ext.core {
-	export interface IDomHelper {
+	export interface IDomHelper extends Ext.dom.IHelper {
 	}
 	export class DomHelper {
 	}
 }
 declare module Ext.draw {
-	export interface IColor {
+	export interface IColor extends Ext.IBase {
 		/** [Config Option] (Number) */
 		lightnessFactor?: number;
 		/** [Method] Get the blue component of the color in the range 0 255  */
@@ -12306,7 +12306,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw {
-	export interface IComponent {
+	export interface IComponent extends Ext.IComponent {
 		/** [Config Option] (Boolean) */
 		autoSize?: bool;
 		/** [Config Option] (String) */
@@ -12328,7 +12328,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw {
-	export interface ICompositeSprite extends Ext.util.IAnimate {
+	export interface ICompositeSprite extends Ext.util.IMixedCollection,Ext.util.IAnimate {
 		/** [Method] Inherit docs from MixedCollection 
 		* @param key Object 
 		* @param o Object 
@@ -12398,7 +12398,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw {
-	export interface IDraw {
+	export interface IDraw extends Ext.IBase {
 	}
 	export class Draw {
 		/** [Method] snapEndsByDate is a utility method to deduce an appropriate tick configuration for the data set of given feature  
@@ -12418,7 +12418,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw.engine {
-	export interface IImageExporter {
+	export interface IImageExporter extends Ext.IBase {
 	}
 	export class ImageExporter {
 		/** [Method] Exports the surface to an image 
@@ -12429,7 +12429,7 @@ declare module Ext.draw.engine {
 	}
 }
 declare module Ext.draw.engine {
-	export interface ISvg {
+	export interface ISvg extends Ext.draw.ISurface {
 		/** [Method] Adds one or more CSS classes to the element  
 		* @param sprite Object 
 		* @param className Object 
@@ -12470,7 +12470,7 @@ declare module Ext.draw.engine {
 	}
 }
 declare module Ext.draw.engine {
-	export interface ISvgExporter {
+	export interface ISvgExporter extends Ext.IBase {
 	}
 	export class SvgExporter {
 		/** [Method] Exports the passed surface to a SVG string representation 
@@ -12481,7 +12481,7 @@ declare module Ext.draw.engine {
 	}
 }
 declare module Ext.draw.engine {
-	export interface IVml {
+	export interface IVml extends Ext.draw.ISurface {
 		/** [Method] Adds one or more CSS classes to the element  
 		* @param sprite Object 
 		* @param className Object 
@@ -12511,11 +12511,11 @@ declare module Ext.draw.engine {
 	}
 }
 declare module Ext.draw {
-	export interface IMatrix {
+	export interface IMatrix extends Ext.IBase {
 	}
 }
 declare module Ext.draw {
-	export interface ISprite extends Ext.util.IObservable,Ext.util.IAnimate {
+	export interface ISprite extends Ext.IBase,Ext.util.IObservable,Ext.util.IAnimate {
 		/** [Config Option] (Boolean) */
 		draggable?: bool;
 		/** [Config Option] (String) */
@@ -12729,7 +12729,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw {
-	export interface ISpriteDD {
+	export interface ISpriteDD extends Ext.dd.IDragSource {
 		/** [Method] Creates the proxy element if it does not yet exist */
 		createFrame?(): void;
 		/** [Method] Returns a reference to the actual element to drag  
@@ -12745,7 +12745,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw {
-	export interface ISurface extends Ext.util.IObservable {
+	export interface ISurface extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Number) */
 		height?: number;
 		/** [Config Option] (Ext.draw.Sprite[]) */
@@ -12938,7 +12938,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext.draw {
-	export interface IText {
+	export interface IText extends Ext.draw.IComponent {
 		/** [Config Option] (Boolean) */
 		autoSize?: bool;
 		/** [Config Option] (String) */
@@ -12964,7 +12964,7 @@ declare module Ext.draw {
 	}
 }
 declare module Ext {
-	export interface IEditor {
+	export interface IEditor extends Ext.container.IContainer {
 		/** [Config Option] (String) */
 		alignment?: string;
 		/** [Config Option] (Boolean) */
@@ -13043,7 +13043,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IElementLoader extends Ext.util.IObservable {
+	export interface IElementLoader extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Object) */
 		ajaxOptions?: any;
 		/** [Config Option] (Boolean/Object) */
@@ -13725,7 +13725,7 @@ declare module Ext {
 	}
 }
 declare module Ext.flash {
-	export interface IComponent {
+	export interface IComponent extends Ext.IComponent {
 		/** [Config Option] (String) */
 		backgroundColor?: string;
 		/** [Config Option] (Boolean) */
@@ -13763,7 +13763,7 @@ declare module Ext.flash {
 	}
 }
 declare module Ext {
-	export interface IFlashComponent {
+	export interface IFlashComponent extends Ext.IComponent {
 		/** [Config Option] (String) */
 		backgroundColor?: string;
 		/** [Config Option] (Boolean) */
@@ -13801,7 +13801,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IFocusManager extends Ext.util.IObservable {
+	export interface IFocusManager extends Ext.IBase,Ext.util.IObservable {
 	}
 	export class FocusManager {
 		/** [Method]  
@@ -13941,7 +13941,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IFocusMgr extends Ext.util.IObservable {
+	export interface IFocusMgr extends Ext.IBase,Ext.util.IObservable {
 	}
 	export class FocusMgr {
 		/** [Method]  
@@ -14081,7 +14081,7 @@ declare module Ext {
 	}
 }
 declare module Ext.form.action {
-	export interface IAction {
+	export interface IAction extends Ext.IBase {
 		/** [Config Option] (Function) */
 		failure?: any;
 		/** [Config Option] (Ext.form.Basic) */
@@ -14129,7 +14129,7 @@ declare module Ext.form.action {
 	}
 }
 declare module Ext.form {
-	export interface IAction {
+	export interface IAction extends Ext.IBase {
 		/** [Config Option] (Function) */
 		failure?: any;
 		/** [Config Option] (Ext.form.Basic) */
@@ -14177,31 +14177,31 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.action {
-	export interface IDirectLoad {
+	export interface IDirectLoad extends Ext.form.action.ILoad {
 		/** [Property] (String) */
 		type?: string;
 	}
 }
 declare module Ext.form.action {
-	export interface IDirectSubmit {
+	export interface IDirectSubmit extends Ext.form.action.ISubmit {
 		/** [Property] (String) */
 		type?: string;
 	}
 }
 declare module Ext.form.action {
-	export interface ILoad {
+	export interface ILoad extends Ext.form.action.IAction {
 		/** [Property] (String) */
 		type?: string;
 	}
 }
 declare module Ext.form.action {
-	export interface IStandardSubmit {
+	export interface IStandardSubmit extends Ext.form.action.ISubmit {
 		/** [Config Option] (String) */
 		target?: string;
 	}
 }
 declare module Ext.form.action {
-	export interface ISubmit {
+	export interface ISubmit extends Ext.form.action.IAction {
 		/** [Config Option] (Boolean) */
 		clientValidation?: bool;
 		/** [Property] (String) */
@@ -14211,7 +14211,7 @@ declare module Ext.form.action {
 	}
 }
 declare module Ext.form {
-	export interface IBasic {
+	export interface IBasic extends Ext.util.IObservable {
 		/** [Config Option] (Object) */
 		api?: any;
 		/** [Config Option] (Object) */
@@ -14323,7 +14323,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IBasicForm {
+	export interface IBasicForm extends Ext.util.IObservable {
 		/** [Config Option] (Object) */
 		api?: any;
 		/** [Config Option] (Object) */
@@ -14435,7 +14435,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ICheckboxGroup extends Ext.form.field.IField {
+	export interface ICheckboxGroup extends Ext.form.IFieldContainer,Ext.form.field.IField {
 		/** [Config Option] (Boolean) */
 		allowBlank?: bool;
 		/** [Config Option] (String) */
@@ -14524,13 +14524,13 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ICheckboxManager {
+	export interface ICheckboxManager extends Ext.util.IMixedCollection {
 	}
 	export class CheckboxManager {
 	}
 }
 declare module Ext.form.field {
-	export interface IBase extends Ext.form.ILabelable,Ext.form.field.IField {
+	export interface IBase extends Ext.IComponent,Ext.form.ILabelable,Ext.form.field.IField {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number) */
@@ -14725,7 +14725,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IField extends Ext.form.ILabelable,Ext.form.field.IField {
+	export interface IField extends Ext.IComponent,Ext.form.ILabelable,Ext.form.field.IField {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number) */
@@ -14920,7 +14920,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IBaseField extends Ext.form.ILabelable,Ext.form.field.IField {
+	export interface IBaseField extends Ext.IComponent,Ext.form.ILabelable,Ext.form.field.IField {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number) */
@@ -15115,7 +15115,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface ICheckbox {
+	export interface ICheckbox extends Ext.form.field.IBase {
 		/** [Config Option] (String/Array/Ext.XTemplate) */
 		afterBoxLabelTextTpl?: any;
 		/** [Config Option] (String/Array/Ext.XTemplate) */
@@ -15208,7 +15208,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface ICheckbox {
+	export interface ICheckbox extends Ext.form.field.IBase {
 		/** [Config Option] (String/Array/Ext.XTemplate) */
 		afterBoxLabelTextTpl?: any;
 		/** [Config Option] (String/Array/Ext.XTemplate) */
@@ -15301,7 +15301,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IComboBox extends Ext.util.IBindable {
+	export interface IComboBox extends Ext.form.field.IPicker,Ext.util.IBindable {
 		/** [Config Option] (String) */
 		allQuery?: string;
 		/** [Config Option] (Boolean) */
@@ -15457,7 +15457,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IComboBox extends Ext.util.IBindable {
+	export interface IComboBox extends Ext.form.field.IPicker,Ext.util.IBindable {
 		/** [Config Option] (String) */
 		allQuery?: string;
 		/** [Config Option] (Boolean) */
@@ -15613,7 +15613,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IDate {
+	export interface IDate extends Ext.form.field.IPicker {
 		/** [Config Option] (String) */
 		altFormats?: string;
 		/** [Config Option] (String[]) */
@@ -15694,7 +15694,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IDateField {
+	export interface IDateField extends Ext.form.field.IPicker {
 		/** [Config Option] (String) */
 		altFormats?: string;
 		/** [Config Option] (String[]) */
@@ -15775,7 +15775,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IDate {
+	export interface IDate extends Ext.form.field.IPicker {
 		/** [Config Option] (String) */
 		altFormats?: string;
 		/** [Config Option] (String[]) */
@@ -15856,7 +15856,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IDisplay {
+	export interface IDisplay extends Ext.form.field.IBase {
 		/** [Config Option] (String) */
 		fieldBodyCls?: string;
 		/** [Config Option] (String) */
@@ -15888,7 +15888,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IDisplayField {
+	export interface IDisplayField extends Ext.form.field.IBase {
 		/** [Config Option] (String) */
 		fieldBodyCls?: string;
 		/** [Config Option] (String) */
@@ -15920,7 +15920,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IDisplay {
+	export interface IDisplay extends Ext.form.field.IBase {
 		/** [Config Option] (String) */
 		fieldBodyCls?: string;
 		/** [Config Option] (String) */
@@ -15952,7 +15952,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IField {
+	export interface IField extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		disabled?: bool;
 		/** [Config Option] (String) */
@@ -16031,7 +16031,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form.field {
-	export interface IFile {
+	export interface IFile extends Ext.form.field.ITrigger {
 		/** [Config Option] (Object) */
 		buttonConfig?: any;
 		/** [Config Option] (Number) */
@@ -16071,7 +16071,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IFileUploadField {
+	export interface IFileUploadField extends Ext.form.field.ITrigger {
 		/** [Config Option] (Object) */
 		buttonConfig?: any;
 		/** [Config Option] (Number) */
@@ -16111,7 +16111,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.ux.form {
-	export interface IFileUploadField {
+	export interface IFileUploadField extends Ext.form.field.ITrigger {
 		/** [Config Option] (Object) */
 		buttonConfig?: any;
 		/** [Config Option] (Number) */
@@ -16151,7 +16151,7 @@ declare module Ext.ux.form {
 	}
 }
 declare module Ext.form {
-	export interface IFile {
+	export interface IFile extends Ext.form.field.ITrigger {
 		/** [Config Option] (Object) */
 		buttonConfig?: any;
 		/** [Config Option] (Number) */
@@ -16191,7 +16191,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IFileButton {
+	export interface IFileButton extends Ext.button.IButton {
 		/** [Config Option] (String) */
 		cls?: string;
 		/** [Config Option] (Boolean) */
@@ -16209,7 +16209,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form.field {
-	export interface IHidden {
+	export interface IHidden extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		hidden?: bool;
 		/** [Config Option] (Boolean) */
@@ -16237,7 +16237,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IHidden {
+	export interface IHidden extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		hidden?: bool;
 		/** [Config Option] (Boolean) */
@@ -16265,7 +16265,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IHtmlEditor extends Ext.form.field.IField {
+	export interface IHtmlEditor extends Ext.form.IFieldContainer,Ext.form.field.IField {
 		/** [Config Option] (String/Array/Ext.XTemplate) */
 		afterIFrameTpl?: any;
 		/** [Config Option] (String/Array/Ext.XTemplate) */
@@ -16415,7 +16415,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IHtmlEditor extends Ext.form.field.IField {
+	export interface IHtmlEditor extends Ext.form.IFieldContainer,Ext.form.field.IField {
 		/** [Config Option] (String/Array/Ext.XTemplate) */
 		afterIFrameTpl?: any;
 		/** [Config Option] (String/Array/Ext.XTemplate) */
@@ -16565,7 +16565,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface INumber {
+	export interface INumber extends Ext.form.field.ISpinner {
 		/** [Config Option] (Boolean) */
 		allowDecimals?: bool;
 		/** [Config Option] (Boolean) */
@@ -16637,7 +16637,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface INumberField {
+	export interface INumberField extends Ext.form.field.ISpinner {
 		/** [Config Option] (Boolean) */
 		allowDecimals?: bool;
 		/** [Config Option] (Boolean) */
@@ -16709,7 +16709,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface INumber {
+	export interface INumber extends Ext.form.field.ISpinner {
 		/** [Config Option] (Boolean) */
 		allowDecimals?: bool;
 		/** [Config Option] (Boolean) */
@@ -16781,7 +16781,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IPicker {
+	export interface IPicker extends Ext.form.field.ITrigger {
 		/** [Config Option] (Boolean) */
 		editable?: bool;
 		/** [Config Option] (Boolean) */
@@ -16813,7 +16813,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IPicker {
+	export interface IPicker extends Ext.form.field.ITrigger {
 		/** [Config Option] (Boolean) */
 		editable?: bool;
 		/** [Config Option] (Boolean) */
@@ -16845,7 +16845,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IRadio {
+	export interface IRadio extends Ext.form.field.ICheckbox {
 		/** [Config Option] (String) */
 		focusCls?: string;
 		/** [Config Option] (String) */
@@ -16869,7 +16869,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IRadio {
+	export interface IRadio extends Ext.form.field.ICheckbox {
 		/** [Config Option] (String) */
 		focusCls?: string;
 		/** [Config Option] (String) */
@@ -16893,7 +16893,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface ISpinner {
+	export interface ISpinner extends Ext.form.field.ITrigger {
 		/** [Config Option] (Boolean) */
 		keyNavEnabled?: bool;
 		/** [Config Option] (Boolean) */
@@ -16935,7 +16935,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface ISpinner {
+	export interface ISpinner extends Ext.form.field.ITrigger {
 		/** [Config Option] (Boolean) */
 		keyNavEnabled?: bool;
 		/** [Config Option] (Boolean) */
@@ -16977,7 +16977,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IText {
+	export interface IText extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		allowBlank?: bool;
 		/** [Config Option] (Boolean) */
@@ -17084,7 +17084,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface ITextField {
+	export interface ITextField extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		allowBlank?: bool;
 		/** [Config Option] (Boolean) */
@@ -17191,7 +17191,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IText {
+	export interface IText extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		allowBlank?: bool;
 		/** [Config Option] (Boolean) */
@@ -17298,7 +17298,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface ITextArea {
+	export interface ITextArea extends Ext.form.field.IText {
 		/** [Config Option] (Number) */
 		cols?: number;
 		/** [Config Option] (String/Object) */
@@ -17340,7 +17340,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface ITextArea {
+	export interface ITextArea extends Ext.form.field.IText {
 		/** [Config Option] (Number) */
 		cols?: number;
 		/** [Config Option] (String/Object) */
@@ -17382,7 +17382,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface ITime {
+	export interface ITime extends Ext.form.field.IComboBox {
 		/** [Config Option] (String) */
 		altFormats?: string;
 		/** [Config Option] (String) */
@@ -17448,7 +17448,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface ITimeField {
+	export interface ITimeField extends Ext.form.field.IComboBox {
 		/** [Config Option] (String) */
 		altFormats?: string;
 		/** [Config Option] (String) */
@@ -17514,7 +17514,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ITime {
+	export interface ITime extends Ext.form.field.IComboBox {
 		/** [Config Option] (String) */
 		altFormats?: string;
 		/** [Config Option] (String) */
@@ -17580,7 +17580,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface ITrigger {
+	export interface ITrigger extends Ext.form.field.IText {
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (Boolean) */
@@ -17636,7 +17636,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface ITriggerField {
+	export interface ITriggerField extends Ext.form.field.IText {
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (Boolean) */
@@ -17692,7 +17692,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ITwinTriggerField {
+	export interface ITwinTriggerField extends Ext.form.field.IText {
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (Boolean) */
@@ -17748,7 +17748,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ITrigger {
+	export interface ITrigger extends Ext.form.field.IText {
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (Boolean) */
@@ -17804,7 +17804,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form.field {
-	export interface IVTypes {
+	export interface IVTypes extends Ext.IBase {
 	}
 	export class VTypes {
 		/** [Method] The function used to validate alpha values 
@@ -17826,7 +17826,7 @@ declare module Ext.form.field {
 	}
 }
 declare module Ext.form {
-	export interface IVTypes {
+	export interface IVTypes extends Ext.IBase {
 	}
 	export class VTypes {
 		/** [Method] The function used to validate alpha values 
@@ -17848,7 +17848,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IFieldAncestor {
+	export interface IFieldAncestor extends Ext.IBase {
 		/** [Config Option] (Object) */
 		fieldDefaults?: any;
 		/** [Method] Initializes the FieldAncestor s state this must be called from the initComponent method of any components importing */
@@ -17866,7 +17866,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IFieldContainer extends Ext.form.ILabelable,Ext.form.IFieldAncestor {
+	export interface IFieldContainer extends Ext.container.IContainer,Ext.form.ILabelable,Ext.form.IFieldAncestor {
 		/** [Config Option] (Boolean) */
 		combineErrors?: bool;
 		/** [Config Option] (Boolean) */
@@ -17945,7 +17945,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IFieldSet extends Ext.form.IFieldAncestor {
+	export interface IFieldSet extends Ext.container.IContainer,Ext.form.IFieldAncestor {
 		/** [Config Option] (String/Object) */
 		autoEl?: any;
 		/** [Config Option] (String) */
@@ -18015,7 +18015,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ILabel {
+	export interface ILabel extends Ext.IComponent {
 		/** [Config Option] (String/Object) */
 		autoEl?: any;
 		/** [Config Option] (String) */
@@ -18032,7 +18032,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface ILabelable {
+	export interface ILabelable extends Ext.IBase {
 		/** [Config Option] (String) */
 		activeError?: string;
 		/** [Config Option] (String/String[]/Ext.XTemplate) */
@@ -18146,7 +18146,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IPanel extends Ext.form.IFieldAncestor {
+	export interface IPanel extends Ext.panel.IPanel,Ext.form.IFieldAncestor {
 		/** [Config Option] (Ext.enums.Layout/Object) */
 		layout?: any;
 		/** [Config Option] (Boolean) */
@@ -18209,7 +18209,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext {
-	export interface IFormPanel extends Ext.form.IFieldAncestor {
+	export interface IFormPanel extends Ext.panel.IPanel,Ext.form.IFieldAncestor {
 		/** [Config Option] (Ext.enums.Layout/Object) */
 		layout?: any;
 		/** [Config Option] (Boolean) */
@@ -18272,7 +18272,7 @@ declare module Ext {
 	}
 }
 declare module Ext.form {
-	export interface IFormPanel extends Ext.form.IFieldAncestor {
+	export interface IFormPanel extends Ext.panel.IPanel,Ext.form.IFieldAncestor {
 		/** [Config Option] (Ext.enums.Layout/Object) */
 		layout?: any;
 		/** [Config Option] (Boolean) */
@@ -18335,7 +18335,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IRadioGroup {
+	export interface IRadioGroup extends Ext.form.ICheckboxGroup {
 		/** [Config Option] (Boolean) */
 		allowBlank?: bool;
 		/** [Config Option] (String) */
@@ -18353,7 +18353,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.form {
-	export interface IRadioManager {
+	export interface IRadioManager extends Ext.util.IMixedCollection {
 	}
 	export class RadioManager {
 	}
@@ -18547,7 +18547,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.fx {
-	export interface IAnim extends Ext.util.IObservable {
+	export interface IAnim extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		alternate?: bool;
 		/** [Config Option] (Function) */
@@ -18701,7 +18701,7 @@ declare module Ext.fx {
 	}
 }
 declare module Ext.fx {
-	export interface IAnimator extends Ext.util.IObservable {
+	export interface IAnimator extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Number) */
 		delay?: number;
 		/** [Config Option] (Number) */
@@ -18843,7 +18843,7 @@ declare module Ext.fx {
 	}
 }
 declare module Ext.fx {
-	export interface ICubicBezier {
+	export interface ICubicBezier extends Ext.IBase {
 	}
 	export class CubicBezier {
 	}
@@ -18855,7 +18855,7 @@ declare module Ext.fx {
 	}
 }
 declare module Ext.fx {
-	export interface IManager extends Ext.fx.IQueue {
+	export interface IManager extends Ext.IBase,Ext.fx.IQueue {
 	}
 	export class Manager {
 		/** [Method] End Definitions */
@@ -18871,55 +18871,55 @@ declare module Ext.fx {
 	}
 }
 declare module Ext.fx {
-	export interface IPropertyHandler {
+	export interface IPropertyHandler extends Ext.IBase {
 	}
 }
 declare module Ext.fx {
-	export interface IQueue {
+	export interface IQueue extends Ext.IBase {
 	}
 }
 declare module Ext.fx.target {
-	export interface IComponent {
+	export interface IComponent extends Ext.fx.target.ITarget {
 	}
 }
 declare module Ext.fx.target {
-	export interface ICompositeElement {
+	export interface ICompositeElement extends Ext.fx.target.IElement {
 		/** [Property] (Boolean) */
 		isComposite?: bool;
 	}
 }
 declare module Ext.fx.target {
-	export interface ICompositeElementCSS {
+	export interface ICompositeElementCSS extends Ext.fx.target.ICompositeElement {
 	}
 }
 declare module Ext.fx.target {
-	export interface ICompositeSprite {
+	export interface ICompositeSprite extends Ext.fx.target.ISprite {
 	}
 }
 declare module Ext.fx.target {
-	export interface IElement {
+	export interface IElement extends Ext.fx.target.ITarget {
 	}
 }
 declare module Ext.fx.target {
-	export interface IElementCSS {
+	export interface IElementCSS extends Ext.fx.target.IElement {
 	}
 }
 declare module Ext.fx.target {
-	export interface ISprite {
+	export interface ISprite extends Ext.fx.target.ITarget {
 	}
 }
 declare module Ext.fx.target {
-	export interface ITarget {
+	export interface ITarget extends Ext.IBase {
 	}
 }
 declare module Ext.grid {
-	export interface ICellContext {
+	export interface ICellContext extends Ext.IBase {
 		/** [Property] (Boolean) */
 		isCellContext?: bool;
 	}
 }
 declare module Ext.grid {
-	export interface ICellEditor {
+	export interface ICellEditor extends Ext.IEditor {
 		/** [Config Option] (String) */
 		alignment?: string;
 		/** [Config Option] (String) */
@@ -18931,7 +18931,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.column {
-	export interface IAction {
+	export interface IAction extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		altText?: string;
 		/** [Config Option] (Boolean) */
@@ -18992,7 +18992,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.grid {
-	export interface IActionColumn {
+	export interface IActionColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		altText?: string;
 		/** [Config Option] (Boolean) */
@@ -19053,7 +19053,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.column {
-	export interface IBoolean {
+	export interface IBoolean extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		falseText?: string;
 		/** [Config Option] (String) */
@@ -19063,7 +19063,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.grid {
-	export interface IBooleanColumn {
+	export interface IBooleanColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		falseText?: string;
 		/** [Config Option] (String) */
@@ -19073,7 +19073,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.column {
-	export interface ICheckColumn {
+	export interface ICheckColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (Boolean) */
 		stopSelection?: bool;
 		/** [Config Option] (String) */
@@ -19089,7 +19089,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.ux {
-	export interface ICheckColumn {
+	export interface ICheckColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (Boolean) */
 		stopSelection?: bool;
 		/** [Config Option] (String) */
@@ -19105,7 +19105,7 @@ declare module Ext.ux {
 	}
 }
 declare module Ext.grid.column {
-	export interface IColumn {
+	export interface IColumn extends Ext.grid.header.IContainer {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] (String) */
@@ -19236,7 +19236,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.grid {
-	export interface IColumn {
+	export interface IColumn extends Ext.grid.header.IContainer {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] (String) */
@@ -19367,7 +19367,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.column {
-	export interface IDate {
+	export interface IDate extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		format?: string;
 		/** [Method] When defined this will take precedence over the renderer config  
@@ -19377,7 +19377,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.grid {
-	export interface IDateColumn {
+	export interface IDateColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		format?: string;
 		/** [Method] When defined this will take precedence over the renderer config  
@@ -19387,19 +19387,19 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.column {
-	export interface INumber {
+	export interface INumber extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		format?: string;
 	}
 }
 declare module Ext.grid {
-	export interface INumberColumn {
+	export interface INumberColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		format?: string;
 	}
 }
 declare module Ext.grid.column {
-	export interface IRowNumberer {
+	export interface IRowNumberer extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] (String) */
@@ -19425,7 +19425,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.grid {
-	export interface IRowNumberer {
+	export interface IRowNumberer extends Ext.grid.column.IColumn {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] (String) */
@@ -19451,7 +19451,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.column {
-	export interface ITemplate {
+	export interface ITemplate extends Ext.grid.column.IColumn {
 		/** [Config Option] (String/Ext.XTemplate) */
 		tpl?: any;
 		/** [Method] When defined this will take precedence over the renderer config  
@@ -19463,7 +19463,7 @@ declare module Ext.grid.column {
 	}
 }
 declare module Ext.grid {
-	export interface ITemplateColumn {
+	export interface ITemplateColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (String/Ext.XTemplate) */
 		tpl?: any;
 		/** [Method] When defined this will take precedence over the renderer config  
@@ -19475,7 +19475,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IColumnComponentLayout {
+	export interface IColumnComponentLayout extends Ext.layout.component.IAuto {
 		/** [Config Option] (Boolean) */
 		setWidthInDom?: bool;
 		/** [Method] Called before any calculation cycles to prepare for layout  
@@ -19489,7 +19489,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IColumnLayout {
+	export interface IColumnLayout extends Ext.layout.container.IHBox {
 		/** [Method] Collect the height of the table of data upon layout begin 
 		* @param ownerContext Object 
 		*/
@@ -19507,7 +19507,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IColumnManager {
+	export interface IColumnManager extends Ext.IBase {
 		/** [Method] Get a leaf level header by index regardless of what the nesting structure is  
 		* @param index Number The column index for which to retrieve the column. 
 		*/
@@ -19527,7 +19527,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IColumnModel {
+	export interface IColumnModel extends Ext.IBase {
 		/** [Method] Get a leaf level header by index regardless of what the nesting structure is  
 		* @param index Number The column index for which to retrieve the column. 
 		*/
@@ -19547,7 +19547,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.feature {
-	export interface IAbstractSummary {
+	export interface IAbstractSummary extends Ext.grid.feature.IFeature {
 		/** [Config Option] (String) */
 		remoteRoot?: string;
 		/** [Config Option] (Boolean) */
@@ -19559,7 +19559,7 @@ declare module Ext.grid.feature {
 	}
 }
 declare module Ext.grid.feature {
-	export interface IFeature {
+	export interface IFeature extends Ext.util.IObservable {
 		/** [Property] (Boolean) */
 		disabled?: bool;
 		/** [Property] (String) */
@@ -19586,7 +19586,7 @@ declare module Ext.grid.feature {
 	}
 }
 declare module Ext.grid.feature {
-	export interface IGrouping extends Ext.grid.feature.IAbstractSummary {
+	export interface IGrouping extends Ext.grid.feature.IFeature,Ext.grid.feature.IAbstractSummary {
 		/** [Config Option] (Boolean) */
 		collapsible?: bool;
 		/** [Config Option] (Number) */
@@ -19651,13 +19651,13 @@ declare module Ext.grid.feature {
 	}
 }
 declare module Ext.grid.feature {
-	export interface IGroupingSummary {
+	export interface IGroupingSummary extends Ext.grid.feature.IGrouping {
 		/** [Config Option] (Boolean) */
 		showSummaryRow?: bool;
 	}
 }
 declare module Ext.grid.feature {
-	export interface IGroupStore {
+	export interface IGroupStore extends Ext.util.IObservable {
 		/** [Method] Get the index within the entire dataset  
 		* @param record Ext.data.IModel The Ext.data.Model object to find. 
 		*/
@@ -19665,7 +19665,7 @@ declare module Ext.grid.feature {
 	}
 }
 declare module Ext.grid.feature {
-	export interface IRowBody {
+	export interface IRowBody extends Ext.grid.feature.IFeature {
 		/** [Property] (String) */
 		eventPrefix?: string;
 		/** [Property] (String) */
@@ -19680,19 +19680,19 @@ declare module Ext.grid.feature {
 	}
 }
 declare module Ext.grid.feature {
-	export interface IRowWrap {
+	export interface IRowWrap extends Ext.grid.feature.IFeature {
 		/** [Property] (Boolean) */
 		hasFeatureEvent?: bool;
 	}
 }
 declare module Ext.grid.feature {
-	export interface ISummary {
+	export interface ISummary extends Ext.grid.feature.IAbstractSummary {
 		/** [Config Option] (String) */
 		dock?: string;
 	}
 }
 declare module Ext.grid.header {
-	export interface IContainer {
+	export interface IContainer extends Ext.container.IContainer {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number/String/Boolean) */
@@ -19759,7 +19759,7 @@ declare module Ext.grid.header {
 	}
 }
 declare module Ext.grid.header {
-	export interface IDragZone {
+	export interface IDragZone extends Ext.dd.IDragZone {
 		/** [Method] Called when a mousedown occurs in this container  
 		* @param e Object 
 		*/
@@ -19773,7 +19773,7 @@ declare module Ext.grid.header {
 	}
 }
 declare module Ext.grid.header {
-	export interface IDropZone {
+	export interface IDropZone extends Ext.dd.IDropZone {
 		/** [Method] Returns a custom data object associated with the DOM node that is the target of the event  
 		* @param e Object 
 		*/
@@ -19797,7 +19797,7 @@ declare module Ext.grid.header {
 	}
 }
 declare module Ext.grid.locking {
-	export interface IHeaderContainer {
+	export interface IHeaderContainer extends Ext.grid.header.IContainer {
 		/** [Method] This is the function which all other column access methods are based upon Return the full column set for the whole Lo  */
 		getGridColumns?(): any[];
 		/** [Method] Used by ComponentQuery child and down to retrieve all of the items which can potentially be considered a child of th  */
@@ -19805,7 +19805,7 @@ declare module Ext.grid.locking {
 	}
 }
 declare module Ext.grid.locking {
-	export interface ILockable {
+	export interface ILockable extends Ext.IBase {
 		/** [Config Option] (Object) */
 		lockedGridConfig?: any;
 		/** [Config Option] (Object) */
@@ -19825,7 +19825,7 @@ declare module Ext.grid.locking {
 	}
 }
 declare module Ext.grid {
-	export interface ILockable {
+	export interface ILockable extends Ext.IBase {
 		/** [Config Option] (Object) */
 		lockedGridConfig?: any;
 		/** [Config Option] (Object) */
@@ -19845,7 +19845,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.locking {
-	export interface IView extends Ext.util.IObservable {
+	export interface IView extends Ext.IBase,Ext.util.IObservable {
 		/** [Property] (Boolean) */
 		isLockingView?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
@@ -19963,7 +19963,7 @@ declare module Ext.grid.locking {
 	}
 }
 declare module Ext.grid {
-	export interface ILockingView extends Ext.util.IObservable {
+	export interface ILockingView extends Ext.IBase,Ext.util.IObservable {
 		/** [Property] (Boolean) */
 		isLockingView?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
@@ -20081,7 +20081,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IPanel {
+	export interface IPanel extends Ext.panel.ITable {
 		/** [Config Option] (Ext.grid.column.Column[]/Object) */
 		columns?: any;
 		/** [Config Option] (Boolean) */
@@ -20096,7 +20096,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.list {
-	export interface IListView {
+	export interface IListView extends Ext.panel.ITable {
 		/** [Config Option] (Ext.grid.column.Column[]/Object) */
 		columns?: any;
 		/** [Config Option] (Boolean) */
@@ -20111,7 +20111,7 @@ declare module Ext.list {
 	}
 }
 declare module Ext {
-	export interface IListView {
+	export interface IListView extends Ext.panel.ITable {
 		/** [Config Option] (Ext.grid.column.Column[]/Object) */
 		columns?: any;
 		/** [Config Option] (Boolean) */
@@ -20126,7 +20126,7 @@ declare module Ext {
 	}
 }
 declare module Ext.grid {
-	export interface IGridPanel {
+	export interface IGridPanel extends Ext.panel.ITable {
 		/** [Config Option] (Ext.grid.column.Column[]/Object) */
 		columns?: any;
 		/** [Config Option] (Boolean) */
@@ -20141,7 +20141,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IBufferedRenderer {
+	export interface IBufferedRenderer extends Ext.IAbstractPlugin {
 		/** [Config Option] (Number) */
 		leadingBufferZone?: number;
 		/** [Config Option] (Number) */
@@ -20174,7 +20174,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface ICellEditing {
+	export interface ICellEditing extends Ext.grid.plugin.IEditing {
 		/** [Method] Cancels any active editing  */
 		cancelEdit?(): void;
 		/** [Method] Completes the edit if there is an active edit in progress  */
@@ -20195,7 +20195,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IDragDrop {
+	export interface IDragDrop extends Ext.IAbstractPlugin {
 		/** [Config Option] (Object/Boolean) */
 		containerScroll?: any;
 		/** [Config Option] (String) */
@@ -20221,7 +20221,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IEditing extends Ext.util.IObservable {
+	export interface IEditing extends Ext.IAbstractPlugin,Ext.util.IObservable {
 		/** [Config Option] (Number) */
 		clicksToEdit?: number;
 		/** [Config Option] (String) */
@@ -20356,7 +20356,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IHeaderReorderer {
+	export interface IHeaderReorderer extends Ext.IAbstractPlugin {
 		/** [Method] The base implementation just sets the plugin s disabled flag to true Plugin subclasses which need more complex proce  */
 		disable?(): void;
 		/** [Method] The base implementation just sets the plugin s disabled flag to false Plugin subclasses which need more complex proc  */
@@ -20368,7 +20368,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IHeaderResizer {
+	export interface IHeaderResizer extends Ext.IAbstractPlugin {
 		/** [Config Option] (Boolean) */
 		dynamic?: bool;
 		/** [Method] The base implementation just sets the plugin s disabled flag to true Plugin subclasses which need more complex proce  */
@@ -20388,7 +20388,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IRowEditing {
+	export interface IRowEditing extends Ext.grid.plugin.IEditing {
 		/** [Config Option] (Boolean) */
 		autoCancel?: bool;
 		/** [Config Option] (Number) */
@@ -20403,7 +20403,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.plugin {
-	export interface IRowExpander {
+	export interface IRowExpander extends Ext.IAbstractPlugin {
 		/** [Config Option] (Boolean) */
 		expandOnDblClick?: bool;
 		/** [Config Option] (Boolean) */
@@ -20417,7 +20417,7 @@ declare module Ext.grid.plugin {
 	}
 }
 declare module Ext.grid.property {
-	export interface IGrid {
+	export interface IGrid extends Ext.grid.IPanel {
 		/** [Config Option] (Boolean) */
 		columnLines?: bool;
 		/** [Config Option] (Object) */
@@ -20460,7 +20460,7 @@ declare module Ext.grid.property {
 	}
 }
 declare module Ext.grid {
-	export interface IPropertyGrid {
+	export interface IPropertyGrid extends Ext.grid.IPanel {
 		/** [Config Option] (Boolean) */
 		columnLines?: bool;
 		/** [Config Option] (Object) */
@@ -20503,15 +20503,15 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid.property {
-	export interface IHeaderContainer {
+	export interface IHeaderContainer extends Ext.grid.header.IContainer {
 	}
 }
 declare module Ext.grid {
-	export interface IPropertyColumnModel {
+	export interface IPropertyColumnModel extends Ext.grid.header.IContainer {
 	}
 }
 declare module Ext.grid.property {
-	export interface IProperty {
+	export interface IProperty extends Ext.data.IModel {
 		/** [Config Option] (String/Object/Ext.data.Field) */
 		idProperty?: any;
 		/** [Property] (Ext.util.MixedCollection) */
@@ -20519,7 +20519,7 @@ declare module Ext.grid.property {
 	}
 }
 declare module Ext {
-	export interface IPropGridProperty {
+	export interface IPropGridProperty extends Ext.data.IModel {
 		/** [Config Option] (String/Object/Ext.data.Field) */
 		idProperty?: any;
 		/** [Property] (Ext.util.MixedCollection) */
@@ -20527,7 +20527,7 @@ declare module Ext {
 	}
 }
 declare module Ext.grid.property {
-	export interface IStore {
+	export interface IStore extends Ext.data.IStore {
 		/** [Config Option] (Boolean) */
 		sortOnLoad?: bool;
 		/** [Method] Return a singleton customized Proxy object which configures itself with a custom Reader */
@@ -20535,7 +20535,7 @@ declare module Ext.grid.property {
 	}
 }
 declare module Ext.grid {
-	export interface IPropertyStore {
+	export interface IPropertyStore extends Ext.data.IStore {
 		/** [Config Option] (Boolean) */
 		sortOnLoad?: bool;
 		/** [Method] Return a singleton customized Proxy object which configures itself with a custom Reader */
@@ -20543,7 +20543,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IRowEditor {
+	export interface IRowEditor extends Ext.form.IPanel {
 		/** [Config Option] (Number/String/Boolean) */
 		border?: any;
 		/** [Config Option] (String) */
@@ -20570,7 +20570,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IRowEditorButtons {
+	export interface IRowEditorButtons extends Ext.container.IContainer {
 		/** [Config Option] (Boolean) */
 		frame?: bool;
 		/** [Config Option] (Boolean/Number) */
@@ -20578,7 +20578,7 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IView {
+	export interface IView extends Ext.view.ITable {
 		/** [Config Option] (Boolean) */
 		autoScroll?: bool;
 		/** [Config Option] (Boolean) */
@@ -20586,11 +20586,11 @@ declare module Ext.grid {
 	}
 }
 declare module Ext.grid {
-	export interface IViewDropZone {
+	export interface IViewDropZone extends Ext.view.IDropZone {
 	}
 }
 declare module Ext {
-	export interface IImg {
+	export interface IImg extends Ext.IComponent {
 		/** [Config Option] (String) */
 		alt?: string;
 		/** [Config Option] (String/Object) */
@@ -21296,7 +21296,7 @@ declare module Ext {
 	}
 }
 declare module Ext.layout {
-	export interface IClassList {
+	export interface IClassList extends Ext.IBase {
 		/** [Method] Adds a single class to the class list  
 		* @param cls Object 
 		*/
@@ -21316,7 +21316,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.component {
-	export interface IAuto {
+	export interface IAuto extends Ext.layout.component.IComponent {
 		/** [Config Option] (Boolean) */
 		setHeightInDom?: bool;
 		/** [Config Option] (Boolean) */
@@ -21333,7 +21333,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IBody {
+	export interface IBody extends Ext.layout.component.IAuto {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21346,7 +21346,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IBoundList {
+	export interface IBoundList extends Ext.layout.component.IAuto {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21366,7 +21366,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IButton {
+	export interface IButton extends Ext.layout.component.IAuto {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21382,7 +21382,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IComponent {
+	export interface IComponent extends Ext.layout.ILayout {
 		/** [Method] Called before any calculation cycles to reset DOM values and prepare for calculation  
 		* @param ownerContext Object 
 		* @param firstCycle Object 
@@ -21403,7 +21403,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IDock {
+	export interface IDock extends Ext.layout.component.IComponent {
 		/** [Method] Removes layout s itemCls and owning Container s itemCls  
 		* @param item Object 
 		*/
@@ -21454,7 +21454,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IAbstractDock {
+	export interface IAbstractDock extends Ext.layout.component.IComponent {
 		/** [Method] Removes layout s itemCls and owning Container s itemCls  
 		* @param item Object 
 		*/
@@ -21505,7 +21505,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IDraw {
+	export interface IDraw extends Ext.layout.component.IAuto {
 		/** [Config Option] (Boolean) */
 		setHeightInDom?: bool;
 		/** [Config Option] (Boolean) */
@@ -21517,11 +21517,11 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface IComboBox {
+	export interface IComboBox extends Ext.layout.component.field.ITrigger {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface IField {
+	export interface IField extends Ext.layout.component.IAuto {
 		/** [Property] (Object) */
 		elementId?: any;
 		/** [Property] (Object) */
@@ -21565,7 +21565,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface IFieldContainer {
+	export interface IFieldContainer extends Ext.layout.component.field.IField {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21573,7 +21573,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface IHtmlEditor {
+	export interface IHtmlEditor extends Ext.layout.component.field.IFieldContainer {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21587,7 +21587,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface ISlider {
+	export interface ISlider extends Ext.layout.component.field.IField {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21595,7 +21595,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface IText {
+	export interface IText extends Ext.layout.component.field.IField {
 		/** [Method] Called before any calculation cycles to reset DOM values and prepare for calculation  
 		* @param ownerContext Object 
 		*/
@@ -21603,7 +21603,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface ITextArea {
+	export interface ITextArea extends Ext.layout.component.field.IText {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21611,7 +21611,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component.field {
-	export interface ITrigger {
+	export interface ITrigger extends Ext.layout.component.field.IField {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21623,7 +21623,7 @@ declare module Ext.layout.component.field {
 	}
 }
 declare module Ext.layout.component {
-	export interface IFieldSet {
+	export interface IFieldSet extends Ext.layout.component.IBody {
 		/** [Method] Called before any calculation cycles to reset DOM values and prepare for calculation  
 		* @param ownerContext Object 
 		*/
@@ -21637,7 +21637,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.component {
-	export interface IProgressBar {
+	export interface IProgressBar extends Ext.layout.component.IAuto {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -21649,7 +21649,7 @@ declare module Ext.layout.component {
 	}
 }
 declare module Ext.layout.container {
-	export interface IAbsolute {
+	export interface IAbsolute extends Ext.layout.container.IAnchor {
 		/** [Config Option] (Boolean) */
 		ignoreOnContentChange?: bool;
 		/** [Config Option] (String) */
@@ -21663,7 +21663,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IAbsoluteLayout {
+	export interface IAbsoluteLayout extends Ext.layout.container.IAnchor {
 		/** [Config Option] (Boolean) */
 		ignoreOnContentChange?: bool;
 		/** [Config Option] (String) */
@@ -21677,7 +21677,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IAccordion {
+	export interface IAccordion extends Ext.layout.container.IVBox {
 		/** [Config Option] (Boolean) */
 		activeOnTop?: bool;
 		/** [Config Option] (String) */
@@ -21714,7 +21714,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IAccordionLayout {
+	export interface IAccordionLayout extends Ext.layout.container.IVBox {
 		/** [Config Option] (Boolean) */
 		activeOnTop?: bool;
 		/** [Config Option] (String) */
@@ -21751,7 +21751,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IAnchor {
+	export interface IAnchor extends Ext.layout.container.IAuto {
 		/** [Config Option] (String) */
 		anchor?: string;
 		/** [Config Option] (String) */
@@ -21773,7 +21773,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IAnchorLayout {
+	export interface IAnchorLayout extends Ext.layout.container.IAuto {
 		/** [Config Option] (String) */
 		anchor?: string;
 		/** [Config Option] (String) */
@@ -21795,7 +21795,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IAuto {
+	export interface IAuto extends Ext.layout.container.IContainer {
 		/** [Config Option] (Boolean) */
 		reserveScrollbar?: bool;
 		/** [Property] (Boolean) */
@@ -21853,7 +21853,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout.container {
-	export interface IBorder {
+	export interface IBorder extends Ext.layout.container.IContainer {
 		/** [Config Option] (String) */
 		itemCls?: string;
 		/** [Config Option] (Number/String/Object) */
@@ -21881,7 +21881,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IBorderLayout {
+	export interface IBorderLayout extends Ext.layout.container.IContainer {
 		/** [Config Option] (String) */
 		itemCls?: string;
 		/** [Config Option] (Number/String/Object) */
@@ -21909,7 +21909,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IBox {
+	export interface IBox extends Ext.layout.container.IContainer {
 		/** [Config Option] (Object) */
 		defaultMargins?: any;
 		/** [Config Option] (Number) */
@@ -21959,7 +21959,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IBoxLayout {
+	export interface IBoxLayout extends Ext.layout.container.IContainer {
 		/** [Config Option] (Object) */
 		defaultMargins?: any;
 		/** [Config Option] (Number) */
@@ -22009,7 +22009,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container.boxoverflow {
-	export interface IMenu {
+	export interface IMenu extends Ext.layout.container.boxoverflow.INone {
 		/** [Config Option] (String) */
 		triggerButtonCls?: string;
 		/** [Property] (Array) */
@@ -22019,7 +22019,7 @@ declare module Ext.layout.container.boxoverflow {
 	}
 }
 declare module Ext.layout.boxoverflow {
-	export interface IMenu {
+	export interface IMenu extends Ext.layout.container.boxoverflow.INone {
 		/** [Config Option] (String) */
 		triggerButtonCls?: string;
 		/** [Property] (Array) */
@@ -22029,15 +22029,15 @@ declare module Ext.layout.boxoverflow {
 	}
 }
 declare module Ext.layout.container.boxoverflow {
-	export interface INone {
+	export interface INone extends Ext.IBase {
 	}
 }
 declare module Ext.layout.boxoverflow {
-	export interface INone {
+	export interface INone extends Ext.IBase {
 	}
 }
 declare module Ext.layout.container.boxoverflow {
-	export interface IScroller extends Ext.util.IObservable {
+	export interface IScroller extends Ext.layout.container.boxoverflow.INone,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		afterCtCls?: string;
 		/** [Config Option] (String) */
@@ -22183,7 +22183,7 @@ declare module Ext.layout.container.boxoverflow {
 	}
 }
 declare module Ext.layout.boxoverflow {
-	export interface IScroller extends Ext.util.IObservable {
+	export interface IScroller extends Ext.layout.container.boxoverflow.INone,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		afterCtCls?: string;
 		/** [Config Option] (String) */
@@ -22329,7 +22329,7 @@ declare module Ext.layout.boxoverflow {
 	}
 }
 declare module Ext.layout.container {
-	export interface ICard {
+	export interface ICard extends Ext.layout.container.IFit {
 		/** [Config Option] (Boolean) */
 		deferredRender?: bool;
 		/** [Method] Return the active visible component in the layout  */
@@ -22358,7 +22358,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface ICardLayout {
+	export interface ICardLayout extends Ext.layout.container.IFit {
 		/** [Config Option] (Boolean) */
 		deferredRender?: bool;
 		/** [Method] Return the active visible component in the layout  */
@@ -22387,7 +22387,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface ICheckboxGroup {
+	export interface ICheckboxGroup extends Ext.layout.container.IContainer {
 		/** [Config Option] (Boolean) */
 		autoFlex?: bool;
 		/** [Method] In addition to work done by our base classes containers benefit from some extra cached data  
@@ -22413,7 +22413,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout.container {
-	export interface IColumn {
+	export interface IColumn extends Ext.layout.container.IAuto {
 		/** [Config Option] (String) */
 		itemCls?: string;
 		/** [Property] (Boolean) */
@@ -22431,7 +22431,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IColumnLayout {
+	export interface IColumnLayout extends Ext.layout.container.IAuto {
 		/** [Config Option] (String) */
 		itemCls?: string;
 		/** [Property] (Boolean) */
@@ -22449,7 +22449,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IContainer extends Ext.util.IElementContainer {
+	export interface IContainer extends Ext.layout.ILayout,Ext.util.IElementContainer {
 		/** [Config Option] (String) */
 		itemCls?: string;
 		/** [Property] (Ext.Element) */
@@ -22493,7 +22493,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IContainerLayout extends Ext.util.IElementContainer {
+	export interface IContainerLayout extends Ext.layout.ILayout,Ext.util.IElementContainer {
 		/** [Config Option] (String) */
 		itemCls?: string;
 		/** [Property] (Ext.Element) */
@@ -22537,7 +22537,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IEditor {
+	export interface IEditor extends Ext.layout.container.IContainer {
 		/** [Method] Called to perform the calculations for this layout  
 		* @param ownerContext Object 
 		*/
@@ -22549,7 +22549,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout.container {
-	export interface IFit {
+	export interface IFit extends Ext.layout.container.IContainer {
 		/** [Config Option] (Object) */
 		defaultMargins?: any;
 		/** [Config Option] (String) */
@@ -22571,7 +22571,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IFitLayout {
+	export interface IFitLayout extends Ext.layout.container.IContainer {
 		/** [Config Option] (Object) */
 		defaultMargins?: any;
 		/** [Config Option] (String) */
@@ -22593,7 +22593,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IForm {
+	export interface IForm extends Ext.layout.container.IContainer {
 		/** [Property] (Object) */
 		getScrollRangeFlags?: any;
 		/** [Method] All of the below methods are old methods moved here from Container layout TODO remove these methods once Form layout  
@@ -22651,7 +22651,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IFormLayout {
+	export interface IFormLayout extends Ext.layout.container.IContainer {
 		/** [Property] (Object) */
 		getScrollRangeFlags?: any;
 		/** [Method] All of the below methods are old methods moved here from Container layout TODO remove these methods once Form layout  
@@ -22709,7 +22709,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IHBox {
+	export interface IHBox extends Ext.layout.container.IBox {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] ("round"/"floor"/"ceil") */
@@ -22719,7 +22719,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IHBoxLayout {
+	export interface IHBoxLayout extends Ext.layout.container.IBox {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] ("round"/"floor"/"ceil") */
@@ -22729,7 +22729,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface ITable {
+	export interface ITable extends Ext.layout.container.IContainer {
 		/** [Config Option] (Number) */
 		columns?: number;
 		/** [Config Option] (Object) */
@@ -22756,7 +22756,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface ITableLayout {
+	export interface ITableLayout extends Ext.layout.container.IContainer {
 		/** [Config Option] (Number) */
 		columns?: number;
 		/** [Config Option] (Object) */
@@ -22783,7 +22783,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout.container {
-	export interface IVBox {
+	export interface IVBox extends Ext.layout.container.IBox {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] ("round"/"floor"/"ceil") */
@@ -22793,7 +22793,7 @@ declare module Ext.layout.container {
 	}
 }
 declare module Ext.layout {
-	export interface IVBoxLayout {
+	export interface IVBoxLayout extends Ext.layout.container.IBox {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] ("round"/"floor"/"ceil") */
@@ -22803,7 +22803,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout {
-	export interface IContext {
+	export interface IContext extends Ext.IBase {
 		/** [Property] (Ext.util.Queue) */
 		layoutQueue?: Ext.util.IQueue;
 		/** [Property] (Number) */
@@ -22855,7 +22855,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout {
-	export interface IContextItem {
+	export interface IContextItem extends Ext.IBase {
 		/** [Property] (Object) */
 		state?: any;
 		/** [Property] (Boolean) */
@@ -22985,7 +22985,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout {
-	export interface ILayout {
+	export interface ILayout extends Ext.IBase {
 		/** [Property] (Boolean) */
 		done?: bool;
 		/** [Property] (Boolean) */
@@ -23054,7 +23054,7 @@ declare module Ext.layout {
 	}
 }
 declare module Ext.layout {
-	export interface ISizeModel {
+	export interface ISizeModel extends Ext.IBase {
 		/** [Property] (Boolean) */
 		auto?: bool;
 		/** [Property] (Boolean) */
@@ -23163,7 +23163,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface ILoadMask extends Ext.util.IFloating,Ext.util.IBindable {
+	export interface ILoadMask extends Ext.IComponent,Ext.util.IFloating,Ext.util.IBindable {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String) */
@@ -23250,7 +23250,7 @@ declare module Ext {
 	}
 }
 declare module Ext.menu {
-	export interface ICheckItem {
+	export interface ICheckItem extends Ext.menu.IItem {
 		/** [Config Option] (Boolean) */
 		checkChangeDisabled?: bool;
 		/** [Config Option] (Function) */
@@ -23289,7 +23289,7 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface IColorPicker {
+	export interface IColorPicker extends Ext.menu.IMenu {
 		/** [Config Option] (Boolean) */
 		hideOnClick?: bool;
 		/** [Config Option] (String) */
@@ -23299,7 +23299,7 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface IDatePicker {
+	export interface IDatePicker extends Ext.menu.IMenu {
 		/** [Config Option] (Boolean) */
 		hideOnClick?: bool;
 		/** [Config Option] (String) */
@@ -23309,7 +23309,7 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface IItem extends Ext.IQueryable {
+	export interface IItem extends Ext.IComponent,Ext.IQueryable {
 		/** [Config Option] (String) */
 		activeCls?: string;
 		/** [Config Option] (Boolean) */
@@ -23420,7 +23420,7 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface ITextItem extends Ext.IQueryable {
+	export interface ITextItem extends Ext.IComponent,Ext.IQueryable {
 		/** [Config Option] (String) */
 		activeCls?: string;
 		/** [Config Option] (Boolean) */
@@ -23531,11 +23531,11 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface IKeyNav {
+	export interface IKeyNav extends Ext.util.IKeyNav {
 	}
 }
 declare module Ext.menu {
-	export interface IManager {
+	export interface IManager extends Ext.IBase {
 	}
 	export class Manager {
 		/** [Method] Returns a Ext menu Menu object 
@@ -23547,7 +23547,7 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface IMenuMgr {
+	export interface IMenuMgr extends Ext.IBase {
 	}
 	export class MenuMgr {
 		/** [Method] Returns a Ext menu Menu object 
@@ -23559,7 +23559,7 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface IMenu {
+	export interface IMenu extends Ext.panel.IPanel {
 		/** [Config Option] (Boolean) */
 		allowOtherMenus?: bool;
 		/** [Config Option] (Boolean) */
@@ -23609,25 +23609,25 @@ declare module Ext.menu {
 	}
 }
 declare module Ext.menu {
-	export interface ISeparator {
+	export interface ISeparator extends Ext.menu.IItem {
 		/** [Config Option] (String) */
 		separatorCls?: string;
 	}
 }
 declare module Ext {
-	export interface IMessageBox {
+	export interface IMessageBox extends Ext.window.IMessageBox {
 	}
 	export class MessageBox {
 	}
 }
 declare module Ext {
-	export interface IMsg {
+	export interface IMsg extends Ext.window.IMessageBox {
 	}
 	export class Msg {
 	}
 }
 declare module Ext {
-	export interface IModelManager {
+	export interface IModelManager extends Ext.IAbstractManager {
 	}
 	export class ModelManager {
 		/** [Method] Creates a new instance of a Model using the given data  
@@ -23643,7 +23643,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IModelMgr {
+	export interface IModelMgr extends Ext.IAbstractManager {
 	}
 	export class ModelMgr {
 		/** [Method] Creates a new instance of a Model using the given data  
@@ -23767,7 +23767,7 @@ declare module Ext {
 	}
 }
 declare module Ext.panel {
-	export interface IAbstractPanel extends Ext.container.IDockingContainer {
+	export interface IAbstractPanel extends Ext.container.IContainer,Ext.container.IDockingContainer {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Boolean) */
@@ -23862,7 +23862,7 @@ declare module Ext.panel {
 	}
 }
 declare module Ext.panel {
-	export interface IDD {
+	export interface IDD extends Ext.dd.IDragSource {
 		/** [Method] An empty function by default but provided so that you can perform a custom action after an invalid drop has occurred  
 		* @param e Event The event object 
 		* @param id String The id of the dropped element 
@@ -23881,7 +23881,7 @@ declare module Ext.panel {
 	}
 }
 declare module Ext.panel {
-	export interface IHeader {
+	export interface IHeader extends Ext.container.IContainer {
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (String) */
@@ -23948,7 +23948,7 @@ declare module Ext.panel {
 	}
 }
 declare module Ext.panel {
-	export interface IPanel {
+	export interface IPanel extends Ext.panel.IAbstractPanel {
 		/** [Config Option] (Boolean) */
 		animCollapse?: bool;
 		/** [Config Option] (Object/Object[]) */
@@ -24112,7 +24112,7 @@ declare module Ext.panel {
 	}
 }
 declare module Ext {
-	export interface IPanel {
+	export interface IPanel extends Ext.panel.IAbstractPanel {
 		/** [Config Option] (Boolean) */
 		animCollapse?: bool;
 		/** [Config Option] (Object/Object[]) */
@@ -24276,7 +24276,7 @@ declare module Ext {
 	}
 }
 declare module Ext.panel {
-	export interface IProxy {
+	export interface IProxy extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		insertProxy?: bool;
 		/** [Config Option] (Boolean) */
@@ -24301,7 +24301,7 @@ declare module Ext.panel {
 	}
 }
 declare module Ext.dd {
-	export interface IPanelProxy {
+	export interface IPanelProxy extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		insertProxy?: bool;
 		/** [Config Option] (Boolean) */
@@ -24326,7 +24326,7 @@ declare module Ext.dd {
 	}
 }
 declare module Ext.panel {
-	export interface ITable extends Ext.grid.locking.ILockable {
+	export interface ITable extends Ext.panel.IPanel,Ext.grid.locking.ILockable {
 		/** [Config Option] (Boolean) */
 		allowDeselect?: bool;
 		/** [Config Option] (Boolean) */
@@ -24412,7 +24412,7 @@ declare module Ext.panel {
 	}
 }
 declare module Ext.panel {
-	export interface ITool {
+	export interface ITool extends Ext.IComponent {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Function) */
@@ -24454,11 +24454,11 @@ declare module Ext.panel {
 	}
 }
 declare module Ext.perf {
-	export interface IAccumulator {
+	export interface IAccumulator extends Ext.IBase {
 	}
 }
 declare module Ext.perf {
-	export interface IMonitor {
+	export interface IMonitor extends Ext.IBase {
 	}
 	export class Monitor {
 		/** [Method]  */
@@ -24466,7 +24466,7 @@ declare module Ext.perf {
 	}
 }
 declare module Ext {
-	export interface IPerf {
+	export interface IPerf extends Ext.IBase {
 	}
 	export class Perf {
 		/** [Method]  */
@@ -24474,7 +24474,7 @@ declare module Ext {
 	}
 }
 declare module Ext.picker {
-	export interface IColor {
+	export interface IColor extends Ext.IComponent {
 		/** [Config Option] (Boolean) */
 		allowReselect?: bool;
 		/** [Config Option] (String) */
@@ -24509,7 +24509,7 @@ declare module Ext.picker {
 	}
 }
 declare module Ext {
-	export interface IColorPalette {
+	export interface IColorPalette extends Ext.IComponent {
 		/** [Config Option] (Boolean) */
 		allowReselect?: bool;
 		/** [Config Option] (String) */
@@ -24544,7 +24544,7 @@ declare module Ext {
 	}
 }
 declare module Ext.picker {
-	export interface IDate {
+	export interface IDate extends Ext.IComponent {
 		/** [Config Option] (String) */
 		ariaTitle?: string;
 		/** [Config Option] (String) */
@@ -24666,7 +24666,7 @@ declare module Ext.picker {
 	}
 }
 declare module Ext {
-	export interface IDatePicker {
+	export interface IDatePicker extends Ext.IComponent {
 		/** [Config Option] (String) */
 		ariaTitle?: string;
 		/** [Config Option] (String) */
@@ -24788,7 +24788,7 @@ declare module Ext {
 	}
 }
 declare module Ext.picker {
-	export interface IMonth {
+	export interface IMonth extends Ext.IComponent {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String) */
@@ -24821,7 +24821,7 @@ declare module Ext.picker {
 	}
 }
 declare module Ext {
-	export interface IMonthPicker {
+	export interface IMonthPicker extends Ext.IComponent {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String) */
@@ -24854,7 +24854,7 @@ declare module Ext {
 	}
 }
 declare module Ext.picker {
-	export interface ITime {
+	export interface ITime extends Ext.view.IBoundList {
 		/** [Config Option] (String) */
 		componentCls?: string;
 		/** [Config Option] (String) */
@@ -24884,7 +24884,7 @@ declare module Ext.picker {
 	}
 }
 declare module Ext {
-	export interface IPluginManager {
+	export interface IPluginManager extends Ext.IAbstractManager {
 	}
 	export class PluginManager {
 		/** [Method] Creates a new Plugin from the specified config object using the config object s ptype to determine the class to insta  
@@ -24900,7 +24900,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IPluginMgr {
+	export interface IPluginMgr extends Ext.IAbstractManager {
 	}
 	export class PluginMgr {
 		/** [Method] Creates a new Plugin from the specified config object using the config object s ptype to determine the class to insta  
@@ -24916,7 +24916,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IProgressBar {
+	export interface IProgressBar extends Ext.IComponent {
 		/** [Config Option] (Boolean/Object) */
 		animate?: any;
 		/** [Config Option] (String) */
@@ -24964,7 +24964,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IQueryable {
+	export interface IQueryable extends Ext.IBase {
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
 		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
@@ -24993,7 +24993,7 @@ declare module Ext {
 	}
 }
 declare module Ext.resizer {
-	export interface IBorderSplitter {
+	export interface IBorderSplitter extends Ext.resizer.ISplitter {
 		/** [Config Option] (String/Ext.panel.Panel) */
 		collapseTarget?: any;
 		/** [Method] Returns the config object with an xclass property for the splitter tracker  */
@@ -25001,7 +25001,7 @@ declare module Ext.resizer {
 	}
 }
 declare module Ext.resizer {
-	export interface IBorderSplitterTracker {
+	export interface IBorderSplitterTracker extends Ext.resizer.ISplitterTracker {
 		/** [Method] ensure the tracker is enabled store boxes of previous and next components and calculate the constrain region 
 		* @param e Object 
 		*/
@@ -25009,13 +25009,13 @@ declare module Ext.resizer {
 	}
 }
 declare module Ext.resizer {
-	export interface IHandle {
+	export interface IHandle extends Ext.IComponent {
 		/** [Config Option] ("north"/"south"/"east"/"west"/"center") */
 		region?: any;
 	}
 }
 declare module Ext.resizer {
-	export interface IResizer extends Ext.util.IObservable {
+	export interface IResizer extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Ext.Element/Ext.util.Region) */
 		constrainTo?: any;
 		/** [Config Option] (Boolean) */
@@ -25178,7 +25178,7 @@ declare module Ext.resizer {
 	}
 }
 declare module Ext {
-	export interface IResizable extends Ext.util.IObservable {
+	export interface IResizable extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Ext.Element/Ext.util.Region) */
 		constrainTo?: any;
 		/** [Config Option] (Boolean) */
@@ -25341,7 +25341,7 @@ declare module Ext {
 	}
 }
 declare module Ext.resizer {
-	export interface IResizeTracker {
+	export interface IResizeTracker extends Ext.dd.IDragTracker {
 		/** [Config Option] (Ext.util.Region/Ext.Element) */
 		constrainTo?: any;
 		/** [Method] Create a proxy for this resizer 
@@ -25369,7 +25369,7 @@ declare module Ext.resizer {
 	}
 }
 declare module Ext.resizer {
-	export interface ISplitter {
+	export interface ISplitter extends Ext.IComponent {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Boolean) */
@@ -25403,7 +25403,7 @@ declare module Ext.resizer {
 	}
 }
 declare module Ext.resizer {
-	export interface ISplitterTracker {
+	export interface ISplitterTracker extends Ext.dd.IDragTracker {
 		/** [Method] ensure the tracker is enabled store boxes of previous and next components and calculate the constrain region 
 		* @param e Object 
 		*/
@@ -25423,7 +25423,7 @@ declare module Ext.resizer {
 	}
 }
 declare module Ext.selection {
-	export interface ICellModel {
+	export interface ICellModel extends Ext.selection.IModel {
 		/** [Config Option] (Boolean) */
 		enableKeyNav?: bool;
 		/** [Config Option] ("SINGLE") */
@@ -25451,7 +25451,7 @@ declare module Ext.selection {
 	}
 }
 declare module Ext.selection {
-	export interface ICheckboxModel {
+	export interface ICheckboxModel extends Ext.selection.IRowModel {
 		/** [Config Option] (Boolean) */
 		checkOnly?: bool;
 		/** [Config Option] (String) */
@@ -25483,13 +25483,13 @@ declare module Ext.selection {
 	}
 }
 declare module Ext.selection {
-	export interface IDataViewModel {
+	export interface IDataViewModel extends Ext.selection.IModel {
 		/** [Config Option] (Boolean) */
 		enableKeyNav?: bool;
 	}
 }
 declare module Ext.selection {
-	export interface IModel extends Ext.util.IBindable {
+	export interface IModel extends Ext.util.IObservable,Ext.util.IBindable {
 		/** [Config Option] (Boolean) */
 		allowDeselect?: bool;
 		/** [Config Option] ("SINGLE"/"SIMPLE"/"MULTI") */
@@ -25615,7 +25615,7 @@ declare module Ext.selection {
 	}
 }
 declare module Ext {
-	export interface IAbstractSelectionModel extends Ext.util.IBindable {
+	export interface IAbstractSelectionModel extends Ext.util.IObservable,Ext.util.IBindable {
 		/** [Config Option] (Boolean) */
 		allowDeselect?: bool;
 		/** [Config Option] ("SINGLE"/"SIMPLE"/"MULTI") */
@@ -25741,7 +25741,7 @@ declare module Ext {
 	}
 }
 declare module Ext.selection {
-	export interface IRowModel {
+	export interface IRowModel extends Ext.selection.IModel {
 		/** [Config Option] (Boolean) */
 		enableKeyNav?: bool;
 		/** [Config Option] (Boolean) */
@@ -25761,7 +25761,7 @@ declare module Ext.selection {
 	}
 }
 declare module Ext.selection {
-	export interface ITreeModel {
+	export interface ITreeModel extends Ext.selection.IRowModel {
 		/** [Method] binds the store to the selModel  
 		* @param store Object 
 		* @param initial Object 
@@ -25770,7 +25770,7 @@ declare module Ext.selection {
 	}
 }
 declare module Ext {
-	export interface IShadow {
+	export interface IShadow extends Ext.IBase {
 		/** [Config Option] (String) */
 		mode?: string;
 		/** [Config Option] (Number) */
@@ -25804,13 +25804,13 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IShadowPool {
+	export interface IShadowPool extends Ext.IBase {
 	}
 	export class ShadowPool {
 	}
 }
 declare module Ext.slider {
-	export interface IMulti {
+	export interface IMulti extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		animate?: bool;
 		/** [Config Option] (Boolean) */
@@ -25898,7 +25898,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext.slider {
-	export interface IMultiSlider {
+	export interface IMultiSlider extends Ext.form.field.IBase {
 		/** [Config Option] (Boolean) */
 		animate?: bool;
 		/** [Config Option] (Boolean) */
@@ -25986,7 +25986,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext.slider {
-	export interface ISingle {
+	export interface ISingle extends Ext.slider.IMulti {
 		/** [Method] Returns the current value of the slider */
 		getValue?(): any;
 		/** [Method] Programmatically sets the value of the Slider  
@@ -25997,7 +25997,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext {
-	export interface ISlider {
+	export interface ISlider extends Ext.slider.IMulti {
 		/** [Method] Returns the current value of the slider */
 		getValue?(): any;
 		/** [Method] Programmatically sets the value of the Slider  
@@ -26008,7 +26008,7 @@ declare module Ext {
 	}
 }
 declare module Ext.form {
-	export interface ISliderField {
+	export interface ISliderField extends Ext.slider.IMulti {
 		/** [Method] Returns the current value of the slider */
 		getValue?(): any;
 		/** [Method] Programmatically sets the value of the Slider  
@@ -26019,7 +26019,7 @@ declare module Ext.form {
 	}
 }
 declare module Ext.slider {
-	export interface ISingleSlider {
+	export interface ISingleSlider extends Ext.slider.IMulti {
 		/** [Method] Returns the current value of the slider */
 		getValue?(): any;
 		/** [Method] Programmatically sets the value of the Slider  
@@ -26030,7 +26030,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext.slider {
-	export interface ISlider {
+	export interface ISlider extends Ext.slider.IMulti {
 		/** [Method] Returns the current value of the slider */
 		getValue?(): any;
 		/** [Method] Programmatically sets the value of the Slider  
@@ -26041,7 +26041,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext.slider {
-	export interface IThumb {
+	export interface IThumb extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		constrain?: bool;
 		/** [Config Option] (Ext.slider.MultiSlider) */
@@ -26057,7 +26057,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext.slider {
-	export interface ITip {
+	export interface ITip extends Ext.tip.ITip {
 		/** [Config Option] (String) */
 		align?: string;
 		/** [Config Option] (Number) */
@@ -26073,7 +26073,7 @@ declare module Ext.slider {
 	}
 }
 declare module Ext.state {
-	export interface ICookieProvider {
+	export interface ICookieProvider extends Ext.state.IProvider {
 		/** [Config Option] (String) */
 		domain?: string;
 		/** [Config Option] (Date) */
@@ -26094,7 +26094,7 @@ declare module Ext.state {
 	}
 }
 declare module Ext.state {
-	export interface ILocalStorageProvider {
+	export interface ILocalStorageProvider extends Ext.state.IProvider {
 		/** [Method] private 
 		* @param name Object 
 		*/
@@ -26107,7 +26107,7 @@ declare module Ext.state {
 	}
 }
 declare module Ext.state {
-	export interface IManager {
+	export interface IManager extends Ext.IBase {
 	}
 	export class Manager {
 		/** [Method]  */
@@ -26135,7 +26135,7 @@ declare module Ext.state {
 	}
 }
 declare module Ext.state {
-	export interface IProvider extends Ext.util.IObservable {
+	export interface IProvider extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (String) */
 		prefix?: string;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
@@ -26275,7 +26275,7 @@ declare module Ext.state {
 	}
 }
 declare module Ext.state {
-	export interface IStateful extends Ext.util.IObservable {
+	export interface IStateful extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Number) */
 		saveDelay?: number;
 		/** [Config Option] (String[]) */
@@ -26536,7 +26536,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tab {
-	export interface IBar {
+	export interface IBar extends Ext.panel.IHeader {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Number) */
@@ -26566,7 +26566,7 @@ declare module Ext.tab {
 	}
 }
 declare module Ext.tab {
-	export interface IPanel {
+	export interface IPanel extends Ext.panel.IPanel {
 		/** [Config Option] (String/Number) */
 		activeItem?: any;
 		/** [Config Option] (String/Number/Ext.Component) */
@@ -26608,7 +26608,7 @@ declare module Ext.tab {
 	}
 }
 declare module Ext {
-	export interface ITabPanel {
+	export interface ITabPanel extends Ext.panel.IPanel {
 		/** [Config Option] (String/Number) */
 		activeItem?: any;
 		/** [Config Option] (String/Number/Ext.Component) */
@@ -26650,7 +26650,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tab {
-	export interface ITab {
+	export interface ITab extends Ext.button.IButton {
 		/** [Config Option] (String) */
 		activeCls?: string;
 		/** [Config Option] (String) */
@@ -26692,7 +26692,7 @@ declare module Ext.tab {
 	}
 }
 declare module Ext {
-	export interface ITemplate {
+	export interface ITemplate extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		compiled?: bool;
 		/** [Config Option] (Boolean) */
@@ -26814,7 +26814,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tip {
-	export interface IQuickTip {
+	export interface IQuickTip extends Ext.tip.IToolTip {
 		/** [Config Option] (Boolean) */
 		interceptTitles?: bool;
 		/** [Config Option] (String/HTMLElement/Ext.Element) */
@@ -26846,7 +26846,7 @@ declare module Ext.tip {
 	}
 }
 declare module Ext {
-	export interface IQuickTip {
+	export interface IQuickTip extends Ext.tip.IToolTip {
 		/** [Config Option] (Boolean) */
 		interceptTitles?: bool;
 		/** [Config Option] (String/HTMLElement/Ext.Element) */
@@ -26878,7 +26878,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tip {
-	export interface IQuickTipManager {
+	export interface IQuickTipManager extends Ext.IBase {
 	}
 	export class QuickTipManager {
 		/** [Method] Destroys the QuickTips instance  */
@@ -26914,7 +26914,7 @@ declare module Ext.tip {
 	}
 }
 declare module Ext {
-	export interface IQuickTips {
+	export interface IQuickTips extends Ext.IBase {
 	}
 	export class QuickTips {
 		/** [Method] Destroys the QuickTips instance  */
@@ -26950,7 +26950,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tip {
-	export interface ITip {
+	export interface ITip extends Ext.panel.IPanel {
 		/** [Config Option] (Boolean/String/HTMLElement/Ext.Element) */
 		autoRender?: any;
 		/** [Config Option] (String) */
@@ -26982,7 +26982,7 @@ declare module Ext.tip {
 	}
 }
 declare module Ext {
-	export interface ITip {
+	export interface ITip extends Ext.panel.IPanel {
 		/** [Config Option] (Boolean/String/HTMLElement/Ext.Element) */
 		autoRender?: any;
 		/** [Config Option] (String) */
@@ -27014,7 +27014,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tip {
-	export interface IToolTip {
+	export interface IToolTip extends Ext.tip.ITip {
 		/** [Config Option] (String) */
 		anchor?: string;
 		/** [Config Option] (Number) */
@@ -27053,7 +27053,7 @@ declare module Ext.tip {
 	}
 }
 declare module Ext {
-	export interface IToolTip {
+	export interface IToolTip extends Ext.tip.ITip {
 		/** [Config Option] (String) */
 		anchor?: string;
 		/** [Config Option] (Number) */
@@ -27092,13 +27092,13 @@ declare module Ext {
 	}
 }
 declare module Ext.toolbar {
-	export interface IFill {
+	export interface IFill extends Ext.IComponent {
 		/** [Property] (Boolean) */
 		isFill?: bool;
 	}
 }
 declare module Ext.toolbar {
-	export interface IItem {
+	export interface IItem extends Ext.IComponent {
 		/** [Config Option] (String) */
 		overflowText?: string;
 		/** [Method] Disable the component  */
@@ -27110,7 +27110,7 @@ declare module Ext.toolbar {
 	}
 }
 declare module Ext.toolbar {
-	export interface IPaging extends Ext.util.IBindable {
+	export interface IPaging extends Ext.toolbar.IToolbar,Ext.util.IBindable {
 		/** [Config Option] (String) */
 		afterPageText?: string;
 		/** [Config Option] (String) */
@@ -27186,7 +27186,7 @@ declare module Ext.toolbar {
 	}
 }
 declare module Ext {
-	export interface IPagingToolbar extends Ext.util.IBindable {
+	export interface IPagingToolbar extends Ext.toolbar.IToolbar,Ext.util.IBindable {
 		/** [Config Option] (String) */
 		afterPageText?: string;
 		/** [Config Option] (String) */
@@ -27262,19 +27262,19 @@ declare module Ext {
 	}
 }
 declare module Ext.toolbar {
-	export interface ISeparator {
+	export interface ISeparator extends Ext.toolbar.IItem {
 		/** [Config Option] (String) */
 		baseCls?: string;
 	}
 }
 declare module Ext.toolbar {
-	export interface ISpacer {
+	export interface ISpacer extends Ext.IComponent {
 		/** [Config Option] (String) */
 		baseCls?: string;
 	}
 }
 declare module Ext.toolbar {
-	export interface ITextItem {
+	export interface ITextItem extends Ext.toolbar.IItem {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Ext.XTemplate/String/String[]) */
@@ -27288,7 +27288,7 @@ declare module Ext.toolbar {
 	}
 }
 declare module Ext.toolbar {
-	export interface IToolbar {
+	export interface IToolbar extends Ext.container.IContainer {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String) */
@@ -27325,7 +27325,7 @@ declare module Ext.toolbar {
 	}
 }
 declare module Ext {
-	export interface IToolbar {
+	export interface IToolbar extends Ext.container.IContainer {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String) */
@@ -27362,7 +27362,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tree {
-	export interface IColumn {
+	export interface IColumn extends Ext.grid.column.IColumn {
 		/** [Config Option] (Boolean) */
 		hideable?: bool;
 		/** [Config Option] (Boolean) */
@@ -27374,7 +27374,7 @@ declare module Ext.tree {
 	}
 }
 declare module Ext.tree {
-	export interface IPanel {
+	export interface IPanel extends Ext.panel.ITable {
 		/** [Config Option] (Boolean) */
 		animate?: bool;
 		/** [Config Option] (Boolean) */
@@ -27454,7 +27454,7 @@ declare module Ext.tree {
 	}
 }
 declare module Ext.tree {
-	export interface ITreePanel {
+	export interface ITreePanel extends Ext.panel.ITable {
 		/** [Config Option] (Boolean) */
 		animate?: bool;
 		/** [Config Option] (Boolean) */
@@ -27534,7 +27534,7 @@ declare module Ext.tree {
 	}
 }
 declare module Ext {
-	export interface ITreePanel {
+	export interface ITreePanel extends Ext.panel.ITable {
 		/** [Config Option] (Boolean) */
 		animate?: bool;
 		/** [Config Option] (Boolean) */
@@ -27614,7 +27614,7 @@ declare module Ext {
 	}
 }
 declare module Ext.tree.plugin {
-	export interface ITreeViewDragDrop {
+	export interface ITreeViewDragDrop extends Ext.IAbstractPlugin {
 		/** [Config Option] (Boolean) */
 		allowContainerDrops?: bool;
 		/** [Config Option] (Boolean) */
@@ -27654,7 +27654,7 @@ declare module Ext.tree.plugin {
 	}
 }
 declare module Ext.tree {
-	export interface IView {
+	export interface IView extends Ext.view.ITable {
 		/** [Config Option] (Boolean) */
 		animate?: bool;
 		/** [Config Option] (Boolean) */
@@ -27707,11 +27707,11 @@ declare module Ext.tree {
 	}
 }
 declare module Ext.tree {
-	export interface IViewDragZone {
+	export interface IViewDragZone extends Ext.view.IDragZone {
 	}
 }
 declare module Ext.tree {
-	export interface IViewDropZone {
+	export interface IViewDropZone extends Ext.view.IDropZone {
 		/** [Config Option] (Boolean) */
 		allowContainerDrop?: bool;
 		/** [Config Option] (Boolean) */
@@ -27745,7 +27745,7 @@ declare module Ext.tree {
 	}
 }
 declare module Ext.util {
-	export interface IAbstractMixedCollection extends Ext.util.IObservable {
+	export interface IAbstractMixedCollection extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		allowFunctions?: bool;
 		/** [Property] (Boolean) */
@@ -28024,7 +28024,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IAnimate {
+	export interface IAnimate extends Ext.IBase {
 		/** [Method] Performs custom animation on this object. ... */
 		animate?: any;
 		/** [Method] Returns the current animation if this object has any effects actively running or queued else returns false  */
@@ -28046,7 +28046,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IBindable {
+	export interface IBindable extends Ext.IBase {
 		/** [Method] Binds a store to this instance  
 		* @param store any The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
 		*/
@@ -28080,7 +28080,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IClickRepeater {
+	export interface IClickRepeater extends Ext.util.IObservable {
 		/** [Config Option] (Boolean) */
 		accelerate?: bool;
 		/** [Config Option] (Number) */
@@ -28108,7 +28108,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IComponentDragger {
+	export interface IComponentDragger extends Ext.dd.IDragTracker {
 		/** [Config Option] (Boolean) */
 		constrain?: bool;
 		/** [Config Option] (Boolean) */
@@ -28128,7 +28128,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface ICookies {
+	export interface ICookies extends Ext.IBase {
 	}
 	export class Cookies {
 		/** [Method] Removes a cookie with the provided name from the browser if found by setting its expiration date to sometime in the p  
@@ -28152,7 +28152,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface ICSS {
+	export interface ICSS extends Ext.IBase {
 	}
 	export class CSS {
 		/** [Method] Creates a rule  
@@ -28214,7 +28214,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IElementContainer {
+	export interface IElementContainer extends Ext.IBase {
 		/** [Method] Adds each argument passed to this method to the childEls array  */
 		addChildEls?(): void;
 		/** [Method] Removes items in the childEls array based on the return value of a supplied test function  
@@ -28224,13 +28224,13 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IEvent {
+	export interface IEvent extends Ext.IBase {
 		/** [Property] (Boolean) */
 		isEvent?: bool;
 	}
 }
 declare module Ext.util {
-	export interface IFilter {
+	export interface IFilter extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		anyMatch?: bool;
 		/** [Config Option] (Boolean) */
@@ -28266,7 +28266,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IFloating {
+	export interface IFloating extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		constrain?: bool;
 		/** [Config Option] (Boolean) */
@@ -28445,7 +28445,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IGrouper {
+	export interface IGrouper extends Ext.util.ISorter {
 		/** [Method] Returns the value for grouping to be used  
 		* @param instance Ext.data.IModel The Model instance 
 		*/
@@ -28453,7 +28453,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IHashMap extends Ext.util.IObservable {
+	export interface IHashMap extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Function) */
 		keyFn?: any;
 		/** [Method] Adds an item to the collection  
@@ -28622,7 +28622,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IHistory extends Ext.util.IObservable {
+	export interface IHistory extends Ext.IBase,Ext.util.IObservable {
 	}
 	export class History {
 		/** [Method]  */
@@ -28758,7 +28758,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext {
-	export interface IHistory extends Ext.util.IObservable {
+	export interface IHistory extends Ext.IBase,Ext.util.IObservable {
 	}
 	export class History {
 		/** [Method]  */
@@ -28894,7 +28894,7 @@ declare module Ext {
 	}
 }
 declare module Ext.util {
-	export interface IInflector {
+	export interface IInflector extends Ext.IBase {
 	}
 	export class Inflector {
 		/** [Method] Returns the correct Model name for a given string  
@@ -28934,7 +28934,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IKeyMap {
+	export interface IKeyMap extends Ext.IBase {
 		/** [Config Option] (Object/Object[][]) */
 		binding?: any;
 		/** [Config Option] (String) */
@@ -28984,7 +28984,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext {
-	export interface IKeyMap {
+	export interface IKeyMap extends Ext.IBase {
 		/** [Config Option] (Object/Object[][]) */
 		binding?: any;
 		/** [Config Option] (String) */
@@ -29034,7 +29034,7 @@ declare module Ext {
 	}
 }
 declare module Ext.util {
-	export interface IKeyNav {
+	export interface IKeyNav extends Ext.IBase {
 		/** [Config Option] (String) */
 		defaultEventAction?: string;
 		/** [Config Option] (Boolean) */
@@ -29068,7 +29068,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext {
-	export interface IKeyNav {
+	export interface IKeyNav extends Ext.IBase {
 		/** [Config Option] (String) */
 		defaultEventAction?: string;
 		/** [Config Option] (Boolean) */
@@ -29102,7 +29102,7 @@ declare module Ext {
 	}
 }
 declare module Ext.util {
-	export interface ILruCache {
+	export interface ILruCache extends Ext.util.IHashMap {
 		/** [Config Option] (Number) */
 		maxSize?: number;
 		/** [Method] Adds an item to the collection  
@@ -29131,7 +29131,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IMemento {
+	export interface IMemento extends Ext.IBase {
 		/** [Property] (Object) */
 		target?: any;
 		/** [Method] Captures the specified properties from the target object in this memento  
@@ -29163,7 +29163,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IMixedCollection extends Ext.util.ISortable {
+	export interface IMixedCollection extends Ext.util.IAbstractMixedCollection,Ext.util.ISortable {
 		/** [Config Option] (Boolean) */
 		allowFunctions?: bool;
 		/** [Method] Calculates the insertion index of the new item based upon the comparison function passed or the current sort order  
@@ -29200,7 +29200,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IObservable {
+	export interface IObservable extends Ext.IBase {
 		/** [Config Option] (Object) */
 		listeners?: any;
 		/** [Property] (Object) */
@@ -29337,11 +29337,11 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IOffset {
+	export interface IOffset extends Ext.IBase {
 	}
 }
 declare module Ext.util {
-	export interface IPoint {
+	export interface IPoint extends Ext.util.IRegion {
 		/** [Method] Compare this point and another point 
 		* @param p any The point to compare with, either an instance of Ext.util.Point or an object with left and top properties 
 		*/
@@ -29377,7 +29377,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IPositionable {
+	export interface IPositionable extends Ext.IBase {
 		/** [Method] Aligns the element with another element relative to the specified anchor points  
 		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
 		* @param position any The position to align to 
@@ -29534,7 +29534,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IProtoElement {
+	export interface IProtoElement extends Ext.IBase {
 		/** [Property] (String) */
 		clsProp?: string;
 		/** [Property] (String) */
@@ -29569,7 +29569,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IQueue {
+	export interface IQueue extends Ext.IBase {
 		/** [Method] Removes all items from the collection  */
 		clear?(): void;
 		/** [Method] Returns the number of items in the collection  */
@@ -29581,7 +29581,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IRegion {
+	export interface IRegion extends Ext.IBase {
 		/** [Method] Modifies the current region to be adjusted by offsets  
 		* @param top Number top offset 
 		* @param right Number right offset 
@@ -29668,7 +29668,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface IRenderable {
+	export interface IRenderable extends Ext.IBase {
 		/** [Method] Allows addition of behavior after rendering is complete  */
 		afterRender?(): void;
 		/** [Method] Handles autoRender  */
@@ -29706,7 +29706,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface ISortable {
+	export interface ISortable extends Ext.IBase {
 		/** [Config Option] (String) */
 		defaultSortDirection?: string;
 		/** [Config Option] (String) */
@@ -29735,7 +29735,7 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface ISorter {
+	export interface ISorter extends Ext.IBase {
 		/** [Config Option] (String) */
 		direction?: string;
 		/** [Config Option] (String) */
@@ -29759,19 +29759,19 @@ declare module Ext.util {
 	}
 }
 declare module Ext.util {
-	export interface ITaskManager {
+	export interface ITaskManager extends Ext.util.ITaskRunner {
 	}
 	export class TaskManager {
 	}
 }
 declare module Ext {
-	export interface ITaskManager {
+	export interface ITaskManager extends Ext.util.ITaskRunner {
 	}
 	export class TaskManager {
 	}
 }
 declare module Ext.util {
-	export interface ITaskRunner {
+	export interface ITaskRunner extends Ext.IBase {
 		/** [Config Option] (Boolean) */
 		fireIdleEvent?: bool;
 		/** [Config Option] (Number) */
@@ -29813,7 +29813,7 @@ declare module Ext.util.taskrunner {
 	}
 }
 declare module Ext.util {
-	export interface ITextMetrics {
+	export interface ITextMetrics extends Ext.IBase {
 		/** [Method] Binds this TextMetrics instance to a new element 
 		* @param el any The element or its ID. 
 		*/
@@ -29937,7 +29937,7 @@ declare module Ext {
 	}
 }
 declare module Ext.view {
-	export interface IAbstractView extends Ext.util.IBindable {
+	export interface IAbstractView extends Ext.IComponent,Ext.util.IBindable {
 		/** [Config Option] (Boolean) */
 		blockRefresh?: bool;
 		/** [Config Option] (Boolean) */
@@ -30105,7 +30105,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface IBoundList extends Ext.IQueryable {
+	export interface IBoundList extends Ext.view.IView,Ext.IQueryable {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String/Object) */
@@ -30169,7 +30169,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext {
-	export interface IBoundList extends Ext.IQueryable {
+	export interface IBoundList extends Ext.view.IView,Ext.IQueryable {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String/Object) */
@@ -30233,7 +30233,7 @@ declare module Ext {
 	}
 }
 declare module Ext.view {
-	export interface IBoundListKeyNav {
+	export interface IBoundListKeyNav extends Ext.util.IKeyNav {
 		/** [Config Option] (Ext.view.BoundList) */
 		boundList?: Ext.view.IBoundList;
 		/** [Method] Highlights the item at the given index  
@@ -30247,7 +30247,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface IDragZone {
+	export interface IDragZone extends Ext.dd.IDragZone {
 		/** [Config Option] (Object/Boolean) */
 		containerScroll?: any;
 		/** [Method] Called when a mousedown occurs in this container  
@@ -30273,7 +30273,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface IDropZone {
+	export interface IDropZone extends Ext.dd.IDropZone {
 		/** [Method] Destroy this DragDrop instance */
 		destroy?(): void;
 		/** [Method] Returns a custom data object associated with the DOM node that is the target of the event  
@@ -30316,7 +30316,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface INodeCache {
+	export interface INodeCache extends Ext.IBase {
 		/** [Method] Removes all elements from this NodeCache  
 		* @param removeDom Boolean True to also remove the elements from the document. 
 		*/
@@ -30365,7 +30365,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface ITable {
+	export interface ITable extends Ext.view.IView {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (String/Object) */
@@ -30509,7 +30509,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface ITableLayout {
+	export interface ITableLayout extends Ext.layout.component.IAuto {
 		/** [Method] Called before any calculation cycles to prepare for layout  
 		* @param ownerContext Object 
 		*/
@@ -30523,7 +30523,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext.view {
-	export interface IView {
+	export interface IView extends Ext.view.IAbstractView {
 		/** [Config Option] (Number) */
 		mouseOverOutBuffer?: number;
 		/** [Method] Un highlights the currently highlighted item if any  */
@@ -30543,7 +30543,7 @@ declare module Ext.view {
 	}
 }
 declare module Ext {
-	export interface IDataView {
+	export interface IDataView extends Ext.view.IAbstractView {
 		/** [Config Option] (Number) */
 		mouseOverOutBuffer?: number;
 		/** [Method] Un highlights the currently highlighted item if any  */
@@ -30563,7 +30563,7 @@ declare module Ext {
 	}
 }
 declare module Ext.window {
-	export interface IMessageBox {
+	export interface IMessageBox extends Ext.window.IWindow {
 		/** [Config Option] (String) */
 		closeAction?: string;
 		/** [Config Option] (String) */
@@ -30678,7 +30678,7 @@ declare module Ext.window {
 	}
 }
 declare module Ext.window {
-	export interface IWindow {
+	export interface IWindow extends Ext.panel.IPanel {
 		/** [Config Option] (String/Ext.Element) */
 		animateTarget?: any;
 		/** [Config Option] (Boolean) */
@@ -30764,7 +30764,7 @@ declare module Ext.window {
 	}
 }
 declare module Ext {
-	export interface IWindow {
+	export interface IWindow extends Ext.panel.IPanel {
 		/** [Config Option] (String/Ext.Element) */
 		animateTarget?: any;
 		/** [Config Option] (Boolean) */
@@ -30850,13 +30850,13 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IWindowManager {
+	export interface IWindowManager extends Ext.IZIndexManager {
 	}
 	export class WindowManager {
 	}
 }
 declare module Ext {
-	export interface IXTemplate {
+	export interface IXTemplate extends Ext.ITemplate {
 		/** [Config Option] (String/Array) */
 		definitions?: any;
 		/** [Method] Appends the result of this template to the provided output array  
@@ -30875,7 +30875,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IXTemplateCompiler {
+	export interface IXTemplateCompiler extends Ext.IXTemplateParser {
 		/** [Method] This method is called to process lt tpl case action gt 
 		* @param action Object 
 		*/
@@ -30937,7 +30937,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IXTemplateParser {
+	export interface IXTemplateParser extends Ext.IBase {
 		/** [Property] (Number) */
 		level?: number;
 		/** [Method] This method is called to process lt tpl case action gt 
@@ -31003,7 +31003,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IZIndexManager {
+	export interface IZIndexManager extends Ext.IBase {
 		/** [Method] Brings the specified Component to the front of any other active Components in this ZIndexManager  
 		* @param comp any The id of the Component or a Ext.Component instance 
 		*/
@@ -31051,7 +31051,7 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface IWindowGroup {
+	export interface IWindowGroup extends Ext.IBase {
 		/** [Method] Brings the specified Component to the front of any other active Components in this ZIndexManager  
 		* @param comp any The id of the Component or a Ext.Component instance 
 		*/

@@ -74,8 +74,12 @@ class TypeManager
 	def getExtends( fileJson, isInterface ) {
 		def result = ""
 
-		if( fileJson.name == "Ext.Base" )
+		if( fileJson.name == "Ext.Base" ) {
 			fileJson.superclasses = [ "Ext.Class" ]
+		}
+		else if( !fileJson.superclasses && fileJson.extends ) {
+			fileJson.superclasses = [ fileJson.extends ]
+		}
 
 		if( fileJson.superclasses?.size() > 0 ) {
 			if( isInterface ) {

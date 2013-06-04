@@ -64,18 +64,20 @@ class AliasManager
 		def currentClassEvents = aliases.event[ className ]
 
 		eventJson.each{ thisEvent ->
-			currentClassEvents[ thisEvent.name ] = [:]
-			currentClassEvents[ thisEvent.name ].eventName = thisEvent.name
-			currentClassEvents[ thisEvent.name ].doc = thisEvent.shortDoc
-			currentClassEvents[ thisEvent.name ].params = []
+			if( thisEvent ) {
+				currentClassEvents[ thisEvent.name ] = [:]
+				currentClassEvents[ thisEvent.name ].eventName = thisEvent.name
+				currentClassEvents[ thisEvent.name ].doc = thisEvent.shortDoc
+				currentClassEvents[ thisEvent.name ].params = []
 
-			thisEvent.params.each{ thisEventParam ->
-				def paramData = [:]
-				paramData.name = thisEventParam.name
-				paramData.type = thisEventParam.type
-				paramData.doc = thisEventParam.doc
-				paramData.optional = thisEventParam.optional
-				currentClassEvents[ thisEvent.name ].params.push( paramData )
+				thisEvent.params.each{ thisEventParam ->
+					def paramData = [:]
+					paramData.name = thisEventParam.name
+					paramData.type = thisEventParam.type
+					paramData.doc = thisEventParam.doc
+					paramData.optional = thisEventParam.optional
+					currentClassEvents[ thisEvent.name ].params.push( paramData )
+				}
 			}
 		}
 	}

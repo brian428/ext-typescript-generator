@@ -10,7 +10,7 @@ project.ext {
 
 	config = new Config(
 		libraryName: "ExtJS",
-		libraryVersion: "4.2.0",
+		libraryVersion: "4.2.1",
 		singleDefinition: true,
 		useFullTyping: true,
 		interfaceOnly: true,
@@ -47,7 +47,8 @@ task initialize() << {
 
 task readFiles( dependsOn: initialize ) << {
 	TypeManager typeManager = project.typeManager
-	def jsonDocPath = new File( "./jsondocs" )
+	Config config = project.config
+	def jsonDocPath = new File( config.jsonDocPath )
 	def jsonDocCollection = files { jsonDocPath.listFiles() }
 	def jsonDocFiles = jsonDocCollection.getFiles()
 
@@ -138,15 +139,25 @@ def writeProperties( fileJson, isInterface, useExport ) {
 	TypeManager typeManager = project.typeManager
 	Config config = project.config
 
-	def classConfig = fileJson.members.cfg
-	def classProperties = fileJson.members.property
+	def classConfig
+	def classProperties
+
+	if( fileJson.members instanceof Map ) {
+		classConfig = fileJson.members.cfg
+		classProperties = fileJson.members.property
+	}
+	else {
+		classConfig = fileJson.members.findAll{ m -> m.tagname == "cfg" }
+		classProperties = fileJson.members.findAll{ m -> m.tagname == "property" }
+	}
+
 	def optionalFlag = isInterface ? "?" : ""
 	def thisType
 	def processedConfigNames = [:]
 	def exportString = useExport ? "export var " : ""
 
 	classConfig.each { value ->
-		if( value.owner == fileJson.name ) {
+		if( value?.owner == fileJson.name ) {
 			if( !config.includePrivate && value.private != true ) {
 
 				// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
@@ -166,7 +177,7 @@ def writeProperties( fileJson, isInterface, useExport ) {
 	}
 
 	classProperties.each { value ->
-		if( value.owner == fileJson.name ) {
+		if( value?.owner == fileJson.name ) {
 			if( !config.includePrivate && value.private != true ) {
 				if( !processedConfigNames[ value.name ] && !specialCases.shouldRemoveProperty( fileJson.name, value.name ) ) {
 					thisType = value.type
@@ -187,7 +198,15 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 	ISpecialCases specialCases = project.specialCases
 	TypeManager typeManager = project.typeManager
 
-	def classMethods = fileJson.members.method
+	def classMethods
+
+	if( fileJson.members instanceof Map ) {
+		classMethods = fileJson.members?.method
+	}
+	else {
+		classMethods = fileJson.members.findAll{ m -> m.tagname == "method" }
+	}
+
 	def optionalFlag = isInterface ? "?" : ""
 	def shouldUseExport = useExport
 	def isSingleton = fileJson.singleton && !isInterface
@@ -197,17 +216,21 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 		if( !isInterface || ( isInterface && thisMethod.name != "constructor" ) ) {
 			def forceInclude = specialCases.shouldForceInclude( fileJson.name, thisMethod.name )
 
-			if( typeManager.isOwner( fileJson, thisMethod.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || forceInclude ) {
+			if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || forceInclude ) {
 				if( ( !config.includePrivate && thisMethod.private != true ) || forceInclude || thisMethod.meta?.protected || thisMethod.meta?.template ) {
 					if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
 
+						processedNames[ thisMethod.name ] = true
+						if( !thisMethod.shortDoc && thisMethod.short_doc )
+							thisMethod.shortDoc = thisMethod.short_doc
+
 						// Convert return types for special cases where original return type isn't valid
-						if( specialCases.getReturnTypeOverride( thisMethod.return.type ) ) {
+						if( specialCases.getReturnTypeOverride( thisMethod.return?.type ) ) {
 							thisMethod.return.type = specialCases.getReturnTypeOverride( thisMethod.return.type )
 						}
 
 						// Convert return types for special cases where an overridden subclass method returns an invalid type
-						if( specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name ) ) {
+						if( thisMethod.return && specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name ) ) {
 							thisMethod.return.type = specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name )
 						}
 
@@ -218,7 +241,7 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 						}
 						else {
 
-							def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedTypes( thisMethod.return.type ) : [ "any" ]
+							def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedTypes( thisMethod.return?.type ) : [ "any" ]
 
 							tokenizedTypes.each { thisType ->
 

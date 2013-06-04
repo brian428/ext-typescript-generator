@@ -27,6 +27,9 @@ class Config
 	// Path to save definition into
 	def outputPath = "./target"
 
+	// Path to JSON docs
+	def jsonDocPath = "./jsondocs"
+
 	// True to only output JSDoc comments once for each method (and not for overrides) to reduce file size.
 	def omitOverrideComments = false
 

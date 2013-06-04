@@ -64,6 +64,7 @@ class TypeManager
 	}
 
 	def getTokenizedTypes( types ) {
+		if( !types ) types = "void"
 		def result = types.replaceAll( "\\|", "/").tokenize( "/" )
 		if( result.size() > 1 && types.contains( "Object" ) )
 			result = ["any"]

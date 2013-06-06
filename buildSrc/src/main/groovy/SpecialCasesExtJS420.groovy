@@ -20,6 +20,7 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		addRemovedProperty( "Ext.ComponentLoader", "renderer" )
 		addRemovedProperty( "Ext.data.TreeStore", "fields" )
 		addRemovedProperty( "Ext.util.ComponentDragger", "delegate" )
+		addRemovedProperty( "Ext.Video", "url" )
 
 		addRemovedMethod( "Ext.dd.StatusProxy", "hide" )
 		addRemovedMethod( "Ext.tip.Tip", "showAt" )

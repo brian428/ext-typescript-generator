@@ -9,8 +9,9 @@ defaultTasks 'build'
 project.ext {
 
 	config = new Config(
-		libraryName: "ExtJS",
-		libraryVersion: "4.2.1",
+		libraryName: "Touch",
+		libraryVersion: "2.2.1",
+		jsonDocPath: "./jsondocs_Touch_2.2.1",
 		singleDefinition: true,
 		useFullTyping: true,
 		interfaceOnly: true,
@@ -38,9 +39,10 @@ task wrapper( type: Wrapper ) {
 */
 
 task initialize() << {
-
+	Config config = project.config
 	println " "
-	println "Creating ExtJS Definition File..."
+	println "Creating ${ config.libraryName } ${ config.libraryVersion } Definition File..."
+	println "Using JSON docs from: ${ config.jsonDocPath }"
 	println " "
 
 }
@@ -221,6 +223,7 @@ def writeMethods( fileJson, processedNames, isInterface, useExport ) {
 					if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
 
 						processedNames[ thisMethod.name ] = true
+
 						if( !thisMethod.shortDoc && thisMethod.short_doc )
 							thisMethod.shortDoc = thisMethod.short_doc
 

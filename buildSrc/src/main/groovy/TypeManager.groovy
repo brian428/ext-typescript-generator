@@ -2,39 +2,55 @@ class TypeManager
 {
 	Config config
 
-	def normalizeType( typeName, forceFullType=false ) {
-		if( !config.useFullTyping && !forceFullType )
+	def normalizeType( typeName="any", forceFullType=false ) {
+		if( ( !config.useFullTyping && !forceFullType ) || typeName == "any" )
 			return "any"
 
 		typeName = typeName.replaceAll( "\\.\\.\\.", "" )
 
-		if( typeName.contains( "Ext." ) )
+		if( typeName.contains( "/" ) ) {
+			if( typeName == "Ext.dom.CompositeElementLite/Ext.dom.CompositeElement" ) typeName = "Ext.dom.CompositeElementLite"
+			if( typeName == "Date/null" ) typeName = "any"
+		}
+		else {
+			if( typeName.contains( "Ext." ) || typeName.contains( "ext." ) )
 			typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
 
-		// TypeScript gets confused between native Function type and Ext.Function class...
-		if( typeName == "Function" ) typeName = "any"
-		if( typeName == "Mixed" ) typeName = "any"
-		if( typeName == "TextNode" ) typeName = "any"
-		if( typeName == "Arguments" ) typeName = "any"
-		if( typeName == "Object" ) typeName = "any"
-		if( typeName == "String" ) typeName = "string"
-		if( typeName == '"SINGLE"' ) typeName = "string"
-		if( typeName == "Boolean" ) typeName = "bool"
-		if( typeName == "Number" ) typeName = "number"
-		if( typeName == "Date" ) typeName = "any"
+			def capitalizedTypeName = typeName.capitalize()
 
-		if( typeName == "Array" ) typeName = "any[]"
-		if( typeName == "String[]" ) typeName = "string[]"
-		if( typeName == "Boolean[]" ) typeName = "bool[]"
-		if( typeName == "Number[]" ) typeName = "number[]"
-		if( typeName == "Date[]" ) typeName = "any"
+			// TypeScript gets confused between native Function type and Ext.Function class...
+			if( capitalizedTypeName == "Function" ) typeName = "any"
+			if( capitalizedTypeName == "Mixed" ) typeName = "any"
+			if( capitalizedTypeName == "TextNode" ) typeName = "any"
+			if( capitalizedTypeName == "Arguments" ) typeName = "any"
+			if( capitalizedTypeName == "Object" ) typeName = "any"
+			if( capitalizedTypeName == "String" ) typeName = "string"
+			if( capitalizedTypeName == '"SINGLE"' ) typeName = "string"
+			if( capitalizedTypeName == "Boolean" ) typeName = "bool"
+			if( capitalizedTypeName == "Number" ) typeName = "number"
+			if( capitalizedTypeName == "Date" ) typeName = "any"
+			if( capitalizedTypeName == "*" ) typeName = "any"
+			if( capitalizedTypeName == "Null" ) typeName = "undefined"
+			if( capitalizedTypeName == "Htmlelement" ) typeName = "HTMLElement"
+			if( capitalizedTypeName == "Ext.data.INodeinterface" ) typeName = "Ext.data.INodeInterface"
+			if( capitalizedTypeName == "Ext.dom.ICompositeelementlite" ) typeName = "Ext.dom.ICompositeElementLite"
+			if( capitalizedTypeName == "Google.maps.Map" ) typeName = "any"
+
+			if( capitalizedTypeName == "Array" ) typeName = "any[]"
+			if( capitalizedTypeName == "String[]" ) typeName = "string[]"
+			if( capitalizedTypeName == "Boolean[]" ) typeName = "bool[]"
+			if( capitalizedTypeName == "Number[]" ) typeName = "number[]"
+			if( capitalizedTypeName == "Date[]" ) typeName = "any"
+			if( capitalizedTypeName == "Object[]" ) typeName = "any[]"
+			if( capitalizedTypeName == "Htmlelement[]" ) typeName = "HTMLElement[]"
+		}
 
 		return typeName
 	}
 
 	def convertToInterface( type ) {
 		def result = type
-		if( type.contains( "Ext." ) ) {
+		if( type.contains( "Ext." ) || type.contains( "ext." ) ) {
 			result = "${ getModule( type ) }.I${ getClassName( type ) }"
 		}
 		return result
@@ -48,14 +64,19 @@ class TypeManager
 
 		// Some package names absurdly duplicate class names like Ext.data.Store, so lowercase them...
 		tokenizedName.eachWithIndex { thisName, i ->
-			if( thisName != "Ext" ) tokenizedName[ i ] = thisName.toLowerCase()
+			if( thisName == "ext" ) {
+				tokenizedName[ i ] = "Ext"
+			}
+			else if( thisName != "Ext" ) {
+				tokenizedName[ i ] = thisName.toLowerCase()
+			}
 		}
 		return tokenizedName.join( "." )
 	}
 
 	def getClassName( name ) {
 		def tokenizedName = name.tokenize( "." )
-		def className = tokenizedName.last()
+		def className = tokenizedName.last()?.capitalize()
 		return className
 	}
 
@@ -65,6 +86,7 @@ class TypeManager
 
 	def getTokenizedTypes( types ) {
 		if( !types ) types = "void"
+		types = normalizeType( types )
 		def result = types.replaceAll( "\\|", "/").tokenize( "/" )
 		if( result.size() > 1 && types.contains( "Object" ) )
 			result = ["any"]

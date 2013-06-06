@@ -28,6 +28,7 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		addRemovedMethod( "Ext.tip.ToolTip", "showAt" )
 		addRemovedMethod( "Ext.tip.QuickTip", "showAt" )
 		addRemovedMethod( "Ext.Base", "statics" )
+		addRemovedMethod( "Ext.dom.Element", "select" )
 
 		addConvertMethodToProperty( "Ext.AbstractComponent", "animate" )
 		addConvertMethodToProperty( "Ext.util.Animate", "animate" )

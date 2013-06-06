@@ -18,7 +18,7 @@ declare module Ext {
 		/** [Config Option] (Number/String/Boolean) */
 		border?: any;
 		/** [Config Option] (Object[]) */
-		childEls?: Object[];
+		childEls?: any[];
 		/** [Config Option] (String) */
 		cls?: string;
 		/** [Config Option] (String) */
@@ -110,26 +110,26 @@ declare module Ext {
 		/** [Method] Adds each argument passed to this method to the childEls array  */
 		addChildEls?(): void;
 		/** [Method] Adds a CSS class to the top level element representing this component  
-		* @param cls any The CSS class name to add. 
+		* @param cls String/String[] The CSS class name to add. 
 		*/
 		addClass?( cls?:any ): any;
 		addClass?( cls?:string ): Ext.IComponent;
 		addClass?( cls?:string[] ): Ext.IComponent;
 		/** [Method] Adds a CSS class to the top level element representing this component  
-		* @param cls any The CSS class name to add. 
+		* @param cls String/String[] The CSS class name to add. 
 		*/
 		addCls?( cls?:any ): any;
 		addCls?( cls?:string ): Ext.IComponent;
 		addCls?( cls?:string[] ): Ext.IComponent;
 		/** [Method] Adds a cls to the uiCls array which will also call addUIClsToElement and adds to all elements of this component  
-		* @param classes any A string or an array of strings to add to the uiCls. 
-		* @param skip any (Boolean) skip true to skip adding it to the class and do it later (via the return). 
+		* @param classes String/String[] A string or an array of strings to add to the uiCls. 
+		* @param skip Object (Boolean) skip true to skip adding it to the class and do it later (via the return). 
 		*/
 		addClsWithUI?( classes?:any, skip?:any ): any;
 		addClsWithUI?( classes?:string, skip?:any ): void;
 		addClsWithUI?( classes?:string[], skip?:any ): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
@@ -140,11 +140,11 @@ declare module Ext {
 		*/
 		addListener?( element?:any, listeners?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -156,7 +156,7 @@ declare module Ext {
 		*/
 		addPropertyToState?( state?:any, propName?:string, value?:string ): bool;
 		/** [Method] Add events that will trigger the state to be saved  
-		* @param events any The event name or an array of event names. 
+		* @param events String/String[] The event name or an array of event names. 
 		*/
 		addStateEvents?( events?:any ): any;
 		addStateEvents?( events?:string ): void;
@@ -166,10 +166,10 @@ declare module Ext {
 		*/
 		addUIClsToElement?( ui?:string ): void;
 		/** [Method] Called by the layout system after the Component has been laid out  
-		* @param width any The width that was set 
-		* @param height any The height that was set 
-		* @param oldWidth any The old width, or undefined if this was the initial layout. 
-		* @param oldHeight any The old height, or undefined if this was the initial layout. 
+		* @param width Number The width that was set 
+		* @param height Number The height that was set 
+		* @param oldWidth Number/undefined The old width, or undefined if this was the initial layout. 
+		* @param oldHeight Number/undefined The old height, or undefined if this was the initial layout. 
 		*/
 		afterComponentLayout?( width?:any, height?:any, oldWidth?:any, oldHeight?:any ): any;
 		afterComponentLayout?( width?:number, height?:number, oldWidth?:number, oldHeight?:number ): void;
@@ -184,22 +184,22 @@ declare module Ext {
 		*/
 		afterSetPosition?( x?:number, y?:number ): void;
 		/** [Method] Aligns the element with another element relative to the specified anchor points  
-		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
-		* @param position any The position to align to 
-		* @param offsets any Offset the positioning by [x, y] 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param element Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or id of the element to align to. 
+		* @param position String The position to align to 
+		* @param offsets Number[] Offset the positioning by [x, y] 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		alignTo?( element?:any, position?:any, offsets?:any, animate?:any ): any;
 		alignTo?( element?:Ext.util.IPositionable, position?:string, offsets?:number[], animate?:any ): Ext.util.IPositionable;
 		alignTo?( element?:HTMLElement, position?:string, offsets?:number[], animate?:any ): Ext.util.IPositionable;
 		alignTo?( element?:string, position?:string, offsets?:number[], animate?:any ): Ext.util.IPositionable;
 		/** [Method] Anchors an element to another element and realigns it when the window is resized  
-		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
-		* @param position any The position to align to 
-		* @param offsets any Offset the positioning by [x, y] 
-		* @param animate any true for the default animation or a standard Element animation config object 
-		* @param monitorScroll any True to monitor body scroll and reposition. If this parameter is a number, it is used as the buffer delay in milliseconds. 
-		* @param callback any The function to call after the animation finishes 
+		* @param element Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or id of the element to align to. 
+		* @param position String The position to align to 
+		* @param offsets Number[] Offset the positioning by [x, y] 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
+		* @param monitorScroll Boolean/Number True to monitor body scroll and reposition. If this parameter is a number, it is used as the buffer delay in milliseconds. 
+		* @param callback Function The function to call after the animation finishes 
 		*/
 		anchorTo?( element?:any, position?:any, offsets?:any, animate?:any, monitorScroll?:any, callback?:any ): any;
 		anchorTo?( element?:Ext.util.IPositionable, position?:string, offsets?:number[], animate?:any, monitorScroll?:bool, callback?:any ): Ext.util.IPositionable;
@@ -215,7 +215,7 @@ declare module Ext {
 		*/
 		applyState?( state?:any ): void;
 		/** [Method] Template method to do any pre blur processing  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		beforeBlur?( e?:Ext.IEventObject ): void;
 		/** [Method] Occurs before componentLayout is run  
@@ -226,16 +226,16 @@ declare module Ext {
 		/** [Method] Invoked before the Component is destroyed  */
 		beforeDestroy?(): void;
 		/** [Method] Template method to do any pre focus processing  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		beforeFocus?( e?:Ext.IEventObject ): void;
 		/** [Method] Occurs before componentLayout is run  */
 		beforeLayout?(): void;
 		/** [Method] Calculates the new x y position to move this Positionable into a constrain region  
-		* @param constrainTo any The Element or Region into which this Component is to be constrained. Defaults to the element into which this Positionable was rendered, or this Component's {@link Ext.Component.constrainTo. 
-		* @param proposedPosition any A proposed [X, Y] position to test for validity and to coerce into constraints instead of using this Positionable's current position. 
-		* @param local any The proposedPosition is local (relative to floatParent if a floating Component) 
-		* @param proposedSize any A proposed [width, height] size to use when calculating constraints instead of using this Positionable's current size. 
+		* @param constrainTo String/HTMLElement/Ext.Element/Ext.util.Region The Element or Region into which this Component is to be constrained. Defaults to the element into which this Positionable was rendered, or this Component's {@link Ext.Component.constrainTo. 
+		* @param proposedPosition Number[] A proposed [X, Y] position to test for validity and to coerce into constraints instead of using this Positionable's current position. 
+		* @param local Boolean The proposedPosition is local (relative to floatParent if a floating Component) 
+		* @param proposedSize Number[] A proposed [width, height] size to use when calculating constraints instead of using this Positionable's current size. 
 		*/
 		calculateConstrainedPosition?( constrainTo?:any, proposedPosition?:any, local?:any, proposedSize?:any ): any;
 		calculateConstrainedPosition?( constrainTo?:string, proposedPosition?:number[], local?:bool, proposedSize?:number[] ): number[];
@@ -261,7 +261,7 @@ declare module Ext {
 		*/
 		enable?( silent?:bool ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -283,7 +283,7 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Forces this component to redo its componentLayout  */
 		forceComponentLayout?(): void;
 		/** [Method] Returns the current animation if this object has any effects actively running or queued else returns false  */
@@ -291,9 +291,9 @@ declare module Ext {
 		/** [Method] Returns the current animation if this object has any effects actively running or queued else returns false  */
 		getActiveAnimation?(): bool;
 		/** [Method] Gets the x y coordinates to align this element with another element  
-		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
-		* @param position any The position to align to 
-		* @param offsets any Offset the positioning by [x, y] 
+		* @param element Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or id of the element to align to. 
+		* @param position String The position to align to 
+		* @param offsets Number[] Offset the positioning by [x, y] 
 		*/
 		getAlignToXY?( element?:any, position?:any, offsets?:any ): any;
 		getAlignToXY?( element?:Ext.util.IPositionable, position?:string, offsets?:number[] ): number[];
@@ -313,9 +313,9 @@ declare module Ext {
 		/** [Method] Provides the link for Observable s fireEvent method to bubble up the ownership hierarchy  */
 		getBubbleTarget?(): Ext.container.IContainer;
 		/** [Method] Returns the X Y vector by which this Positionable s element must be translated to make a best attempt to constrain  
-		* @param constrainTo any The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
-		* @param proposedPosition any A proposed [X, Y] position to test for validity and to produce a vector for instead of using the element's current position 
-		* @param proposedSize any A proposed [width, height] size to constrain instead of using the element's current size 
+		* @param constrainTo Ext.util.Positionable/HTMLElement/String/Ext.util.Region The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
+		* @param proposedPosition Number[] A proposed [X, Y] position to test for validity and to produce a vector for instead of using the element's current position 
+		* @param proposedSize Number[] A proposed [width, height] size to constrain instead of using the element's current size 
 		*/
 		getConstrainVector?( constrainTo?:any, proposedPosition?:any, proposedSize?:any ): any;
 		getConstrainVector?( constrainTo?:Ext.util.IPositionable, proposedPosition?:number[], proposedSize?:number[] ): number[];
@@ -323,7 +323,7 @@ declare module Ext {
 		getConstrainVector?( constrainTo?:string, proposedPosition?:number[], proposedSize?:number[] ): number[];
 		getConstrainVector?( constrainTo?:Ext.util.IRegion, proposedPosition?:number[], proposedSize?:number[] ): number[];
 		/** [Method] Returns the X Y vector by which this Positionable s element must be translated to make a best attempt to constrain  
-		* @param constrainTo Ext.util.IPositionable The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
+		* @param constrainTo Ext.util.Positionable/HTMLElement/String/Ext.util.Region The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
 		* @param proposedPosition Number[] A proposed [X, Y] position to test for validity and to produce a vector for instead of using the element's current position 
 		* @param proposedSize Number[] A proposed [width, height] size to constrain instead of using the element's current size 
 		*/
@@ -338,7 +338,7 @@ declare module Ext {
 		/** [Method] Retrieves the id of this component  */
 		getId?(): string;
 		/** [Method] This function takes the position argument passed to onRender and returns a DOM element that you can use in the insert  
-		* @param position any Index, element id or element you want to put this component before. 
+		* @param position String/Number/Ext.dom.Element/HTMLElement Index, element id or element you want to put this component before. 
 		*/
 		getInsertPosition?( position?:any ): any;
 		getInsertPosition?( position?:string ): HTMLElement;
@@ -356,7 +356,7 @@ declare module Ext {
 		/** [Method] Returns the y coordinate of this element reletive to its offsetParent  */
 		getLocalY?(): number;
 		/** [Method] Returns the offsets of this element from the passed element  
-		* @param offsetsTo any The Positionable, HTMLElement, or element id to get get the offsets from. 
+		* @param offsetsTo Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or element id to get get the offsets from. 
 		*/
 		getOffsetsTo?( offsetsTo?:any ): any;
 		getOffsetsTo?( offsetsTo?:Ext.util.IPositionable ): number[];
@@ -413,7 +413,7 @@ declare module Ext {
 		*/
 		is?( selector?:string ): bool;
 		/** [Method] Determines whether this component is the descendant of a particular container  
-		* @param container Ext.IContainer 
+		* @param container Ext.Container 
 		*/
 		isDescendantOf?( container?:Ext.IContainer ): bool;
 		/** [Method] Method to determine whether this Component is currently disabled  */
@@ -440,11 +440,11 @@ declare module Ext {
 		*/
 		isXType?( xtype?:string, shallow?:bool ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -452,14 +452,14 @@ declare module Ext {
 		/** [Method] Move the element relative to its current position  
 		* @param direction String Possible values are:  "l" (or "left") "r" (or "right") "t" (or "top", or "up") "b" (or "bottom", or "down")  
 		* @param distance Number How far to move the element in pixels 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		move?( direction?:string, distance?:number, animate?:any ): void;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -473,14 +473,14 @@ declare module Ext {
 		*/
 		nextSibling?( selector?:string ): Ext.IComponent;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Method to manage awareness of when components are added to their respective Container firing an added event  
-		* @param container Ext.container.IContainer Container which holds the component. 
+		* @param container Ext.container.Container Container which holds the component. 
 		* @param pos Number Position at which the component was added. 
 		*/
 		onAdded?( container?:Ext.container.IContainer, pos?:number ): void;
@@ -498,7 +498,7 @@ declare module Ext {
 		*/
 		onRemoved?( destroying?:bool ): void;
 		/** [Method] Template method called when this Component s DOM structure is created  
-		* @param parentNode Ext.core.IElement The parent Element in which this Component's encapsulating element is contained. 
+		* @param parentNode Ext.core.Element The parent Element in which this Component's encapsulating element is contained. 
 		* @param containerIdx Number The index within the parent Container's child collection of this Component. 
 		*/
 		onRender?( parentNode?:Ext.core.IElement, containerIdx?:number ): void;
@@ -510,7 +510,7 @@ declare module Ext {
 		*/
 		onResize?( width?:any, height?:any, oldWidth?:any, oldHeight?:any ): void;
 		/** [Method] Template method to do any post blur processing  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		postBlur?( e?:Ext.IEventObject ): void;
 		/** [Method] Returns the previous node in the Component tree in tree traversal order  
@@ -538,13 +538,13 @@ declare module Ext {
 		*/
 		removeChildEls?( testFn?:any ): void;
 		/** [Method] Removes a CSS class from the top level element representing this component  
-		* @param cls any The CSS class name to remove. 
+		* @param cls String/String[] The CSS class name to remove. 
 		*/
 		removeCls?( cls?:any ): any;
 		removeCls?( cls?:string ): Ext.IComponent;
 		removeCls?( cls?:string[] ): Ext.IComponent;
 		/** [Method] Removes a cls to the uiCls array which will also call removeUIClsFromElement and removes it from all elements of thi  
-		* @param cls any A string or an array of strings to remove to the uiCls. 
+		* @param cls String/String[] A string or an array of strings to remove to the uiCls. 
 		*/
 		removeClsWithUI?( cls?:any ): any;
 		removeClsWithUI?( cls?:string ): void;
@@ -556,10 +556,10 @@ declare module Ext {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -569,8 +569,8 @@ declare module Ext {
 		*/
 		removeUIClsFromElement?( ui?:string ): void;
 		/** [Method] Renders the Component into the passed HTML element  
-		* @param container any The element this Component should be rendered into. If it is being created from existing markup, this should be omitted. 
-		* @param position any The element ID or DOM node index within the container before which this component will be inserted (defaults to appending to the end of the container) 
+		* @param container Ext.Element/HTMLElement/String The element this Component should be rendered into. If it is being created from existing markup, this should be omitted. 
+		* @param position String/Number The element ID or DOM node index within the container before which this component will be inserted (defaults to appending to the end of the container) 
 		*/
 		render?( container?:any, position?:any ): any;
 		render?( container?:Ext.IElement, position?:string ): void;
@@ -592,8 +592,8 @@ declare module Ext {
 		*/
 		savePropToState?( propName?:string, state?:any, stateName?:string ): bool;
 		/** [Method] Gathers additional named properties of the instance and adds their current values to the passed state object  
-		* @param propNames any The name (or array of names) of the property to save. 
-		* @param state any The state object in to which to save the property values. 
+		* @param propNames String/String[] The name (or array of names) of the property to save. 
+		* @param state Object The state object in to which to save the property values. 
 		*/
 		savePropsToState?( propNames?:any, state?:any ): any;
 		savePropsToState?( propNames?:string, state?:any ): any;
@@ -603,14 +603,14 @@ declare module Ext {
 		/** [Method] Ensures that all effects queued after sequenceFx is called on this object are run in sequence  */
 		sequenceFx?(): any;
 		/** [Method]  
-		* @param border any The border, see border. If a falsey value is passed the border will be removed. 
+		* @param border String/Number The border, see border. If a falsey value is passed the border will be removed. 
 		*/
 		setBorder?( border?:any ): any;
 		setBorder?( border?:string ): void;
 		setBorder?( border?:number ): void;
 		/** [Method] Sets the element s box  
 		* @param box Object The box to fill {x, y, width, height} 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setBox?( box?:any, animate?:any ): Ext.util.IPositionable;
 		/** [Method] Enable or disable the component  
@@ -640,19 +640,19 @@ declare module Ext {
 		*/
 		setLocalY?( y?:any ): Ext.util.IPositionable;
 		/** [Method] Sets the margin on the target element  
-		* @param margin any The margin to set. See the margin config. 
+		* @param margin Number/String The margin to set. See the margin config. 
 		*/
 		setMargin?( margin?:any ): any;
 		setMargin?( margin?:number ): void;
 		setMargin?( margin?:string ): void;
 		/** [Method] Sets the element s position and size to the specified region  
-		* @param region Ext.util.IRegion The region to fill 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param region Ext.util.Region The region to fill 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setRegion?( region?:Ext.util.IRegion, animate?:any ): Ext.util.IPositionable;
 		/** [Method] Sets the width and height of this Component  
-		* @param width any The new width to set. This may be one of:  A Number specifying the new width in the Element's Ext.Element.defaultUnits (by default, pixels). A String used to set the CSS width style. A size object in the format {width: widthValue, height: heightValue}. undefined to leave the width unchanged.  
-		* @param height any The new height to set (not required if a size object is passed as the first arg). This may be one of:  A Number specifying the new height in the Element's Ext.Element.defaultUnits (by default, pixels). A String used to set the CSS height style. Animation may not be used. undefined to leave the height unchanged.  
+		* @param width Number/String/Object The new width to set. This may be one of:  A Number specifying the new width in the Element's Ext.Element.defaultUnits (by default, pixels). A String used to set the CSS width style. A size object in the format {width: widthValue, height: heightValue}. undefined to leave the width unchanged.  
+		* @param height Number/String The new height to set (not required if a size object is passed as the first arg). This may be one of:  A Number specifying the new height in the Element's Ext.Element.defaultUnits (by default, pixels). A String used to set the CSS height style. Animation may not be used. undefined to leave the height unchanged.  
 		*/
 		setSize?( width?:any, height?:any ): any;
 		setSize?( width?:any, height?:number ): Ext.IComponent;
@@ -699,8 +699,8 @@ declare module Ext {
 		/** [Method] Ensures that all effects queued after syncFx is called on this object are run concurrently  */
 		syncFx?(): any;
 		/** [Method] Translates the passed page coordinates into left top css values for the element 
-		* @param x any The page x or an array containing [x, y] 
-		* @param y any The page y, required if x is not an array 
+		* @param x Number/Array The page x or an array containing [x, y] 
+		* @param y Number The page y, required if x is not an array 
 		*/
 		translatePoints?( x?:any, y?:any ): any;
 		translatePoints?( x?:number, y?:number ): any;
@@ -712,8 +712,8 @@ declare module Ext {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Navigates up the ownership hierarchy searching for an ancestor Container which matches any passed simple selector or 
-		* @param selector any The simple selector component or actual component to test. If not passed the immediate owner/activater is returned. 
-		* @param limit any This may be a selector upon which to stop the upward scan, or a limit of teh number of steps, or Component reference to stop on. 
+		* @param selector String/Ext.Component The simple selector component or actual component to test. If not passed the immediate owner/activater is returned. 
+		* @param limit String/Number/Ext.Component This may be a selector upon which to stop the upward scan, or a limit of teh number of steps, or Component reference to stop on. 
 		*/
 		up?( selector?:any, limit?:any ): any;
 		up?( selector?:string, limit?:string ): Ext.container.IContainer;
@@ -723,7 +723,7 @@ declare module Ext {
 		up?( selector?:string, limit?:Ext.IComponent ): Ext.container.IContainer;
 		up?( selector?:Ext.IComponent, limit?:Ext.IComponent ): Ext.container.IContainer;
 		/** [Method] Update the content area of a component  
-		* @param htmlOrData any If this component has been configured with a template via the tpl config then it will use this argument as data to populate the template. If this component was not configured with a template, the components content area will be updated via Ext.Element update. 
+		* @param htmlOrData String/Object If this component has been configured with a template via the tpl config then it will use this argument as data to populate the template. If this component was not configured with a template, the components content area will be updated via Ext.Element update. 
 		* @param loadScripts Boolean Only legitimate when using the html configuration. 
 		* @param callback Function Only legitimate when using the html configuration. Callback to execute when scripts have finished loading. 
 		*/
@@ -733,7 +733,7 @@ declare module Ext {
 		*/
 		updateLayout?( options?:any ): void;
 		/** [Method] Cancels layout of a component  
-		* @param comp Ext.IComponent 
+		* @param comp Ext.Component 
 		*/
 		cancelLayout?( comp?:Ext.IComponent ): void;
 		/** [Method] Performs all pending layouts that were scheduled while suspendLayouts was in effect  */
@@ -810,11 +810,11 @@ declare module Ext {
 		/** [Method] Returns the component to which this plugin is attached  */
 		getCmp?(): Ext.IComponent;
 		/** [Method] The init method is invoked after initComponent method has been run for the client Component  
-		* @param client Ext.IComponent The client Component which owns this plugin. 
+		* @param client Ext.Component The client Component which owns this plugin. 
 		*/
 		init?( client?:Ext.IComponent ): void;
 		/** [Method] Sets the component to which this plugin is attached  
-		* @param cmp Ext.IComponent Owner component. 
+		* @param cmp Ext.Component Owner component. 
 		*/
 		setCmp?( cmp?:Ext.IComponent ): void;
 	}
@@ -928,7 +928,7 @@ declare module Ext.app {
 		/** [Config Option] (String/String[]) */
 		models?: any;
 		/** [Config Option] (Object[]) */
-		refs?: Object[];
+		refs?: any[];
 		/** [Config Option] (String/String[]) */
 		stores?: any;
 		/** [Config Option] (String/String[]) */
@@ -936,28 +936,28 @@ declare module Ext.app {
 		/** [Property] (Ext.app.Application) */
 		application?: Ext.app.IApplication;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Registers one or more references  
-		* @param refs any 
+		* @param refs Object/Object[] 
 		*/
 		addRef?( refs?:any ): void;
 		/** [Method] Removes all listeners for this object including the managed listeners */
@@ -965,12 +965,12 @@ declare module Ext.app {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Adds listeners to components selected via Ext ComponentQuery  
-		* @param selectors any If a String, the second argument is used as the listeners, otherwise an object of selectors -> listeners is assumed 
+		* @param selectors String/Object If a String, the second argument is used as the listeners, otherwise an object of selectors -> listeners is assumed 
 		* @param listeners Object Config for listeners. 
 		*/
 		control?( selectors?:any, listeners?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -984,7 +984,7 @@ declare module Ext.app {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the base Ext app Application for this controller  */
 		getApplication?(): Ext.app.IApplication;
 		/** [Method] Returns instance of a Controller with the given id  
@@ -1012,7 +1012,7 @@ declare module Ext.app {
 		*/
 		hasRef?( ref?:any ): bool;
 		/** [Method] A template method that is called when your application boots  
-		* @param application Ext.app.IApplication 
+		* @param application Ext.app.Application 
 		*/
 		init?( application?:Ext.app.IApplication ): void;
 		/** [Method] Adds listeners to different event sources also called event domains  
@@ -1020,33 +1020,33 @@ declare module Ext.app {
 		*/
 		listen?( to?:any ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] A template method like init but called after the viewport is created  
-		* @param application Ext.app.IApplication 
+		* @param application Ext.app.Application 
 		*/
 		onLaunch?( application?:Ext.app.IApplication ): void;
 		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
@@ -1062,10 +1062,10 @@ declare module Ext.app {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -1147,12 +1147,12 @@ declare module Ext.app {
 		constructor();
 		/** [Method] Adds a set of component event listeners for a controller  
 		* @param selectors Object Config object containing selectors and listeners. 
-		* @param controller Ext.app.IController The listening controller instance. 
+		* @param controller Ext.app.Controller The listening controller instance. 
 		*/
 		static control( selectors?:any, controller?:Ext.app.IController ): void;
 		/** [Method] Adds a set of event domain listeners for a controller  
 		* @param to Object Config object containing domains, selectors and listeners. 
-		* @param controller Ext.app.IController The listening controller instance. 
+		* @param controller Ext.app.Controller The listening controller instance. 
 		*/
 		static listen( to?:any, controller?:Ext.app.IController ): void;
 		/** [Method] Removes all of a controller s attached listeners  
@@ -1173,7 +1173,7 @@ declare module Ext.app {
 		*/
 		match?( target?:any, selector?:string ): bool;
 		/** [Method] This method is called by the derived class to monitor fireEvent calls  
-		* @param observable Ext.IClass The Observable to monitor for events. 
+		* @param observable Ext.Class The Observable to monitor for events. 
 		*/
 		monitor?( observable?:Ext.IClass ): void;
 	}
@@ -1201,7 +1201,7 @@ declare module Ext {
 		*/
 		static difference( arrayA?:any[], arrayB?:any[] ): any[];
 		/** [Method] Iterates an array or an iterable value and invoke the given callback function for each item  
-		* @param iterable any The value to be iterated. If this argument is not iterable, the callback function is called once. 
+		* @param iterable Array/NodeList/Object The value to be iterated. If this argument is not iterable, the callback function is called once. 
 		* @param fn Function The callback function. If it returns false, the iteration stops and this method returns the current index. 
 		* @param scope Object The scope (this reference) in which the specified function is executed. 
 		* @param reverse Boolean Reverse the iteration order (loop from the end to the beginning) Defaults false 
@@ -1281,8 +1281,8 @@ declare module Ext {
 		*/
 		static map( array?:any[], fn?:any, scope?:any ): any[];
 		/** [Method] Returns the maximum value in the Array  
-		* @param array any The Array from which to select the maximum value. 
-		* @param comparisonFn any a function to perform the comparision which determines maximization. If omitted the ">" operator will be used. Note: gt = 1; eq = 0; lt = -1 
+		* @param array Array/NodeList The Array from which to select the maximum value. 
+		* @param comparisonFn Function a function to perform the comparision which determines maximization. If omitted the ">" operator will be used. Note: gt = 1; eq = 0; lt = -1 
 		*/
 		static max( array?:any, comparisonFn?:any ): any;
 		static max( array?:any[], comparisonFn?:any ): any;
@@ -1298,15 +1298,15 @@ declare module Ext {
 		*/
 		static merge( array1?:any[], array2?:any[], etc?:any[] ): any[];
 		/** [Method] Returns the minimum value in the Array  
-		* @param array any The Array from which to select the minimum value. 
-		* @param comparisonFn any a function to perform the comparision which determines minimization. If omitted the "&lt;" operator will be used. Note: gt = 1; eq = 0; lt = -1 
+		* @param array Array/NodeList The Array from which to select the minimum value. 
+		* @param comparisonFn Function a function to perform the comparision which determines minimization. If omitted the "&lt;" operator will be used. Note: gt = 1; eq = 0; lt = -1 
 		*/
 		static min( array?:any, comparisonFn?:any ): any;
 		static min( array?:any[], comparisonFn?:any ): any;
 		static min( array?:NodeList, comparisonFn?:any ): any;
 		/** [Method] Plucks the value of a property from each item in the Array  
-		* @param array any The Array of items to pluck the value from. 
-		* @param propertyName any The property name to pluck from each element. 
+		* @param array Array/NodeList The Array of items to pluck the value from. 
+		* @param propertyName String The property name to pluck from each element. 
 		*/
 		static pluck( array?:any, propertyName?:any ): any;
 		static pluck( array?:any[], propertyName?:string ): any[];
@@ -1363,17 +1363,17 @@ declare module Ext {
 		*/
 		static toArray( iterable?:any, start?:number, end?:number ): any[];
 		/** [Method] Creates a map object keyed by the elements of the given array  
-		* @param array any The Array to create the map from. 
-		* @param getKey any Name of the object property to use as a key or a function to extract the key. 
-		* @param scope any Value of this inside callback. 
+		* @param array Array The Array to create the map from. 
+		* @param getKey String/Function Name of the object property to use as a key or a function to extract the key. 
+		* @param scope Object Value of this inside callback. 
 		*/
 		static toMap( array?:any, getKey?:any, scope?:any ): any;
 		static toMap( array?:any[], getKey?:string, scope?:any ): any;
 		static toMap( array?:any[], getKey?:any, scope?:any ): any;
 		/** [Method] Creates a map object keyed by a property of elements of the given array  
-		* @param array any The Array to create the map from. 
-		* @param getKey any Name of the object property to use as a key or a function to extract the key. 
-		* @param scope any Value of this inside callback. 
+		* @param array Array The Array to create the map from. 
+		* @param getKey String/Function Name of the object property to use as a key or a function to extract the key. 
+		* @param scope Object Value of this inside callback. 
 		*/
 		static toValueMap( array?:any, getKey?:any, scope?:any ): any;
 		static toValueMap( array?:any[], getKey?:string, scope?:any ): any;
@@ -1395,17 +1395,17 @@ declare module Ext {
 		/** [Property] (Ext.Class) */
 		self?: Ext.IClass;
 		/** [Method] Call the original method that was previously overridden with override Ext define My Cat  constructor functi  
-		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
 		*/
 		callOverridden?( args?:any ): any;
 		callOverridden?( args?:any[] ): any;
 		/** [Method] Call the parent method of the current method  
-		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
 		*/
 		callParent?( args?:any ): any;
 		callParent?( args?:any[] ): any;
 		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
-		* @param args any The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
 		*/
 		callSuper?( args?:any ): any;
 		callSuper?( args?:any[] ): any;
@@ -1428,8 +1428,8 @@ declare module Ext {
 		/** [Method] Create a new instance of this Class  */
 		create?(): any;
 		/** [Method] Create aliases for existing prototype methods  
-		* @param alias any The new method name, or an object to set multiple aliases. See flexSetter 
-		* @param origin any The original method name 
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
 		*/
 		createAlias?( alias?:any, origin?:any ): void;
 		/** [Method] Get the current class name in string format  */
@@ -1539,7 +1539,7 @@ declare module Ext.button {
 		/** [Property] (Ext.Template) */
 		template?: Ext.ITemplate;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
@@ -1549,7 +1549,7 @@ declare module Ext.button {
 		*/
 		disable?( silent?:any ): void;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -1584,7 +1584,7 @@ declare module Ext.button {
 		*/
 		queryById?( id?:string ): Ext.IComponent;
 		/** [Method] Sets this button s glyph 
-		* @param glyph any the numeric charCode or string charCode/font-family. This parameter expects a format consistent with that of glyph 
+		* @param glyph Number/String the numeric charCode or string charCode/font-family. This parameter expects a format consistent with that of glyph 
 		*/
 		setGlyph?( glyph?:any ): any;
 		setGlyph?( glyph?:number ): Ext.button.IButton;
@@ -1623,7 +1623,7 @@ declare module Ext.button {
 		*/
 		setTextAlign?( align?:string ): void;
 		/** [Method] Sets the tooltip for this Button  
-		* @param tooltip any This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
+		* @param tooltip String/Object This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
 		*/
 		setTooltip?( tooltip?:any ): Ext.button.IButton;
 		/** [Method] inherit docs 
@@ -1738,7 +1738,7 @@ declare module Ext {
 		/** [Property] (Ext.Template) */
 		template?: Ext.ITemplate;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
@@ -1748,7 +1748,7 @@ declare module Ext {
 		*/
 		disable?( silent?:any ): void;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -1783,7 +1783,7 @@ declare module Ext {
 		*/
 		queryById?( id?:string ): Ext.IComponent;
 		/** [Method] Sets this button s glyph 
-		* @param glyph any the numeric charCode or string charCode/font-family. This parameter expects a format consistent with that of glyph 
+		* @param glyph Number/String the numeric charCode or string charCode/font-family. This parameter expects a format consistent with that of glyph 
 		*/
 		setGlyph?( glyph?:any ): any;
 		setGlyph?( glyph?:number ): Ext.button.IButton;
@@ -1822,7 +1822,7 @@ declare module Ext {
 		*/
 		setTextAlign?( align?:string ): void;
 		/** [Method] Sets the tooltip for this Button  
-		* @param tooltip any This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
+		* @param tooltip String/Object This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
 		*/
 		setTooltip?( tooltip?:any ): Ext.button.IButton;
 		/** [Method] inherit docs 
@@ -1849,7 +1849,7 @@ declare module Ext.button {
 		/** [Config Option] (String) */
 		forceIcon?: string;
 		/** [Config Option] (Object[]) */
-		items?: Object[];
+		items?: any[];
 		/** [Config Option] (String) */
 		prependText?: string;
 		/** [Config Option] (Boolean) */
@@ -1859,7 +1859,7 @@ declare module Ext.button {
 		/** [Method] Gets the currently active menu item  */
 		getActiveItem?(): Ext.menu.ICheckItem;
 		/** [Method] Sets the button s active menu item  
-		* @param item Ext.menu.ICheckItem The item to activate 
+		* @param item Ext.menu.CheckItem The item to activate 
 		* @param suppressEvent Boolean True to prevent the button's change event from firing. 
 		*/
 		setActiveItem?( item?:Ext.menu.ICheckItem, suppressEvent?:bool ): void;
@@ -1876,7 +1876,7 @@ declare module Ext {
 		/** [Config Option] (String) */
 		forceIcon?: string;
 		/** [Config Option] (Object[]) */
-		items?: Object[];
+		items?: any[];
 		/** [Config Option] (String) */
 		prependText?: string;
 		/** [Config Option] (Boolean) */
@@ -1886,7 +1886,7 @@ declare module Ext {
 		/** [Method] Gets the currently active menu item  */
 		getActiveItem?(): Ext.menu.ICheckItem;
 		/** [Method] Sets the button s active menu item  
-		* @param item Ext.menu.ICheckItem The item to activate 
+		* @param item Ext.menu.CheckItem The item to activate 
 		* @param suppressEvent Boolean True to prevent the button's change event from firing. 
 		*/
 		setActiveItem?( item?:Ext.menu.ICheckItem, suppressEvent?:bool ): void;
@@ -2135,7 +2135,7 @@ declare module Ext.chart {
 		/** [Config Option] (Object/Boolean) */
 		background?: any;
 		/** [Config Option] (Object[]) */
-		gradients?: Object[];
+		gradients?: any[];
 		/** [Config Option] (Number) */
 		insetPadding?: number;
 		/** [Config Option] (Boolean/Object) */
@@ -2147,22 +2147,22 @@ declare module Ext.chart {
 		/** [Config Option] (String) */
 		theme?: string;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -2173,7 +2173,7 @@ declare module Ext.chart {
 		*/
 		bindStore?( store?:any, initial?:any ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Removes all listeners for this object including the managed listeners */
@@ -2181,7 +2181,7 @@ declare module Ext.chart {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -2195,7 +2195,7 @@ declare module Ext.chart {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Gets the current store instance  */
 		getStore?(): Ext.data.IAbstractStore;
 		/** [Method] Gets the listeners to bind to a new store  */
@@ -2207,40 +2207,40 @@ declare module Ext.chart {
 		/** [Method] The initComponent template method is an important initialization step for a Component  */
 		initComponent?(): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Allows addition of behavior to the show operation  */
 		onShow?(): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
@@ -2261,10 +2261,10 @@ declare module Ext.chart {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -2300,7 +2300,7 @@ declare module Ext.chart {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -2324,15 +2324,15 @@ declare module Ext.chart {
 		/** [Config Option] (Object) */
 		label?: any;
 		/** [Method] Called each time a new label is created  
-		* @param storeItem Ext.data.IModel The element of the store that is related to the sprite. 
+		* @param storeItem Ext.data.Model The element of the store that is related to the sprite. 
 		* @param item Object The item related to the sprite. An item is an object containing the position of the shape used to describe the visualization and also pointing to the actual shape (circle, rectangle, path, etc). 
 		* @param i Number The index of the element created (i.e the first created label, second created label, etc). 
 		* @param display String The label.display type. May be false if the label is hidden 
 		*/
 		onCreateLabel?( storeItem?:Ext.data.IModel, item?:any, i?:number, display?:string ): Ext.draw.ISprite;
 		/** [Method] Called for updating the position of the label  
-		* @param label Ext.draw.ISprite The sprite that draws the label. 
-		* @param storeItem Ext.data.IModel The element of the store that is related to the sprite. 
+		* @param label Ext.draw.Sprite The sprite that draws the label. 
+		* @param storeItem Ext.data.Model The element of the store that is related to the sprite. 
 		* @param item Object The item related to the sprite. An item is an object containing the position of the shape used to describe the visualization and also pointing to the actual shape (circle, rectangle, path, etc). 
 		* @param i Number The index of the element to be updated (i.e. whether it is the first, second, third from the labelGroup) 
 		* @param display String The label.display type. May be false if the label is hidden 
@@ -2579,7 +2579,7 @@ declare module Ext.chart.series {
 		/** [Config Option] (String/String[]) */
 		yField?: any;
 		/** [Method] Iterates over a given record s values for each of this series s yFields executing a given function for each value  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		* @param fn Function 
 		* @param scope Object 
 		*/
@@ -2603,7 +2603,7 @@ declare module Ext.chart {
 		/** [Config Option] (String/String[]) */
 		yField?: any;
 		/** [Method] Iterates over a given record s values for each of this series s yFields executing a given function for each value  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		* @param fn Function 
 		* @param scope Object 
 		*/
@@ -2627,7 +2627,7 @@ declare module Ext.chart {
 		/** [Config Option] (String/String[]) */
 		yField?: any;
 		/** [Method] Iterates over a given record s values for each of this series s yFields executing a given function for each value  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		* @param fn Function 
 		* @param scope Object 
 		*/
@@ -2951,22 +2951,22 @@ declare module Ext.chart.series {
 		/** [Config Option] (String) */
 		type?: string;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -2981,7 +2981,7 @@ declare module Ext.chart.series {
 		*/
 		eachRecord?( fn?:any, scope?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -2995,7 +2995,7 @@ declare module Ext.chart.series {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] For a given x y point relative to the Surface find a corresponding item from this series if any  
 		* @param x Number 
 		* @param y Number 
@@ -3022,41 +3022,41 @@ declare module Ext.chart.series {
 		*/
 		isExcluded?( index?:any ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Called each time a new label is created  
-		* @param storeItem Ext.data.IModel The element of the store that is related to the sprite. 
+		* @param storeItem Ext.data.Model The element of the store that is related to the sprite. 
 		* @param item Object The item related to the sprite. An item is an object containing the position of the shape used to describe the visualization and also pointing to the actual shape (circle, rectangle, path, etc). 
 		* @param i Number The index of the element created (i.e the first created label, second created label, etc). 
 		* @param display String The label.display type. May be false if the label is hidden 
 		*/
 		onCreateLabel?( storeItem?:Ext.data.IModel, item?:any, i?:number, display?:string ): Ext.draw.ISprite;
 		/** [Method] Called for updating the position of the label  
-		* @param label Ext.draw.ISprite The sprite that draws the label. 
-		* @param storeItem Ext.data.IModel The element of the store that is related to the sprite. 
+		* @param label Ext.draw.Sprite The sprite that draws the label. 
+		* @param storeItem Ext.data.Model The element of the store that is related to the sprite. 
 		* @param item Object The item related to the sprite. An item is an object containing the position of the shape used to describe the visualization and also pointing to the actual shape (circle, rectangle, path, etc). 
 		* @param i Number The index of the element to be updated (i.e. whether it is the first, second, third from the labelGroup) 
 		* @param display String The label.display type. May be false if the label is hidden 
@@ -3077,10 +3077,10 @@ declare module Ext.chart.series {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -3201,7 +3201,7 @@ declare module Ext {
 		*/
 		static getDisplayName( object?:any ): string;
 		/** [Method] Get the name of the class by its reference or its instance  getName is usually invoked by the shorthand Ext getClass  
-		* @param object any 
+		* @param object Ext.Class/Object 
 		*/
 		static getName( object?:any ): string;
 		/** [Method] Get the name of a class by its alias  
@@ -3231,8 +3231,8 @@ declare module Ext {
 		*/
 		static set( name?:string, value?:any ): Ext.IClassManager;
 		/** [Method] Register the alias for a class  
-		* @param cls any a reference to a class or a className 
-		* @param alias any Alias to use when referring to this class 
+		* @param cls Ext.Class/String a reference to a class or a className 
+		* @param alias String Alias to use when referring to this class 
 		*/
 		static setAlias( cls?:any, alias?:any ): any;
 		static setAlias( cls?:Ext.IClass, alias?:string ): Ext.IClassManager;
@@ -3295,9 +3295,9 @@ declare module Ext {
 		*/
 		afterSetPosition?( ax?:any, ay?:any ): void;
 		/** [Method] Invoked after the Component is shown after onShow is called 
-		* @param animateTarget any 
-		* @param callback any 
-		* @param scope any 
+		* @param animateTarget String/Ext.Element 
+		* @param callback Function 
+		* @param scope Object 
 		*/
 		afterShow?( animateTarget?:any, callback?:any, scope?:any ): any;
 		afterShow?( animateTarget?:string, callback?:any, scope?:any ): void;
@@ -3321,7 +3321,7 @@ declare module Ext {
 		*/
 		cloneConfig?( overrides?:any ): Ext.IComponent;
 		/** [Method] Moves this floating Component into a constrain region  
-		* @param constrainTo any The Element or Region into which this Component is to be constrained. Defaults to the element into which this floating Component was rendered. 
+		* @param constrainTo String/HTMLElement/Ext.Element/Ext.util.Region The Element or Region into which this Component is to be constrained. Defaults to the element into which this floating Component was rendered. 
 		*/
 		doConstrain?( constrainTo?:any ): any;
 		doConstrain?( constrainTo?:string ): void;
@@ -3333,16 +3333,16 @@ declare module Ext {
 		*/
 		findParentBy?( fn?:any ): Ext.container.IContainer;
 		/** [Method] Find a container above this component at any level by xtype or class See also the up method  
-		* @param xtype any The xtype string for a component, or the class of the component directly 
+		* @param xtype String/Ext.Class The xtype string for a component, or the class of the component directly 
 		*/
 		findParentByType?( xtype?:any ): any;
 		findParentByType?( xtype?:string ): Ext.container.IContainer;
 		findParentByType?( xtype?:Ext.IClass ): Ext.container.IContainer;
 		/** [Method] Try to focus this component  
-		* @param selectText any If applicable, true to also select the text in this component 
-		* @param delay any Delay the focus this number of milliseconds (true for 10 milliseconds). 
-		* @param callback any Only needed if the delay parameter is used. A function to call upon focus. 
-		* @param scope any Only needed if the delay parameter is used. The scope (this reference) in which to execute the callback. 
+		* @param selectText Boolean If applicable, true to also select the text in this component 
+		* @param delay Boolean/Number Delay the focus this number of milliseconds (true for 10 milliseconds). 
+		* @param callback Function Only needed if the delay parameter is used. A function to call upon focus. 
+		* @param scope Function Only needed if the delay parameter is used. The scope (this reference) in which to execute the callback. 
 		*/
 		focus?( selectText?:any, delay?:any, callback?:any, scope?:any ): any;
 		focus?( selectText?:bool, delay?:bool, callback?:any, scope?:any ): Ext.IComponent;
@@ -3360,9 +3360,9 @@ declare module Ext {
 		/** [Method] Gets the xtype for this component as registered with Ext ComponentManager  */
 		getXType?(): string;
 		/** [Method] Hides this Component setting it to invisible using the configured hideMode  
-		* @param animateTarget any only valid for floating Components such as Windows or ToolTips, or regular Components which have been configured with floating: true.. The target to which the Component should animate while hiding. 
-		* @param callback any A callback function to call after the Component is hidden. 
-		* @param scope any The scope (this reference) in which the callback is executed. Defaults to this Component. 
+		* @param animateTarget String/Ext.Element/Ext.Component only valid for floating Components such as Windows or ToolTips, or regular Components which have been configured with floating: true.. The target to which the Component should animate while hiding. 
+		* @param callback Function A callback function to call after the Component is hidden. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to this Component. 
 		*/
 		hide?( animateTarget?:any, callback?:any, scope?:any ): any;
 		hide?( animateTarget?:string, callback?:any, scope?:any ): Ext.IComponent;
@@ -3375,18 +3375,18 @@ declare module Ext {
 		/** [Method] Allows addition of behavior to the destroy operation  */
 		onDestroy?(): void;
 		/** [Method] Possibly animates down to a target element  
-		* @param animateTarget any 
-		* @param callback any 
-		* @param scope any 
+		* @param animateTarget String/Ext.Element/Ext.Component 
+		* @param callback Function 
+		* @param scope Object 
 		*/
 		onHide?( animateTarget?:any, callback?:any, scope?:any ): any;
 		onHide?( animateTarget?:string, callback?:any, scope?:any ): void;
 		onHide?( animateTarget?:Ext.IElement, callback?:any, scope?:any ): void;
 		onHide?( animateTarget?:Ext.IComponent, callback?:any, scope?:any ): void;
 		/** [Method] Allows addition of behavior to the show operation  
-		* @param animateTarget any 
-		* @param callback any 
-		* @param scope any 
+		* @param animateTarget String/Ext.Element 
+		* @param callback Function 
+		* @param scope Object 
 		*/
 		onShow?( animateTarget?:any, callback?:any, scope?:any ): any;
 		onShow?( animateTarget?:string, callback?:any, scope?:any ): void;
@@ -3397,14 +3397,14 @@ declare module Ext {
 		*/
 		onShowComplete?( callback?:any, scope?:any ): void;
 		/** [Method] Scrolls this Component s target element by the passed delta values optionally animating  
-		* @param deltaX any Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
-		* @param deltaY any Either the y delta, or an animate flag or config object. 
-		* @param animate any Animate flag/config object if the delta values were passed separately. 
+		* @param deltaX Number/Number[]/Object Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
+		* @param deltaY Number/Boolean/Object Either the y delta, or an animate flag or config object. 
+		* @param animate Boolean/Object Animate flag/config object if the delta values were passed separately. 
 		*/
 		scrollBy?( deltaX?:any, deltaY?:any, animate?:any ): void;
 		/** [Method] This method is called internally by Ext ZIndexManager to signal that a floating Component has either been moved to th  
 		* @param active Boolean True to activate the Component, false to deactivate it. 
-		* @param newActive Ext.IComponent The newly active Component which is taking over topmost zIndex position. 
+		* @param newActive Ext.Component The newly active Component which is taking over topmost zIndex position. 
 		*/
 		setActive?( active?:bool, newActive?:Ext.IComponent ): void;
 		/** [Method] Sets the overflow on the content element of the component  
@@ -3416,7 +3416,7 @@ declare module Ext {
 		*/
 		setBorderRegion?( region?:string ): string;
 		/** [Method] This method allows you to show or hide a LoadMask on top of this component  
-		* @param load any True to show the default LoadMask, a config object that will be passed to the LoadMask constructor, or a message String to show. False to hide the current LoadMask. 
+		* @param load Boolean/Object/String True to show the default LoadMask, a config object that will be passed to the LoadMask constructor, or a message String to show. False to hide the current LoadMask. 
 		* @param targetEl Boolean True to mask the targetEl of this Component instead of the this.el. For example, setting this to true on a Panel will cause only the body to be masked. 
 		*/
 		setLoading?( load?:any, targetEl?:bool ): Ext.ILoadMask;
@@ -3426,17 +3426,17 @@ declare module Ext {
 		*/
 		setOverflowXY?( overflowX?:string, overflowY?:string ): Ext.IComponent;
 		/** [Method] Sets the page XY position of the component  
-		* @param x any The new x position or an array of [x,y]. 
-		* @param y any The new y position. 
-		* @param animate any True to animate the Component into its new position. You may also pass an animation configuration. 
+		* @param x Number/Number[] The new x position or an array of [x,y]. 
+		* @param y Number The new y position. 
+		* @param animate Boolean/Object True to animate the Component into its new position. You may also pass an animation configuration. 
 		*/
 		setPagePosition?( x?:any, y?:any, animate?:any ): any;
 		setPagePosition?( x?:number, y?:number, animate?:any ): Ext.IComponent;
 		setPagePosition?( x?:number[], y?:number, animate?:any ): Ext.IComponent;
 		/** [Method] Sets the left and top of the component  
-		* @param x any The new left, an array of [x,y], or animation config object containing x and y properties. 
+		* @param x Number/Number[]/Object The new left, an array of [x,y], or animation config object containing x and y properties. 
 		* @param y Number The new top. 
-		* @param animate any If true, the Component is animated into its new position. You may also pass an animation configuration. 
+		* @param animate Boolean/Object If true, the Component is animated into its new position. You may also pass an animation configuration. 
 		*/
 		setPosition?( x?:any, y?:number, animate?:any ): Ext.IComponent;
 		/** [Method] Sets the weight config property for this component  
@@ -3444,25 +3444,25 @@ declare module Ext {
 		*/
 		setRegionWeight?( weight?:number ): number;
 		/** [Method] Shows this Component rendering it first if autoRender or floating are true  
-		* @param animateTarget any only valid for floating Components such as Windows or ToolTips, or regular Components which have been configured with floating: true. The target from which the Component should animate from while opening. 
-		* @param callback any A callback function to call after the Component is displayed. Only necessary if animation was specified. 
-		* @param scope any The scope (this reference) in which the callback is executed. Defaults to this Component. 
+		* @param animateTarget String/Ext.Element only valid for floating Components such as Windows or ToolTips, or regular Components which have been configured with floating: true. The target from which the Component should animate from while opening. 
+		* @param callback Function A callback function to call after the Component is displayed. Only necessary if animation was specified. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to this Component. 
 		*/
 		show?( animateTarget?:any, callback?:any, scope?:any ): any;
 		show?( animateTarget?:string, callback?:any, scope?:any ): Ext.IComponent;
 		show?( animateTarget?:Ext.IElement, callback?:any, scope?:any ): Ext.IComponent;
 		/** [Method] Displays component at specific xy position  
-		* @param x any The new x position or array of [x,y]. 
-		* @param y any The new y position 
-		* @param animate any True to animate the Component into its new position. You may also pass an animation configuration. 
+		* @param x Number/Number[] The new x position or array of [x,y]. 
+		* @param y Number The new y position 
+		* @param animate Boolean/Object True to animate the Component into its new position. You may also pass an animation configuration. 
 		*/
 		showAt?( x?:any, y?:any, animate?:any ): any;
 		showAt?( x?:number, y?:number, animate?:any ): Ext.IComponent;
 		showAt?( x?:number[], y?:number, animate?:any ): Ext.IComponent;
 		/** [Method] Shows this component by the specified Component or Element  
-		* @param component any The Ext.Component or Ext.Element to show the component by. 
-		* @param position any Alignment position as used by Ext.util.Positionable.getAlignToXY. Defaults to defaultAlign. 
-		* @param offsets any Alignment offsets as used by Ext.util.Positionable.getAlignToXY. 
+		* @param component Ext.Component/Ext.dom.Element The Ext.Component or Ext.Element to show the component by. 
+		* @param position String Alignment position as used by Ext.util.Positionable.getAlignToXY. Defaults to defaultAlign. 
+		* @param offsets Number[] Alignment offsets as used by Ext.util.Positionable.getAlignToXY. 
 		*/
 		showBy?( component?:any, position?:any, offsets?:any ): any;
 		showBy?( component?:Ext.IComponent, position?:string, offsets?:number[] ): Ext.IComponent;
@@ -3488,7 +3488,7 @@ declare module Ext {
 		/** [Config Option] (Ext.Component/String) */
 		target?: any;
 		/** [Method] Set a Ext Component as the target of this loader  
-		* @param target any The component to be the target of this loader. If a string is passed it will be looked up via its id. 
+		* @param target String/Ext.Component The component to be the target of this loader. If a string is passed it will be looked up via its id. 
 		*/
 		setTarget?( target?:any ): any;
 		setTarget?( target?:string ): void;
@@ -3532,13 +3532,13 @@ declare module Ext {
 	}
 	export class ComponentQuery {
 		/** [Method] Tests whether the passed Component matches the selector string  
-		* @param component Ext.IComponent The Component to test 
+		* @param component Ext.Component The Component to test 
 		* @param selector String The selector string to test against. 
 		*/
 		static is( component?:Ext.IComponent, selector?:string ): bool;
 		/** [Method] Returns an array of matched Components from within the passed root object  
 		* @param selector String The selector string to filter returned Components 
-		* @param root Ext.container.IContainer The Container within which to perform the query. If omitted, all Components within the document are included in the search. This parameter may also be an array of Components to filter according to the selector. 
+		* @param root Ext.container.Container The Container within which to perform the query. If omitted, all Components within the document are included in the search. This parameter may also be an array of Components to filter according to the selector. 
 		*/
 		static query( selector?:string, root?:Ext.container.IContainer ): Ext.IComponent[];
 	}
@@ -3568,17 +3568,17 @@ declare module Ext.container {
 		/** [Config Option] (Boolean) */
 		suspendLayout?: bool;
 		/** [Method] Adds Component s to this Container  
-		* @param component any Either one or more Components to add or an Array of Components to add. See items for additional information. 
+		* @param component Ext.Component[]|Object[]/Ext.Component.../Object... Either one or more Components to add or an Array of Components to add. See items for additional information. 
 		*/
 		add?( component?:any ): Ext.IComponent[];
 		/** [Method] Adds Component s to this Container  
-		* @param component any Either one or more Components to add or an Array of Components to add. See items for additional information. 
+		* @param component Ext.Component[]|Object[]/Ext.Component.../Object... Either one or more Components to add or an Array of Components to add. See items for additional information. 
 		*/
 		add?( component?:any ): Ext.IComponent;
 		/** [Method] Called by the layout system after the Component has been laid out  */
 		afterComponentLayout?(): void;
 		/** [Method] Invoked after the Container has laid out and rendered if necessary its child Components  
-		* @param layout Ext.layout.container.IContainer 
+		* @param layout Ext.layout.container.Container 
 		*/
 		afterLayout?( layout?:Ext.layout.container.IContainer ): void;
 		/** [Method] Cascades down the component container heirarchy from this component passed in the first call  calling the specified  
@@ -3588,13 +3588,13 @@ declare module Ext.container {
 		*/
 		cascade?( fn?:any, scope?:any, args?:any[] ): Ext.IContainer;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
 		child?( selector?:Ext.IComponent ): any;
 		/** [Method] Determines whether the passed Component is either an immediate child of this Container or whether it is a descendant  
-		* @param comp Ext.IComponent The Component to test. 
+		* @param comp Ext.Component The Component to test. 
 		* @param deep Boolean Pass true to test for the Component being a descendant at any level. 
 		*/
 		contains?( comp?:Ext.IComponent, deep?:bool ): bool;
@@ -3603,13 +3603,13 @@ declare module Ext.container {
 		/** [Method] Manually force this container s layout to be recalculated  */
 		doLayout?(): Ext.container.IContainer;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
 		down?( selector?:Ext.IComponent ): any;
 		/** [Method] Examines this container s items property and gets a direct child component of this container  
-		* @param comp any This parameter may be any of the following:  a String : representing the itemId or id of the child component. a Number : representing the position of the child component within the items property For additional information see Ext.util.MixedCollection.get. 
+		* @param comp String/Number This parameter may be any of the following:  a String : representing the itemId or id of the child component. a Number : representing the position of the child component within the items property For additional information see Ext.util.MixedCollection.get. 
 		*/
 		getComponent?( comp?:any ): any;
 		getComponent?( comp?:string ): Ext.IComponent;
@@ -3622,33 +3622,33 @@ declare module Ext.container {
 		getRefItems?( deep?:any ): void;
 		/** [Method] Inserts a Component into this Container at a specified index  
 		* @param index Number The index at which the Component will be inserted into the Container's items collection 
-		* @param component any The child Component to insert. Ext uses lazy rendering, and will only render the inserted Component should it become necessary. A Component config object may be passed in order to avoid the overhead of constructing a real Component object if lazy rendering might mean that the inserted Component will not be rendered immediately. To take advantage of this 'lazy instantiation', set the Ext.Component.xtype config property to the registered type of the Component wanted. For a list of all available xtypes, see Ext.enums.Widget. 
+		* @param component Ext.Component/Object The child Component to insert. Ext uses lazy rendering, and will only render the inserted Component should it become necessary. A Component config object may be passed in order to avoid the overhead of constructing a real Component object if lazy rendering might mean that the inserted Component will not be rendered immediately. To take advantage of this 'lazy instantiation', set the Ext.Component.xtype config property to the registered type of the Component wanted. For a list of all available xtypes, see Ext.enums.Widget. 
 		*/
 		insert?( index?:number, component?:any ): Ext.IComponent;
 		/** [Method] Determines whether this Container is an ancestor of the passed Component  
-		* @param possibleDescendant Ext.IComponent The Component to test for presence within this Container's subtree. 
+		* @param possibleDescendant Ext.Component The Component to test for presence within this Container's subtree. 
 		*/
 		isAncestor?( possibleDescendant?:Ext.IComponent ): void;
 		/** [Method] Moves a Component within the Container 
-		* @param fromIdx any The index/component to move. 
-		* @param toIdx any The new index for the Component. 
+		* @param fromIdx Number/Ext.Component The index/component to move. 
+		* @param toIdx Number The new index for the Component. 
 		*/
 		move?( fromIdx?:any, toIdx?:any ): any;
 		move?( fromIdx?:number, toIdx?:number ): Ext.IComponent;
 		move?( fromIdx?:Ext.IComponent, toIdx?:number ): Ext.IComponent;
 		/** [Method] This method is invoked after a new Component has been added  
-		* @param component Ext.IComponent 
+		* @param component Ext.Component 
 		* @param position Number 
 		*/
 		onAdd?( component?:Ext.IComponent, position?:number ): void;
 		/** [Method] This method is invoked before adding a new child Component  
-		* @param item Ext.IComponent 
+		* @param item Ext.Component 
 		*/
 		onBeforeAdd?( item?:Ext.IComponent ): void;
 		/** [Method] Called after the component is moved this method is empty by default but can be implemented by any subclass that need  */
 		onPosition?(): void;
 		/** [Method] This method is invoked after a new Component has been removed  
-		* @param component Ext.IComponent 
+		* @param component Ext.Component 
 		* @param autoDestroy Boolean 
 		*/
 		onRemove?( component?:Ext.IComponent, autoDestroy?:bool ): void;
@@ -3668,8 +3668,8 @@ declare module Ext.container {
 		*/
 		queryById?( id?:string ): Ext.IComponent;
 		/** [Method] Removes a component from this container  
-		* @param component any The component reference or id to remove. 
-		* @param autoDestroy any True to automatically invoke the removed Component's Ext.Component.destroy function. Defaults to the value of this Container's autoDestroy config. 
+		* @param component Ext.Component/String The component reference or id to remove. 
+		* @param autoDestroy Boolean True to automatically invoke the removed Component's Ext.Component.destroy function. Defaults to the value of this Container's autoDestroy config. 
 		*/
 		remove?( component?:any, autoDestroy?:any ): any;
 		remove?( component?:Ext.IComponent, autoDestroy?:bool ): Ext.IComponent;
@@ -3729,8 +3729,8 @@ declare module Ext.container {
 		/** [Config Option] (Number/Object) */
 		anchorSize?: any;
 		/** [Method] Return the immediate child Component in which the passed element is located  
-		* @param el any The element to test (or ID of element). 
-		* @param deep any If true, returns the deepest descendant Component which contains the passed element. 
+		* @param el Ext.Element/HTMLElement/String The element to test (or ID of element). 
+		* @param deep Boolean If true, returns the deepest descendant Component which contains the passed element. 
 		*/
 		getChildByElement?( el?:any, deep?:any ): any;
 		getChildByElement?( el?:Ext.IElement, deep?:bool ): Ext.IComponent;
@@ -3743,8 +3743,8 @@ declare module Ext {
 		/** [Config Option] (Number/Object) */
 		anchorSize?: any;
 		/** [Method] Return the immediate child Component in which the passed element is located  
-		* @param el any The element to test (or ID of element). 
-		* @param deep any If true, returns the deepest descendant Component which contains the passed element. 
+		* @param el Ext.Element/HTMLElement/String The element to test (or ID of element). 
+		* @param deep Boolean If true, returns the deepest descendant Component which contains the passed element. 
 		*/
 		getChildByElement?( el?:any, deep?:any ): any;
 		getChildByElement?( el?:Ext.IElement, deep?:bool ): Ext.IComponent;
@@ -3757,12 +3757,12 @@ declare module Ext.container {
 		/** [Config Option] (Object) */
 		defaultDockWeights?: any;
 		/** [Method] Adds docked item s to the container  
-		* @param component any The Component or array of components to add. The components must include a 'dock' parameter on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
+		* @param component Object/Object[] The Component or array of components to add. The components must include a 'dock' parameter on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
 		* @param pos Number The index at which the Component will be added 
 		*/
 		addDocked?( component?:any, pos?:number ): Ext.IComponent[];
 		/** [Method] Finds a docked component by id itemId or position  
-		* @param comp any The id, itemId or position of the docked component (see getComponent for details) 
+		* @param comp String/Number The id, itemId or position of the docked component (see getComponent for details) 
 		*/
 		getDockedComponent?( comp?:any ): any;
 		getDockedComponent?( comp?:string ): Ext.IComponent;
@@ -3774,19 +3774,19 @@ declare module Ext.container {
 		getDockedItems?( selector?:string, beforeBody?:bool ): Ext.IComponent[];
 		/** [Method] Inserts docked item s to the panel at the indicated position  
 		* @param pos Number The index at which the Component will be inserted 
-		* @param component any The Component or array of components to add. The components must include a 'dock' paramater on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
+		* @param component Object/Object[] The Component or array of components to add. The components must include a 'dock' paramater on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
 		*/
 		insertDocked?( pos?:number, component?:any ): void;
 		/** [Method] Invoked after a docked item is added to the Panel  
-		* @param component Ext.IComponent 
+		* @param component Ext.Component 
 		*/
 		onDockedAdd?( component?:Ext.IComponent ): void;
 		/** [Method] Invoked after a docked item is removed from the Panel  
-		* @param component Ext.IComponent 
+		* @param component Ext.Component 
 		*/
 		onDockedRemove?( component?:Ext.IComponent ): void;
 		/** [Method] Removes the docked item from the panel  
-		* @param item Ext.IComponent The Component to remove. 
+		* @param item Ext.Component The Component to remove. 
 		* @param autoDestroy Boolean Destroy the component after removal. 
 		*/
 		removeDocked?( item?:Ext.IComponent, autoDestroy?:bool ): void;
@@ -3821,7 +3821,7 @@ declare module Ext.data {
 		/** [Config Option] (String) */
 		batchUpdateMode?: string;
 		/** [Config Option] (Object[]) */
-		fields?: Object[];
+		fields?: any[];
 		/** [Config Option] (Boolean) */
 		filterOnLoad?: bool;
 		/** [Config Option] (Object[]/Function[]) */
@@ -3849,22 +3849,22 @@ declare module Ext.data {
 		/** [Property] (Ext.data.Model[]) */
 		removed?: Ext.data.IModel[];
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -3874,7 +3874,7 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -3888,7 +3888,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns a comparator function which compares two items and returns 1 0 or 1 depending on the currently defined set  */
 		generateComparator?(): void;
 		/** [Method] Gets the first sorter from the sorters collection excluding any groupers that may be in place */
@@ -3916,26 +3916,26 @@ declare module Ext.data {
 		*/
 		load?( options?:any ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -3960,10 +3960,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -3979,12 +3979,12 @@ declare module Ext.data {
 		/** [Method] Saves all pending changes via the configured proxy  */
 		save?(): void;
 		/** [Method] Sets the Store s Proxy by string config object or Proxy instance 
-		* @param proxy any The new Proxy, which can be either a type string, a configuration object or an Ext.data.proxy.Proxy instance 
+		* @param proxy String/Object/Ext.data.proxy.Proxy The new Proxy, which can be either a type string, a configuration object or an Ext.data.proxy.Proxy instance 
 		*/
 		setProxy?( proxy?:any ): Ext.data.proxy.IProxy;
 		/** [Method] Sorts the data in the Store by one or more of its properties  
-		* @param sorters any Either a string name of one of the fields in this Store's configured Model, or an array of sorter configurations. 
-		* @param direction any The overall direction to sort the data by. 
+		* @param sorters String/Ext.util.Sorter[] Either a string name of one of the fields in this Store's configured Model, or an array of sorter configurations. 
+		* @param direction String The overall direction to sort the data by. 
 		*/
 		sort?( sorters?:any, direction?:any ): any;
 		sort?( sorters?:string, direction?:string ): Ext.util.ISorter[];
@@ -4010,7 +4010,7 @@ declare module Ext.data {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Creates a store from config object  
-		* @param store any A config for the store to be created. It may contain a type field which defines the particular type of store to create. Alteratively passing an actual store to this method will just return it, no changes made. 
+		* @param store Object/Ext.data.AbstractStore A config for the store to be created. It may contain a type field which defines the particular type of store to create. Alteratively passing an actual store to this method will just return it, no changes made. 
 		*/
 		create?( store?:any ): Ext.data.IAbstractStore;
 	}
@@ -4173,22 +4173,22 @@ declare module Ext.data {
 		*/
 		add?( operation?:any ): Ext.data.IBatch;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -4198,7 +4198,7 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -4212,32 +4212,32 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -4258,10 +4258,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -4335,22 +4335,22 @@ declare module Ext.data {
 		/** [Method] Aborts all active requests */
 		abortAll?(): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -4360,7 +4360,7 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -4374,7 +4374,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
@@ -4384,26 +4384,26 @@ declare module Ext.data {
 		*/
 		isLoading?( request?:any ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -4426,10 +4426,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -4464,10 +4464,10 @@ declare module Ext.data {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Uploads a form using a hidden iframe  
-		* @param form any The form to upload 
-		* @param url any The url to post to 
-		* @param params any Any extra parameters to pass 
-		* @param options any The initial options 
+		* @param form String/HTMLElement/Ext.Element The form to upload 
+		* @param url String The url to post to 
+		* @param params String Any extra parameters to pass 
+		* @param options Object The initial options 
 		*/
 		upload?( form?:any, url?:any, params?:any, options?:any ): any;
 		upload?( form?:string, url?:string, params?:string, options?:any ): void;
@@ -4484,7 +4484,7 @@ declare module Ext.data {
 		/** [Method] Returns all of the errors for the given field 
 		* @param fieldName String The field to get errors for 
 		*/
-		getByField?( fieldName?:string ): Object[];
+		getByField?( fieldName?:string ): any[];
 		/** [Method] Returns true if there are no errors in the collection */
 		isValid?(): bool;
 	}
@@ -4575,7 +4575,7 @@ declare module Ext.data {
 		/** [Method] Generates and returns the next id  */
 		generate?(): string;
 		/** [Method] Returns the IdGenerator given its config description  
-		* @param config any If this parameter is an IdGenerator instance, it is simply returned. If this is a string, it is first used as an id for lookup and then, if there is no match, as a type to create a new instance. This parameter can also be a config object that contains a type property (among others) that are used to create and configure the instance. 
+		* @param config String/Object If this parameter is an IdGenerator instance, it is simply returned. If this is a string, it is first used as an id for lookup and then, if there is no match, as a type to create a new instance. This parameter can also be a config object that contains a type property (among others) that are used to create and configure the instance. 
 		*/
 		get?( config?:any ): void;
 	}
@@ -4585,7 +4585,7 @@ declare module Ext.data {
 	}
 	export class JsonP {
 		/** [Method] Abort a request  
-		* @param request any The request to abort 
+		* @param request Object/String The request to abort 
 		*/
 		static abort( request?:any ): void;
 		/** [Method] Makes a JSONP request  
@@ -4605,7 +4605,7 @@ declare module Ext.data {
 declare module Ext.data {
 	export interface IModel extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Object[]) */
-		associations?: Object[];
+		associations?: any[];
 		/** [Config Option] (String/Object/String[]/Object[]) */
 		belongsTo?: any;
 		/** [Config Option] (String) */
@@ -4625,7 +4625,7 @@ declare module Ext.data {
 		/** [Config Option] (String/Object/Ext.data.proxy.Proxy) */
 		proxy?: any;
 		/** [Config Option] (Object[]) */
-		validations?: Object[];
+		validations?: any[];
 		/** [Property] (Boolean) */
 		dirty?: bool;
 		/** [Property] (Boolean) */
@@ -4649,22 +4649,22 @@ declare module Ext.data {
 		/** [Property] (String) */
 		REJECT?: string;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -4691,7 +4691,7 @@ declare module Ext.data {
 		*/
 		destroy?( options?:any ): Ext.data.IModel;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -4710,7 +4710,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the value of the given field 
 		* @param fieldName String The field to fetch the value for 
 		*/
@@ -4740,30 +4740,30 @@ declare module Ext.data {
 		/** [Method] Checks if the model is valid  */
 		isValid?(): bool;
 		/** [Method] Tells this model instance that it has been added to a store  
-		* @param store Ext.data.IStore The store to which this model has been added. 
+		* @param store Ext.data.Store The store to which this model has been added. 
 		*/
 		join?( store?:Ext.data.IStore ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -4786,10 +4786,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -4805,20 +4805,20 @@ declare module Ext.data {
 		*/
 		save?( options?:any ): Ext.data.IModel;
 		/** [Method] Sets the given field to the given value marks the instance as dirty 
-		* @param fieldName any The field to set, or an object containing key/value pairs 
+		* @param fieldName String/Object The field to set, or an object containing key/value pairs 
 		* @param newValue Object The value to set 
 		*/
 		set?( fieldName?:any, newValue?:any ): string[];
 		/** [Method] Marks this Record as dirty  */
 		setDirty?(): void;
 		/** [Method] Sets the model instance s id field to the given id  
-		* @param id any The new id 
+		* @param id Number/String The new id 
 		*/
 		setId?( id?:any ): any;
 		setId?( id?:number ): void;
 		setId?( id?:string ): void;
 		/** [Method] Sets the Proxy to use for this model  
-		* @param proxy any The proxy 
+		* @param proxy String/Object/Ext.data.proxy.Proxy The proxy 
 		*/
 		setProxy?( proxy?:any ): Ext.data.proxy.IProxy;
 		/** [Method] Suspends firing of the named event s 
@@ -4836,7 +4836,7 @@ declare module Ext.data {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Tells this model instance that it has been removed from the store  
-		* @param store Ext.data.IStore The store from which this model has been removed. 
+		* @param store Ext.data.Store The store from which this model has been removed. 
 		*/
 		unjoin?( store?:Ext.data.IStore ): void;
 		/** [Method] Validates the current data against all of its configured validations  */
@@ -4844,12 +4844,12 @@ declare module Ext.data {
 		/** [Method] Returns an Array of Field definitions which define this Model s structure Fields are sorted upon Model class definit  */
 		getFields?(): Ext.data.IField[];
 		/** [Method] Generates a sequential id  
-		* @param rec Ext.data.IModel The record being created. The record does not exist, it's a phantom. 
+		* @param rec Ext.data.Model The record being created. The record does not exist, it's a phantom. 
 		*/
 		id?( rec?:Ext.data.IModel ): string;
 		/** [Method] Asynchronously loads a model instance by id  
-		* @param id any The id of the model to load 
-		* @param config any config object containing success, failure and callback functions, plus optional scope 
+		* @param id Number/String The id of the model to load 
+		* @param config Object config object containing success, failure and callback functions, plus optional scope 
 		*/
 		load?( id?:any, config?:any ): any;
 		load?( id?:number, config?:any ): void;
@@ -4865,7 +4865,7 @@ declare module Ext.data {
 declare module Ext.data {
 	export interface IRecord extends Ext.IBase,Ext.util.IObservable {
 		/** [Config Option] (Object[]) */
-		associations?: Object[];
+		associations?: any[];
 		/** [Config Option] (String/Object/String[]/Object[]) */
 		belongsTo?: any;
 		/** [Config Option] (String) */
@@ -4885,7 +4885,7 @@ declare module Ext.data {
 		/** [Config Option] (String/Object/Ext.data.proxy.Proxy) */
 		proxy?: any;
 		/** [Config Option] (Object[]) */
-		validations?: Object[];
+		validations?: any[];
 		/** [Property] (Boolean) */
 		dirty?: bool;
 		/** [Property] (Boolean) */
@@ -4909,22 +4909,22 @@ declare module Ext.data {
 		/** [Property] (String) */
 		REJECT?: string;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -4951,7 +4951,7 @@ declare module Ext.data {
 		*/
 		destroy?( options?:any ): Ext.data.IModel;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -4970,7 +4970,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the value of the given field 
 		* @param fieldName String The field to fetch the value for 
 		*/
@@ -5000,30 +5000,30 @@ declare module Ext.data {
 		/** [Method] Checks if the model is valid  */
 		isValid?(): bool;
 		/** [Method] Tells this model instance that it has been added to a store  
-		* @param store Ext.data.IStore The store to which this model has been added. 
+		* @param store Ext.data.Store The store to which this model has been added. 
 		*/
 		join?( store?:Ext.data.IStore ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -5046,10 +5046,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -5065,20 +5065,20 @@ declare module Ext.data {
 		*/
 		save?( options?:any ): Ext.data.IModel;
 		/** [Method] Sets the given field to the given value marks the instance as dirty 
-		* @param fieldName any The field to set, or an object containing key/value pairs 
+		* @param fieldName String/Object The field to set, or an object containing key/value pairs 
 		* @param newValue Object The value to set 
 		*/
 		set?( fieldName?:any, newValue?:any ): string[];
 		/** [Method] Marks this Record as dirty  */
 		setDirty?(): void;
 		/** [Method] Sets the model instance s id field to the given id  
-		* @param id any The new id 
+		* @param id Number/String The new id 
 		*/
 		setId?( id?:any ): any;
 		setId?( id?:number ): void;
 		setId?( id?:string ): void;
 		/** [Method] Sets the Proxy to use for this model  
-		* @param proxy any The proxy 
+		* @param proxy String/Object/Ext.data.proxy.Proxy The proxy 
 		*/
 		setProxy?( proxy?:any ): Ext.data.proxy.IProxy;
 		/** [Method] Suspends firing of the named event s 
@@ -5096,7 +5096,7 @@ declare module Ext.data {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Tells this model instance that it has been removed from the store  
-		* @param store Ext.data.IStore The store from which this model has been removed. 
+		* @param store Ext.data.Store The store from which this model has been removed. 
 		*/
 		unjoin?( store?:Ext.data.IStore ): void;
 		/** [Method] Validates the current data against all of its configured validations  */
@@ -5104,12 +5104,12 @@ declare module Ext.data {
 		/** [Method] Returns an Array of Field definitions which define this Model s structure Fields are sorted upon Model class definit  */
 		getFields?(): Ext.data.IField[];
 		/** [Method] Generates a sequential id  
-		* @param rec Ext.data.IModel The record being created. The record does not exist, it's a phantom. 
+		* @param rec Ext.data.Model The record being created. The record does not exist, it's a phantom. 
 		*/
 		id?( rec?:Ext.data.IModel ): string;
 		/** [Method] Asynchronously loads a model instance by id  
-		* @param id any The id of the model to load 
-		* @param config any config object containing success, failure and callback functions, plus optional scope 
+		* @param id Number/String The id of the model to load 
+		* @param config Object config object containing success, failure and callback functions, plus optional scope 
 		*/
 		load?( id?:any, config?:any ): any;
 		load?( id?:number, config?:any ): void;
@@ -5187,7 +5187,7 @@ declare module Ext.data {
 		/** [Property] (Ext.data.NodeInterface) */
 		previousSibling?: Ext.data.INodeInterface;
 		/** [Method] Inserts node s as the last child node of this node  
-		* @param node any The node or Array of nodes to append 
+		* @param node Ext.data.NodeInterface/Ext.data.NodeInterface[]/Object The node or Array of nodes to append 
 		* @param suppressEvents Boolean True to suppress firering of events. 
 		* @param commit Boolean 
 		*/
@@ -5217,7 +5217,7 @@ declare module Ext.data {
 		*/
 		collapseChildren?( recursive?:any, callback?:any, scope?:any ): void;
 		/** [Method] Returns true if this node is an ancestor at any point of the passed node  
-		* @param node Ext.data.INodeInterface 
+		* @param node Ext.data.NodeInterface 
 		*/
 		contains?( node?:Ext.data.INodeInterface ): bool;
 		/** [Method] Creates a copy clone of this Node  
@@ -5279,7 +5279,7 @@ declare module Ext.data {
 		/** [Method] Returns true if this node has one or more child nodes else false  */
 		hasChildNodes?(): bool;
 		/** [Method] Returns the index of a child node 
-		* @param node Ext.data.INodeInterface 
+		* @param node Ext.data.NodeInterface 
 		*/
 		indexOf?( node?:Ext.data.INodeInterface ): number;
 		/** [Method] Returns the index of a child node that matches the id 
@@ -5287,17 +5287,17 @@ declare module Ext.data {
 		*/
 		indexOfId?( id?:string ): number;
 		/** [Method] Inserts the first node before the second node in this nodes childNodes collection  
-		* @param node Ext.data.INodeInterface The node to insert 
-		* @param refNode Ext.data.INodeInterface The node to insert before (if null the node is appended) 
+		* @param node Ext.data.NodeInterface The node to insert 
+		* @param refNode Ext.data.NodeInterface The node to insert before (if null the node is appended) 
 		*/
 		insertBefore?( node?:Ext.data.INodeInterface, refNode?:Ext.data.INodeInterface ): Ext.data.INodeInterface;
 		/** [Method] Inserts a node into this node  
 		* @param index Number The zero-based index to insert the node at 
-		* @param node Ext.data.INodeInterface The node to insert 
+		* @param node Ext.data.NodeInterface The node to insert 
 		*/
 		insertChild?( index?:number, node?:Ext.data.INodeInterface ): Ext.data.INodeInterface;
 		/** [Method] Returns true if the passed node is an ancestor at any point of this node  
-		* @param node Ext.data.INodeInterface 
+		* @param node Ext.data.NodeInterface 
 		*/
 		isAncestor?( node?:Ext.data.INodeInterface ): bool;
 		/** [Method] Returns true if this node has one or more child nodes or if the expandable node attribute is explicitly specified as  */
@@ -5323,13 +5323,13 @@ declare module Ext.data {
 		*/
 		removeAll?( destroy?:bool ): Ext.data.INodeInterface;
 		/** [Method] Removes a child node from this node  
-		* @param node Ext.data.INodeInterface The node to remove 
+		* @param node Ext.data.NodeInterface The node to remove 
 		* @param destroy Boolean True to destroy the node upon removal. 
 		*/
 		removeChild?( node?:Ext.data.INodeInterface, destroy?:bool ): Ext.data.INodeInterface;
 		/** [Method] Replaces one child node in this node with another  
-		* @param newChild Ext.data.INodeInterface The replacement node 
-		* @param oldChild Ext.data.INodeInterface The node to replace 
+		* @param newChild Ext.data.NodeInterface The replacement node 
+		* @param oldChild Ext.data.NodeInterface The node to replace 
 		*/
 		replaceChild?( newChild?:Ext.data.INodeInterface, oldChild?:Ext.data.INodeInterface ): Ext.data.INodeInterface;
 		/** [Method] Creates an object representation of this node including its children  */
@@ -5346,7 +5346,7 @@ declare module Ext.data {
 		*/
 		updateInfo?( commit?:bool, info?:any ): void;
 		/** [Method] This method allows you to decorate a Model s class to implement the NodeInterface  
-		* @param modelClass any The Model class or an instance of the Model class you want to decorate the prototype of. 
+		* @param modelClass Ext.Class/Ext.data.Model The Model class or an instance of the Model class you want to decorate the prototype of. 
 		*/
 		decorate?( modelClass?:any ): any;
 		decorate?( modelClass?:Ext.IClass ): void;
@@ -5402,7 +5402,7 @@ declare module Ext.data {
 		/** [Method] Checks whether this operation should cause writing to occur  */
 		allowWrite?(): bool;
 		/** [Method] This method is called to commit data to this instance s records given the records in the server response  
-		* @param serverRecords Ext.data.IModel[] An array of Ext.data.Model objects returned by the server. 
+		* @param serverRecords Ext.data.Model[] An array of Ext.data.Model objects returned by the server. 
 		*/
 		commitRecords?( serverRecords?:Ext.data.IModel[] ): void;
 		/** [Method] Returns the error string or object that was set using setException */
@@ -5422,7 +5422,7 @@ declare module Ext.data {
 		/** [Method] Marks the Operation as completed  */
 		setCompleted?(): void;
 		/** [Method] Marks the Operation as having experienced an exception  
-		* @param error any error string/object 
+		* @param error String/Object error string/object 
 		*/
 		setException?( error?:any ): void;
 		/** [Method] Marks the Operation as started  */
@@ -5464,7 +5464,7 @@ declare module Ext.data.proxy {
 		/** [Property] (Object) */
 		actionMethods?: any;
 		/** [Method] Returns the HTTP method name for a given request  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		getMethod?( request?:Ext.data.IRequest ): string;
 	}
@@ -5478,7 +5478,7 @@ declare module Ext.data {
 		/** [Property] (Object) */
 		actionMethods?: any;
 		/** [Method] Returns the HTTP method name for a given request  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		getMethod?( request?:Ext.data.IRequest ): string;
 	}
@@ -5492,7 +5492,7 @@ declare module Ext.data {
 		/** [Property] (Object) */
 		actionMethods?: any;
 		/** [Method] Returns the HTTP method name for a given request  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		getMethod?( request?:Ext.data.IRequest ): string;
 	}
@@ -5568,11 +5568,11 @@ declare module Ext.data.proxy {
 		/** [Method] Aborts the current server request if one is currently running */
 		abort?(): void;
 		/** [Method] Generates a url based on a given Ext data Request object  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		buildUrl?( request?:Ext.data.IRequest ): string;
 		/** [Method] Encodes an array of records into a value suitable to be added to the request params as the recordParam parameter  
-		* @param records Ext.data.IModel[] The records array 
+		* @param records Ext.data.Model[] The records array 
 		*/
 		encodeRecords?( records?:Ext.data.IModel[] ): any[];
 	}
@@ -5588,11 +5588,11 @@ declare module Ext.data {
 		/** [Method] Aborts the current server request if one is currently running */
 		abort?(): void;
 		/** [Method] Generates a url based on a given Ext data Request object  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		buildUrl?( request?:Ext.data.IRequest ): string;
 		/** [Method] Encodes an array of records into a value suitable to be added to the request params as the recordParam parameter  
-		* @param records Ext.data.IModel[] The records array 
+		* @param records Ext.data.Model[] The records array 
 		*/
 		encodeRecords?( records?:Ext.data.IModel[] ): any[];
 	}
@@ -5614,25 +5614,25 @@ declare module Ext.data.proxy {
 		/** [Method] Abstract function that must be implemented by each ClientProxy subclass  */
 		clear?(): void;
 		/** [Method] Currently this is a hard coded method that simply commits any records and sets the operation to successful then call  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		create?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Currently this is a hard coded method that simply commits any records and sets the operation to successful then call  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		destroy?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Reads data from the configured data object  
-		* @param operation Ext.data.IOperation The read Operation 
+		* @param operation Ext.data.Operation The read Operation 
 		* @param callback Function The callback to call when reading has completed 
 		* @param scope Object The scope to call the callback function in 
 		*/
 		read?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Currently this is a hard coded method that simply commits any records and sets the operation to successful then call  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -5648,25 +5648,25 @@ declare module Ext.data {
 		/** [Method] Abstract function that must be implemented by each ClientProxy subclass  */
 		clear?(): void;
 		/** [Method] Currently this is a hard coded method that simply commits any records and sets the operation to successful then call  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		create?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Currently this is a hard coded method that simply commits any records and sets the operation to successful then call  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		destroy?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Reads data from the configured data object  
-		* @param operation Ext.data.IOperation The read Operation 
+		* @param operation Ext.data.Operation The read Operation 
 		* @param callback Function The callback to call when reading has completed 
 		* @param scope Object The scope to call the callback function in 
 		*/
 		read?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Currently this is a hard coded method that simply commits any records and sets the operation to successful then call  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -5690,22 +5690,22 @@ declare module Ext.data.proxy {
 		/** [Property] (Boolean) */
 		isSynchronous?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -5719,19 +5719,19 @@ declare module Ext.data.proxy {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Performs the given create operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		create?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Performs the given destroy operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		destroy?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -5745,7 +5745,7 @@ declare module Ext.data.proxy {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the model attached to this Proxy */
 		getModel?(): Ext.data.IModel;
 		/** [Method] Returns the reader currently attached to this proxy instance */
@@ -5757,33 +5757,33 @@ declare module Ext.data.proxy {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Performs the given read operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -5801,10 +5801,10 @@ declare module Ext.data.proxy {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -5816,18 +5816,18 @@ declare module Ext.data.proxy {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Sets the model associated with this proxy  
-		* @param model any The new model. Can be either the model name string, or a reference to the model's constructor 
-		* @param setOnStore any Sets the new model on the associated Store, if one is present 
+		* @param model String/Ext.data.Model The new model. Can be either the model name string, or a reference to the model's constructor 
+		* @param setOnStore Boolean Sets the new model on the associated Store, if one is present 
 		*/
 		setModel?( model?:any, setOnStore?:any ): any;
 		setModel?( model?:string, setOnStore?:bool ): void;
 		setModel?( model?:Ext.data.IModel, setOnStore?:bool ): void;
 		/** [Method] Sets the Proxy s Reader by string config object or Reader instance 
-		* @param reader any The new Reader, which can be either a type string, a configuration object or an Ext.data.reader.Reader instance 
+		* @param reader String/Object/Ext.data.reader.Reader The new Reader, which can be either a type string, a configuration object or an Ext.data.reader.Reader instance 
 		*/
 		setReader?( reader?:any ): Ext.data.reader.IReader;
 		/** [Method] Sets the Proxy s Writer by string config object or Writer instance 
-		* @param writer any The new Writer, which can be either a type string, a configuration object or an Ext.data.writer.Writer instance 
+		* @param writer String/Object/Ext.data.writer.Writer The new Writer, which can be either a type string, a configuration object or an Ext.data.writer.Writer instance 
 		*/
 		setWriter?( writer?:any ): Ext.data.writer.IWriter;
 		/** [Method] Suspends firing of the named event s 
@@ -5845,7 +5845,7 @@ declare module Ext.data.proxy {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Performs the given update operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -5869,22 +5869,22 @@ declare module Ext.data {
 		/** [Property] (Boolean) */
 		isSynchronous?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -5898,19 +5898,19 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Performs the given create operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		create?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Performs the given destroy operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		destroy?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -5924,7 +5924,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the model attached to this Proxy */
 		getModel?(): Ext.data.IModel;
 		/** [Method] Returns the reader currently attached to this proxy instance */
@@ -5936,33 +5936,33 @@ declare module Ext.data {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Performs the given read operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -5980,10 +5980,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -5995,18 +5995,18 @@ declare module Ext.data {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Sets the model associated with this proxy  
-		* @param model any The new model. Can be either the model name string, or a reference to the model's constructor 
-		* @param setOnStore any Sets the new model on the associated Store, if one is present 
+		* @param model String/Ext.data.Model The new model. Can be either the model name string, or a reference to the model's constructor 
+		* @param setOnStore Boolean Sets the new model on the associated Store, if one is present 
 		*/
 		setModel?( model?:any, setOnStore?:any ): any;
 		setModel?( model?:string, setOnStore?:bool ): void;
 		setModel?( model?:Ext.data.IModel, setOnStore?:bool ): void;
 		/** [Method] Sets the Proxy s Reader by string config object or Reader instance 
-		* @param reader any The new Reader, which can be either a type string, a configuration object or an Ext.data.reader.Reader instance 
+		* @param reader String/Object/Ext.data.reader.Reader The new Reader, which can be either a type string, a configuration object or an Ext.data.reader.Reader instance 
 		*/
 		setReader?( reader?:any ): Ext.data.reader.IReader;
 		/** [Method] Sets the Proxy s Writer by string config object or Writer instance 
-		* @param writer any The new Writer, which can be either a type string, a configuration object or an Ext.data.writer.Writer instance 
+		* @param writer String/Object/Ext.data.writer.Writer The new Writer, which can be either a type string, a configuration object or an Ext.data.writer.Writer instance 
 		*/
 		setWriter?( writer?:any ): Ext.data.writer.IWriter;
 		/** [Method] Suspends firing of the named event s 
@@ -6024,7 +6024,7 @@ declare module Ext.data {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Performs the given update operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -6048,22 +6048,22 @@ declare module Ext.data {
 		/** [Property] (Boolean) */
 		isSynchronous?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -6077,19 +6077,19 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Performs the given create operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		create?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Performs the given destroy operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
 		destroy?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -6103,7 +6103,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the model attached to this Proxy */
 		getModel?(): Ext.data.IModel;
 		/** [Method] Returns the reader currently attached to this proxy instance */
@@ -6115,33 +6115,33 @@ declare module Ext.data {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Performs the given read operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -6159,10 +6159,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -6174,18 +6174,18 @@ declare module Ext.data {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Sets the model associated with this proxy  
-		* @param model any The new model. Can be either the model name string, or a reference to the model's constructor 
-		* @param setOnStore any Sets the new model on the associated Store, if one is present 
+		* @param model String/Ext.data.Model The new model. Can be either the model name string, or a reference to the model's constructor 
+		* @param setOnStore Boolean Sets the new model on the associated Store, if one is present 
 		*/
 		setModel?( model?:any, setOnStore?:any ): any;
 		setModel?( model?:string, setOnStore?:bool ): void;
 		setModel?( model?:Ext.data.IModel, setOnStore?:bool ): void;
 		/** [Method] Sets the Proxy s Reader by string config object or Reader instance 
-		* @param reader any The new Reader, which can be either a type string, a configuration object or an Ext.data.reader.Reader instance 
+		* @param reader String/Object/Ext.data.reader.Reader The new Reader, which can be either a type string, a configuration object or an Ext.data.reader.Reader instance 
 		*/
 		setReader?( reader?:any ): Ext.data.reader.IReader;
 		/** [Method] Sets the Proxy s Writer by string config object or Writer instance 
-		* @param writer any The new Writer, which can be either a type string, a configuration object or an Ext.data.writer.Writer instance 
+		* @param writer String/Object/Ext.data.writer.Writer The new Writer, which can be either a type string, a configuration object or an Ext.data.writer.Writer instance 
 		*/
 		setWriter?( writer?:any ): Ext.data.writer.IWriter;
 		/** [Method] Suspends firing of the named event s 
@@ -6203,7 +6203,7 @@ declare module Ext.data {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Performs the given update operation  
-		* @param operation Ext.data.IOperation The Operation to perform 
+		* @param operation Ext.data.Operation The Operation to perform 
 		* @param callback Function Callback function to be called when the Operation has completed (whether successful or not) 
 		* @param scope Object Scope to execute the callback function in 
 		*/
@@ -6279,16 +6279,16 @@ declare module Ext.data.proxy {
 		/** [Config Option] (String) */
 		url?: string;
 		/** [Method] Optional callback function which can be used to clean up after a request has been completed  
-		* @param request Ext.data.IRequest The Request object 
+		* @param request Ext.data.Request The Request object 
 		* @param success Boolean True if the request was successful 
 		*/
 		afterRequest?( request?:Ext.data.IRequest, success?:bool ): void;
 		/** [Method] Creates an Request object from Operation  
-		* @param operation Ext.data.IOperation The operation to execute 
+		* @param operation Ext.data.Operation The operation to execute 
 		*/
 		buildRequest?( operation?:Ext.data.IOperation ): Ext.data.IRequest;
 		/** [Method] Generates a url based on a given Ext data Request object  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		buildUrl?( request?:Ext.data.IRequest ): string;
 		/** [Method] in a ServerProxy all four CRUD operations are executed in the same manner so we delegate to doRequest in each case */
@@ -6296,17 +6296,17 @@ declare module Ext.data.proxy {
 		/** [Method] Performs the given destroy operation  */
 		destroy?(): void;
 		/** [Method] In ServerProxy subclasses the create read update and destroy methods all pass through to doRequest  
-		* @param operation Ext.data.IOperation The Ext.data.Operation object 
+		* @param operation Ext.data.Operation The Ext.data.Operation object 
 		* @param callback Function The callback function to call when the Operation has completed 
 		* @param scope Object The scope in which to execute the callback 
 		*/
 		doRequest?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Encodes the array of Ext util Filter objects into a string to be sent in the request url  
-		* @param filters Ext.util.IFilter[] The array of Filter objects 
+		* @param filters Ext.util.Filter[] The array of Filter objects 
 		*/
 		encodeFilters?( filters?:Ext.util.IFilter[] ): string;
 		/** [Method] Encodes the array of Ext util Sorter objects into a string to be sent in the request url  
-		* @param sorters Ext.util.ISorter[] The array of Sorter objects 
+		* @param sorters Ext.util.Sorter[] The array of Sorter objects 
 		*/
 		encodeSorters?( sorters?:Ext.util.ISorter[] ): string;
 		/** [Method] Performs the given read operation  */
@@ -6357,16 +6357,16 @@ declare module Ext.data {
 		/** [Config Option] (String) */
 		url?: string;
 		/** [Method] Optional callback function which can be used to clean up after a request has been completed  
-		* @param request Ext.data.IRequest The Request object 
+		* @param request Ext.data.Request The Request object 
 		* @param success Boolean True if the request was successful 
 		*/
 		afterRequest?( request?:Ext.data.IRequest, success?:bool ): void;
 		/** [Method] Creates an Request object from Operation  
-		* @param operation Ext.data.IOperation The operation to execute 
+		* @param operation Ext.data.Operation The operation to execute 
 		*/
 		buildRequest?( operation?:Ext.data.IOperation ): Ext.data.IRequest;
 		/** [Method] Generates a url based on a given Ext data Request object  
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		buildUrl?( request?:Ext.data.IRequest ): string;
 		/** [Method] in a ServerProxy all four CRUD operations are executed in the same manner so we delegate to doRequest in each case */
@@ -6374,17 +6374,17 @@ declare module Ext.data {
 		/** [Method] Performs the given destroy operation  */
 		destroy?(): void;
 		/** [Method] In ServerProxy subclasses the create read update and destroy methods all pass through to doRequest  
-		* @param operation Ext.data.IOperation The Ext.data.Operation object 
+		* @param operation Ext.data.Operation The Ext.data.Operation object 
 		* @param callback Function The callback function to call when the Operation has completed 
 		* @param scope Object The scope in which to execute the callback 
 		*/
 		doRequest?( operation?:Ext.data.IOperation, callback?:any, scope?:any ): void;
 		/** [Method] Encodes the array of Ext util Filter objects into a string to be sent in the request url  
-		* @param filters Ext.util.IFilter[] The array of Filter objects 
+		* @param filters Ext.util.Filter[] The array of Filter objects 
 		*/
 		encodeFilters?( filters?:Ext.util.IFilter[] ): string;
 		/** [Method] Encodes the array of Ext util Sorter objects into a string to be sent in the request url  
-		* @param sorters Ext.util.ISorter[] The array of Sorter objects 
+		* @param sorters Ext.util.Sorter[] The array of Sorter objects 
 		*/
 		encodeSorters?( sorters?:Ext.util.ISorter[] ): string;
 		/** [Method] Performs the given read operation  */
@@ -6433,7 +6433,7 @@ declare module Ext.data.proxy {
 		*/
 		read?( operation?:any, callback?:any, scope?:any ): void;
 		/** [Method] Saves the given record in the Proxy  
-		* @param record Ext.data.IModel The model instance 
+		* @param record Ext.data.Model The model instance 
 		* @param id String The id to save the record under (defaults to the value of the record's getId() function) 
 		*/
 		setRecord?( record?:Ext.data.IModel, id?:string ): void;
@@ -6472,7 +6472,7 @@ declare module Ext.data {
 		*/
 		read?( operation?:any, callback?:any, scope?:any ): void;
 		/** [Method] Saves the given record in the Proxy  
-		* @param record Ext.data.IModel The model instance 
+		* @param record Ext.data.Model The model instance 
 		* @param id String The id to save the record under (defaults to the value of the record's getId() function) 
 		*/
 		setRecord?( record?:Ext.data.IModel, id?:string ): void;
@@ -6565,22 +6565,22 @@ declare module Ext.data.reader {
 		/** [Property] (Object) */
 		rawData?: any;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -6590,7 +6590,7 @@ declare module Ext.data.reader {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -6604,7 +6604,7 @@ declare module Ext.data.reader {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Takes a raw response object as passed to the read method and returns the useful data segment from it  
 		* @param response Object The response object 
 		*/
@@ -6614,26 +6614,26 @@ declare module Ext.data.reader {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -6660,10 +6660,10 @@ declare module Ext.data.reader {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -6711,22 +6711,22 @@ declare module Ext.data {
 		/** [Property] (Object) */
 		rawData?: any;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -6736,7 +6736,7 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -6750,7 +6750,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Takes a raw response object as passed to the read method and returns the useful data segment from it  
 		* @param response Object The response object 
 		*/
@@ -6760,26 +6760,26 @@ declare module Ext.data {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -6806,10 +6806,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -6857,22 +6857,22 @@ declare module Ext.data {
 		/** [Property] (Object) */
 		rawData?: any;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -6882,7 +6882,7 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -6896,7 +6896,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Takes a raw response object as passed to the read method and returns the useful data segment from it  
 		* @param response Object The response object 
 		*/
@@ -6906,26 +6906,26 @@ declare module Ext.data {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -6952,10 +6952,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -7139,16 +7139,16 @@ declare module Ext.data {
 		/** [Property] (Ext.util.MixedCollection) */
 		snapshot?: Ext.util.IMixedCollection;
 		/** [Method] Adds Model instance to the Store  
-		* @param model any An array of Model instances or Model configuration objects, or variable number of Model instance or config arguments. 
+		* @param model Ext.data.Model[]/Ext.data.Model.../Object[]/Object... An array of Model instances or Model configuration objects, or variable number of Model instance or config arguments. 
 		*/
 		add?( model?:any ): Ext.data.IModel[];
 		/** [Method] Adds a new Filter to this Store s filter set and by default applys the updated filter set to the Store s unfiltered 
-		* @param filters any The set of filters to add to the current filter set. 
+		* @param filters Object[]/Ext.util.Filter[] The set of filters to add to the current filter set. 
 		* @param applyFilters Boolean Pass as false to add the filter but not apply the updated filter set. 
 		*/
 		addFilter?( filters?:any, applyFilters?:bool ): void;
 		/** [Method] Local sort only Inserts the passed Record into the Store at the index where it should go based on the current sort 
-		* @param record Ext.data.IRecord 
+		* @param record Ext.data.Record 
 		*/
 		addSorted?( record?:Ext.data.IRecord ): void;
 		/** [Method] Runs the aggregate function for all the records in the store  
@@ -7174,7 +7174,7 @@ declare module Ext.data {
 		* @param allowNull Boolean Pass true to allow null, undefined or empty string values 
 		* @param bypassFilter Boolean Pass true to collect from all records, even ones which are filtered. 
 		*/
-		collect?( dataIndex?:string, allowNull?:bool, bypassFilter?:bool ): Object[];
+		collect?( dataIndex?:string, allowNull?:bool, bypassFilter?:bool ): any[];
 		/** [Method] Commits all Records with outstanding changes  */
 		commitChanges?(): void;
 		/** [Method] Gets the count of items in the store  
@@ -7187,7 +7187,7 @@ declare module Ext.data {
 		*/
 		each?( fn?:any, scope?:any ): void;
 		/** [Method] Filters the loaded set of records by a given set of filters  
-		* @param filters any The set of filters to apply to the data. These are stored internally on the store, but the filtering itself is done on the Store's MixedCollection. See MixedCollection's filter method for filter syntax. Alternatively, pass in a property string. If no parameters are passed, the Store's existing filter set is applied. 
+		* @param filters Object[]/Ext.util.Filter[]/String The set of filters to apply to the data. These are stored internally on the store, but the filtering itself is done on the Store's MixedCollection. See MixedCollection's filter method for filter syntax. Alternatively, pass in a property string. If no parameters are passed, the Store's existing filter set is applied. 
 		* @param value String value to filter by (only if using a property string as the first argument) 
 		*/
 		filter?( filters?:any, value?:string ): void;
@@ -7197,12 +7197,12 @@ declare module Ext.data {
 		*/
 		filterBy?( fn?:any, scope?:any ): void;
 		/** [Method] Finds the index of the first matching Record in this store by a specific field value  
-		* @param fieldName any The name of the Record field to test. 
-		* @param value any Either a string that the field value should begin with, or a RegExp to test against the field. 
-		* @param startIndex any The index to start searching at 
-		* @param anyMatch any True to match any part of the string, not just the beginning 
-		* @param caseSensitive any True for case sensitive comparison 
-		* @param exactMatch any True to force exact match (^ and $ characters added to the regex). 
+		* @param fieldName String The name of the Record field to test. 
+		* @param value String/RegExp Either a string that the field value should begin with, or a RegExp to test against the field. 
+		* @param startIndex Number The index to start searching at 
+		* @param anyMatch Boolean True to match any part of the string, not just the beginning 
+		* @param caseSensitive Boolean True for case sensitive comparison 
+		* @param exactMatch Boolean True to force exact match (^ and $ characters added to the regex). 
 		*/
 		find?( fieldName?:any, value?:any, startIndex?:any, anyMatch?:any, caseSensitive?:any, exactMatch?:any ): any;
 		find?( fieldName?:string, value?:string, startIndex?:number, anyMatch?:bool, caseSensitive?:bool, exactMatch?:bool ): number;
@@ -7220,12 +7220,12 @@ declare module Ext.data {
 		*/
 		findExact?( fieldName?:string, value?:any, startIndex?:number ): number;
 		/** [Method] Finds the first matching Record in this store by a specific field value  
-		* @param fieldName any The name of the Record field to test. 
-		* @param value any Either a string that the field value should begin with, or a RegExp to test against the field. 
-		* @param startIndex any The index to start searching at 
-		* @param anyMatch any True to match any part of the string, not just the beginning 
-		* @param caseSensitive any True for case sensitive comparison 
-		* @param exactMatch any True to force exact match (^ and $ characters added to the regex). 
+		* @param fieldName String The name of the Record field to test. 
+		* @param value String/RegExp Either a string that the field value should begin with, or a RegExp to test against the field. 
+		* @param startIndex Number The index to start searching at 
+		* @param anyMatch Boolean True to match any part of the string, not just the beginning 
+		* @param caseSensitive Boolean True for case sensitive comparison 
+		* @param exactMatch Boolean True to force exact match (^ and $ characters added to the regex). 
 		*/
 		findRecord?( fieldName?:any, value?:any, startIndex?:any, anyMatch?:any, caseSensitive?:any, exactMatch?:any ): any;
 		findRecord?( fieldName?:string, value?:string, startIndex?:number, anyMatch?:bool, caseSensitive?:bool, exactMatch?:bool ): Ext.data.IModel;
@@ -7249,7 +7249,7 @@ declare module Ext.data {
 		/** [Method] Gets the number of records in store  */
 		getCount?(): number;
 		/** [Method] Returns the string to group on for a given model instance  
-		* @param instance Ext.data.IModel The model instance 
+		* @param instance Ext.data.Model The model instance 
 		*/
 		getGroupString?( instance?:Ext.data.IModel ): string;
 		/** [Method] Returns an array containing the result of applying grouping to the records in this store  
@@ -7273,7 +7273,7 @@ declare module Ext.data {
 		/** [Method] inherit docs */
 		getUpdatedRecords?(): Ext.data.IModel[];
 		/** [Method] Groups data inside the store  
-		* @param groupers any Either a string name of one of the fields in this Store's configured Model, or an Array of grouper configurations. 
+		* @param groupers String/Object[] Either a string name of one of the fields in this Store's configured Model, or an Array of grouper configurations. 
 		* @param direction String The overall direction to group the data by. 
 		*/
 		group?( groupers?:any, direction?:string ): void;
@@ -7286,7 +7286,7 @@ declare module Ext.data {
 		*/
 		guaranteeRange?( start?:any, end?:any, callback?:any, scope?:any, options?:any ): void;
 		/** [Method] Get the index of the record within the store  
-		* @param record Ext.data.IModel The Ext.data.Model object to find. 
+		* @param record Ext.data.Model The Ext.data.Model object to find. 
 		*/
 		indexOf?( record?:Ext.data.IModel ): number;
 		/** [Method] Get the index within the store of the Record with the passed id  
@@ -7294,12 +7294,12 @@ declare module Ext.data {
 		*/
 		indexOfId?( id?:string ): number;
 		/** [Method] Get the index within the entire dataset  
-		* @param record Ext.data.IModel The Ext.data.Model object to find. 
+		* @param record Ext.data.Model The Ext.data.Model object to find. 
 		*/
 		indexOfTotal?( record?:Ext.data.IModel ): number;
 		/** [Method] Inserts Model instances into the Store at the given index and fires the add event  
 		* @param index Number The start index at which to insert the passed Records. 
-		* @param records Ext.data.IModel[] An Array of Ext.data.Model objects to add to the store. 
+		* @param records Ext.data.Model[] An Array of Ext.data.Model objects to add to the store. 
 		*/
 		insert?( index?:number, records?:Ext.data.IModel[] ): Ext.data.IModel[];
 		/** [Method] Returns true if this store is currently filtered */
@@ -7315,11 +7315,11 @@ declare module Ext.data {
 		*/
 		last?( grouped?:bool ): void;
 		/** [Method] Loads data into the Store via the configured proxy  
-		* @param options any config object, passed into the Ext.data.Operation object before loading. Additionally addRecords: true can be specified to add these records to the existing records, default is to remove the Store's existing records first. 
+		* @param options Object/Function config object, passed into the Ext.data.Operation object before loading. Additionally addRecords: true can be specified to add these records to the existing records, default is to remove the Store's existing records first. 
 		*/
 		load?( options?:any ): void;
 		/** [Method] Loads an array of data straight into the Store  
-		* @param data any Array of data to load. Any non-model instances will be cast into model instances first. 
+		* @param data Ext.data.Model[]/Object[] Array of data to load. Any non-model instances will be cast into model instances first. 
 		* @param append Boolean true to add the records to the existing records in the store, false to remove the old ones first. 
 		*/
 		loadData?( data?:any, append?:bool ): void;
@@ -7332,9 +7332,9 @@ declare module Ext.data {
 		* @param data Object[] The full JSON object you'd like to load into the Data store. 
 		* @param append Boolean true to add the records to the existing records in the store, false to remove the old ones first. 
 		*/
-		loadRawData?( data?:Object[], append?:bool ): void;
+		loadRawData?( data?:any[], append?:bool ): void;
 		/** [Method] Loads an array of model instances into the store fires the datachanged event  
-		* @param records Ext.data.IModel[] The array of records to load 
+		* @param records Ext.data.Model[] The array of records to load 
 		* @param options Object 
 		*/
 		loadRecords?( records?:Ext.data.IModel[], options?:any ): void;
@@ -7371,11 +7371,11 @@ declare module Ext.data {
 		*/
 		previousPage?( options?:any ): void;
 		/** [Method] Query all the cached records in this Store by name value pair  
-		* @param property any The property to create the filter function for 
-		* @param value any The string/regex to compare the property value to 
-		* @param anyMatch any true if we don't care if the filter value is not the full value. 
-		* @param caseSensitive any true to create a case-sensitive regex. 
-		* @param exactMatch any true to force exact match (^ and $ characters added to the regex). Ignored if anyMatch is true. 
+		* @param property String The property to create the filter function for 
+		* @param value String/RegExp The string/regex to compare the property value to 
+		* @param anyMatch Boolean true if we don't care if the filter value is not the full value. 
+		* @param caseSensitive Boolean true to create a case-sensitive regex. 
+		* @param exactMatch Boolean true to force exact match (^ and $ characters added to the regex). Ignored if anyMatch is true. 
 		*/
 		query?( property?:any, value?:any, anyMatch?:any, caseSensitive?:any, exactMatch?:any ): any;
 		query?( property?:string, value?:string, anyMatch?:bool, caseSensitive?:bool, exactMatch?:bool ): Ext.util.IMixedCollection;
@@ -7392,7 +7392,7 @@ declare module Ext.data {
 		*/
 		reload?( options?:any ): void;
 		/** [Method] Removes the specified record s from the Store firing the remove event for each instance that is removed  
-		* @param records any Model instance or array of instances to remove or an array of indices from which to remove records. 
+		* @param records Ext.data.Model/Ext.data.Model[]/Number/Number[] Model instance or array of instances to remove or an array of indices from which to remove records. 
 		*/
 		remove?( records?:any ): any;
 		remove?( records?:Ext.data.IModel ): void;
@@ -7431,15 +7431,15 @@ declare module Ext.data {
 		*/
 		static getKey( o?:any ): any;
 		/** [Method] Gets a registered Store by id 
-		* @param store any The id of the Store, or a Store instance, or a store configuration 
+		* @param store String/Object The id of the Store, or a Store instance, or a store configuration 
 		*/
 		static lookup( store?:any ): Ext.data.IStore;
 		/** [Method] Registers one or more Stores with the StoreManager  
-		* @param stores Ext.data.IStore Any number of Store instances 
+		* @param stores Ext.data.Store... Any number of Store instances 
 		*/
 		static register( stores:Ext.data.IStore ): void;
 		/** [Method] Unregisters one or more Stores with the StoreManager 
-		* @param stores any Any number of Store instances or ID-s 
+		* @param stores String/Object... Any number of Store instances or ID-s 
 		*/
 		static unregister( stores?:any ): void;
 	}
@@ -7453,15 +7453,15 @@ declare module Ext {
 		*/
 		static getKey( o?:any ): any;
 		/** [Method] Gets a registered Store by id 
-		* @param store any The id of the Store, or a Store instance, or a store configuration 
+		* @param store String/Object The id of the Store, or a Store instance, or a store configuration 
 		*/
 		static lookup( store?:any ): Ext.data.IStore;
 		/** [Method] Registers one or more Stores with the StoreManager  
-		* @param stores Ext.data.IStore Any number of Store instances 
+		* @param stores Ext.data.Store... Any number of Store instances 
 		*/
 		static register( stores:Ext.data.IStore ): void;
 		/** [Method] Unregisters one or more Stores with the StoreManager 
-		* @param stores any Any number of Store instances or ID-s 
+		* @param stores String/Object... Any number of Store instances or ID-s 
 		*/
 		static unregister( stores?:any ): void;
 	}
@@ -7475,15 +7475,15 @@ declare module Ext.data {
 		*/
 		static getKey( o?:any ): any;
 		/** [Method] Gets a registered Store by id 
-		* @param store any The id of the Store, or a Store instance, or a store configuration 
+		* @param store String/Object The id of the Store, or a Store instance, or a store configuration 
 		*/
 		static lookup( store?:any ): Ext.data.IStore;
 		/** [Method] Registers one or more Stores with the StoreManager  
-		* @param stores Ext.data.IStore Any number of Store instances 
+		* @param stores Ext.data.Store... Any number of Store instances 
 		*/
 		static register( stores:Ext.data.IStore ): void;
 		/** [Method] Unregisters one or more Stores with the StoreManager 
-		* @param stores any Any number of Store instances or ID-s 
+		* @param stores String/Object... Any number of Store instances or ID-s 
 		*/
 		static unregister( stores?:any ): void;
 	}
@@ -7497,15 +7497,15 @@ declare module Ext {
 		*/
 		static getKey( o?:any ): any;
 		/** [Method] Gets a registered Store by id 
-		* @param store any The id of the Store, or a Store instance, or a store configuration 
+		* @param store String/Object The id of the Store, or a Store instance, or a store configuration 
 		*/
 		static lookup( store?:any ): Ext.data.IStore;
 		/** [Method] Registers one or more Stores with the StoreManager  
-		* @param stores Ext.data.IStore Any number of Store instances 
+		* @param stores Ext.data.Store... Any number of Store instances 
 		*/
 		static register( stores:Ext.data.IStore ): void;
 		/** [Method] Unregisters one or more Stores with the StoreManager 
-		* @param stores any Any number of Store instances or ID-s 
+		* @param stores String/Object... Any number of Store instances or ID-s 
 		*/
 		static unregister( stores?:any ): void;
 	}
@@ -7515,22 +7515,22 @@ declare module Ext.data {
 		/** [Property] (Ext.data.NodeInterface) */
 		root?: Ext.data.INodeInterface;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -7540,7 +7540,7 @@ declare module Ext.data {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -7554,7 +7554,7 @@ declare module Ext.data {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Gets a node in this tree by its id  
 		* @param id String 
 		*/
@@ -7566,26 +7566,26 @@ declare module Ext.data {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -7604,10 +7604,10 @@ declare module Ext.data {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -7621,7 +7621,7 @@ declare module Ext.data {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Sets the root node for this tree  
-		* @param node Ext.data.INodeInterface 
+		* @param node Ext.data.NodeInterface 
 		*/
 		setRootNode?( node?:Ext.data.INodeInterface ): Ext.data.INodeInterface;
 		/** [Method] Suspends firing of the named event s 
@@ -7683,7 +7683,7 @@ declare module Ext.data {
 		*/
 		setProxy?( proxy?:any ): Ext.data.proxy.IProxy;
 		/** [Method] Sets the root node for this store  
-		* @param root any 
+		* @param root Ext.data.Model/Ext.data.NodeInterface/Object 
 		*/
 		setRootNode?( root?:any ): Ext.data.INodeInterface;
 	}
@@ -7709,9 +7709,9 @@ declare module Ext.data {
 	}
 }
 declare module Ext.data {
-	export interface Ivalidations extends Ext.IBase {
+	export interface IValidations extends Ext.IBase {
 	}
-	export class validations {
+	export class Validations {
 		/** [Method] Validates that an email string is in the correct format 
 		* @param config Object Config object 
 		* @param email String The email address 
@@ -7787,12 +7787,12 @@ declare module Ext.data.writer {
 		/** [Config Option] (Boolean) */
 		writeRecordId?: bool;
 		/** [Method] Formats the data for each record before sending it to the server  
-		* @param record Ext.data.IModel The record that we are writing to the server. 
-		* @param operation Ext.data.IOperation An operation object. 
+		* @param record Ext.data.Model The record that we are writing to the server. 
+		* @param operation Ext.data.Operation An operation object. 
 		*/
 		getRecordData?( record?:Ext.data.IModel, operation?:Ext.data.IOperation ): any;
 		/** [Method] Prepares a Proxy s Ext data Request object 
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		write?( request?:Ext.data.IRequest ): Ext.data.IRequest;
 	}
@@ -7808,12 +7808,12 @@ declare module Ext.data {
 		/** [Config Option] (Boolean) */
 		writeRecordId?: bool;
 		/** [Method] Formats the data for each record before sending it to the server  
-		* @param record Ext.data.IModel The record that we are writing to the server. 
-		* @param operation Ext.data.IOperation An operation object. 
+		* @param record Ext.data.Model The record that we are writing to the server. 
+		* @param operation Ext.data.Operation An operation object. 
 		*/
 		getRecordData?( record?:Ext.data.IModel, operation?:Ext.data.IOperation ): any;
 		/** [Method] Prepares a Proxy s Ext data Request object 
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		write?( request?:Ext.data.IRequest ): Ext.data.IRequest;
 	}
@@ -7829,12 +7829,12 @@ declare module Ext.data {
 		/** [Config Option] (Boolean) */
 		writeRecordId?: bool;
 		/** [Method] Formats the data for each record before sending it to the server  
-		* @param record Ext.data.IModel The record that we are writing to the server. 
-		* @param operation Ext.data.IOperation An operation object. 
+		* @param record Ext.data.Model The record that we are writing to the server. 
+		* @param operation Ext.data.Operation An operation object. 
 		*/
 		getRecordData?( record?:Ext.data.IModel, operation?:Ext.data.IOperation ): any;
 		/** [Method] Prepares a Proxy s Ext data Request object 
-		* @param request Ext.data.IRequest The request object 
+		* @param request Ext.data.Request The request object 
 		*/
 		write?( request?:Ext.data.IRequest ): Ext.data.IRequest;
 	}
@@ -8195,9 +8195,9 @@ declare module Ext.dd {
 		/** [Method] Clears any tick interval defined for this instance */
 		clearTicks?(): void;
 		/** [Method] Initializes the drag drop object s constraints to restrict movement to a certain element  
-		* @param constrainTo any The element or element ID to constrain to. 
-		* @param pad any Pad provides a way to specify "padding" of the constraints, and can be either a number for symmetrical padding (4 would be equal to {left:4, right:4, top:4, bottom:4}) or an object containing the sides to pad. For example: {right:10, bottom:10} 
-		* @param inContent any Constrain the draggable in the content box of the element (inside padding and borders) 
+		* @param constrainTo String/HTMLElement/Ext.Element The element or element ID to constrain to. 
+		* @param pad Object/Number Pad provides a way to specify "padding" of the constraints, and can be either a number for symmetrical padding (4 would be equal to {left:4, right:4, top:4, bottom:4}) or an object containing the sides to pad. For example: {right:10, bottom:10} 
+		* @param inContent Boolean Constrain the draggable in the content box of the element (inside padding and borders) 
 		*/
 		constrainTo?( constrainTo?:any, pad?:any, inContent?:any ): any;
 		constrainTo?( constrainTo?:string, pad?:any, inContent?:bool ): void;
@@ -8240,29 +8240,29 @@ declare module Ext.dd {
 		*/
 		onDrag?( e?:Event ): void;
 		/** [Method] Abstract method called when this item is dropped on another DragDrop obj 
-		* @param e any the mouseup event 
-		* @param id any In POINT mode, the element id this was dropped on. In INTERSECT mode, an array of dd items this was dropped on. 
+		* @param e Event the mouseup event 
+		* @param id String/Ext.dd.DragDrop[] In POINT mode, the element id this was dropped on. In INTERSECT mode, an array of dd items this was dropped on. 
 		*/
 		onDragDrop?( e?:any, id?:any ): any;
 		onDragDrop?( e?:Event, id?:string ): void;
 		onDragDrop?( e?:Event, id?:Ext.dd.IDragDrop[] ): void;
 		/** [Method] Abstract method called when this element fist begins hovering over another DragDrop obj 
-		* @param e any the mousemove event 
-		* @param id any In POINT mode, the element id this is hovering over. In INTERSECT mode, an array of one or more dragdrop items being hovered over. 
+		* @param e Event the mousemove event 
+		* @param id String/Ext.dd.DragDrop[] In POINT mode, the element id this is hovering over. In INTERSECT mode, an array of one or more dragdrop items being hovered over. 
 		*/
 		onDragEnter?( e?:any, id?:any ): any;
 		onDragEnter?( e?:Event, id?:string ): void;
 		onDragEnter?( e?:Event, id?:Ext.dd.IDragDrop[] ): void;
 		/** [Method] Abstract method called when we are no longer hovering over an element 
-		* @param e any the mousemove event 
-		* @param id any In POINT mode, the element id this was hovering over. In INTERSECT mode, an array of dd items that the mouse is no longer over. 
+		* @param e Event the mousemove event 
+		* @param id String/Ext.dd.DragDrop[] In POINT mode, the element id this was hovering over. In INTERSECT mode, an array of dd items that the mouse is no longer over. 
 		*/
 		onDragOut?( e?:any, id?:any ): any;
 		onDragOut?( e?:Event, id?:string ): void;
 		onDragOut?( e?:Event, id?:Ext.dd.IDragDrop[] ): void;
 		/** [Method] Abstract method called when this element is hovering over another DragDrop obj 
-		* @param e any the mousemove event 
-		* @param id any In POINT mode, the element id this is hovering over. In INTERSECT mode, an array of dd items being hovered over. 
+		* @param e Event the mousemove event 
+		* @param id String/Ext.dd.DragDrop[] In POINT mode, the element id this is hovering over. In INTERSECT mode, an array of dd items being hovered over. 
 		*/
 		onDragOver?( e?:any, id?:any ): any;
 		onDragOver?( e?:Event, id?:string ): void;
@@ -8403,7 +8403,7 @@ declare module Ext.dd {
 	}
 	export class DragDropManager {
 		/** [Method] Helper function for getting the best match from the list of drag and drop objects returned by the drag and drop event  
-		* @param dds Ext.dd.IDragDrop[] The array of drag and drop objects targeted 
+		* @param dds Ext.dd.DragDrop[] The array of drag and drop objects targeted 
 		*/
 		static getBestMatch( dds?:Ext.dd.IDragDrop[] ): Ext.dd.IDragDrop;
 		/** [Method] Returns the style property for the DOM element i e  document getElById id style  
@@ -8419,11 +8419,11 @@ declare module Ext.dd {
 		*/
 		static getElement( id?:string ): any;
 		/** [Method] Returns a Region object containing the drag and drop element s position and size including the padding configured fo  
-		* @param oDD Ext.dd.IDragDrop the drag and drop object to get the location for. 
+		* @param oDD Ext.dd.DragDrop the drag and drop object to get the location for. 
 		*/
 		static getLocation( oDD?:Ext.dd.IDragDrop ): Ext.util.IRegion;
 		/** [Method] Returns the drag and drop instances that are in all groups the passed in instance belongs to  
-		* @param p_oDD Ext.dd.IDragDrop the obj to get related data for 
+		* @param p_oDD Ext.dd.DragDrop the obj to get related data for 
 		* @param bTargetsOnly Boolean if true, only return targetable objs 
 		*/
 		static getRelated( p_oDD?:Ext.dd.IDragDrop, bTargetsOnly?:bool ): Ext.dd.IDragDrop[];
@@ -8436,8 +8436,8 @@ declare module Ext.dd {
 		*/
 		static isHandle( id?:string ): bool;
 		/** [Method] Returns true if the specified dd target is a legal target for the specifice drag obj 
-		* @param oDD Ext.dd.IDragDrop the drag obj 
-		* @param oTargetDD Ext.dd.IDragDrop the target 
+		* @param oDD Ext.dd.DragDrop the drag obj 
+		* @param oTargetDD Ext.dd.DragDrop the target 
 		*/
 		static isLegalTarget( oDD?:Ext.dd.IDragDrop, oTargetDD?:Ext.dd.IDragDrop ): bool;
 		/** [Method] Is drag and drop locked  */
@@ -8453,7 +8453,7 @@ declare module Ext.dd {
 		*/
 		static refreshCache( groups?:any ): void;
 		/** [Method] Each DragDrop instance must be registered with the DragDropManager  
-		* @param oDD Ext.dd.IDragDrop the DragDrop object to register 
+		* @param oDD Ext.dd.DragDrop the DragDrop object to register 
 		* @param sGroup String the name of the group this element belongs to 
 		*/
 		static regDragDrop( oDD?:Ext.dd.IDragDrop, sGroup?:string ): void;
@@ -8484,7 +8484,7 @@ declare module Ext.dd {
 	}
 	export class DragDropMgr {
 		/** [Method] Helper function for getting the best match from the list of drag and drop objects returned by the drag and drop event  
-		* @param dds Ext.dd.IDragDrop[] The array of drag and drop objects targeted 
+		* @param dds Ext.dd.DragDrop[] The array of drag and drop objects targeted 
 		*/
 		static getBestMatch( dds?:Ext.dd.IDragDrop[] ): Ext.dd.IDragDrop;
 		/** [Method] Returns the style property for the DOM element i e  document getElById id style  
@@ -8500,11 +8500,11 @@ declare module Ext.dd {
 		*/
 		static getElement( id?:string ): any;
 		/** [Method] Returns a Region object containing the drag and drop element s position and size including the padding configured fo  
-		* @param oDD Ext.dd.IDragDrop the drag and drop object to get the location for. 
+		* @param oDD Ext.dd.DragDrop the drag and drop object to get the location for. 
 		*/
 		static getLocation( oDD?:Ext.dd.IDragDrop ): Ext.util.IRegion;
 		/** [Method] Returns the drag and drop instances that are in all groups the passed in instance belongs to  
-		* @param p_oDD Ext.dd.IDragDrop the obj to get related data for 
+		* @param p_oDD Ext.dd.DragDrop the obj to get related data for 
 		* @param bTargetsOnly Boolean if true, only return targetable objs 
 		*/
 		static getRelated( p_oDD?:Ext.dd.IDragDrop, bTargetsOnly?:bool ): Ext.dd.IDragDrop[];
@@ -8517,8 +8517,8 @@ declare module Ext.dd {
 		*/
 		static isHandle( id?:string ): bool;
 		/** [Method] Returns true if the specified dd target is a legal target for the specifice drag obj 
-		* @param oDD Ext.dd.IDragDrop the drag obj 
-		* @param oTargetDD Ext.dd.IDragDrop the target 
+		* @param oDD Ext.dd.DragDrop the drag obj 
+		* @param oTargetDD Ext.dd.DragDrop the target 
 		*/
 		static isLegalTarget( oDD?:Ext.dd.IDragDrop, oTargetDD?:Ext.dd.IDragDrop ): bool;
 		/** [Method] Is drag and drop locked  */
@@ -8534,7 +8534,7 @@ declare module Ext.dd {
 		*/
 		static refreshCache( groups?:any ): void;
 		/** [Method] Each DragDrop instance must be registered with the DragDropManager  
-		* @param oDD Ext.dd.IDragDrop the DragDrop object to register 
+		* @param oDD Ext.dd.DragDrop the DragDrop object to register 
 		* @param sGroup String the name of the group this element belongs to 
 		*/
 		static regDragDrop( oDD?:Ext.dd.IDragDrop, sGroup?:string ): void;
@@ -8565,7 +8565,7 @@ declare module Ext.dd {
 	}
 	export class DDM {
 		/** [Method] Helper function for getting the best match from the list of drag and drop objects returned by the drag and drop event  
-		* @param dds Ext.dd.IDragDrop[] The array of drag and drop objects targeted 
+		* @param dds Ext.dd.DragDrop[] The array of drag and drop objects targeted 
 		*/
 		static getBestMatch( dds?:Ext.dd.IDragDrop[] ): Ext.dd.IDragDrop;
 		/** [Method] Returns the style property for the DOM element i e  document getElById id style  
@@ -8581,11 +8581,11 @@ declare module Ext.dd {
 		*/
 		static getElement( id?:string ): any;
 		/** [Method] Returns a Region object containing the drag and drop element s position and size including the padding configured fo  
-		* @param oDD Ext.dd.IDragDrop the drag and drop object to get the location for. 
+		* @param oDD Ext.dd.DragDrop the drag and drop object to get the location for. 
 		*/
 		static getLocation( oDD?:Ext.dd.IDragDrop ): Ext.util.IRegion;
 		/** [Method] Returns the drag and drop instances that are in all groups the passed in instance belongs to  
-		* @param p_oDD Ext.dd.IDragDrop the obj to get related data for 
+		* @param p_oDD Ext.dd.DragDrop the obj to get related data for 
 		* @param bTargetsOnly Boolean if true, only return targetable objs 
 		*/
 		static getRelated( p_oDD?:Ext.dd.IDragDrop, bTargetsOnly?:bool ): Ext.dd.IDragDrop[];
@@ -8598,8 +8598,8 @@ declare module Ext.dd {
 		*/
 		static isHandle( id?:string ): bool;
 		/** [Method] Returns true if the specified dd target is a legal target for the specifice drag obj 
-		* @param oDD Ext.dd.IDragDrop the drag obj 
-		* @param oTargetDD Ext.dd.IDragDrop the target 
+		* @param oDD Ext.dd.DragDrop the drag obj 
+		* @param oTargetDD Ext.dd.DragDrop the target 
 		*/
 		static isLegalTarget( oDD?:Ext.dd.IDragDrop, oTargetDD?:Ext.dd.IDragDrop ): bool;
 		/** [Method] Is drag and drop locked  */
@@ -8615,7 +8615,7 @@ declare module Ext.dd {
 		*/
 		static refreshCache( groups?:any ): void;
 		/** [Method] Each DragDrop instance must be registered with the DragDropManager  
-		* @param oDD Ext.dd.IDragDrop the DragDrop object to register 
+		* @param oDD Ext.dd.DragDrop the DragDrop object to register 
 		* @param sGroup String the name of the group this element belongs to 
 		*/
 		static regDragDrop( oDD?:Ext.dd.IDragDrop, sGroup?:string ): void;
@@ -8656,25 +8656,25 @@ declare module Ext.dd {
 		/** [Property] (Object) */
 		dragData?: any;
 		/** [Method] An empty function by default but provided so that you can perform a custom action after a valid drag drop has occurr  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dropped element 
 		*/
 		afterDragDrop?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): void;
 		/** [Method] An empty function by default but provided so that you can perform a custom action when the dragged item enters the d  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
 		afterDragEnter?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): void;
 		/** [Method] An empty function by default but provided so that you can perform a custom action after the dragged item is dragged 
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
 		afterDragOut?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): void;
 		/** [Method] An empty function by default but provided so that you can perform a custom action while the dragged item is over the  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
@@ -8693,31 +8693,31 @@ declare module Ext.dd {
 		/** [Method] Sets the element to the location of the mousedown or click event maintaining the cursor location relative to the loc  */
 		alignElWithMouse?(): void;
 		/** [Method] An empty function by default but provided so that you can perform a custom action before the dragged item is dropped  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
 		beforeDragDrop?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): bool;
 		/** [Method] An empty function by default but provided so that you can perform a custom action before the dragged item enters the  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
 		beforeDragEnter?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): bool;
 		/** [Method] An empty function by default but provided so that you can perform a custom action before the dragged item is dragged  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
 		beforeDragOut?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): bool;
 		/** [Method] An empty function by default but provided so that you can perform a custom action while the dragged item is over the  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
 		beforeDragOver?( target?:Ext.dd.IDragDrop, e?:Event, id?:string ): bool;
 		/** [Method] An empty function by default but provided so that you can perform a custom action after an invalid drop has occurred  
-		* @param target Ext.dd.IDragDrop The drop target 
+		* @param target Ext.dd.DragDrop The drop target 
 		* @param e Event The event object 
 		* @param id String The id of the dragged element 
 		*/
@@ -8767,22 +8767,22 @@ declare module Ext.dd {
 		/** [Property] (HTMLElement) */
 		dragTarget?: HTMLElement;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -8792,7 +8792,7 @@ declare module Ext.dd {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -8806,7 +8806,7 @@ declare module Ext.dd {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the drag target  */
 		getDragTarget?(): Ext.IElement;
 		/** [Method] Returns the X Y offset of the current mouse position from the mousedown point  
@@ -8818,51 +8818,51 @@ declare module Ext.dd {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Initializes the DragTracker on a given element  
-		* @param el any The element 
+		* @param el Ext.Element/HTMLElement The element 
 		*/
 		initEl?( el?:any ): any;
 		initEl?( el?:Ext.IElement ): void;
 		initEl?( el?:HTMLElement ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		on?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Template method which should be overridden by each DragTracker instance  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		onBeforeStart?( e?:Ext.IEventObject ): void;
 		/** [Method] Template method which should be overridden by each DragTracker instance  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		onDrag?( e?:Ext.IEventObject ): void;
 		/** [Method] Template method which should be overridden by each DragTracker instance  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		onEnd?( e?:Ext.IEventObject ): void;
 		/** [Method] Template method which should be overridden by each DragTracker instance  
-		* @param e Ext.IEventObject The event object 
+		* @param e Ext.EventObject The event object 
 		*/
 		onStart?( e?:Ext.IEventObject ): void;
 		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
@@ -8878,10 +8878,10 @@ declare module Ext.dd {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -8946,25 +8946,25 @@ declare module Ext.dd {
 		/** [Method] Destroy this DragDrop instance */
 		destroy?(): void;
 		/** [Method] The function a Ext dd DragSource calls once to notify this drop target that the dragged item has been dropped on it  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop target 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop target 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		notifyDrop?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): bool;
 		/** [Method] The function a Ext dd DragSource calls once to notify this drop target that the source is now over the target  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop target 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop target 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		notifyEnter?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): string;
 		/** [Method] The function a Ext dd DragSource calls once to notify this drop target that the source has been dragged out of the ta  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop target 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop target 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		notifyOut?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): void;
 		/** [Method] The function a Ext dd DragSource calls continuously while it is being dragged over the target  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop target 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop target 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
@@ -8978,65 +8978,65 @@ declare module Ext.dd {
 		*/
 		getTargetFromEvent?( e?:Event ): any;
 		/** [Method] The function a Ext dd DragSource calls once to notify this drop zone that the dragged item has been dropped on it  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		notifyDrop?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): bool;
 		/** [Method] The function a Ext dd DragSource calls once to notify this drop zone that the source is now over the zone  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		notifyEnter?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): string;
 		/** [Method] The function a Ext dd DragSource calls once to notify this drop zone that the source has been dragged out of the zone  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop target 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop target 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag zone 
 		*/
 		notifyOut?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): void;
 		/** [Method] The function a Ext dd DragSource calls continuously while it is being dragged over the drop zone  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		notifyOver?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): string;
 		/** [Method] Called when the DropZone determines that a Ext dd DragSource has been dropped on it but not on any of its registered  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		onContainerDrop?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): bool;
 		/** [Method] Called while the DropZone determines that a Ext dd DragSource is being dragged over it but not over any of its regis  
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		onContainerOver?( source?:Ext.dd.IDragSource, e?:Event, data?:any ): string;
 		/** [Method] Called when the DropZone determines that a Ext dd DragSource has been dropped onto the drop node  
 		* @param nodeData Object The custom data associated with the drop node (this is the same value returned from getTargetFromEvent for this node) 
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		onNodeDrop?( nodeData?:any, source?:Ext.dd.IDragSource, e?:Event, data?:any ): bool;
 		/** [Method] Called when the DropZone determines that a Ext dd DragSource has entered a drop node that has either been registered 
 		* @param nodeData Object The custom data associated with the drop node (this is the same value returned from getTargetFromEvent for this node) 
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		onNodeEnter?( nodeData?:any, source?:Ext.dd.IDragSource, e?:Event, data?:any ): void;
 		/** [Method] Called when the DropZone determines that a Ext dd DragSource has been dragged out of the drop node without dropping  
 		* @param nodeData Object The custom data associated with the drop node (this is the same value returned from getTargetFromEvent for this node) 
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
 		onNodeOut?( nodeData?:any, source?:Ext.dd.IDragSource, e?:Event, data?:any ): void;
 		/** [Method] Called while the DropZone determines that a Ext dd DragSource is over a drop node that has either been registered or 
 		* @param nodeData Object The custom data associated with the drop node (this is the same value returned from getTargetFromEvent for this node) 
-		* @param source Ext.dd.IDragSource The drag source that was dragged over this drop zone 
+		* @param source Ext.dd.DragSource The drag source that was dragged over this drop zone 
 		* @param e Event The event 
 		* @param data Object An object containing arbitrary data supplied by the drag source 
 		*/
@@ -9050,7 +9050,7 @@ declare module Ext.dd {
 		/** [Method]  */
 		constructor();
 		/** [Method] Returns the handle registered for a DOM Node by id 
-		* @param id any The DOM node or id to look up 
+		* @param id String/HTMLElement The DOM node or id to look up 
 		*/
 		static getHandle( id?:any ): any;
 		static getHandle( id?:string ): any;
@@ -9060,7 +9060,7 @@ declare module Ext.dd {
 		*/
 		static getHandleFromEvent( e?:Event ): any;
 		/** [Method] Returns a custom data object that is registered for a DOM node by id 
-		* @param id any The DOM node or id to look up 
+		* @param id String/HTMLElement The DOM node or id to look up 
 		*/
 		static getTarget( id?:any ): any;
 		static getTarget( id?:string ): any;
@@ -9070,14 +9070,14 @@ declare module Ext.dd {
 		*/
 		static getTargetFromEvent( e?:Event ): any;
 		/** [Method] Registers a drag drop element  
-		* @param element any The id or DOM node to register 
-		* @param data any An custom data object that will be passed between the elements that are involved in drag drop operations. You can populate this object with any arbitrary properties that your own code knows how to interpret, plus there are some specific properties known to the Registry that should be populated in the data object (if applicable): 
+		* @param element String/HTMLElement The id or DOM node to register 
+		* @param data Object An custom data object that will be passed between the elements that are involved in drag drop operations. You can populate this object with any arbitrary properties that your own code knows how to interpret, plus there are some specific properties known to the Registry that should be populated in the data object (if applicable): 
 		*/
 		static register( element?:any, data?:any ): any;
 		static register( element?:string, data?:any ): void;
 		static register( element?:HTMLElement, data?:any ): void;
 		/** [Method] Unregister a drag drop element 
-		* @param element any The id or DOM node to unregister 
+		* @param element String/HTMLElement The id or DOM node to unregister 
 		*/
 		static unregister( element?:any ): any;
 		static unregister( element?:string ): void;
@@ -9093,7 +9093,7 @@ declare module Ext.dd {
 		/** [Method] Manually trigger a cache refresh  */
 		static refreshCache(): void;
 		/** [Method] Registers new overflow element s to auto scroll 
-		* @param el any The id of or the element to be scrolled or an array of either 
+		* @param el String/HTMLElement/Ext.Element/String[]/HTMLElement[]/Ext.Element[] The id of or the element to be scrolled or an array of either 
 		*/
 		static register( el?:any ): any;
 		static register( el?:string ): void;
@@ -9103,7 +9103,7 @@ declare module Ext.dd {
 		static register( el?:HTMLElement[] ): void;
 		static register( el?:Ext.IElement[] ): void;
 		/** [Method] Unregisters overflow element s so they are no longer scrolled 
-		* @param el any The id of or the element to be removed or an array of either 
+		* @param el String/HTMLElement/Ext.Element/String[]/HTMLElement[]/Ext.Element[] The id of or the element to be removed or an array of either 
 		*/
 		static unregister( el?:any ): any;
 		static unregister( el?:string ): void;
@@ -9143,7 +9143,7 @@ declare module Ext.dd {
 		/** [Method] Force the Layer to sync its shadow and shim positions to the element */
 		sync?(): void;
 		/** [Method] Updates the contents of the ghost element 
-		* @param html any The html that will replace the current innerHTML of the ghost element, or a DOM node to append as the child of the ghost element (in which case the innerHTML will be cleared first). 
+		* @param html String/HTMLElement The html that will replace the current innerHTML of the ghost element, or a DOM node to append as the child of the ghost element (in which case the innerHTML will be cleared first). 
 		*/
 		update?( html?:any ): any;
 		update?( html?:string ): void;
@@ -9181,28 +9181,28 @@ declare module Ext.direct {
 		/** [Method]  */
 		constructor();
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		static addEvents( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static addListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static addManagedListener( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds an Ext Direct Provider and creates the proxy or stub methods to execute server side methods  
-		* @param provider any Accepts any number of Provider descriptions (an instance or config object for a Provider). Each Provider description instructs Ext.Direct how to create client-side stub methods. 
+		* @param provider Ext.direct.Provider/Object... Accepts any number of Provider descriptions (an instance or config object for a Provider). Each Provider description instructs Ext.Direct how to create client-side stub methods. 
 		*/
 		static addProvider( provider?:any ): void;
 		/** [Method] Removes all listeners for this object including the managed listeners */
@@ -9210,7 +9210,7 @@ declare module Ext.direct {
 		/** [Method] Removes all managed listeners for this object  */
 		static clearManagedListeners(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		static enableBubble( eventNames?:any ): any;
 		static enableBubble( eventNames?:string ): void;
@@ -9224,9 +9224,9 @@ declare module Ext.direct {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		static fireEventArgs( eventName?:string, args?:Object[] ): bool;
+		static fireEventArgs( eventName?:string, args?:any[] ): bool;
 		/** [Method] Retrieves a provider by the id specified when the provider is added  
-		* @param id any The id of the provider, or the provider instance. 
+		* @param id String/Ext.direct.Provider The id of the provider, or the provider instance. 
 		*/
 		static getProvider( id?:any ): any;
 		static getProvider( id?:string ): void;
@@ -9236,33 +9236,33 @@ declare module Ext.direct {
 		*/
 		static hasListener( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static mon( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static mun( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static mun( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static mun( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static on( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Parses a direct function  
-		* @param fn any The direct function 
+		* @param fn String/Function The direct function 
 		*/
 		static parseMethod( fn?:any ): any;
 		static parseMethod( fn?:string ): any;
@@ -9279,16 +9279,16 @@ declare module Ext.direct {
 		*/
 		static removeListener( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static removeManagedListener( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static removeManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static removeManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Removes the provider  
-		* @param provider any The provider instance or the id of the provider. 
+		* @param provider String/Ext.direct.Provider The provider instance or the id of the provider. 
 		*/
 		static removeProvider( provider?:any ): any;
 		static removeProvider( provider?:string ): Ext.direct.IProvider;
@@ -9322,28 +9322,28 @@ declare module Ext {
 		/** [Method]  */
 		constructor();
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		static addEvents( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static addListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static addManagedListener( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds an Ext Direct Provider and creates the proxy or stub methods to execute server side methods  
-		* @param provider any Accepts any number of Provider descriptions (an instance or config object for a Provider). Each Provider description instructs Ext.Direct how to create client-side stub methods. 
+		* @param provider Ext.direct.Provider/Object... Accepts any number of Provider descriptions (an instance or config object for a Provider). Each Provider description instructs Ext.Direct how to create client-side stub methods. 
 		*/
 		static addProvider( provider?:any ): void;
 		/** [Method] Removes all listeners for this object including the managed listeners */
@@ -9351,7 +9351,7 @@ declare module Ext {
 		/** [Method] Removes all managed listeners for this object  */
 		static clearManagedListeners(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		static enableBubble( eventNames?:any ): any;
 		static enableBubble( eventNames?:string ): void;
@@ -9365,9 +9365,9 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		static fireEventArgs( eventName?:string, args?:Object[] ): bool;
+		static fireEventArgs( eventName?:string, args?:any[] ): bool;
 		/** [Method] Retrieves a provider by the id specified when the provider is added  
-		* @param id any The id of the provider, or the provider instance. 
+		* @param id String/Ext.direct.Provider The id of the provider, or the provider instance. 
 		*/
 		static getProvider( id?:any ): any;
 		static getProvider( id?:string ): void;
@@ -9377,33 +9377,33 @@ declare module Ext {
 		*/
 		static hasListener( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static mon( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static mun( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static mun( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static mun( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static on( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Parses a direct function  
-		* @param fn any The direct function 
+		* @param fn String/Function The direct function 
 		*/
 		static parseMethod( fn?:any ): any;
 		static parseMethod( fn?:string ): any;
@@ -9420,16 +9420,16 @@ declare module Ext {
 		*/
 		static removeListener( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static removeManagedListener( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static removeManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static removeManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Removes the provider  
-		* @param provider any The provider instance or the id of the provider. 
+		* @param provider String/Ext.direct.Provider The provider instance or the id of the provider. 
 		*/
 		static removeProvider( provider?:any ): any;
 		static removeProvider( provider?:string ): Ext.direct.IProvider;
@@ -9479,22 +9479,22 @@ declare module Ext.direct {
 		/** [Config Option] (String[]) */
 		relayedEvents?: string[];
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -9508,7 +9508,7 @@ declare module Ext.direct {
 		/** [Method] Abstract method for subclasses to implement  */
 		disconnect?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -9522,7 +9522,7 @@ declare module Ext.direct {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
@@ -9530,26 +9530,26 @@ declare module Ext.direct {
 		/** [Method] Returns whether or not the server side is currently connected  */
 		isConnected?(): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -9568,10 +9568,10 @@ declare module Ext.direct {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -9661,25 +9661,25 @@ declare module Ext.dom {
 		/** [Property] (Number) */
 		VISIBILITY?: number;
 		/** [Method] Adds one or more CSS classes to the element  
-		* @param className any The CSS classes to add separated by space, or an array of classes 
+		* @param className String/String[] The CSS classes to add separated by space, or an array of classes 
 		*/
 		addCls?( className?:any ): any;
 		addCls?( className?:string ): Ext.dom.IElement;
 		addCls?( className?:string[] ): Ext.dom.IElement;
 		/** [Method] Appends the passed element s to this element Defined in override Ext dom AbstractElement_insertion  
-		* @param el any The id or element to insert or a DomHelper config The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement/Object The id or element to insert or a DomHelper config The id of the node, a DOM Node or an existing Element. 
 		* @param returnDom Boolean True to return the raw DOM element instead of Ext.dom.AbstractElement 
 		*/
 		appendChild?( el?:any, returnDom?:bool ): Ext.dom.IAbstractElement;
 		/** [Method] Appends this element to the passed element Defined in override Ext dom AbstractElement_insertion  
-		* @param el any The new parent element. The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement The new parent element. The id of the node, a DOM Node or an existing Element. 
 		*/
 		appendTo?( el?:any ): any;
 		appendTo?( el?:string ): Ext.dom.IAbstractElement;
 		appendTo?( el?:HTMLElement ): Ext.dom.IAbstractElement;
 		appendTo?( el?:Ext.dom.IAbstractElement ): Ext.dom.IAbstractElement;
 		/** [Method] More flexible version of setStyle for setting style properties  
-		* @param styles any A style specification string, e.g. "width:100px", or object in the form {width:"100px"}, or a function which returns such a specification. 
+		* @param styles String/Object/Function A style specification string, e.g. "width:100px", or object in the form {width:"100px"}, or a function which returns such a specification. 
 		*/
 		applyStyles?( styles?:any ): Ext.dom.IElement;
 		/** [Method] Selects a single direct child based on the passed CSS selector the selector should not contain an id 
@@ -9693,7 +9693,7 @@ declare module Ext.dom {
 		*/
 		child?( selector?:string, returnDom?:bool ): Ext.dom.IElement;
 		/** [Method] Returns true if this element is an ancestor of the passed element 
-		* @param el any The element to check 
+		* @param el HTMLElement/String The element to check 
 		*/
 		contains?( el?:any ): any;
 		contains?( el?:HTMLElement ): bool;
@@ -9717,9 +9717,9 @@ declare module Ext.dom {
 		*/
 		down?( selector?:string, returnDom?:bool ): Ext.dom.IElement;
 		/** [Method] Looks at this node and then at parent nodes for a match of the passed simple selector e g  
-		* @param selector any The simple selector to test 
-		* @param limit any The max depth to search as a number or an element which causes the upward traversal to stop and is not considered for inclusion as the result. (defaults to 50 || document.documentElement) 
-		* @param returnEl any True to return a Ext.Element object instead of DOM node 
+		* @param selector String The simple selector to test 
+		* @param limit Number/String/HTMLElement/Ext.Element The max depth to search as a number or an element which causes the upward traversal to stop and is not considered for inclusion as the result. (defaults to 50 || document.documentElement) 
+		* @param returnEl Boolean True to return a Ext.Element object instead of DOM node 
 		*/
 		findParent?( selector?:any, limit?:any, returnEl?:any ): any;
 		findParent?( selector?:string, limit?:number, returnEl?:bool ): HTMLElement;
@@ -9727,9 +9727,9 @@ declare module Ext.dom {
 		findParent?( selector?:string, limit?:HTMLElement, returnEl?:bool ): HTMLElement;
 		findParent?( selector?:string, limit?:Ext.IElement, returnEl?:bool ): HTMLElement;
 		/** [Method] Looks at parent nodes for a match of the passed simple selector e g  
-		* @param selector any The simple selector to test 
-		* @param limit any The max depth to search as a number or an element which causes the upward traversal to stop and is not considered for inclusion as the result. (defaults to 50 || document.documentElement) 
-		* @param returnEl any True to return a Ext.Element object instead of DOM node 
+		* @param selector String The simple selector to test 
+		* @param limit Number/String/HTMLElement/Ext.Element The max depth to search as a number or an element which causes the upward traversal to stop and is not considered for inclusion as the result. (defaults to 50 || document.documentElement) 
+		* @param returnEl Boolean True to return a Ext.Element object instead of DOM node 
 		*/
 		findParentNode?( selector?:any, limit?:any, returnEl?:any ): any;
 		findParentNode?( selector?:string, limit?:number, returnEl?:bool ): HTMLElement;
@@ -9781,8 +9781,8 @@ declare module Ext.dom {
 		*/
 		getSize?( contentSize?:bool ): any;
 		/** [Method] Returns a named style property based on computed currentStyle primary and inline style if primary is not available  
-		* @param property any The style property (or multiple property names in an array) whose value is returned. 
-		* @param inline any if true only inline styles will be returned. 
+		* @param property String/String[] The style property (or multiple property names in an array) whose value is returned. 
+		* @param inline Boolean if true only inline styles will be returned. 
 		*/
 		getStyle?( property?:any, inline?:any ): any;
 		getStyle?( property?:string, inline?:bool ): any;
@@ -9806,25 +9806,25 @@ declare module Ext.dom {
 		*/
 		hasCls?( className?:string ): bool;
 		/** [Method] Hide this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		hide?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Inserts this element after the passed element in the DOM Defined in override Ext dom AbstractElement_insertion  
-		* @param el any The element to insert after. The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement The element to insert after. The id of the node, a DOM Node or an existing Element. 
 		*/
 		insertAfter?( el?:any ): any;
 		insertAfter?( el?:string ): Ext.dom.IAbstractElement;
 		insertAfter?( el?:HTMLElement ): Ext.dom.IAbstractElement;
 		insertAfter?( el?:Ext.dom.IAbstractElement ): Ext.dom.IAbstractElement;
 		/** [Method] Inserts this element before the passed element in the DOM Defined in override Ext dom AbstractElement_insertion  
-		* @param el any The element before which this element will be inserted. The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement The element before which this element will be inserted. The id of the node, a DOM Node or an existing Element. 
 		*/
 		insertBefore?( el?:any ): any;
 		insertBefore?( el?:string ): Ext.dom.IAbstractElement;
 		insertBefore?( el?:HTMLElement ): Ext.dom.IAbstractElement;
 		insertBefore?( el?:Ext.dom.IAbstractElement ): Ext.dom.IAbstractElement;
 		/** [Method] Inserts or creates an element or DomHelper config as the first child of this element Defined in override Ext dom  
-		* @param el any The id or element to insert or a DomHelper config to create and insert 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement/Object The id or element to insert or a DomHelper config to create and insert 
 		*/
 		insertFirst?( el?:any ): Ext.dom.IAbstractElement;
 		/** [Method] Inserts an html fragment into this element Defined in override Ext dom AbstractElement_insertion  
@@ -9840,7 +9840,7 @@ declare module Ext.dom {
 		*/
 		insertHtml?( where?:string, html?:string, returnEl?:bool ): Ext.dom.IAbstractElement;
 		/** [Method] Inserts or creates the passed element or DomHelper config as a sibling of this element Defined in override Ext d  
-		* @param el any The id, element to insert or a DomHelper config to create and insert or an array of any of those. 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement/Object/Array The id, element to insert or a DomHelper config to create and insert or an array of any of those. 
 		* @param where String 'before' or 'after' 
 		* @param returnDom Boolean True to return the raw DOM element instead of Ext.dom.AbstractElement 
 		*/
@@ -9908,7 +9908,7 @@ declare module Ext.dom {
 		*/
 		query?( selector?:string ): HTMLElement[];
 		/** [Method] Adds one or more CSS classes to this element and removes the same class es from all siblings  
-		* @param className any The CSS class to add, or an array of classes 
+		* @param className String/String[] The CSS class to add, or an array of classes 
 		*/
 		radioCls?( className?:any ): any;
 		radioCls?( className?:string ): Ext.dom.IElement;
@@ -9916,7 +9916,7 @@ declare module Ext.dom {
 		/** [Method] Removes this element s dom reference  */
 		remove?(): void;
 		/** [Method] Removes one or more CSS classes from the element  
-		* @param className any The CSS classes to remove separated by space, or an array of classes 
+		* @param className String/String[] The CSS classes to remove separated by space, or an array of classes 
 		*/
 		removeCls?( className?:any ): any;
 		removeCls?( className?:string ): Ext.dom.IElement;
@@ -9924,7 +9924,7 @@ declare module Ext.dom {
 		/** [Method] Forces the browser to repaint this element Defined in override Ext dom AbstractElement_style  */
 		repaint?(): Ext.dom.IElement;
 		/** [Method] Replaces the passed element with this element Defined in override Ext dom AbstractElement_insertion  
-		* @param el any The element to replace. The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement The element to replace. The id of the node, a DOM Node or an existing Element. 
 		*/
 		replace?( el?:any ): any;
 		replace?( el?:string ): Ext.dom.IAbstractElement;
@@ -9936,7 +9936,7 @@ declare module Ext.dom {
 		*/
 		replaceCls?( oldClassName?:string, newClassName?:string ): Ext.dom.IElement;
 		/** [Method] Replaces this element with the passed element Defined in override Ext dom AbstractElement_insertion  
-		* @param el any The new element (id of the node, a DOM Node or an existing Element) or a DomHelper config of an element to create 
+		* @param el String/HTMLElement/Ext.dom.AbstractElement/Object The new element (id of the node, a DOM Node or an existing Element) or a DomHelper config of an element to create 
 		*/
 		replaceWith?( el?:any ): Ext.dom.IAbstractElement;
 		/** [Method] Creates a Ext CompositeElement for child nodes based on the passed CSS selector the selector should not contain an id 
@@ -9958,14 +9958,14 @@ declare module Ext.dom {
 		*/
 		setHTML?( html?:string ): Ext.IElement;
 		/** [Method] Set the height of this Element  
-		* @param height any The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels.) A String used to set the CSS height style. Animation may not be used.  
+		* @param height Number/String The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels.) A String used to set the CSS height style. Animation may not be used.  
 		*/
 		setHeight?( height?:any ): any;
 		setHeight?( height?:number ): Ext.dom.IElement;
 		setHeight?( height?:string ): Ext.dom.IElement;
 		/** [Method] Set the size of this Element  
-		* @param width any The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels). A String used to set the CSS width style. Animation may not be used. A size object in the format {width: widthValue, height: heightValue}.  
-		* @param height any The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels). A String used to set the CSS height style. Animation may not be used.  
+		* @param width Number/String The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels). A String used to set the CSS width style. Animation may not be used. A size object in the format {width: widthValue, height: heightValue}.  
+		* @param height Number/String The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels). A String used to set the CSS height style. Animation may not be used.  
 		*/
 		setSize?( width?:any, height?:any ): any;
 		setSize?( width?:number, height?:number ): Ext.dom.IElement;
@@ -9973,7 +9973,7 @@ declare module Ext.dom {
 		setSize?( width?:number, height?:string ): Ext.dom.IElement;
 		setSize?( width?:string, height?:string ): Ext.dom.IElement;
 		/** [Method] Wrapper for setting style properties also takes single object parameter of multiple styles  
-		* @param property any The style property to be set, or an object of multiple styles. 
+		* @param property String/Object The style property to be set, or an object of multiple styles. 
 		* @param value String The value to apply to the given property, or null if an object was passed. 
 		*/
 		setStyle?( property?:any, value?:string ): Ext.dom.IElement;
@@ -9983,17 +9983,17 @@ declare module Ext.dom {
 		setVisibilityMode?( mode?:any ): Ext.dom.IAbstractElement;
 		/** [Method] Sets the visibility of the element see details 
 		* @param visible Boolean Whether the element is visible 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setVisible?( visible?:bool, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set the width of this Element  
-		* @param width any The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels). A String used to set the CSS width style. Animation may not be used.  
+		* @param width Number/String The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels). A String used to set the CSS width style. Animation may not be used.  
 		*/
 		setWidth?( width?:any ): any;
 		setWidth?( width?:number ): Ext.dom.IElement;
 		setWidth?( width?:string ): Ext.dom.IElement;
 		/** [Method] Show this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		show?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Toggles the specified CSS class on this element removes it if it already exists otherwise adds it 
@@ -10003,9 +10003,9 @@ declare module Ext.dom {
 		/** [Method] Removes a previously applied mask  */
 		unmask?(): void;
 		/** [Method] Walks up the DOM looking for a parent node that matches the passed simple selector e g  
-		* @param selector any The simple selector to test 
-		* @param limit any The max depth to search as a number or an element which causes the upward traversal to stop and is not considered for inclusion as the result. (defaults to 50 || document.documentElement) 
-		* @param returnDom any True to return the DOM node instead of Ext.dom.Element 
+		* @param selector String The simple selector to test 
+		* @param limit Number/String/HTMLElement/Ext.Element The max depth to search as a number or an element which causes the upward traversal to stop and is not considered for inclusion as the result. (defaults to 50 || document.documentElement) 
+		* @param returnDom Boolean True to return the DOM node instead of Ext.dom.Element 
 		*/
 		up?( selector?:any, limit?:any, returnDom?:any ): any;
 		up?( selector?:string, limit?:number, returnDom?:bool ): Ext.IElement;
@@ -10029,8 +10029,8 @@ declare module Ext.dom {
 		*/
 		wrap?( config?:any, returnDom?:bool, selector?:string ): Ext.dom.IAbstractElement;
 		/** [Method] Gets the singleton flyweight element with the passed node as the active element  
-		* @param dom any The dom node or id 
-		* @param named any Allows for creation of named reusable flyweights to prevent conflicts (e.g. internally Ext uses "_global") 
+		* @param dom String/HTMLElement The dom node or id 
+		* @param named String Allows for creation of named reusable flyweights to prevent conflicts (e.g. internally Ext uses "_global") 
 		*/
 		fly?( dom?:any, named?:any ): any;
 		fly?( dom?:string, named?:string ): Ext.dom.element.IFly;
@@ -10041,7 +10041,7 @@ declare module Ext.dom {
 		*/
 		fromPoint?( x?:number, y?:number ): string;
 		/** [Method] Retrieves Ext dom Element objects  
-		* @param el any The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.Element The id of the node, a DOM Node or an existing Element. 
 		*/
 		get?( el?:any ): any;
 		get?( el?:string ): Ext.dom.IElement;
@@ -10067,7 +10067,7 @@ declare module Ext.dom {
 		*/
 		normalize?( prop?:string ): string;
 		/** [Method] Parses a number or string representing margin sizes into an object  
-		* @param box any The encoded margins 
+		* @param box Number/String The encoded margins 
 		*/
 		parseBox?( box?:any ): any;
 		parseBox?( box?:number ): any;
@@ -10077,7 +10077,7 @@ declare module Ext.dom {
 		*/
 		parseStyles?( styles?:string ): any;
 		/** [Method] Parses a number or string representing margin sizes into an object  
-		* @param box any The encoded margins, or an object with top, right, bottom, and left properties 
+		* @param box Number/String/Object The encoded margins, or an object with top, right, bottom, and left properties 
 		* @param units String The type of units to add 
 		*/
 		unitizeBox?( box?:any, units?:string ): string;
@@ -10086,25 +10086,25 @@ declare module Ext.dom {
 declare module Ext.dom {
 	export interface IAbstractHelper extends Ext.IBase {
 		/** [Method] Creates new DOM element s and appends them to el  
-		* @param el any The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
-		* @param returnElement any true to return a Ext.Element 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
+		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		append?( el?:any, o?:any, returnElement?:any ): any;
 		append?( el?:string, o?:any, returnElement?:bool ): HTMLElement;
 		append?( el?:HTMLElement, o?:any, returnElement?:bool ): HTMLElement;
 		append?( el?:Ext.IElement, o?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Creates new DOM element s and appends them to el  
-		* @param el String The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
 		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		append?( el?:string, o?:any, returnElement?:bool ): Ext.IElement;
 		append?( el?:HTMLElement, o?:any, returnElement?:bool ): Ext.IElement;
 		append?( el?:Ext.IElement, o?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Applies a style specification to an element  
-		* @param el any The element to apply styles to 
-		* @param styles any A style specification string e.g. 'width:100px', or object in the form {width:'100px'}, or a function which returns such a specification. 
+		* @param el String/HTMLElement The element to apply styles to 
+		* @param styles String/Object/Function A style specification string e.g. 'width:100px', or object in the form {width:'100px'}, or a function which returns such a specification. 
 		*/
 		applyStyles?( el?:any, styles?:any ): any;
 		applyStyles?( el?:string, styles?:any ): void;
@@ -10120,16 +10120,16 @@ declare module Ext.dom {
 		*/
 		generateStyles?( styles?:any, buffer?:string[] ): string[];
 		/** [Method] Creates new DOM element s and inserts them after el  
-		* @param el any The context element 
-		* @param o any The DOM object spec (and children) 
-		* @param returnElement any true to return a Ext.Element 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object The DOM object spec (and children) 
+		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		insertAfter?( el?:any, o?:any, returnElement?:any ): any;
 		insertAfter?( el?:string, o?:any, returnElement?:bool ): HTMLElement;
 		insertAfter?( el?:HTMLElement, o?:any, returnElement?:bool ): HTMLElement;
 		insertAfter?( el?:Ext.IElement, o?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Creates new DOM element s and inserts them after el  
-		* @param el String The context element 
+		* @param el String/HTMLElement/Ext.Element The context element 
 		* @param o Object The DOM object spec (and children) 
 		* @param returnElement Boolean true to return a Ext.Element 
 		*/
@@ -10137,43 +10137,43 @@ declare module Ext.dom {
 		insertAfter?( el?:HTMLElement, o?:any, returnElement?:bool ): Ext.IElement;
 		insertAfter?( el?:Ext.IElement, o?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Creates new DOM element s and inserts them before el  
-		* @param el any The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
-		* @param returnElement any true to return a Ext.Element 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
+		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		insertBefore?( el?:any, o?:any, returnElement?:any ): any;
 		insertBefore?( el?:string, o?:any, returnElement?:bool ): HTMLElement;
 		insertBefore?( el?:HTMLElement, o?:any, returnElement?:bool ): HTMLElement;
 		insertBefore?( el?:Ext.IElement, o?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Creates new DOM element s and inserts them before el  
-		* @param el String The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
 		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		insertBefore?( el?:string, o?:any, returnElement?:bool ): Ext.IElement;
 		insertBefore?( el?:HTMLElement, o?:any, returnElement?:bool ): Ext.IElement;
 		insertBefore?( el?:Ext.IElement, o?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Creates new DOM element s and inserts them as the first child of el  
-		* @param el any The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
-		* @param returnElement any true to return a Ext.Element 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
+		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		insertFirst?( el?:any, o?:any, returnElement?:any ): any;
 		insertFirst?( el?:string, o?:any, returnElement?:bool ): HTMLElement;
 		insertFirst?( el?:HTMLElement, o?:any, returnElement?:bool ): HTMLElement;
 		insertFirst?( el?:Ext.IElement, o?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Creates new DOM element s and inserts them as the first child of el  
-		* @param el String The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
 		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		insertFirst?( el?:string, o?:any, returnElement?:bool ): Ext.IElement;
 		insertFirst?( el?:HTMLElement, o?:any, returnElement?:bool ): Ext.IElement;
 		insertFirst?( el?:Ext.IElement, o?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Inserts an HTML fragment into the DOM  
-		* @param where any Where to insert the html in relation to el - beforeBegin, afterBegin, beforeEnd, afterEnd. For example take the following HTML: &lt;div&gt;Contents&lt;/div&gt; Using different where values inserts element to the following places:  beforeBegin: &lt;HERE&gt;&lt;div&gt;Contents&lt;/div&gt; afterBegin: &lt;div&gt;&lt;HERE&gt;Contents&lt;/div&gt; beforeEnd: &lt;div&gt;Contents&lt;HERE&gt;&lt;/div&gt; afterEnd: &lt;div&gt;Contents&lt;/div&gt;&lt;HERE&gt;  
-		* @param el any The context element 
-		* @param html any The HTML fragment 
+		* @param where String Where to insert the html in relation to el - beforeBegin, afterBegin, beforeEnd, afterEnd. For example take the following HTML: &lt;div&gt;Contents&lt;/div&gt; Using different where values inserts element to the following places:  beforeBegin: &lt;HERE&gt;&lt;div&gt;Contents&lt;/div&gt; afterBegin: &lt;div&gt;&lt;HERE&gt;Contents&lt;/div&gt; beforeEnd: &lt;div&gt;Contents&lt;HERE&gt;&lt;/div&gt; afterEnd: &lt;div&gt;Contents&lt;/div&gt;&lt;HERE&gt;  
+		* @param el HTMLElement/TextNode The context element 
+		* @param html String The HTML fragment 
 		*/
 		insertHtml?( where?:any, el?:any, html?:any ): any;
 		insertHtml?( where?:string, el?:HTMLElement, html?:string ): HTMLElement;
@@ -10183,17 +10183,17 @@ declare module Ext.dom {
 		*/
 		markup?( spec?:any ): string;
 		/** [Method] Creates new DOM element s and overwrites the contents of el with them  
-		* @param el any The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
-		* @param returnElement any true to return a Ext.Element 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
+		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		overwrite?( el?:any, o?:any, returnElement?:any ): any;
 		overwrite?( el?:string, o?:any, returnElement?:bool ): HTMLElement;
 		overwrite?( el?:HTMLElement, o?:any, returnElement?:bool ): HTMLElement;
 		overwrite?( el?:Ext.IElement, o?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Creates new DOM element s and overwrites the contents of el with them  
-		* @param el String The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
 		* @param returnElement Boolean true to return a Ext.Element 
 		*/
 		overwrite?( el?:string, o?:any, returnElement?:bool ): Ext.IElement;
@@ -10204,23 +10204,23 @@ declare module Ext.dom {
 declare module Ext.dom {
 	export interface IAbstractQuery extends Ext.IBase {
 		/** [Method] Returns true if the passed element s match the passed simple selector e g  
-		* @param el any An element id, element or array of elements 
-		* @param selector any The simple selector to test 
+		* @param el String/HTMLElement/Array An element id, element or array of elements 
+		* @param selector String The simple selector to test 
 		*/
 		is?( el?:any, selector?:any ): any;
 		is?( el?:string, selector?:string ): bool;
 		is?( el?:HTMLElement, selector?:string ): bool;
 		is?( el?:any[], selector?:string ): bool;
 		/** [Method] Selects a group of elements  
-		* @param selector any The selector/xpath query (can be a comma separated list of selectors) 
-		* @param root any The start of the query (defaults to document). 
+		* @param selector String The selector/xpath query (can be a comma separated list of selectors) 
+		* @param root HTMLElement/String The start of the query (defaults to document). 
 		*/
 		select?( selector?:any, root?:any ): any;
 		select?( selector?:string, root?:HTMLElement ): HTMLElement[];
 		select?( selector?:string, root?:string ): HTMLElement[];
 		/** [Method] Selects a single element  
-		* @param selector any The selector/xpath query 
-		* @param root any The start of the query (defaults to document). 
+		* @param selector String The selector/xpath query 
+		* @param root HTMLElement/String The start of the query (defaults to document). 
 		*/
 		selectNode?( selector?:any, root?:any ): any;
 		selectNode?( selector?:string, root?:HTMLElement ): HTMLElement;
@@ -10242,7 +10242,7 @@ declare module Ext.dom {
 		/** [Property] (Boolean) */
 		isComposite?: bool;
 		/** [Method] Adds elements to this Composite object  
-		* @param els any Either an Array of DOM elements to add, or another Composite object who's elements should be added. 
+		* @param els HTMLElement[]/Ext.dom.CompositeElement Either an Array of DOM elements to add, or another Composite object who's elements should be added. 
 		*/
 		add?( els?:any ): any;
 		add?( els?:HTMLElement[] ): Ext.dom.ICompositeElement;
@@ -10252,7 +10252,7 @@ declare module Ext.dom {
 		*/
 		clear?( removeDom?:bool ): void;
 		/** [Method] Returns true if this composite contains the passed element  
-		* @param el any The id of an element, or an Ext.Element, or an HtmlElement to find within the composite collection. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, or an Ext.Element, or an HtmlElement to find within the composite collection. 
 		*/
 		contains?( el?:any ): any;
 		contains?( el?:string ): bool;
@@ -10265,13 +10265,13 @@ declare module Ext.dom {
 		*/
 		each?( fn?:any, scope?:any ): Ext.dom.ICompositeElement;
 		/** [Method] Clears this Composite and adds the elements passed  
-		* @param els any Either an array of DOM elements, or another Composite from which to fill this Composite. 
+		* @param els HTMLElement[]/Ext.dom.CompositeElement Either an array of DOM elements, or another Composite from which to fill this Composite. 
 		*/
 		fill?( els?:any ): any;
 		fill?( els?:HTMLElement[] ): Ext.dom.ICompositeElement;
 		fill?( els?:Ext.dom.ICompositeElement ): Ext.dom.ICompositeElement;
 		/** [Method] Filters this composite to only elements that match the passed selector  
-		* @param selector any A string CSS selector or a comparison function. The comparison function will be called with the following arguments: 
+		* @param selector String/Function A string CSS selector or a comparison function. The comparison function will be called with the following arguments: 
 		*/
 		filter?( selector?:any ): any;
 		filter?( selector?:string ): Ext.dom.ICompositeElement;
@@ -10280,7 +10280,7 @@ declare module Ext.dom {
 		/** [Method] Returns the number of elements in this Composite  */
 		getCount?(): number;
 		/** [Method] Find the index of the passed element within the composite collection  
-		* @param el any The id of an element, or an Ext.dom.Element, or an HtmlElement to find within the composite collection. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, or an Ext.dom.Element, or an HtmlElement to find within the composite collection. 
 		*/
 		indexOf?( el?:any ): any;
 		indexOf?( el?:string ): number;
@@ -10294,8 +10294,8 @@ declare module Ext.dom {
 		/** [Method] Returns the last Element */
 		last?(): Ext.dom.IElement;
 		/** [Method] Removes the specified element s 
-		* @param el any The id of an element, the Element itself, the index of the element in this composite or an array of any of those. 
-		* @param removeDom any True to also remove the element from the document. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, the Element itself, the index of the element in this composite or an array of any of those. 
+		* @param removeDom Boolean True to also remove the element from the document. 
 		*/
 		removeElement?( el?:any, removeDom?:any ): any;
 		removeElement?( el?:string, removeDom?:bool ): Ext.dom.ICompositeElement;
@@ -10303,9 +10303,9 @@ declare module Ext.dom {
 		removeElement?( el?:Ext.IElement, removeDom?:bool ): Ext.dom.ICompositeElement;
 		removeElement?( el?:number, removeDom?:bool ): Ext.dom.ICompositeElement;
 		/** [Method] Replaces the specified element with the passed element  
-		* @param el any The id of an element, the Element itself, the index of the element in this composite to replace. 
-		* @param replacement any The id of an element or the Element itself. 
-		* @param domReplace any True to remove and replace the element in the document too. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, the Element itself, the index of the element in this composite to replace. 
+		* @param replacement String/Ext.Element The id of an element or the Element itself. 
+		* @param domReplace Boolean True to remove and replace the element in the document too. 
 		*/
 		replaceElement?( el?:any, replacement?:any, domReplace?:any ): any;
 		replaceElement?( el?:string, replacement?:string, domReplace?:bool ): Ext.dom.ICompositeElement;
@@ -10330,7 +10330,7 @@ declare module Ext {
 		/** [Property] (Boolean) */
 		isComposite?: bool;
 		/** [Method] Adds elements to this Composite object  
-		* @param els any Either an Array of DOM elements to add, or another Composite object who's elements should be added. 
+		* @param els HTMLElement[]/Ext.dom.CompositeElement Either an Array of DOM elements to add, or another Composite object who's elements should be added. 
 		*/
 		add?( els?:any ): any;
 		add?( els?:HTMLElement[] ): Ext.dom.ICompositeElement;
@@ -10340,7 +10340,7 @@ declare module Ext {
 		*/
 		clear?( removeDom?:bool ): void;
 		/** [Method] Returns true if this composite contains the passed element  
-		* @param el any The id of an element, or an Ext.Element, or an HtmlElement to find within the composite collection. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, or an Ext.Element, or an HtmlElement to find within the composite collection. 
 		*/
 		contains?( el?:any ): any;
 		contains?( el?:string ): bool;
@@ -10353,13 +10353,13 @@ declare module Ext {
 		*/
 		each?( fn?:any, scope?:any ): Ext.dom.ICompositeElement;
 		/** [Method] Clears this Composite and adds the elements passed  
-		* @param els any Either an array of DOM elements, or another Composite from which to fill this Composite. 
+		* @param els HTMLElement[]/Ext.dom.CompositeElement Either an array of DOM elements, or another Composite from which to fill this Composite. 
 		*/
 		fill?( els?:any ): any;
 		fill?( els?:HTMLElement[] ): Ext.dom.ICompositeElement;
 		fill?( els?:Ext.dom.ICompositeElement ): Ext.dom.ICompositeElement;
 		/** [Method] Filters this composite to only elements that match the passed selector  
-		* @param selector any A string CSS selector or a comparison function. The comparison function will be called with the following arguments: 
+		* @param selector String/Function A string CSS selector or a comparison function. The comparison function will be called with the following arguments: 
 		*/
 		filter?( selector?:any ): any;
 		filter?( selector?:string ): Ext.dom.ICompositeElement;
@@ -10368,7 +10368,7 @@ declare module Ext {
 		/** [Method] Returns the number of elements in this Composite  */
 		getCount?(): number;
 		/** [Method] Find the index of the passed element within the composite collection  
-		* @param el any The id of an element, or an Ext.dom.Element, or an HtmlElement to find within the composite collection. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, or an Ext.dom.Element, or an HtmlElement to find within the composite collection. 
 		*/
 		indexOf?( el?:any ): any;
 		indexOf?( el?:string ): number;
@@ -10382,8 +10382,8 @@ declare module Ext {
 		/** [Method] Returns the last Element */
 		last?(): Ext.dom.IElement;
 		/** [Method] Removes the specified element s 
-		* @param el any The id of an element, the Element itself, the index of the element in this composite or an array of any of those. 
-		* @param removeDom any True to also remove the element from the document. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, the Element itself, the index of the element in this composite or an array of any of those. 
+		* @param removeDom Boolean True to also remove the element from the document. 
 		*/
 		removeElement?( el?:any, removeDom?:any ): any;
 		removeElement?( el?:string, removeDom?:bool ): Ext.dom.ICompositeElement;
@@ -10391,9 +10391,9 @@ declare module Ext {
 		removeElement?( el?:Ext.IElement, removeDom?:bool ): Ext.dom.ICompositeElement;
 		removeElement?( el?:number, removeDom?:bool ): Ext.dom.ICompositeElement;
 		/** [Method] Replaces the specified element with the passed element  
-		* @param el any The id of an element, the Element itself, the index of the element in this composite to replace. 
-		* @param replacement any The id of an element or the Element itself. 
-		* @param domReplace any True to remove and replace the element in the document too. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, the Element itself, the index of the element in this composite to replace. 
+		* @param replacement String/Ext.Element The id of an element or the Element itself. 
+		* @param domReplace Boolean True to remove and replace the element in the document too. 
 		*/
 		replaceElement?( el?:any, replacement?:any, domReplace?:any ): any;
 		replaceElement?( el?:string, replacement?:string, domReplace?:bool ): Ext.dom.ICompositeElement;
@@ -10448,7 +10448,7 @@ declare module Ext.dom {
 		*/
 		addClsOnOver?( className?:string, testFn?:any, scope?:any ): Ext.dom.IElement;
 		/** [Method] Convenience method for constructing a KeyMap 
-		* @param key any Either a string with the keys to listen for, the numeric key code, array of key codes or an object with the following options: 
+		* @param key String/Number/Number[]/Object Either a string with the keys to listen for, the numeric key code, array of key codes or an object with the following options: 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the specified function is executed. Defaults to this Element. 
 		*/
@@ -10477,7 +10477,7 @@ declare module Ext.dom {
 		/** [Method] When an element is moved around in the DOM or is hidden using display none it loses layout and therefore all scrol  */
 		cacheScrollValues?(): any;
 		/** [Method] Centers the Element in either the viewport or another Element  
-		* @param centerIn any element in which to center the element. 
+		* @param centerIn String/HTMLElement/Ext.dom.Element element in which to center the element. 
 		*/
 		center?( centerIn?:any ): any;
 		center?( centerIn?:string ): void;
@@ -10498,9 +10498,9 @@ declare module Ext.dom {
 		/** [Method] Store the current overflow setting and clip overflow on the element  use unclip to remove Defined in override Ext d  */
 		clip?(): Ext.dom.IElement;
 		/** [Method] Creates a proxy element of this element 
-		* @param config any The class name of the proxy element or a DomHelper config object 
-		* @param renderTo any The element or element id to render the proxy to. Defaults to: document.body. 
-		* @param matchBox any True to align and size the proxy to this element now. 
+		* @param config String/Object The class name of the proxy element or a DomHelper config object 
+		* @param renderTo String/HTMLElement The element or element id to render the proxy to. Defaults to: document.body. 
+		* @param matchBox Boolean True to align and size the proxy to this element now. 
 		*/
 		createProxy?( config?:any, renderTo?:any, matchBox?:any ): any;
 		createProxy?( config?:any, renderTo?:string, matchBox?:bool ): Ext.dom.IElement;
@@ -10610,7 +10610,7 @@ declare module Ext.dom {
 		*/
 		ghost?( anchor?:string, options?:any ): Ext.dom.IElement;
 		/** [Method] Hide this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		hide?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Highlights the Element by setting a color applies to the background color by default but can be changed using the  
@@ -10677,7 +10677,7 @@ declare module Ext.dom {
 		/** [Method] Sets the position of the element in page coordinates  
 		* @param x Number X value for new position (coordinates are page-based) 
 		* @param y Number Y value for new position (coordinates are page-based) 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		moveTo?( x?:number, y?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Returns true if this element needs an explicit tabIndex to make it focusable  */
@@ -10728,20 +10728,20 @@ declare module Ext.dom {
 		/** [Method] Scrolls this element the specified direction  
 		* @param direction String Possible values are:  "l" (or "left") "r" (or "right") "t" (or "top", or "up") "b" (or "bottom", or "down")  
 		* @param distance Number How far to scroll the element in pixels 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		scroll?( direction?:string, distance?:number, animate?:any ): bool;
 		/** [Method] Scrolls this element by the passed delta values optionally animating  
-		* @param deltaX any Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
-		* @param deltaY any Either the y delta, or an animate flag or config object. 
-		* @param animate any Animate flag/config object if the delta values were passed separately. 
+		* @param deltaX Number/Number[]/Object Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
+		* @param deltaY Number/Boolean/Object Either the y delta, or an animate flag or config object. 
+		* @param animate Boolean/Object Animate flag/config object if the delta values were passed separately. 
 		*/
 		scrollBy?( deltaX?:any, deltaY?:any, animate?:any ): Ext.IElement;
 		/** [Method] Scrolls this element into view within the passed container  
-		* @param container any The container element to scroll. Should be a string (id), dom node, or Ext.Element. 
-		* @param hscroll any False to disable horizontal scroll. 
-		* @param animate any true for the default animation or a standard Element 
-		* @param highlight any true to highlight the element when it is in view. animation config object 
+		* @param container String/HTMLElement/Ext.Element The container element to scroll. Should be a string (id), dom node, or Ext.Element. 
+		* @param hscroll Boolean False to disable horizontal scroll. 
+		* @param animate Boolean/Object true for the default animation or a standard Element 
+		* @param highlight Boolean true to highlight the element when it is in view. animation config object 
 		*/
 		scrollIntoView?( container?:any, hscroll?:any, animate?:any, highlight?:any ): any;
 		scrollIntoView?( container?:string, hscroll?:bool, animate?:any, highlight?:bool ): Ext.dom.IElement;
@@ -10750,23 +10750,23 @@ declare module Ext.dom {
 		/** [Method] Scrolls this element the specified scroll point  
 		* @param side String Either "left" for scrollLeft values or "top" for scrollTop values. 
 		* @param value Number The new scroll value 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		scrollTo?( side?:string, value?:number, animate?:any ): Ext.IElement;
 		/** [Method] Enable text selection for this element normalized across browsers  Defined in override Ext dom Element_style  */
 		selectable?(): Ext.IElement;
 		/** [Method] Sets the element s CSS bottom style  
-		* @param bottom any Number of pixels or CSS string value to set as the bottom CSS property value 
+		* @param bottom Number/String Number of pixels or CSS string value to set as the bottom CSS property value 
 		*/
 		setBottom?( bottom?:any ): any;
 		setBottom?( bottom?:number ): Ext.dom.IElement;
 		setBottom?( bottom?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s position and size in one shot  
-		* @param x any X value for new position (coordinates are page-based) 
-		* @param y any Y value for new position (coordinates are page-based) 
-		* @param width any The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels) A String used to set the CSS width style. Animation may not be used.  
-		* @param height any The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels) A String used to set the CSS height style. Animation may not be used.  
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param x Number X value for new position (coordinates are page-based) 
+		* @param y Number Y value for new position (coordinates are page-based) 
+		* @param width Number/String The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels) A String used to set the CSS width style. Animation may not be used.  
+		* @param height Number/String The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels) A String used to set the CSS height style. Animation may not be used.  
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setBounds?( x?:any, y?:any, width?:any, height?:any, animate?:any ): any;
 		setBounds?( x?:number, y?:number, width?:number, height?:number, animate?:any ): Ext.dom.IElement;
@@ -10774,20 +10774,20 @@ declare module Ext.dom {
 		setBounds?( x?:number, y?:number, width?:number, height?:string, animate?:any ): Ext.dom.IElement;
 		setBounds?( x?:number, y?:number, width?:string, height?:string, animate?:any ): Ext.dom.IElement;
 		/** [Method] Sets the CSS display property  
-		* @param value any Boolean value to display the element using its default display, or a string to set the display directly. 
+		* @param value Boolean/String Boolean value to display the element using its default display, or a string to set the display directly. 
 		*/
 		setDisplayed?( value?:any ): any;
 		setDisplayed?( value?:bool ): Ext.dom.IElement;
 		setDisplayed?( value?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s left position directly using CSS style instead of setX 
-		* @param left any Number of pixels or CSS string value to set as the left CSS property value 
+		* @param left Number/String Number of pixels or CSS string value to set as the left CSS property value 
 		*/
 		setLeft?( left?:any ): any;
 		setLeft?( left?:number ): Ext.dom.IElement;
 		setLeft?( left?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s left and top positions directly using CSS style Defined in override Ext dom Element_position  
-		* @param left any Number of pixels or CSS string value to set as the left CSS property value 
-		* @param top any Number of pixels or CSS string value to set as the top CSS property value 
+		* @param left Number/String Number of pixels or CSS string value to set as the left CSS property value 
+		* @param top Number/String Number of pixels or CSS string value to set as the top CSS property value 
 		*/
 		setLeftTop?( left?:any, top?:any ): any;
 		setLeftTop?( left?:number, top?:number ): Ext.dom.IElement;
@@ -10797,12 +10797,12 @@ declare module Ext.dom {
 		/** [Method] Sets the position of the element in page coordinates  
 		* @param x Number X value for new position 
 		* @param y Number Y value for new position 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setLocation?( x?:number, y?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set the opacity of the element Defined in override Ext dom Element_style  
 		* @param opacity Number The new opacity. 0 = transparent, .5 = 50% visibile, 1 = fully visible, etc 
-		* @param animate any a standard Element animation config object or true for the default animation ({duration: 350, easing: 'easeIn'}) 
+		* @param animate Boolean/Object a standard Element animation config object or true for the default animation ({duration: 350, easing: 'easeIn'}) 
 		*/
 		setOpacity?( opacity?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set positioning with an object returned by getPositioning  
@@ -10810,7 +10810,7 @@ declare module Ext.dom {
 		*/
 		setPositioning?( posCfg?:any ): Ext.dom.IElement;
 		/** [Method] Sets the element s CSS right style  
-		* @param right any Number of pixels or CSS string value to set as the right CSS property value 
+		* @param right Number/String Number of pixels or CSS string value to set as the right CSS property value 
 		*/
 		setRight?( right?:any ): any;
 		setRight?( right?:number ): Ext.dom.IElement;
@@ -10824,14 +10824,14 @@ declare module Ext.dom {
 		*/
 		setScrollTop?( top?:number ): Ext.dom.IElement;
 		/** [Method] Sets the element s top position directly using CSS style instead of setY 
-		* @param top any Number of pixels or CSS string value to set as the top CSS property value 
+		* @param top Number/String Number of pixels or CSS string value to set as the top CSS property value 
 		*/
 		setTop?( top?:any ): any;
 		setTop?( top?:number ): Ext.dom.IElement;
 		setTop?( top?:string ): Ext.dom.IElement;
 		/** [Method] Sets the visibility of the element see details 
 		* @param visible Boolean Whether the element is visible 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setVisible?( visible?:bool, animate?:any ): Ext.dom.IElement;
 		/** [Method] Animates the transition of any combination of an element s dimensions xy position and or opacity  
@@ -10839,7 +10839,7 @@ declare module Ext.dom {
 		*/
 		shift?( options?:any ): Ext.IElement;
 		/** [Method] Show this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		show?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Slides the element into view  
@@ -10853,8 +10853,8 @@ declare module Ext.dom {
 		*/
 		slideOut?( anchor?:string, options?:any ): Ext.dom.IElement;
 		/** [Method] Stops the specified event s from bubbling and optionally prevents the default action 
-		* @param eventName any an event / array of events to stop from bubbling 
-		* @param preventDefault any true to prevent the default action too 
+		* @param eventName String/String[] an event / array of events to stop from bubbling 
+		* @param preventDefault Boolean true to prevent the default action too 
 		*/
 		swallowEvent?( eventName?:any, preventDefault?:any ): any;
 		swallowEvent?( eventName?:string, preventDefault?:bool ): Ext.dom.IElement;
@@ -10864,7 +10864,7 @@ declare module Ext.dom {
 		*/
 		switchOff?( options?:any ): Ext.dom.IElement;
 		/** [Method] Toggles the element s visibility or display depending on visibility mode  
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		toggle?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Removes an event handler from this element  
@@ -10885,25 +10885,6 @@ declare module Ext.dom {
 		* @param callback Function For async script loading you can be notified when the update completes 
 		*/
 		update?( html?:string, loadScripts?:bool, callback?:any ): Ext.dom.IElement;
-		/** [Method] Selects elements based on the passed CSS selector to enable Element methods to be applied to many related elements in  
-		* @param selector any The CSS selector or an array of elements 
-		* @param unique any true to create a unique Ext.Element for each element (defaults to a shared flyweight object) 
-		* @param root any The root element of the query or id of the root 
-		*/
-		select?( selector?:any, unique?:any, root?:any ): any;
-		select?( selector?:string, unique?:bool, root?:HTMLElement ): Ext.ICompositeElementLite;
-		select?( selector?:HTMLElement[], unique?:bool, root?:HTMLElement ): Ext.ICompositeElementLite;
-		select?( selector?:string, unique?:bool, root?:string ): Ext.ICompositeElementLite;
-		select?( selector?:HTMLElement[], unique?:bool, root?:string ): Ext.ICompositeElementLite;
-		/** [Method] Selects elements based on the passed CSS selector to enable Element methods to be applied to many related elements in  
-		* @param selector String The CSS selector or an array of elements 
-		* @param unique Boolean true to create a unique Ext.Element for each element (defaults to a shared flyweight object) 
-		* @param root HTMLElement The root element of the query or id of the root 
-		*/
-		select?( selector?:string, unique?:bool, root?:HTMLElement ): Ext.ICompositeElement;
-		select?( selector?:HTMLElement[], unique?:bool, root?:HTMLElement ): Ext.ICompositeElement;
-		select?( selector?:string, unique?:bool, root?:string ): Ext.ICompositeElement;
-		select?( selector?:HTMLElement[], unique?:bool, root?:string ): Ext.ICompositeElement;
 	}
 }
 declare module Ext {
@@ -10931,7 +10912,7 @@ declare module Ext {
 		*/
 		addClsOnOver?( className?:string, testFn?:any, scope?:any ): Ext.dom.IElement;
 		/** [Method] Convenience method for constructing a KeyMap 
-		* @param key any Either a string with the keys to listen for, the numeric key code, array of key codes or an object with the following options: 
+		* @param key String/Number/Number[]/Object Either a string with the keys to listen for, the numeric key code, array of key codes or an object with the following options: 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the specified function is executed. Defaults to this Element. 
 		*/
@@ -10960,7 +10941,7 @@ declare module Ext {
 		/** [Method] When an element is moved around in the DOM or is hidden using display none it loses layout and therefore all scrol  */
 		cacheScrollValues?(): any;
 		/** [Method] Centers the Element in either the viewport or another Element  
-		* @param centerIn any element in which to center the element. 
+		* @param centerIn String/HTMLElement/Ext.dom.Element element in which to center the element. 
 		*/
 		center?( centerIn?:any ): any;
 		center?( centerIn?:string ): void;
@@ -10981,9 +10962,9 @@ declare module Ext {
 		/** [Method] Store the current overflow setting and clip overflow on the element  use unclip to remove Defined in override Ext d  */
 		clip?(): Ext.dom.IElement;
 		/** [Method] Creates a proxy element of this element 
-		* @param config any The class name of the proxy element or a DomHelper config object 
-		* @param renderTo any The element or element id to render the proxy to. Defaults to: document.body. 
-		* @param matchBox any True to align and size the proxy to this element now. 
+		* @param config String/Object The class name of the proxy element or a DomHelper config object 
+		* @param renderTo String/HTMLElement The element or element id to render the proxy to. Defaults to: document.body. 
+		* @param matchBox Boolean True to align and size the proxy to this element now. 
 		*/
 		createProxy?( config?:any, renderTo?:any, matchBox?:any ): any;
 		createProxy?( config?:any, renderTo?:string, matchBox?:bool ): Ext.dom.IElement;
@@ -11093,7 +11074,7 @@ declare module Ext {
 		*/
 		ghost?( anchor?:string, options?:any ): Ext.dom.IElement;
 		/** [Method] Hide this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		hide?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Highlights the Element by setting a color applies to the background color by default but can be changed using the  
@@ -11160,7 +11141,7 @@ declare module Ext {
 		/** [Method] Sets the position of the element in page coordinates  
 		* @param x Number X value for new position (coordinates are page-based) 
 		* @param y Number Y value for new position (coordinates are page-based) 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		moveTo?( x?:number, y?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Returns true if this element needs an explicit tabIndex to make it focusable  */
@@ -11211,20 +11192,20 @@ declare module Ext {
 		/** [Method] Scrolls this element the specified direction  
 		* @param direction String Possible values are:  "l" (or "left") "r" (or "right") "t" (or "top", or "up") "b" (or "bottom", or "down")  
 		* @param distance Number How far to scroll the element in pixels 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		scroll?( direction?:string, distance?:number, animate?:any ): bool;
 		/** [Method] Scrolls this element by the passed delta values optionally animating  
-		* @param deltaX any Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
-		* @param deltaY any Either the y delta, or an animate flag or config object. 
-		* @param animate any Animate flag/config object if the delta values were passed separately. 
+		* @param deltaX Number/Number[]/Object Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
+		* @param deltaY Number/Boolean/Object Either the y delta, or an animate flag or config object. 
+		* @param animate Boolean/Object Animate flag/config object if the delta values were passed separately. 
 		*/
 		scrollBy?( deltaX?:any, deltaY?:any, animate?:any ): Ext.IElement;
 		/** [Method] Scrolls this element into view within the passed container  
-		* @param container any The container element to scroll. Should be a string (id), dom node, or Ext.Element. 
-		* @param hscroll any False to disable horizontal scroll. 
-		* @param animate any true for the default animation or a standard Element 
-		* @param highlight any true to highlight the element when it is in view. animation config object 
+		* @param container String/HTMLElement/Ext.Element The container element to scroll. Should be a string (id), dom node, or Ext.Element. 
+		* @param hscroll Boolean False to disable horizontal scroll. 
+		* @param animate Boolean/Object true for the default animation or a standard Element 
+		* @param highlight Boolean true to highlight the element when it is in view. animation config object 
 		*/
 		scrollIntoView?( container?:any, hscroll?:any, animate?:any, highlight?:any ): any;
 		scrollIntoView?( container?:string, hscroll?:bool, animate?:any, highlight?:bool ): Ext.dom.IElement;
@@ -11233,23 +11214,23 @@ declare module Ext {
 		/** [Method] Scrolls this element the specified scroll point  
 		* @param side String Either "left" for scrollLeft values or "top" for scrollTop values. 
 		* @param value Number The new scroll value 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		scrollTo?( side?:string, value?:number, animate?:any ): Ext.IElement;
 		/** [Method] Enable text selection for this element normalized across browsers  Defined in override Ext dom Element_style  */
 		selectable?(): Ext.IElement;
 		/** [Method] Sets the element s CSS bottom style  
-		* @param bottom any Number of pixels or CSS string value to set as the bottom CSS property value 
+		* @param bottom Number/String Number of pixels or CSS string value to set as the bottom CSS property value 
 		*/
 		setBottom?( bottom?:any ): any;
 		setBottom?( bottom?:number ): Ext.dom.IElement;
 		setBottom?( bottom?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s position and size in one shot  
-		* @param x any X value for new position (coordinates are page-based) 
-		* @param y any Y value for new position (coordinates are page-based) 
-		* @param width any The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels) A String used to set the CSS width style. Animation may not be used.  
-		* @param height any The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels) A String used to set the CSS height style. Animation may not be used.  
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param x Number X value for new position (coordinates are page-based) 
+		* @param y Number Y value for new position (coordinates are page-based) 
+		* @param width Number/String The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels) A String used to set the CSS width style. Animation may not be used.  
+		* @param height Number/String The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels) A String used to set the CSS height style. Animation may not be used.  
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setBounds?( x?:any, y?:any, width?:any, height?:any, animate?:any ): any;
 		setBounds?( x?:number, y?:number, width?:number, height?:number, animate?:any ): Ext.dom.IElement;
@@ -11257,20 +11238,20 @@ declare module Ext {
 		setBounds?( x?:number, y?:number, width?:number, height?:string, animate?:any ): Ext.dom.IElement;
 		setBounds?( x?:number, y?:number, width?:string, height?:string, animate?:any ): Ext.dom.IElement;
 		/** [Method] Sets the CSS display property  
-		* @param value any Boolean value to display the element using its default display, or a string to set the display directly. 
+		* @param value Boolean/String Boolean value to display the element using its default display, or a string to set the display directly. 
 		*/
 		setDisplayed?( value?:any ): any;
 		setDisplayed?( value?:bool ): Ext.dom.IElement;
 		setDisplayed?( value?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s left position directly using CSS style instead of setX 
-		* @param left any Number of pixels or CSS string value to set as the left CSS property value 
+		* @param left Number/String Number of pixels or CSS string value to set as the left CSS property value 
 		*/
 		setLeft?( left?:any ): any;
 		setLeft?( left?:number ): Ext.dom.IElement;
 		setLeft?( left?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s left and top positions directly using CSS style Defined in override Ext dom Element_position  
-		* @param left any Number of pixels or CSS string value to set as the left CSS property value 
-		* @param top any Number of pixels or CSS string value to set as the top CSS property value 
+		* @param left Number/String Number of pixels or CSS string value to set as the left CSS property value 
+		* @param top Number/String Number of pixels or CSS string value to set as the top CSS property value 
 		*/
 		setLeftTop?( left?:any, top?:any ): any;
 		setLeftTop?( left?:number, top?:number ): Ext.dom.IElement;
@@ -11280,12 +11261,12 @@ declare module Ext {
 		/** [Method] Sets the position of the element in page coordinates  
 		* @param x Number X value for new position 
 		* @param y Number Y value for new position 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setLocation?( x?:number, y?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set the opacity of the element Defined in override Ext dom Element_style  
 		* @param opacity Number The new opacity. 0 = transparent, .5 = 50% visibile, 1 = fully visible, etc 
-		* @param animate any a standard Element animation config object or true for the default animation ({duration: 350, easing: 'easeIn'}) 
+		* @param animate Boolean/Object a standard Element animation config object or true for the default animation ({duration: 350, easing: 'easeIn'}) 
 		*/
 		setOpacity?( opacity?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set positioning with an object returned by getPositioning  
@@ -11293,7 +11274,7 @@ declare module Ext {
 		*/
 		setPositioning?( posCfg?:any ): Ext.dom.IElement;
 		/** [Method] Sets the element s CSS right style  
-		* @param right any Number of pixels or CSS string value to set as the right CSS property value 
+		* @param right Number/String Number of pixels or CSS string value to set as the right CSS property value 
 		*/
 		setRight?( right?:any ): any;
 		setRight?( right?:number ): Ext.dom.IElement;
@@ -11307,14 +11288,14 @@ declare module Ext {
 		*/
 		setScrollTop?( top?:number ): Ext.dom.IElement;
 		/** [Method] Sets the element s top position directly using CSS style instead of setY 
-		* @param top any Number of pixels or CSS string value to set as the top CSS property value 
+		* @param top Number/String Number of pixels or CSS string value to set as the top CSS property value 
 		*/
 		setTop?( top?:any ): any;
 		setTop?( top?:number ): Ext.dom.IElement;
 		setTop?( top?:string ): Ext.dom.IElement;
 		/** [Method] Sets the visibility of the element see details 
 		* @param visible Boolean Whether the element is visible 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setVisible?( visible?:bool, animate?:any ): Ext.dom.IElement;
 		/** [Method] Animates the transition of any combination of an element s dimensions xy position and or opacity  
@@ -11322,7 +11303,7 @@ declare module Ext {
 		*/
 		shift?( options?:any ): Ext.IElement;
 		/** [Method] Show this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		show?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Slides the element into view  
@@ -11336,8 +11317,8 @@ declare module Ext {
 		*/
 		slideOut?( anchor?:string, options?:any ): Ext.dom.IElement;
 		/** [Method] Stops the specified event s from bubbling and optionally prevents the default action 
-		* @param eventName any an event / array of events to stop from bubbling 
-		* @param preventDefault any true to prevent the default action too 
+		* @param eventName String/String[] an event / array of events to stop from bubbling 
+		* @param preventDefault Boolean true to prevent the default action too 
 		*/
 		swallowEvent?( eventName?:any, preventDefault?:any ): any;
 		swallowEvent?( eventName?:string, preventDefault?:bool ): Ext.dom.IElement;
@@ -11347,7 +11328,7 @@ declare module Ext {
 		*/
 		switchOff?( options?:any ): Ext.dom.IElement;
 		/** [Method] Toggles the element s visibility or display depending on visibility mode  
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		toggle?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Removes an event handler from this element  
@@ -11368,25 +11349,6 @@ declare module Ext {
 		* @param callback Function For async script loading you can be notified when the update completes 
 		*/
 		update?( html?:string, loadScripts?:bool, callback?:any ): Ext.dom.IElement;
-		/** [Method] Selects elements based on the passed CSS selector to enable Element methods to be applied to many related elements in  
-		* @param selector any The CSS selector or an array of elements 
-		* @param unique any true to create a unique Ext.Element for each element (defaults to a shared flyweight object) 
-		* @param root any The root element of the query or id of the root 
-		*/
-		select?( selector?:any, unique?:any, root?:any ): any;
-		select?( selector?:string, unique?:bool, root?:HTMLElement ): Ext.ICompositeElementLite;
-		select?( selector?:HTMLElement[], unique?:bool, root?:HTMLElement ): Ext.ICompositeElementLite;
-		select?( selector?:string, unique?:bool, root?:string ): Ext.ICompositeElementLite;
-		select?( selector?:HTMLElement[], unique?:bool, root?:string ): Ext.ICompositeElementLite;
-		/** [Method] Selects elements based on the passed CSS selector to enable Element methods to be applied to many related elements in  
-		* @param selector String The CSS selector or an array of elements 
-		* @param unique Boolean true to create a unique Ext.Element for each element (defaults to a shared flyweight object) 
-		* @param root HTMLElement The root element of the query or id of the root 
-		*/
-		select?( selector?:string, unique?:bool, root?:HTMLElement ): Ext.ICompositeElement;
-		select?( selector?:HTMLElement[], unique?:bool, root?:HTMLElement ): Ext.ICompositeElement;
-		select?( selector?:string, unique?:bool, root?:string ): Ext.ICompositeElement;
-		select?( selector?:HTMLElement[], unique?:bool, root?:string ): Ext.ICompositeElement;
 	}
 }
 declare module Ext.core {
@@ -11414,7 +11376,7 @@ declare module Ext.core {
 		*/
 		addClsOnOver?( className?:string, testFn?:any, scope?:any ): Ext.dom.IElement;
 		/** [Method] Convenience method for constructing a KeyMap 
-		* @param key any Either a string with the keys to listen for, the numeric key code, array of key codes or an object with the following options: 
+		* @param key String/Number/Number[]/Object Either a string with the keys to listen for, the numeric key code, array of key codes or an object with the following options: 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the specified function is executed. Defaults to this Element. 
 		*/
@@ -11443,7 +11405,7 @@ declare module Ext.core {
 		/** [Method] When an element is moved around in the DOM or is hidden using display none it loses layout and therefore all scrol  */
 		cacheScrollValues?(): any;
 		/** [Method] Centers the Element in either the viewport or another Element  
-		* @param centerIn any element in which to center the element. 
+		* @param centerIn String/HTMLElement/Ext.dom.Element element in which to center the element. 
 		*/
 		center?( centerIn?:any ): any;
 		center?( centerIn?:string ): void;
@@ -11464,9 +11426,9 @@ declare module Ext.core {
 		/** [Method] Store the current overflow setting and clip overflow on the element  use unclip to remove Defined in override Ext d  */
 		clip?(): Ext.dom.IElement;
 		/** [Method] Creates a proxy element of this element 
-		* @param config any The class name of the proxy element or a DomHelper config object 
-		* @param renderTo any The element or element id to render the proxy to. Defaults to: document.body. 
-		* @param matchBox any True to align and size the proxy to this element now. 
+		* @param config String/Object The class name of the proxy element or a DomHelper config object 
+		* @param renderTo String/HTMLElement The element or element id to render the proxy to. Defaults to: document.body. 
+		* @param matchBox Boolean True to align and size the proxy to this element now. 
 		*/
 		createProxy?( config?:any, renderTo?:any, matchBox?:any ): any;
 		createProxy?( config?:any, renderTo?:string, matchBox?:bool ): Ext.dom.IElement;
@@ -11576,7 +11538,7 @@ declare module Ext.core {
 		*/
 		ghost?( anchor?:string, options?:any ): Ext.dom.IElement;
 		/** [Method] Hide this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		hide?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Highlights the Element by setting a color applies to the background color by default but can be changed using the  
@@ -11643,7 +11605,7 @@ declare module Ext.core {
 		/** [Method] Sets the position of the element in page coordinates  
 		* @param x Number X value for new position (coordinates are page-based) 
 		* @param y Number Y value for new position (coordinates are page-based) 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		moveTo?( x?:number, y?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Returns true if this element needs an explicit tabIndex to make it focusable  */
@@ -11694,20 +11656,20 @@ declare module Ext.core {
 		/** [Method] Scrolls this element the specified direction  
 		* @param direction String Possible values are:  "l" (or "left") "r" (or "right") "t" (or "top", or "up") "b" (or "bottom", or "down")  
 		* @param distance Number How far to scroll the element in pixels 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		scroll?( direction?:string, distance?:number, animate?:any ): bool;
 		/** [Method] Scrolls this element by the passed delta values optionally animating  
-		* @param deltaX any Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
-		* @param deltaY any Either the y delta, or an animate flag or config object. 
-		* @param animate any Animate flag/config object if the delta values were passed separately. 
+		* @param deltaX Number/Number[]/Object Either the x delta, an Array specifying x and y deltas or an object with "x" and "y" properties. 
+		* @param deltaY Number/Boolean/Object Either the y delta, or an animate flag or config object. 
+		* @param animate Boolean/Object Animate flag/config object if the delta values were passed separately. 
 		*/
 		scrollBy?( deltaX?:any, deltaY?:any, animate?:any ): Ext.IElement;
 		/** [Method] Scrolls this element into view within the passed container  
-		* @param container any The container element to scroll. Should be a string (id), dom node, or Ext.Element. 
-		* @param hscroll any False to disable horizontal scroll. 
-		* @param animate any true for the default animation or a standard Element 
-		* @param highlight any true to highlight the element when it is in view. animation config object 
+		* @param container String/HTMLElement/Ext.Element The container element to scroll. Should be a string (id), dom node, or Ext.Element. 
+		* @param hscroll Boolean False to disable horizontal scroll. 
+		* @param animate Boolean/Object true for the default animation or a standard Element 
+		* @param highlight Boolean true to highlight the element when it is in view. animation config object 
 		*/
 		scrollIntoView?( container?:any, hscroll?:any, animate?:any, highlight?:any ): any;
 		scrollIntoView?( container?:string, hscroll?:bool, animate?:any, highlight?:bool ): Ext.dom.IElement;
@@ -11716,23 +11678,23 @@ declare module Ext.core {
 		/** [Method] Scrolls this element the specified scroll point  
 		* @param side String Either "left" for scrollLeft values or "top" for scrollTop values. 
 		* @param value Number The new scroll value 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		scrollTo?( side?:string, value?:number, animate?:any ): Ext.IElement;
 		/** [Method] Enable text selection for this element normalized across browsers  Defined in override Ext dom Element_style  */
 		selectable?(): Ext.IElement;
 		/** [Method] Sets the element s CSS bottom style  
-		* @param bottom any Number of pixels or CSS string value to set as the bottom CSS property value 
+		* @param bottom Number/String Number of pixels or CSS string value to set as the bottom CSS property value 
 		*/
 		setBottom?( bottom?:any ): any;
 		setBottom?( bottom?:number ): Ext.dom.IElement;
 		setBottom?( bottom?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s position and size in one shot  
-		* @param x any X value for new position (coordinates are page-based) 
-		* @param y any Y value for new position (coordinates are page-based) 
-		* @param width any The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels) A String used to set the CSS width style. Animation may not be used.  
-		* @param height any The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels) A String used to set the CSS height style. Animation may not be used.  
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param x Number X value for new position (coordinates are page-based) 
+		* @param y Number Y value for new position (coordinates are page-based) 
+		* @param width Number/String The new width. This may be one of:  A Number specifying the new width in this Element's defaultUnits (by default, pixels) A String used to set the CSS width style. Animation may not be used.  
+		* @param height Number/String The new height. This may be one of:  A Number specifying the new height in this Element's defaultUnits (by default, pixels) A String used to set the CSS height style. Animation may not be used.  
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setBounds?( x?:any, y?:any, width?:any, height?:any, animate?:any ): any;
 		setBounds?( x?:number, y?:number, width?:number, height?:number, animate?:any ): Ext.dom.IElement;
@@ -11740,20 +11702,20 @@ declare module Ext.core {
 		setBounds?( x?:number, y?:number, width?:number, height?:string, animate?:any ): Ext.dom.IElement;
 		setBounds?( x?:number, y?:number, width?:string, height?:string, animate?:any ): Ext.dom.IElement;
 		/** [Method] Sets the CSS display property  
-		* @param value any Boolean value to display the element using its default display, or a string to set the display directly. 
+		* @param value Boolean/String Boolean value to display the element using its default display, or a string to set the display directly. 
 		*/
 		setDisplayed?( value?:any ): any;
 		setDisplayed?( value?:bool ): Ext.dom.IElement;
 		setDisplayed?( value?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s left position directly using CSS style instead of setX 
-		* @param left any Number of pixels or CSS string value to set as the left CSS property value 
+		* @param left Number/String Number of pixels or CSS string value to set as the left CSS property value 
 		*/
 		setLeft?( left?:any ): any;
 		setLeft?( left?:number ): Ext.dom.IElement;
 		setLeft?( left?:string ): Ext.dom.IElement;
 		/** [Method] Sets the element s left and top positions directly using CSS style Defined in override Ext dom Element_position  
-		* @param left any Number of pixels or CSS string value to set as the left CSS property value 
-		* @param top any Number of pixels or CSS string value to set as the top CSS property value 
+		* @param left Number/String Number of pixels or CSS string value to set as the left CSS property value 
+		* @param top Number/String Number of pixels or CSS string value to set as the top CSS property value 
 		*/
 		setLeftTop?( left?:any, top?:any ): any;
 		setLeftTop?( left?:number, top?:number ): Ext.dom.IElement;
@@ -11763,12 +11725,12 @@ declare module Ext.core {
 		/** [Method] Sets the position of the element in page coordinates  
 		* @param x Number X value for new position 
 		* @param y Number Y value for new position 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setLocation?( x?:number, y?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set the opacity of the element Defined in override Ext dom Element_style  
 		* @param opacity Number The new opacity. 0 = transparent, .5 = 50% visibile, 1 = fully visible, etc 
-		* @param animate any a standard Element animation config object or true for the default animation ({duration: 350, easing: 'easeIn'}) 
+		* @param animate Boolean/Object a standard Element animation config object or true for the default animation ({duration: 350, easing: 'easeIn'}) 
 		*/
 		setOpacity?( opacity?:number, animate?:any ): Ext.dom.IElement;
 		/** [Method] Set positioning with an object returned by getPositioning  
@@ -11776,7 +11738,7 @@ declare module Ext.core {
 		*/
 		setPositioning?( posCfg?:any ): Ext.dom.IElement;
 		/** [Method] Sets the element s CSS right style  
-		* @param right any Number of pixels or CSS string value to set as the right CSS property value 
+		* @param right Number/String Number of pixels or CSS string value to set as the right CSS property value 
 		*/
 		setRight?( right?:any ): any;
 		setRight?( right?:number ): Ext.dom.IElement;
@@ -11790,14 +11752,14 @@ declare module Ext.core {
 		*/
 		setScrollTop?( top?:number ): Ext.dom.IElement;
 		/** [Method] Sets the element s top position directly using CSS style instead of setY 
-		* @param top any Number of pixels or CSS string value to set as the top CSS property value 
+		* @param top Number/String Number of pixels or CSS string value to set as the top CSS property value 
 		*/
 		setTop?( top?:any ): any;
 		setTop?( top?:number ): Ext.dom.IElement;
 		setTop?( top?:string ): Ext.dom.IElement;
 		/** [Method] Sets the visibility of the element see details 
 		* @param visible Boolean Whether the element is visible 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setVisible?( visible?:bool, animate?:any ): Ext.dom.IElement;
 		/** [Method] Animates the transition of any combination of an element s dimensions xy position and or opacity  
@@ -11805,7 +11767,7 @@ declare module Ext.core {
 		*/
 		shift?( options?:any ): Ext.IElement;
 		/** [Method] Show this element  Uses display mode to determine whether to use display or visibility 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		show?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Slides the element into view  
@@ -11819,8 +11781,8 @@ declare module Ext.core {
 		*/
 		slideOut?( anchor?:string, options?:any ): Ext.dom.IElement;
 		/** [Method] Stops the specified event s from bubbling and optionally prevents the default action 
-		* @param eventName any an event / array of events to stop from bubbling 
-		* @param preventDefault any true to prevent the default action too 
+		* @param eventName String/String[] an event / array of events to stop from bubbling 
+		* @param preventDefault Boolean true to prevent the default action too 
 		*/
 		swallowEvent?( eventName?:any, preventDefault?:any ): any;
 		swallowEvent?( eventName?:string, preventDefault?:bool ): Ext.dom.IElement;
@@ -11830,7 +11792,7 @@ declare module Ext.core {
 		*/
 		switchOff?( options?:any ): Ext.dom.IElement;
 		/** [Method] Toggles the element s visibility or display depending on visibility mode  
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		toggle?( animate?:any ): Ext.dom.IElement;
 		/** [Method] Removes an event handler from this element  
@@ -11851,25 +11813,6 @@ declare module Ext.core {
 		* @param callback Function For async script loading you can be notified when the update completes 
 		*/
 		update?( html?:string, loadScripts?:bool, callback?:any ): Ext.dom.IElement;
-		/** [Method] Selects elements based on the passed CSS selector to enable Element methods to be applied to many related elements in  
-		* @param selector any The CSS selector or an array of elements 
-		* @param unique any true to create a unique Ext.Element for each element (defaults to a shared flyweight object) 
-		* @param root any The root element of the query or id of the root 
-		*/
-		select?( selector?:any, unique?:any, root?:any ): any;
-		select?( selector?:string, unique?:bool, root?:HTMLElement ): Ext.ICompositeElementLite;
-		select?( selector?:HTMLElement[], unique?:bool, root?:HTMLElement ): Ext.ICompositeElementLite;
-		select?( selector?:string, unique?:bool, root?:string ): Ext.ICompositeElementLite;
-		select?( selector?:HTMLElement[], unique?:bool, root?:string ): Ext.ICompositeElementLite;
-		/** [Method] Selects elements based on the passed CSS selector to enable Element methods to be applied to many related elements in  
-		* @param selector String The CSS selector or an array of elements 
-		* @param unique Boolean true to create a unique Ext.Element for each element (defaults to a shared flyweight object) 
-		* @param root HTMLElement The root element of the query or id of the root 
-		*/
-		select?( selector?:string, unique?:bool, root?:HTMLElement ): Ext.ICompositeElement;
-		select?( selector?:HTMLElement[], unique?:bool, root?:HTMLElement ): Ext.ICompositeElement;
-		select?( selector?:string, unique?:bool, root?:string ): Ext.ICompositeElement;
-		select?( selector?:HTMLElement[], unique?:bool, root?:string ): Ext.ICompositeElement;
 	}
 }
 declare module Ext.dom {
@@ -11877,7 +11820,7 @@ declare module Ext.dom {
 		/** [Property] (Boolean) */
 		useDom?: bool;
 		/** [Method] Creates new DOM element s without inserting them to the document  
-		* @param o any The DOM object spec (and children) or raw HTML blob 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
 		*/
 		createDom?( o?:any ): HTMLElement;
 		/** [Method] Alias for markup  
@@ -11889,17 +11832,17 @@ declare module Ext.dom {
 		*/
 		createTemplate?( o?:any ): Ext.ITemplate;
 		/** [Method] Creates new DOM element s and overwrites the contents of el with them  
-		* @param el any The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
-		* @param returnElement any true to return an Ext.Element 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
+		* @param returnElement Boolean true to return an Ext.Element 
 		*/
 		overwrite?( el?:any, o?:any, returnElement?:any ): any;
 		overwrite?( el?:string, o?:any, returnElement?:bool ): HTMLElement;
 		overwrite?( el?:HTMLElement, o?:any, returnElement?:bool ): HTMLElement;
 		overwrite?( el?:Ext.IElement, o?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Creates new DOM element s and overwrites the contents of el with them  
-		* @param el String The context element 
-		* @param o any The DOM object spec (and children) or raw HTML blob 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param o Object/String The DOM object spec (and children) or raw HTML blob 
 		* @param returnElement Boolean true to return an Ext.Element 
 		*/
 		overwrite?( el?:string, o?:any, returnElement?:bool ): Ext.IElement;
@@ -12097,16 +12040,16 @@ declare module Ext.dom {
 		*/
 		static filter( el?:HTMLElement[], selector?:string, nonMatches?:bool ): HTMLElement[];
 		/** [Method] Returns true if the passed element s match the passed simple selector e g  
-		* @param el any An element id, element or array of elements 
-		* @param selector any The simple selector to test 
+		* @param el String/HTMLElement/HTMLElement[] An element id, element or array of elements 
+		* @param selector String The simple selector to test 
 		*/
 		static is( el?:any, selector?:any ): any;
 		static is( el?:string, selector?:string ): bool;
 		static is( el?:HTMLElement, selector?:string ): bool;
 		static is( el?:HTMLElement[], selector?:string ): bool;
 		/** [Method] Selects an array of DOM nodes using JavaScript only implementation  
-		* @param selector any The selector/xpath query (can be a comma separated list of selectors) 
-		* @param root any The start of the query. 
+		* @param selector String The selector/xpath query (can be a comma separated list of selectors) 
+		* @param root HTMLElement/String The start of the query. 
 		*/
 		static jsSelect( selector?:any, root?:any ): any;
 		static jsSelect( selector?:string, root?:HTMLElement ): HTMLElement[];
@@ -12153,16 +12096,16 @@ declare module Ext {
 		*/
 		static filter( el?:HTMLElement[], selector?:string, nonMatches?:bool ): HTMLElement[];
 		/** [Method] Returns true if the passed element s match the passed simple selector e g  
-		* @param el any An element id, element or array of elements 
-		* @param selector any The simple selector to test 
+		* @param el String/HTMLElement/HTMLElement[] An element id, element or array of elements 
+		* @param selector String The simple selector to test 
 		*/
 		static is( el?:any, selector?:any ): any;
 		static is( el?:string, selector?:string ): bool;
 		static is( el?:HTMLElement, selector?:string ): bool;
 		static is( el?:HTMLElement[], selector?:string ): bool;
 		/** [Method] Selects an array of DOM nodes using JavaScript only implementation  
-		* @param selector any The selector/xpath query (can be a comma separated list of selectors) 
-		* @param root any The start of the query. 
+		* @param selector String The selector/xpath query (can be a comma separated list of selectors) 
+		* @param root HTMLElement/String The start of the query. 
 		*/
 		static jsSelect( selector?:any, root?:any ): any;
 		static jsSelect( selector?:string, root?:HTMLElement ): HTMLElement[];
@@ -12209,16 +12152,16 @@ declare module Ext.core {
 		*/
 		static filter( el?:HTMLElement[], selector?:string, nonMatches?:bool ): HTMLElement[];
 		/** [Method] Returns true if the passed element s match the passed simple selector e g  
-		* @param el any An element id, element or array of elements 
-		* @param selector any The simple selector to test 
+		* @param el String/HTMLElement/HTMLElement[] An element id, element or array of elements 
+		* @param selector String The simple selector to test 
 		*/
 		static is( el?:any, selector?:any ): any;
 		static is( el?:string, selector?:string ): bool;
 		static is( el?:HTMLElement, selector?:string ): bool;
 		static is( el?:HTMLElement[], selector?:string ): bool;
 		/** [Method] Selects an array of DOM nodes using JavaScript only implementation  
-		* @param selector any The selector/xpath query (can be a comma separated list of selectors) 
-		* @param root any The start of the query. 
+		* @param selector String The selector/xpath query (can be a comma separated list of selectors) 
+		* @param root HTMLElement/String The start of the query. 
 		*/
 		static jsSelect( selector?:any, root?:any ): any;
 		static jsSelect( selector?:string, root?:HTMLElement ): HTMLElement[];
@@ -12298,7 +12241,7 @@ declare module Ext.draw {
 		*/
 		fromString?( str?:string ): any;
 		/** [Method] Convert a color to hexadecimal format  
-		* @param color any The color value (i.e 'rgb(255, 255, 255)', 'color: #ffffff'). Can also be an Array, in this case the function handles the first member. 
+		* @param color String/String[] The color value (i.e 'rgb(255, 255, 255)', 'color: #ffffff'). Can also be an Array, in this case the function handles the first member. 
 		*/
 		toHex?( color?:any ): any;
 		toHex?( color?:string ): string;
@@ -12316,7 +12259,7 @@ declare module Ext.draw {
 		/** [Config Option] (String[]) */
 		enginePriority?: string[];
 		/** [Config Option] (Object[]) */
-		gradients?: Object[];
+		gradients?: any[];
 		/** [Config Option] (Ext.draw.Sprite[]) */
 		items?: Ext.draw.ISprite[];
 		/** [Config Option] (Boolean/Number) */
@@ -12422,7 +12365,7 @@ declare module Ext.draw.engine {
 	}
 	export class ImageExporter {
 		/** [Method] Exports the surface to an image 
-		* @param surface Ext.draw.ISurface The surface to export 
+		* @param surface Ext.draw.Surface The surface to export 
 		* @param config Object The following config options are supported: 
 		*/
 		static generate( surface?:Ext.draw.ISurface, config?:any ): bool;
@@ -12440,7 +12383,7 @@ declare module Ext.draw.engine {
 		*/
 		addGradient?( gradient?:any ): void;
 		/** [Method] Insert or move a given sprite s element to the correct place in the DOM list for its zIndex 
-		* @param sprite Ext.draw.ISprite 
+		* @param sprite Ext.draw.Sprite 
 		*/
 		applyZIndex?( sprite?:Ext.draw.ISprite ): void;
 		/** [Method] Destroys the surface  */
@@ -12448,7 +12391,7 @@ declare module Ext.draw.engine {
 		/** [Method] Get the region for the surface s canvas area */
 		getRegion?(): Ext.util.IRegion;
 		/** [Method] Checks if the specified CSS class exists on this element s DOM node  
-		* @param sprite Ext.draw.ISprite The sprite to look into. 
+		* @param sprite Ext.draw.Sprite The sprite to look into. 
 		* @param className String The CSS class to check for 
 		*/
 		hasCls?( sprite?:Ext.draw.ISprite, className?:string ): bool;
@@ -12474,7 +12417,7 @@ declare module Ext.draw.engine {
 	}
 	export class SvgExporter {
 		/** [Method] Exports the passed surface to a SVG string representation 
-		* @param surface Ext.draw.ISurface The surface to export 
+		* @param surface Ext.draw.Surface The surface to export 
 		* @param config Object Any configuration for the export. Currently this is unused but may provide more options in the future 
 		*/
 		static generate( surface?:Ext.draw.ISurface, config?:any ): string;
@@ -12557,28 +12500,28 @@ declare module Ext.draw {
 		/** [Property] (Boolean) */
 		isSprite?: bool;
 		/** [Method] Adds one or more CSS classes to the element  
-		* @param className any The CSS class to add, or an array of classes 
+		* @param className String/String[] The CSS class to add, or an array of classes 
 		*/
 		addCls?( className?:any ): any;
 		addCls?( className?:string ): Ext.draw.ISprite;
 		addCls?( className?:string[] ): Ext.draw.ISprite;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -12594,7 +12537,7 @@ declare module Ext.draw {
 		/** [Method] Removes the sprite and clears all listeners  */
 		destroy?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -12608,7 +12551,7 @@ declare module Ext.draw {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the current animation if this object has any effects actively running or queued else returns false  */
 		getActiveAnimation?(): Ext.fx.IAnim;
 		/** [Method] Returns the current animation if this object has any effects actively running or queued else returns false  */
@@ -12628,26 +12571,26 @@ declare module Ext.draw {
 		*/
 		hide?( redraw?:bool ): Ext.draw.ISprite;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -12664,7 +12607,7 @@ declare module Ext.draw {
 		/** [Method] Removes the sprite  */
 		remove?(): bool;
 		/** [Method] Removes one or more CSS classes from the element  
-		* @param className any The CSS class to remove, or an array of classes. Note this method is severly limited in VML. 
+		* @param className String/String[] The CSS class to remove, or an array of classes. Note this method is severly limited in VML. 
 		*/
 		removeCls?( className?:any ): any;
 		removeCls?( className?:string ): Ext.draw.ISprite;
@@ -12676,10 +12619,10 @@ declare module Ext.draw {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -12698,7 +12641,7 @@ declare module Ext.draw {
 		*/
 		setAttributes?( attrs?:any, redraw?:bool ): Ext.draw.ISprite;
 		/** [Method] Wrapper for setting style properties also takes single object parameter of multiple styles  
-		* @param property any The style property to be set, or an object of multiple styles. 
+		* @param property String/Object The style property to be set, or an object of multiple styles. 
 		* @param value String The value to apply to the given property, or null if an object was passed. 
 		*/
 		setStyle?( property?:any, value?:string ): Ext.draw.ISprite;
@@ -12753,25 +12696,25 @@ declare module Ext.draw {
 		/** [Config Option] (Number) */
 		width?: number;
 		/** [Method] Adds a Sprite to the surface  
-		* @param args any One or more Sprite objects or configs. 
+		* @param args Ext.draw.Sprite[]/Ext.draw.Sprite... One or more Sprite objects or configs. 
 		*/
 		add?( args?:any ): any;
 		add?( args?:Ext.draw.ISprite[] ): Ext.draw.ISprite[];
 		add?( args:Ext.draw.ISprite ): Ext.draw.ISprite[];
 		/** [Method] Adds a Sprite to the surface  
-		* @param args Ext.draw.ISprite[] One or more Sprite objects or configs. 
+		* @param args Ext.draw.Sprite[]/Ext.draw.Sprite... One or more Sprite objects or configs. 
 		*/
 		add?( args?:Ext.draw.ISprite[] ): Ext.draw.ISprite;
 		add?( args:Ext.draw.ISprite ): Ext.draw.ISprite;
 		/** [Method] Adds one or more CSS classes to the element  
-		* @param sprite any The sprite to add the class to. 
-		* @param className any The CSS class to add, or an array of classes 
+		* @param sprite Object The sprite to add the class to. 
+		* @param className String/String[] The CSS class to add, or an array of classes 
 		*/
 		addCls?( sprite?:any, className?:any ): any;
 		addCls?( sprite?:any, className?:string ): void;
 		addCls?( sprite?:any, className?:string[] ): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Adds a gradient definition to the Surface  
@@ -12779,18 +12722,18 @@ declare module Ext.draw {
 		*/
 		addGradient?( gradient?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -12802,7 +12745,7 @@ declare module Ext.draw {
 		/** [Method] Destroys the surface  */
 		destroy?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -12816,7 +12759,7 @@ declare module Ext.draw {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns a new group or an existent group associated with the current surface  
 		* @param id String The unique identifier of the group. 
 		*/
@@ -12828,26 +12771,26 @@ declare module Ext.draw {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -12860,7 +12803,7 @@ declare module Ext.draw {
 		*/
 		relayEvents?( origin?:any, events?:string[], prefix?:string ): any;
 		/** [Method] Removes a given sprite from the surface optionally destroying the sprite in the process  
-		* @param sprite Ext.draw.ISprite 
+		* @param sprite Ext.draw.Sprite 
 		* @param destroySprite Boolean 
 		*/
 		remove?( sprite?:Ext.draw.ISprite, destroySprite?:bool ): void;
@@ -12869,8 +12812,8 @@ declare module Ext.draw {
 		*/
 		removeAll?( destroySprites?:bool ): void;
 		/** [Method] Removes one or more CSS classes from the element  
-		* @param sprite any The sprite to remove the class from. 
-		* @param className any The CSS class to remove, or an array of classes 
+		* @param sprite Object The sprite to remove the class from. 
+		* @param className String/String[] The CSS class to remove, or an array of classes 
 		*/
 		removeCls?( sprite?:any, className?:any ): any;
 		removeCls?( sprite?:any, className?:string ): void;
@@ -12882,10 +12825,10 @@ declare module Ext.draw {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -12931,7 +12874,7 @@ declare module Ext.draw {
 		*/
 		create?( config?:any, enginePriority?:string[] ): any;
 		/** [Method] Exports a surface in a different format  
-		* @param surface Ext.draw.ISurface The surface to export. 
+		* @param surface Ext.draw.Surface The surface to export. 
 		* @param config Object The configuration to be passed to the exporter. See the export method for the appropriate exporter for the relevant configuration options 
 		*/
 		save?( surface?:Ext.draw.ISurface, config?:any ): any;
@@ -13033,8 +12976,8 @@ declare module Ext {
 		*/
 		setValue?( value?:any ): void;
 		/** [Method] Starts the editing process and shows the editor  
-		* @param el any The element to edit 
-		* @param value any A value to initialize the editor with. If a value is not provided, it defaults to the innerHTML of el. 
+		* @param el String/HTMLElement/Ext.Element The element to edit 
+		* @param value String A value to initialize the editor with. If a value is not provided, it defaults to the innerHTML of el. 
 		*/
 		startEdit?( el?:any, value?:any ): any;
 		startEdit?( el?:string, value?:string ): void;
@@ -13075,22 +13018,22 @@ declare module Ext {
 		/** [Method] Aborts the active load request */
 		abort?(): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -13102,7 +13045,7 @@ declare module Ext {
 		/** [Method] Destroys the loader  */
 		destroy?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -13116,7 +13059,7 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the target of this loader  */
 		getTarget?(): Ext.IComponent;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
@@ -13130,26 +13073,26 @@ declare module Ext {
 		*/
 		load?( options?:any ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -13168,10 +13111,10 @@ declare module Ext {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -13183,7 +13126,7 @@ declare module Ext {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Sets an Ext Element as the target of this loader  
-		* @param target any The element or its ID. 
+		* @param target String/HTMLElement/Ext.Element The element or its ID. 
 		*/
 		setTarget?( target?:any ): any;
 		setTarget?( target?:string ): void;
@@ -13495,11 +13438,11 @@ declare module Ext {
 		/** [Method] Provides a custom string representation of the error object  */
 		toString?(): string;
 		/** [Method] Globally handle any Ext errors that may be raised optionally providing custom logic to handle different errors indiv  
-		* @param err Ext.IError The Ext.Error object being raised. It will contain any attributes that were originally raised with it, plus properties about the method and class from which the error originated (if raised from a class that uses the Ext 4 class system). 
+		* @param err Ext.Error The Ext.Error object being raised. It will contain any attributes that were originally raised with it, plus properties about the method and class from which the error originated (if raised from a class that uses the Ext 4 class system). 
 		*/
 		handle?( err?:Ext.IError ): void;
 		/** [Method] Raise an error that can include additional data and supports automatic console logging if available  
-		* @param err any The error message string, or an object containing the attribute "msg" that will be used as the error message. Any other data included in the object will also be logged to the browser console, if available. 
+		* @param err String/Object The error message string, or an object containing the attribute "msg" that will be used as the error message. Any other data included in the object will also be logged to the browser console, if available. 
 		*/
 		raise?( err?:any ): void;
 	}
@@ -13509,11 +13452,11 @@ declare module Ext {
 	}
 	export class EventManager {
 		/** [Method] Appends an event handler to an element  
-		* @param el any The html element or id to assign the event handler to. 
-		* @param eventName any The name of the event to listen for. 
-		* @param handler any The handler function the event invokes. A String parameter is assumed to be method name in scope object, or Element object if no scope is provided. 
-		* @param scope any The scope (this reference) in which the handler function is executed. Defaults to the Element. 
-		* @param options any An object containing handler configuration properties. This may contain any of the following properties (See Ext.Element.addListener for examples of how to use these options.): 
+		* @param el String/Ext.Element/HTMLElement/Window The html element or id to assign the event handler to. 
+		* @param eventName String The name of the event to listen for. 
+		* @param handler Function/String The handler function the event invokes. A String parameter is assumed to be method name in scope object, or Element object if no scope is provided. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. Defaults to the Element. 
+		* @param options Object An object containing handler configuration properties. This may contain any of the following properties (See Ext.Element.addListener for examples of how to use these options.): 
 		*/
 		static addListener( el?:any, eventName?:any, handler?:any, scope?:any, options?:any ): any;
 		static addListener( el?:string, eventName?:string, handler?:any, scope?:any, options?:any ): void;
@@ -13525,7 +13468,7 @@ declare module Ext {
 		static addListener( el?:HTMLElement, eventName?:string, handler?:string, scope?:any, options?:any ): void;
 		static addListener( el?:Window, eventName?:string, handler?:string, scope?:any, options?:any ): void;
 		/** [Method] Get the id of the element  
-		* @param element any The element to get the id for. 
+		* @param element HTMLElement/Ext.Element The element to get the id for. 
 		*/
 		static getId( element?:any ): any;
 		static getId( element?:HTMLElement ): string;
@@ -13553,11 +13496,11 @@ declare module Ext {
 		*/
 		static getTarget( event?:any ): HTMLElement;
 		/** [Method] Appends an event handler to an element  
-		* @param el any The html element or id to assign the event handler to. 
-		* @param eventName any The name of the event to listen for. 
-		* @param handler any The handler function the event invokes. A String parameter is assumed to be method name in scope object, or Element object if no scope is provided. 
-		* @param scope any The scope (this reference) in which the handler function is executed. Defaults to the Element. 
-		* @param options any An object containing handler configuration properties. This may contain any of the following properties (See Ext.Element.addListener for examples of how to use these options.): 
+		* @param el String/Ext.Element/HTMLElement/Window The html element or id to assign the event handler to. 
+		* @param eventName String The name of the event to listen for. 
+		* @param handler Function/String The handler function the event invokes. A String parameter is assumed to be method name in scope object, or Element object if no scope is provided. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. Defaults to the Element. 
+		* @param options Object An object containing handler configuration properties. This may contain any of the following properties (See Ext.Element.addListener for examples of how to use these options.): 
 		*/
 		static on( el?:any, eventName?:any, handler?:any, scope?:any, options?:any ): any;
 		static on( el?:string, eventName?:string, handler?:any, scope?:any, options?:any ): void;
@@ -13593,8 +13536,8 @@ declare module Ext {
 		*/
 		static preventDefault( event?:Event ): void;
 		/** [Method] Recursively removes all previous added listeners from an element and its children  
-		* @param el any The id or html element from which to remove all event handlers. 
-		* @param eventName any The name of the event. 
+		* @param el String/Ext.Element/HTMLElement/Window The id or html element from which to remove all event handlers. 
+		* @param eventName String The name of the event. 
 		*/
 		static purgeElement( el?:any, eventName?:any ): any;
 		static purgeElement( el?:string, eventName?:string ): void;
@@ -13602,7 +13545,7 @@ declare module Ext {
 		static purgeElement( el?:HTMLElement, eventName?:string ): void;
 		static purgeElement( el?:Window, eventName?:string ): void;
 		/** [Method] Removes all event handers from an element  
-		* @param el any The id or html element from which to remove all event handlers. 
+		* @param el String/Ext.Element/HTMLElement/Window The id or html element from which to remove all event handlers. 
 		*/
 		static removeAll( el?:any ): any;
 		static removeAll( el?:string ): void;
@@ -13610,10 +13553,10 @@ declare module Ext {
 		static removeAll( el?:HTMLElement ): void;
 		static removeAll( el?:Window ): void;
 		/** [Method] Removes an event handler from an element  
-		* @param el any The id or html element from which to remove the listener. 
-		* @param eventName any The name of the event. 
-		* @param fn any The handler function to remove. This must be a reference to the function passed into the addListener call. 
-		* @param scope any If a scope (this reference) was specified when the listener was added, then this must refer to the same object. 
+		* @param el String/Ext.Element/HTMLElement/Window The id or html element from which to remove the listener. 
+		* @param eventName String The name of the event. 
+		* @param fn Function The handler function to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object If a scope (this reference) was specified when the listener was added, then this must refer to the same object. 
 		*/
 		static removeListener( el?:any, eventName?:any, fn?:any, scope?:any ): any;
 		static removeListener( el?:string, eventName?:string, fn?:any, scope?:any ): void;
@@ -13639,10 +13582,10 @@ declare module Ext {
 		*/
 		static stopPropagation( event?:Event ): void;
 		/** [Method] Removes an event handler from an element  
-		* @param el any The id or html element from which to remove the listener. 
-		* @param eventName any The name of the event. 
-		* @param fn any The handler function to remove. This must be a reference to the function passed into the addListener call. 
-		* @param scope any If a scope (this reference) was specified when the listener was added, then this must refer to the same object. 
+		* @param el String/Ext.Element/HTMLElement/Window The id or html element from which to remove the listener. 
+		* @param eventName String The name of the event. 
+		* @param fn Function The handler function to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object If a scope (this reference) was specified when the listener was added, then this must refer to the same object. 
 		*/
 		static un( el?:any, eventName?:any, fn?:any, scope?:any ): any;
 		static un( el?:string, eventName?:string, fn?:any, scope?:any ): void;
@@ -13670,17 +13613,17 @@ declare module Ext {
 		/** [Method] Returns a point object that consists of the object coordinates  */
 		static getPoint(): Ext.util.IPoint;
 		/** [Method] Gets the related target  
-		* @param selector any A simple selector to filter the target or look for an ancestor of the target 
-		* @param maxDepth any The max depth to search as a number or element (defaults to 10 || document.body) 
-		* @param returnEl any True to return a Ext.Element object instead of DOM node 
+		* @param selector String A simple selector to filter the target or look for an ancestor of the target 
+		* @param maxDepth Number/HTMLElement The max depth to search as a number or element (defaults to 10 || document.body) 
+		* @param returnEl Boolean True to return a Ext.Element object instead of DOM node 
 		*/
 		static getRelatedTarget( selector?:any, maxDepth?:any, returnEl?:any ): any;
 		static getRelatedTarget( selector?:string, maxDepth?:number, returnEl?:bool ): HTMLElement;
 		static getRelatedTarget( selector?:string, maxDepth?:HTMLElement, returnEl?:bool ): HTMLElement;
 		/** [Method] Gets the target for the event  
-		* @param selector any A simple selector to filter the target or look for an ancestor of the target 
-		* @param maxDepth any The max depth to search as a number or element (defaults to 10 || document.body) 
-		* @param returnEl any True to return a Ext.Element object instead of DOM node 
+		* @param selector String A simple selector to filter the target or look for an ancestor of the target 
+		* @param maxDepth Number/HTMLElement The max depth to search as a number or element (defaults to 10 || document.body) 
+		* @param returnEl Boolean True to return a Ext.Element object instead of DOM node 
 		*/
 		static getTarget( selector?:any, maxDepth?:any, returnEl?:any ): any;
 		static getTarget( selector?:string, maxDepth?:number, returnEl?:bool ): HTMLElement;
@@ -13698,7 +13641,7 @@ declare module Ext {
 		/** [Method] Returns true if the control meta shift or alt key was pressed during this event  */
 		static hasModifier(): bool;
 		/** [Method] Injects a DOM event using the data in this object and optionally a new target  
-		* @param target any If specified, the target for the event. This is likely to be used when relaying a DOM event. If not specified, getTarget is used to determine the target. 
+		* @param target Ext.Element/HTMLElement If specified, the target for the event. This is likely to be used when relaying a DOM event. If not specified, getTarget is used to determine the target. 
 		*/
 		static injectEvent( target?:any ): any;
 		static injectEvent( target?:Ext.IElement ): void;
@@ -13714,9 +13657,9 @@ declare module Ext {
 		/** [Method] Cancels bubbling of the event  */
 		static stopPropagation(): void;
 		/** [Method] Returns true if the target of this event is a child of el  
-		* @param el any The id, DOM element or Ext.Element to check 
-		* @param related any true to test if the related target is within el instead of the target 
-		* @param allowEl any true to also check if the passed element is the target or related target 
+		* @param el String/HTMLElement/Ext.Element The id, DOM element or Ext.Element to check 
+		* @param related Boolean true to test if the related target is within el instead of the target 
+		* @param allowEl Boolean true to also check if the passed element is the target or related target 
 		*/
 		static within( el?:any, related?:any, allowEl?:any ): any;
 		static within( el?:string, related?:bool, allowEl?:bool ): bool;
@@ -13809,28 +13752,28 @@ declare module Ext {
 		*/
 		constructor( config?:any );
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		static addEvents( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static addListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static addManagedListener( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds the specified xtype to the whitelist  
-		* @param xtype any Adds the xtype(s) to the whitelist. 
+		* @param xtype String/String[] Adds the xtype(s) to the whitelist. 
 		*/
 		static addXTypeToWhitelist( xtype?:any ): any;
 		static addXTypeToWhitelist( xtype?:string ): void;
@@ -13842,11 +13785,11 @@ declare module Ext {
 		/** [Method] Disables the FocusManager by turning of all automatic focus management and keyboard navigation */
 		static disable(): void;
 		/** [Method] Enables the FocusManager by turning on all automatic focus management and keyboard navigation 
-		* @param options any Either true/false to turn on the focus frame, or an object with the following options: 
+		* @param options Boolean/Object Either true/false to turn on the focus frame, or an object with the following options: 
 		*/
 		static enable( options?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		static enableBubble( eventNames?:any ): any;
 		static enableBubble( eventNames?:string ): void;
@@ -13860,32 +13803,32 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		static fireEventArgs( eventName?:string, args?:Object[] ): bool;
+		static fireEventArgs( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		static hasListener( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static mon( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static mun( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static mun( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static mun( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -13904,16 +13847,16 @@ declare module Ext {
 		*/
 		static removeListener( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static removeManagedListener( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static removeManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static removeManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Removes the specified xtype from the whitelist  
-		* @param xtype any Removes the xtype(s) from the whitelist. 
+		* @param xtype String/String[] Removes the xtype(s) from the whitelist. 
 		*/
 		static removeXTypeFromWhitelist( xtype?:any ): any;
 		static removeXTypeFromWhitelist( xtype?:string ): void;
@@ -13949,28 +13892,28 @@ declare module Ext {
 		*/
 		constructor( config?:any );
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		static addEvents( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static addListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static addManagedListener( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds the specified xtype to the whitelist  
-		* @param xtype any Adds the xtype(s) to the whitelist. 
+		* @param xtype String/String[] Adds the xtype(s) to the whitelist. 
 		*/
 		static addXTypeToWhitelist( xtype?:any ): any;
 		static addXTypeToWhitelist( xtype?:string ): void;
@@ -13982,11 +13925,11 @@ declare module Ext {
 		/** [Method] Disables the FocusManager by turning of all automatic focus management and keyboard navigation */
 		static disable(): void;
 		/** [Method] Enables the FocusManager by turning on all automatic focus management and keyboard navigation 
-		* @param options any Either true/false to turn on the focus frame, or an object with the following options: 
+		* @param options Boolean/Object Either true/false to turn on the focus frame, or an object with the following options: 
 		*/
 		static enable( options?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		static enableBubble( eventNames?:any ): any;
 		static enableBubble( eventNames?:string ): void;
@@ -14000,32 +13943,32 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		static fireEventArgs( eventName?:string, args?:Object[] ): bool;
+		static fireEventArgs( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		static hasListener( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static mon( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static mun( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static mun( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static mun( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -14044,16 +13987,16 @@ declare module Ext {
 		*/
 		static removeListener( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static removeManagedListener( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static removeManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static removeManagedListener( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Removes the specified xtype from the whitelist  
-		* @param xtype any Removes the xtype(s) from the whitelist. 
+		* @param xtype String/String[] Removes the xtype(s) from the whitelist. 
 		*/
 		static removeXTypeFromWhitelist( xtype?:any ): any;
 		static removeXTypeFromWhitelist( xtype?:string ): void;
@@ -14259,8 +14202,8 @@ declare module Ext.form {
 		/** [Method] Destroys this object  */
 		destroy?(): void;
 		/** [Method] Performs a predefined action an implementation of Ext form action Action to perform application specific processing  
-		* @param action any The name of the predefined action type, or instance of Ext.form.action.Action to perform. 
-		* @param options any The options to pass to the Ext.form.action.Action that will get created, if the action argument is a String. All of the config options listed below are supported by both the submit and load actions unless otherwise noted (custom actions could also accept other config options): 
+		* @param action String/Ext.form.action.Action The name of the predefined action type, or instance of Ext.form.action.Action to perform. 
+		* @param options Object The options to pass to the Ext.form.action.Action that will get created, if the action argument is a String. All of the config options listed below are supported by both the submit and load actions unless otherwise noted (custom actions could also accept other config options): 
 		*/
 		doAction?( action?:any, options?:any ): any;
 		doAction?( action?:string, options?:any ): Ext.form.IBasic;
@@ -14297,11 +14240,11 @@ declare module Ext.form {
 		*/
 		load?( options?:any ): Ext.form.IBasic;
 		/** [Method] Loads an Ext data Model into this form by calling setValues with the record data  
-		* @param record Ext.data.IModel The record to load 
+		* @param record Ext.data.Model The record to load 
 		*/
 		loadRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 		/** [Method] Mark fields in this form invalid in bulk  
-		* @param errors any Either an array in the form [{id:'fieldId', msg:'The message'}, ...], an object hash of {id: msg, id2: msg2}, or a Ext.data.Errors object. 
+		* @param errors Object/Object[]/Ext.data.Errors Either an array in the form [{id:'fieldId', msg:'The message'}, ...], an object hash of {id: msg, id2: msg2}, or a Ext.data.Errors object. 
 		*/
 		markInvalid?( errors?:any ): Ext.form.IBasic;
 		/** [Method] Resets all fields in this form  
@@ -14309,7 +14252,7 @@ declare module Ext.form {
 		*/
 		reset?( resetRecord?:bool ): Ext.form.IBasic;
 		/** [Method] Set values for fields in this form in bulk  
-		* @param values any Either an array in the form: [{id:'clientName', value:'Fred. Olsen Lines'}, {id:'portOfLoading', value:'FXT'}, {id:'portOfDischarge', value:'OSL'} ]  or an object hash of the form: {  clientName: 'Fred. Olsen Lines',  portOfLoading: 'FXT',  portOfDischarge: 'OSL' } 
+		* @param values Object/Object[] Either an array in the form: [{id:'clientName', value:'Fred. Olsen Lines'}, {id:'portOfLoading', value:'FXT'}, {id:'portOfDischarge', value:'OSL'} ]  or an object hash of the form: {  clientName: 'Fred. Olsen Lines',  portOfLoading: 'FXT',  portOfDischarge: 'OSL' } 
 		*/
 		setValues?( values?:any ): Ext.form.IBasic;
 		/** [Method] Shortcut to do a submit action  
@@ -14317,7 +14260,7 @@ declare module Ext.form {
 		*/
 		submit?( options?:any ): Ext.form.IBasic;
 		/** [Method] Persists the values in this form into the passed Ext data Model object in a beginEdit endEdit block  
-		* @param record Ext.data.IModel The record to edit 
+		* @param record Ext.data.Model The record to edit 
 		*/
 		updateRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 	}
@@ -14371,8 +14314,8 @@ declare module Ext.form {
 		/** [Method] Destroys this object  */
 		destroy?(): void;
 		/** [Method] Performs a predefined action an implementation of Ext form action Action to perform application specific processing  
-		* @param action any The name of the predefined action type, or instance of Ext.form.action.Action to perform. 
-		* @param options any The options to pass to the Ext.form.action.Action that will get created, if the action argument is a String. All of the config options listed below are supported by both the submit and load actions unless otherwise noted (custom actions could also accept other config options): 
+		* @param action String/Ext.form.action.Action The name of the predefined action type, or instance of Ext.form.action.Action to perform. 
+		* @param options Object The options to pass to the Ext.form.action.Action that will get created, if the action argument is a String. All of the config options listed below are supported by both the submit and load actions unless otherwise noted (custom actions could also accept other config options): 
 		*/
 		doAction?( action?:any, options?:any ): any;
 		doAction?( action?:string, options?:any ): Ext.form.IBasic;
@@ -14409,11 +14352,11 @@ declare module Ext.form {
 		*/
 		load?( options?:any ): Ext.form.IBasic;
 		/** [Method] Loads an Ext data Model into this form by calling setValues with the record data  
-		* @param record Ext.data.IModel The record to load 
+		* @param record Ext.data.Model The record to load 
 		*/
 		loadRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 		/** [Method] Mark fields in this form invalid in bulk  
-		* @param errors any Either an array in the form [{id:'fieldId', msg:'The message'}, ...], an object hash of {id: msg, id2: msg2}, or a Ext.data.Errors object. 
+		* @param errors Object/Object[]/Ext.data.Errors Either an array in the form [{id:'fieldId', msg:'The message'}, ...], an object hash of {id: msg, id2: msg2}, or a Ext.data.Errors object. 
 		*/
 		markInvalid?( errors?:any ): Ext.form.IBasic;
 		/** [Method] Resets all fields in this form  
@@ -14421,7 +14364,7 @@ declare module Ext.form {
 		*/
 		reset?( resetRecord?:bool ): Ext.form.IBasic;
 		/** [Method] Set values for fields in this form in bulk  
-		* @param values any Either an array in the form: [{id:'clientName', value:'Fred. Olsen Lines'}, {id:'portOfLoading', value:'FXT'}, {id:'portOfDischarge', value:'OSL'} ]  or an object hash of the form: {  clientName: 'Fred. Olsen Lines',  portOfLoading: 'FXT',  portOfDischarge: 'OSL' } 
+		* @param values Object/Object[] Either an array in the form: [{id:'clientName', value:'Fred. Olsen Lines'}, {id:'portOfLoading', value:'FXT'}, {id:'portOfDischarge', value:'OSL'} ]  or an object hash of the form: {  clientName: 'Fred. Olsen Lines',  portOfLoading: 'FXT',  portOfDischarge: 'OSL' } 
 		*/
 		setValues?( values?:any ): Ext.form.IBasic;
 		/** [Method] Shortcut to do a submit action  
@@ -14429,7 +14372,7 @@ declare module Ext.form {
 		*/
 		submit?( options?:any ): Ext.form.IBasic;
 		/** [Method] Persists the values in this form into the passed Ext data Model object in a beginEdit endEdit block  
-		* @param record Ext.data.IModel The record to edit 
+		* @param record Ext.data.Model The record to edit 
 		*/
 		updateRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 	}
@@ -14494,7 +14437,7 @@ declare module Ext.form {
 		/** [Method] Returns whether or not the field value is currently valid by validating the field s current value  */
 		isValid?(): bool;
 		/** [Method] Associate one or more error messages with this field  
-		* @param errors any The error message(s) for the field. 
+		* @param errors String/String[] The error message(s) for the field. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -14645,7 +14588,7 @@ declare module Ext.form.field {
 		/** [Method] Returns whether or not the field value is currently valid by validating the processed raw value of the field  */
 		isValid?(): bool;
 		/** [Method] Display one or more error messages associated with this field using msgTarget to determine how to display the messag  
-		* @param errors any The validation message(s) to display. 
+		* @param errors String/String[] The validation message(s) to display. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -14685,7 +14628,7 @@ declare module Ext.form.field {
 		*/
 		setFieldLabel?( label?:string ): void;
 		/** [Method] Set the CSS style of the field input element  
-		* @param style any The style(s) to apply. Should be a valid argument to Ext.Element.applyStyles. 
+		* @param style String/Object/Function The style(s) to apply. Should be a valid argument to Ext.Element.applyStyles. 
 		*/
 		setFieldStyle?( style?:any ): void;
 		/** [Method] Sets the field s raw value directly bypassing value conversion change detection and validation  
@@ -14840,7 +14783,7 @@ declare module Ext.form {
 		/** [Method] Returns whether or not the field value is currently valid by validating the processed raw value of the field  */
 		isValid?(): bool;
 		/** [Method] Display one or more error messages associated with this field using msgTarget to determine how to display the messag  
-		* @param errors any The validation message(s) to display. 
+		* @param errors String/String[] The validation message(s) to display. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -14880,7 +14823,7 @@ declare module Ext.form {
 		*/
 		setFieldLabel?( label?:string ): void;
 		/** [Method] Set the CSS style of the field input element  
-		* @param style any The style(s) to apply. Should be a valid argument to Ext.Element.applyStyles. 
+		* @param style String/Object/Function The style(s) to apply. Should be a valid argument to Ext.Element.applyStyles. 
 		*/
 		setFieldStyle?( style?:any ): void;
 		/** [Method] Sets the field s raw value directly bypassing value conversion change detection and validation  
@@ -15035,7 +14978,7 @@ declare module Ext.form {
 		/** [Method] Returns whether or not the field value is currently valid by validating the processed raw value of the field  */
 		isValid?(): bool;
 		/** [Method] Display one or more error messages associated with this field using msgTarget to determine how to display the messag  
-		* @param errors any The validation message(s) to display. 
+		* @param errors String/String[] The validation message(s) to display. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -15075,7 +15018,7 @@ declare module Ext.form {
 		*/
 		setFieldLabel?( label?:string ): void;
 		/** [Method] Set the CSS style of the field input element  
-		* @param style any The style(s) to apply. Should be a valid argument to Ext.Element.applyStyles. 
+		* @param style String/Object/Function The style(s) to apply. Should be a valid argument to Ext.Element.applyStyles. 
 		*/
 		setFieldStyle?( style?:any ): void;
 		/** [Method] Sets the field s raw value directly bypassing value conversion change detection and validation  
@@ -15185,7 +15128,7 @@ declare module Ext.form.field {
 		*/
 		setBoxLabel?( boxLabel?:string ): void;
 		/** [Method] Sets the checked state of the checkbox  
-		* @param value any The following values will check the checkbox: true, 'true', '1', 1, or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
+		* @param value Boolean/String/Number The following values will check the checkbox: true, 'true', '1', 1, or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
 		*/
 		setRawValue?( value?:any ): any;
 		setRawValue?( value?:bool ): bool;
@@ -15196,7 +15139,7 @@ declare module Ext.form.field {
 		*/
 		setReadOnly?( readOnly?:any ): void;
 		/** [Method] Sets the checked state of the checkbox and invokes change detection  
-		* @param checked any The following values will check the checkbox: true, 'true', '1', or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
+		* @param checked Boolean/String The following values will check the checkbox: true, 'true', '1', or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
 		*/
 		setValue?( checked?:any ): any;
 		setValue?( checked?:bool ): Ext.form.field.ICheckbox;
@@ -15278,7 +15221,7 @@ declare module Ext.form {
 		*/
 		setBoxLabel?( boxLabel?:string ): void;
 		/** [Method] Sets the checked state of the checkbox  
-		* @param value any The following values will check the checkbox: true, 'true', '1', 1, or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
+		* @param value Boolean/String/Number The following values will check the checkbox: true, 'true', '1', 1, or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
 		*/
 		setRawValue?( value?:any ): any;
 		setRawValue?( value?:bool ): bool;
@@ -15289,7 +15232,7 @@ declare module Ext.form {
 		*/
 		setReadOnly?( readOnly?:any ): void;
 		/** [Method] Sets the checked state of the checkbox and invokes change detection  
-		* @param checked any The following values will check the checkbox: true, 'true', '1', or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
+		* @param checked Boolean/String The following values will check the checkbox: true, 'true', '1', or 'on', as well as a String that matches the inputValue. Any other value will uncheck the checkbox. 
 		*/
 		setValue?( checked?:any ): any;
 		setValue?( checked?:bool ): Ext.form.field.ICheckbox;
@@ -15381,13 +15324,13 @@ declare module Ext.form.field {
 		/** [Method] Template method before a field is reset  */
 		beforeReset?(): void;
 		/** [Method] Binds a store to this instance  
-		* @param store any The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
+		* @param store Ext.data.AbstractStore/String The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
 		*/
 		bindStore?( store?:any ): any;
 		bindStore?( store?:Ext.data.IAbstractStore ): void;
 		bindStore?( store?:string ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Clears any value currently set in the ComboBox  */
@@ -15445,13 +15388,13 @@ declare module Ext.form.field {
 		*/
 		select?( r?:any ): void;
 		/** [Method] Sets the specified value s into the field  
-		* @param value any The value(s) to be set. Can be either a single String or Ext.data.Model, or an Array of Strings or Models. 
+		* @param value String/String[] The value(s) to be set. Can be either a single String or Ext.data.Model, or an Array of Strings or Models. 
 		*/
 		setValue?( value?:any ): any;
 		setValue?( value?:string ): any;
 		setValue?( value?:string[] ): any;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -15537,13 +15480,13 @@ declare module Ext.form {
 		/** [Method] Template method before a field is reset  */
 		beforeReset?(): void;
 		/** [Method] Binds a store to this instance  
-		* @param store any The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
+		* @param store Ext.data.AbstractStore/String The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
 		*/
 		bindStore?( store?:any ): any;
 		bindStore?( store?:Ext.data.IAbstractStore ): void;
 		bindStore?( store?:string ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Clears any value currently set in the ComboBox  */
@@ -15601,13 +15544,13 @@ declare module Ext.form {
 		*/
 		select?( r?:any ): void;
 		/** [Method] Sets the specified value s into the field  
-		* @param value any The value(s) to be set. Can be either a single String or Ext.data.Model, or an Array of Strings or Models. 
+		* @param value String/String[] The value(s) to be set. Can be either a single String or Ext.data.Model, or an Array of Strings or Models. 
 		*/
 		setValue?( value?:any ): any;
 		setValue?( value?:string ): any;
 		setValue?( value?:string[] ): any;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -15683,7 +15626,7 @@ declare module Ext.form.field {
 		*/
 		setMinValue?( value?:any ): void;
 		/** [Method] Sets the value of the date field  
-		* @param date any The date or valid date string 
+		* @param date String/Date The date or valid date string 
 		*/
 		setValue?( date?:any ): any;
 		setValue?( date?:string ): Ext.form.field.IDate;
@@ -15764,7 +15707,7 @@ declare module Ext.form {
 		*/
 		setMinValue?( value?:any ): void;
 		/** [Method] Sets the value of the date field  
-		* @param date any The date or valid date string 
+		* @param date String/Date The date or valid date string 
 		*/
 		setValue?( date?:any ): any;
 		setValue?( date?:string ): Ext.form.field.IDate;
@@ -15845,7 +15788,7 @@ declare module Ext.form {
 		*/
 		setMinValue?( value?:any ): void;
 		/** [Method] Sets the value of the date field  
-		* @param date any The date or valid date string 
+		* @param date String/Date The date or valid date string 
 		*/
 		setValue?( date?:any ): any;
 		setValue?( date?:string ): Ext.form.field.IDate;
@@ -16009,7 +15952,7 @@ declare module Ext.form.field {
 		/** [Method] Returns whether or not the field value is currently valid by validating the field s current value  */
 		isValid?(): any;
 		/** [Method] Associate one or more error messages with this field  
-		* @param errors any The error message(s) for the field. 
+		* @param errors String/String[] The error message(s) for the field. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -16325,8 +16268,8 @@ declare module Ext.form.field {
 		/** [Method] Clear any invalid styles messages for this field  */
 		clearInvalid?(): void;
 		/** [Method] Executes a Midas editor command directly on the editor document  
-		* @param cmd any The Midas command 
-		* @param value any The value to pass to the command 
+		* @param cmd String The Midas command 
+		* @param value String/Boolean The value to pass to the command 
 		*/
 		execCmd?( cmd?:any, value?:any ): any;
 		execCmd?( cmd?:string, value?:string ): void;
@@ -16374,7 +16317,7 @@ declare module Ext.form.field {
 		/** [Method] Returns whether or not the field value is currently valid by validating the field s current value  */
 		isValid?(): bool;
 		/** [Method] Associate one or more error messages with this field  
-		* @param errors any The error message(s) for the field. 
+		* @param errors String/String[] The error message(s) for the field. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -16382,8 +16325,8 @@ declare module Ext.form.field {
 		/** [Method] Pushes the value of the textarea into the iframe editor  */
 		pushValue?(): void;
 		/** [Method] Executes a Midas editor command on the editor document and performs necessary focus and toolbar updates  
-		* @param cmd any The Midas command 
-		* @param value any The value to pass to the command 
+		* @param cmd String The Midas command 
+		* @param value String/Boolean The value to pass to the command 
 		*/
 		relayCmd?( cmd?:any, value?:any ): any;
 		relayCmd?( cmd?:string, value?:string ): void;
@@ -16475,8 +16418,8 @@ declare module Ext.form {
 		/** [Method] Clear any invalid styles messages for this field  */
 		clearInvalid?(): void;
 		/** [Method] Executes a Midas editor command directly on the editor document  
-		* @param cmd any The Midas command 
-		* @param value any The value to pass to the command 
+		* @param cmd String The Midas command 
+		* @param value String/Boolean The value to pass to the command 
 		*/
 		execCmd?( cmd?:any, value?:any ): any;
 		execCmd?( cmd?:string, value?:string ): void;
@@ -16524,7 +16467,7 @@ declare module Ext.form {
 		/** [Method] Returns whether or not the field value is currently valid by validating the field s current value  */
 		isValid?(): bool;
 		/** [Method] Associate one or more error messages with this field  
-		* @param errors any The error message(s) for the field. 
+		* @param errors String/String[] The error message(s) for the field. 
 		*/
 		markInvalid?( errors?:any ): any;
 		markInvalid?( errors?:string ): void;
@@ -16532,8 +16475,8 @@ declare module Ext.form {
 		/** [Method] Pushes the value of the textarea into the iframe editor  */
 		pushValue?(): void;
 		/** [Method] Executes a Midas editor command on the editor document and performs necessary focus and toolbar updates  
-		* @param cmd any The Midas command 
-		* @param value any The value to pass to the command 
+		* @param cmd String The Midas command 
+		* @param value String/Boolean The value to pass to the command 
 		*/
 		relayCmd?( cmd?:any, value?:any ): any;
 		relayCmd?( cmd?:string, value?:string ): void;
@@ -16861,7 +16804,7 @@ declare module Ext.form.field {
 		/** [Method] Method to manage awareness of when components are removed from their respective Container firing a removed event  */
 		onRemoved?(): void;
 		/** [Method] Sets either the checked unchecked status of this Radio or if a string value is passed checks a sibling Radio of th  
-		* @param value any Checked value, or the value of the sibling radio button to check. 
+		* @param value String/Boolean Checked value, or the value of the sibling radio button to check. 
 		*/
 		setValue?( value?:any ): any;
 		setValue?( value?:string ): Ext.form.field.IRadio;
@@ -16885,7 +16828,7 @@ declare module Ext.form {
 		/** [Method] Method to manage awareness of when components are removed from their respective Container firing a removed event  */
 		onRemoved?(): void;
 		/** [Method] Sets either the checked unchecked status of this Radio or if a string value is passed checks a sibling Radio of th  
-		* @param value any Checked value, or the value of the sibling radio button to check. 
+		* @param value String/Boolean Checked value, or the value of the sibling radio button to check. 
 		*/
 		setValue?( value?:any ): any;
 		setValue?( value?:string ): Ext.form.field.IRadio;
@@ -17430,12 +17373,12 @@ declare module Ext.form.field {
 		*/
 		rawToValue?( rawValue?:any ): any;
 		/** [Method] Replaces any existing maxValue with the new time and refreshes the picker s range  
-		* @param value any The maximum time that can be selected 
+		* @param value Date/String The maximum time that can be selected 
 		*/
 		setMaxValue?( value?:any ): any;
 		setMaxValue?( value?:string ): void;
 		/** [Method] Replaces any existing minValue with the new time and refreshes the picker s range  
-		* @param value any The minimum time that can be selected 
+		* @param value Date/String The minimum time that can be selected 
 		*/
 		setMinValue?( value?:any ): any;
 		setMinValue?( value?:string ): void;
@@ -17496,12 +17439,12 @@ declare module Ext.form {
 		*/
 		rawToValue?( rawValue?:any ): any;
 		/** [Method] Replaces any existing maxValue with the new time and refreshes the picker s range  
-		* @param value any The maximum time that can be selected 
+		* @param value Date/String The maximum time that can be selected 
 		*/
 		setMaxValue?( value?:any ): any;
 		setMaxValue?( value?:string ): void;
 		/** [Method] Replaces any existing minValue with the new time and refreshes the picker s range  
-		* @param value any The minimum time that can be selected 
+		* @param value Date/String The minimum time that can be selected 
 		*/
 		setMinValue?( value?:any ): any;
 		setMinValue?( value?:string ): void;
@@ -17562,12 +17505,12 @@ declare module Ext.form {
 		*/
 		rawToValue?( rawValue?:any ): any;
 		/** [Method] Replaces any existing maxValue with the new time and refreshes the picker s range  
-		* @param value any The maximum time that can be selected 
+		* @param value Date/String The maximum time that can be selected 
 		*/
 		setMaxValue?( value?:any ): any;
 		setMaxValue?( value?:string ): void;
 		/** [Method] Replaces any existing minValue with the new time and refreshes the picker s range  
-		* @param value any The minimum time that can be selected 
+		* @param value Date/String The minimum time that can be selected 
 		*/
 		setMinValue?( value?:any ): any;
 		setMinValue?( value?:string ): void;
@@ -17622,7 +17565,7 @@ declare module Ext.form.field {
 		/** [Method] private */
 		onRender?(): void;
 		/** [Method] The function that should handle the trigger s click event  
-		* @param e Ext.IEventObject 
+		* @param e Ext.EventObject 
 		*/
 		onTriggerClick?( e?:Ext.IEventObject ): void;
 		/** [Method] Sets the editable state of this field  
@@ -17678,7 +17621,7 @@ declare module Ext.form {
 		/** [Method] private */
 		onRender?(): void;
 		/** [Method] The function that should handle the trigger s click event  
-		* @param e Ext.IEventObject 
+		* @param e Ext.EventObject 
 		*/
 		onTriggerClick?( e?:Ext.IEventObject ): void;
 		/** [Method] Sets the editable state of this field  
@@ -17734,7 +17677,7 @@ declare module Ext.form {
 		/** [Method] private */
 		onRender?(): void;
 		/** [Method] The function that should handle the trigger s click event  
-		* @param e Ext.IEventObject 
+		* @param e Ext.EventObject 
 		*/
 		onTriggerClick?( e?:Ext.IEventObject ): void;
 		/** [Method] Sets the editable state of this field  
@@ -17790,7 +17733,7 @@ declare module Ext.form {
 		/** [Method] private */
 		onRender?(): void;
 		/** [Method] The function that should handle the trigger s click event  
-		* @param e Ext.IEventObject 
+		* @param e Ext.EventObject 
 		*/
 		onTriggerClick?( e?:Ext.IEventObject ): void;
 		/** [Method] Sets the editable state of this field  
@@ -17854,12 +17797,12 @@ declare module Ext.form {
 		/** [Method] Initializes the FieldAncestor s state this must be called from the initComponent method of any components importing */
 		initFieldAncestor?(): void;
 		/** [Method] Fired when the error message of any field within the container changes  
-		* @param field Ext.form.ILabelable The sub-field whose active error changed 
+		* @param field Ext.form.Labelable The sub-field whose active error changed 
 		* @param error String The new active error message 
 		*/
 		onFieldErrorChange?( field?:Ext.form.ILabelable, error?:string ): void;
 		/** [Method] Fired when the validity of any field within the container changes  
-		* @param field Ext.form.field.IField The sub-field whose validity changed 
+		* @param field Ext.form.field.Field The sub-field whose validity changed 
 		* @param valid Boolean The new validity state 
 		*/
 		onFieldValidityChange?( field?:Ext.form.field.IField, valid?:bool ): void;
@@ -17886,7 +17829,7 @@ declare module Ext.form {
 		/** [Method] Gets an Array of any active error messages currently applied to the field  */
 		getActiveErrors?(): string[];
 		/** [Method] Takes an Array of invalid Ext form field Field objects and builds a combined list of error messages from them  
-		* @param invalidFields Ext.form.field.IField[] An Array of the sub-fields which are currently invalid. 
+		* @param invalidFields Ext.form.field.Field[] An Array of the sub-fields which are currently invalid. 
 		*/
 		getCombinedErrors?( invalidFields?:Ext.form.field.IField[] ): string[];
 		/** [Method] Returns the combined field label if combineLabels is set to true and if there is no set fieldLabel  */
@@ -17910,16 +17853,16 @@ declare module Ext.form {
 		/** [Method] Initialized the renderData to be used when rendering the renderTpl  */
 		initRenderData?(): any;
 		/** [Method] Called when a Ext form Labelable instance is added to the container s subtree  
-		* @param labelable Ext.form.ILabelable The instance that was added 
+		* @param labelable Ext.form.Labelable The instance that was added 
 		*/
 		onAdd?( labelable?:Ext.form.ILabelable ): void;
 		/** [Method] Fired when the validity of any field within the container changes  
-		* @param field Ext.form.field.IField The sub-field whose validity changed 
+		* @param field Ext.form.field.Field The sub-field whose validity changed 
 		* @param valid Boolean The new validity state 
 		*/
 		onFieldValidityChange?( field?:Ext.form.field.IField, valid?:bool ): void;
 		/** [Method] Called when a Ext form Labelable instance is removed from the container s subtree  
-		* @param labelable Ext.form.ILabelable The instance that was removed 
+		* @param labelable Ext.form.Labelable The instance that was removed 
 		*/
 		onRemove?( labelable?:Ext.form.ILabelable ): void;
 		/** [Method] Sets the active error message to the given string  
@@ -17997,12 +17940,12 @@ declare module Ext.form {
 		/** [Method] Initializes the FieldAncestor s state this must be called from the initComponent method of any components importing */
 		initFieldAncestor?(): void;
 		/** [Method] Fired when the error message of any field within the container changes  
-		* @param field Ext.form.ILabelable The sub-field whose active error changed 
+		* @param field Ext.form.Labelable The sub-field whose active error changed 
 		* @param error String The new active error message 
 		*/
 		onFieldErrorChange?( field?:Ext.form.ILabelable, error?:string ): void;
 		/** [Method] Fired when the validity of any field within the container changes  
-		* @param field Ext.form.field.IField The sub-field whose validity changed 
+		* @param field Ext.form.field.Field The sub-field whose validity changed 
 		* @param valid Boolean The new validity state 
 		*/
 		onFieldValidityChange?( field?:Ext.form.field.IField, valid?:bool ): void;
@@ -18179,16 +18122,16 @@ declare module Ext.form {
 		*/
 		load?( options?:any ): void;
 		/** [Method] Loads an Ext data Model into this form internally just calls Ext form Basic loadRecord See also trackResetOnLoad  
-		* @param record Ext.data.IModel The record to load 
+		* @param record Ext.data.Model The record to load 
 		*/
 		loadRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 		/** [Method] Fired when the error message of any field within the container changes  
-		* @param field Ext.form.ILabelable The sub-field whose active error changed 
+		* @param field Ext.form.Labelable The sub-field whose active error changed 
 		* @param error String The new active error message 
 		*/
 		onFieldErrorChange?( field?:Ext.form.ILabelable, error?:string ): void;
 		/** [Method] Fired when the validity of any field within the container changes  
-		* @param field Ext.form.field.IField The sub-field whose validity changed 
+		* @param field Ext.form.field.Field The sub-field whose validity changed 
 		* @param valid Boolean The new validity state 
 		*/
 		onFieldValidityChange?( field?:Ext.form.field.IField, valid?:bool ): void;
@@ -18203,7 +18146,7 @@ declare module Ext.form {
 		*/
 		submit?( options?:any ): void;
 		/** [Method] Persists the values in this form into the passed Ext data Model object in a beginEdit endEdit block  
-		* @param record Ext.data.IModel The record to edit 
+		* @param record Ext.data.Model The record to edit 
 		*/
 		updateRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 	}
@@ -18242,16 +18185,16 @@ declare module Ext {
 		*/
 		load?( options?:any ): void;
 		/** [Method] Loads an Ext data Model into this form internally just calls Ext form Basic loadRecord See also trackResetOnLoad  
-		* @param record Ext.data.IModel The record to load 
+		* @param record Ext.data.Model The record to load 
 		*/
 		loadRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 		/** [Method] Fired when the error message of any field within the container changes  
-		* @param field Ext.form.ILabelable The sub-field whose active error changed 
+		* @param field Ext.form.Labelable The sub-field whose active error changed 
 		* @param error String The new active error message 
 		*/
 		onFieldErrorChange?( field?:Ext.form.ILabelable, error?:string ): void;
 		/** [Method] Fired when the validity of any field within the container changes  
-		* @param field Ext.form.field.IField The sub-field whose validity changed 
+		* @param field Ext.form.field.Field The sub-field whose validity changed 
 		* @param valid Boolean The new validity state 
 		*/
 		onFieldValidityChange?( field?:Ext.form.field.IField, valid?:bool ): void;
@@ -18266,7 +18209,7 @@ declare module Ext {
 		*/
 		submit?( options?:any ): void;
 		/** [Method] Persists the values in this form into the passed Ext data Model object in a beginEdit endEdit block  
-		* @param record Ext.data.IModel The record to edit 
+		* @param record Ext.data.Model The record to edit 
 		*/
 		updateRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 	}
@@ -18305,16 +18248,16 @@ declare module Ext.form {
 		*/
 		load?( options?:any ): void;
 		/** [Method] Loads an Ext data Model into this form internally just calls Ext form Basic loadRecord See also trackResetOnLoad  
-		* @param record Ext.data.IModel The record to load 
+		* @param record Ext.data.Model The record to load 
 		*/
 		loadRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 		/** [Method] Fired when the error message of any field within the container changes  
-		* @param field Ext.form.ILabelable The sub-field whose active error changed 
+		* @param field Ext.form.Labelable The sub-field whose active error changed 
 		* @param error String The new active error message 
 		*/
 		onFieldErrorChange?( field?:Ext.form.ILabelable, error?:string ): void;
 		/** [Method] Fired when the validity of any field within the container changes  
-		* @param field Ext.form.field.IField The sub-field whose validity changed 
+		* @param field Ext.form.field.Field The sub-field whose validity changed 
 		* @param valid Boolean The new validity state 
 		*/
 		onFieldValidityChange?( field?:Ext.form.field.IField, valid?:bool ): void;
@@ -18329,7 +18272,7 @@ declare module Ext.form {
 		*/
 		submit?( options?:any ): void;
 		/** [Method] Persists the values in this form into the passed Ext data Model object in a beginEdit endEdit block  
-		* @param record Ext.data.IModel The record to edit 
+		* @param record Ext.data.Model The record to edit 
 		*/
 		updateRecord?( record?:Ext.data.IModel ): Ext.form.IBasic;
 	}
@@ -18363,15 +18306,15 @@ declare module Ext {
 	}
 	export class Function {
 		/** [Method] Create an alias to the provided method property with name methodName of object  
-		* @param object any 
+		* @param object Object/Function 
 		* @param methodName String 
 		*/
 		static alias( object?:any, methodName?:string ): any;
 		/** [Method] Create a new function from the provided fn change this to the provided scope optionally overrides arguments for the  
-		* @param fn any The function to delegate. 
-		* @param scope any The scope (this reference) in which the function is executed. If omitted, defaults to the default global environment object (usually the browser window). 
-		* @param args any Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
+		* @param fn Function The function to delegate. 
+		* @param scope Object The scope (this reference) in which the function is executed. If omitted, defaults to the default global environment object (usually the browser window). 
+		* @param args Array Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static bind( fn?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		static bind( fn?:any, scope?:any, args?:any[], appendArgs?:bool ): any;
@@ -18388,11 +18331,11 @@ declare module Ext {
 		*/
 		static createBuffered( fn?:any, buffer?:number, scope?:any, args?:any[] ): any;
 		/** [Method] Creates a delegate callback which when called executes after a specific delay  
-		* @param fn any The function which will be called on a delay when the returned function is called. Optionally, a replacement (or additional) argument list may be specified. 
-		* @param delay any The number of milliseconds to defer execution by whenever called. 
-		* @param scope any The scope (this reference) used by the function at execution time. 
-		* @param args any Override arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position. 
+		* @param fn Function The function which will be called on a delay when the returned function is called. Optionally, a replacement (or additional) argument list may be specified. 
+		* @param delay Number The number of milliseconds to defer execution by whenever called. 
+		* @param scope Object The scope (this reference) used by the function at execution time. 
+		* @param args Array Override arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position. 
 		*/
 		static createDelayed( fn?:any, delay?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		static createDelayed( fn?:any, delay?:number, scope?:any, args?:any[], appendArgs?:bool ): any;
@@ -18417,11 +18360,11 @@ declare module Ext {
 		*/
 		static createThrottled( fn?:any, interval?:number, scope?:any ): any;
 		/** [Method] Calls this function after the number of millseconds specified optionally in a specific scope  
-		* @param fn any The function to defer. 
-		* @param millis any The number of milliseconds for the setTimeout call (if less than or equal to 0 the function is executed immediately) 
-		* @param scope any The scope (this reference) in which the function is executed. If omitted, defaults to the browser window. 
-		* @param args any Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
+		* @param fn Function The function to defer. 
+		* @param millis Number The number of milliseconds for the setTimeout call (if less than or equal to 0 the function is executed immediately) 
+		* @param scope Object The scope (this reference) in which the function is executed. If omitted, defaults to the browser window. 
+		* @param args Array Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static defer( fn?:any, millis?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		static defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:bool ): number;
@@ -18457,15 +18400,15 @@ declare module Ext.util {
 	}
 	export class Functions {
 		/** [Method] Create an alias to the provided method property with name methodName of object  
-		* @param object any 
+		* @param object Object/Function 
 		* @param methodName String 
 		*/
 		static alias( object?:any, methodName?:string ): any;
 		/** [Method] Create a new function from the provided fn change this to the provided scope optionally overrides arguments for the  
-		* @param fn any The function to delegate. 
-		* @param scope any The scope (this reference) in which the function is executed. If omitted, defaults to the default global environment object (usually the browser window). 
-		* @param args any Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
+		* @param fn Function The function to delegate. 
+		* @param scope Object The scope (this reference) in which the function is executed. If omitted, defaults to the default global environment object (usually the browser window). 
+		* @param args Array Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static bind( fn?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		static bind( fn?:any, scope?:any, args?:any[], appendArgs?:bool ): any;
@@ -18482,11 +18425,11 @@ declare module Ext.util {
 		*/
 		static createBuffered( fn?:any, buffer?:number, scope?:any, args?:any[] ): any;
 		/** [Method] Creates a delegate callback which when called executes after a specific delay  
-		* @param fn any The function which will be called on a delay when the returned function is called. Optionally, a replacement (or additional) argument list may be specified. 
-		* @param delay any The number of milliseconds to defer execution by whenever called. 
-		* @param scope any The scope (this reference) used by the function at execution time. 
-		* @param args any Override arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position. 
+		* @param fn Function The function which will be called on a delay when the returned function is called. Optionally, a replacement (or additional) argument list may be specified. 
+		* @param delay Number The number of milliseconds to defer execution by whenever called. 
+		* @param scope Object The scope (this reference) used by the function at execution time. 
+		* @param args Array Override arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position. 
 		*/
 		static createDelayed( fn?:any, delay?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		static createDelayed( fn?:any, delay?:number, scope?:any, args?:any[], appendArgs?:bool ): any;
@@ -18511,11 +18454,11 @@ declare module Ext.util {
 		*/
 		static createThrottled( fn?:any, interval?:number, scope?:any ): any;
 		/** [Method] Calls this function after the number of millseconds specified optionally in a specific scope  
-		* @param fn any The function to defer. 
-		* @param millis any The number of milliseconds for the setTimeout call (if less than or equal to 0 the function is executed immediately) 
-		* @param scope any The scope (this reference) in which the function is executed. If omitted, defaults to the browser window. 
-		* @param args any Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
+		* @param fn Function The function to defer. 
+		* @param millis Number The number of milliseconds for the setTimeout call (if less than or equal to 0 the function is executed immediately) 
+		* @param scope Object The scope (this reference) in which the function is executed. If omitted, defaults to the browser window. 
+		* @param args Array Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		static defer( fn?:any, millis?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		static defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:bool ): number;
@@ -18585,22 +18528,22 @@ declare module Ext.fx {
 		/** [Property] (Date) */
 		startTime?: any;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -18610,7 +18553,7 @@ declare module Ext.fx {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -18626,32 +18569,32 @@ declare module Ext.fx {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -18670,10 +18613,10 @@ declare module Ext.fx {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -18727,22 +18670,22 @@ declare module Ext.fx {
 		/** [Property] (Boolean) */
 		running?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -18752,7 +18695,7 @@ declare module Ext.fx {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -18768,32 +18711,32 @@ declare module Ext.fx {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -18812,10 +18755,10 @@ declare module Ext.fx {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -18861,11 +18804,11 @@ declare module Ext.fx {
 		/** [Method] End Definitions */
 		constructor();
 		/** [Method] Add an Anim to the manager  
-		* @param anim Ext.fx.IAnim 
+		* @param anim Ext.fx.Anim 
 		*/
 		static addAnim( anim?:Ext.fx.IAnim ): void;
 		/** [Method] Remove an Anim from the manager  
-		* @param anim Ext.fx.IAnim 
+		* @param anim Ext.fx.Anim 
 		*/
 		static removeAnim( anim?:Ext.fx.IAnim ): void;
 	}
@@ -18947,7 +18890,7 @@ declare module Ext.grid.column {
 		/** [Config Option] (String) */
 		iconCls?: string;
 		/** [Config Option] (Object[]) */
-		items?: Object[];
+		items?: any[];
 		/** [Config Option] (String) */
 		menuText?: string;
 		/** [Config Option] (Object) */
@@ -18974,15 +18917,15 @@ declare module Ext.grid.column {
 		*/
 		defaultRenderer?( v?:any, meta?:any, record?:any, rowIdx?:any, colIdx?:any, store?:any, view?:any ): void;
 		/** [Method] Disables this ActionColumn s action at the specified index  
-		* @param index any 
-		* @param silent any 
+		* @param index Number/Ext.grid.column.Action 
+		* @param silent Boolean 
 		*/
 		disableAction?( index?:any, silent?:any ): any;
 		disableAction?( index?:number, silent?:bool ): void;
 		disableAction?( index?:Ext.grid.column.IAction, silent?:bool ): void;
 		/** [Method] Enables this ActionColumn s action at the specified index  
-		* @param index any 
-		* @param silent any 
+		* @param index Number/Ext.grid.column.Action 
+		* @param silent Boolean 
 		*/
 		enableAction?( index?:any, silent?:any ): any;
 		enableAction?( index?:number, silent?:bool ): void;
@@ -19008,7 +18951,7 @@ declare module Ext.grid {
 		/** [Config Option] (String) */
 		iconCls?: string;
 		/** [Config Option] (Object[]) */
-		items?: Object[];
+		items?: any[];
 		/** [Config Option] (String) */
 		menuText?: string;
 		/** [Config Option] (Object) */
@@ -19035,15 +18978,15 @@ declare module Ext.grid {
 		*/
 		defaultRenderer?( v?:any, meta?:any, record?:any, rowIdx?:any, colIdx?:any, store?:any, view?:any ): void;
 		/** [Method] Disables this ActionColumn s action at the specified index  
-		* @param index any 
-		* @param silent any 
+		* @param index Number/Ext.grid.column.Action 
+		* @param silent Boolean 
 		*/
 		disableAction?( index?:any, silent?:any ): any;
 		disableAction?( index?:number, silent?:bool ): void;
 		disableAction?( index?:Ext.grid.column.IAction, silent?:bool ): void;
 		/** [Method] Enables this ActionColumn s action at the specified index  
-		* @param index any 
-		* @param silent any 
+		* @param index Number/Ext.grid.column.Action 
+		* @param silent Boolean 
 		*/
 		enableAction?( index?:any, silent?:any ): any;
 		enableAction?( index?:number, silent?:bool ): void;
@@ -19111,7 +19054,7 @@ declare module Ext.grid.column {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Object[]) */
-		columns?: Object[];
+		columns?: any[];
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (String) */
@@ -19182,7 +19125,7 @@ declare module Ext.grid.column {
 		/** [Method] Allows addition of behavior after rendering is complete  */
 		afterRender?(): void;
 		/** [Method] Sizes this Column to fit the max content width  
-		* @param The any header (or index of header) to auto size. 
+		* @param The Ext.grid.column.Column/Number header (or index of header) to auto size. 
 		*/
 		autoSize?( The?:any ): any;
 		autoSize?( The?:Ext.grid.column.IColumn ): void;
@@ -19242,7 +19185,7 @@ declare module Ext.grid {
 		/** [Config Option] (String) */
 		baseCls?: string;
 		/** [Config Option] (Object[]) */
-		columns?: Object[];
+		columns?: any[];
 		/** [Config Option] (String/Object) */
 		componentLayout?: any;
 		/** [Config Option] (String) */
@@ -19313,7 +19256,7 @@ declare module Ext.grid {
 		/** [Method] Allows addition of behavior after rendering is complete  */
 		afterRender?(): void;
 		/** [Method] Sizes this Column to fit the max content width  
-		* @param The any header (or index of header) to auto size. 
+		* @param The Ext.grid.column.Column/Number header (or index of header) to auto size. 
 		*/
 		autoSize?( The?:any ): any;
 		autoSize?( The?:Ext.grid.column.IColumn ): void;
@@ -19517,7 +19460,7 @@ declare module Ext.grid {
 		*/
 		getHeaderById?( id?:string ): Ext.grid.column.IColumn;
 		/** [Method] Returns the index of a leaf level header regardless of what the nesting structure is  
-		* @param header Ext.grid.column.IColumn The header to find the index of 
+		* @param header Ext.grid.column.Column The header to find the index of 
 		*/
 		getHeaderIndex?( header?:Ext.grid.column.IColumn ): number;
 		/** [Method] When passed a column index returns the closet visible column to that  
@@ -19537,7 +19480,7 @@ declare module Ext.grid {
 		*/
 		getHeaderById?( id?:string ): Ext.grid.column.IColumn;
 		/** [Method] Returns the index of a leaf level header regardless of what the nesting structure is  
-		* @param header Ext.grid.column.IColumn The header to find the index of 
+		* @param header Ext.grid.column.Column The header to find the index of 
 		*/
 		getHeaderIndex?( header?:Ext.grid.column.IColumn ): number;
 		/** [Method] When passed a column index returns the closet visible column to that  
@@ -19637,7 +19580,7 @@ declare module Ext.grid.feature {
 		*/
 		getFireEventArgs?( type?:any, view?:any, targetEl?:any, e?:any ): void;
 		/** [Method] Returns the group data object for the group to which the passed record belongs if the Store is grouped  
-		* @param record Ext.data.IModel The record for which to return group information. 
+		* @param record Ext.data.Model The record for which to return group information. 
 		*/
 		getRecordGroup?( record?:Ext.data.IModel ): any;
 		/** [Method] Returns true if the named group is expanded  
@@ -19659,7 +19602,7 @@ declare module Ext.grid.feature {
 declare module Ext.grid.feature {
 	export interface IGroupStore extends Ext.util.IObservable {
 		/** [Method] Get the index within the entire dataset  
-		* @param record Ext.data.IModel The Ext.data.Model object to find. 
+		* @param record Ext.data.Model The Ext.data.Model object to find. 
 		*/
 		indexOfTotal?( record?:Ext.data.IModel ): number;
 	}
@@ -19673,7 +19616,7 @@ declare module Ext.grid.feature {
 		/** [Method] Provides additional data to the prepareData call within the grid view  
 		* @param data Object The data for this particular record. 
 		* @param idx Number The row index for this record. 
-		* @param record Ext.data.IModel The record instance 
+		* @param record Ext.data.Model The record instance 
 		* @param orig Object The original result from the prepareData call to massage. 
 		*/
 		getAdditionalData?( data?:any, idx?:number, record?:Ext.data.IModel, orig?:any ): void;
@@ -19731,7 +19674,7 @@ declare module Ext.grid.header {
 		*/
 		getHeaderAtIndex?( index?:number ): void;
 		/** [Method] Returns the index of a leaf level header regardless of what the nesting structure is  
-		* @param header Ext.grid.column.IColumn The header to find the index of 
+		* @param header Ext.grid.column.Column The header to find the index of 
 		*/
 		getHeaderIndex?( header?:Ext.grid.column.IColumn ): number;
 		/** [Method] Returns an array of menu items to be placed into the shared menu across all headers in this header container  */
@@ -19849,22 +19792,22 @@ declare module Ext.grid.locking {
 		/** [Property] (Boolean) */
 		isLockingView?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -19874,7 +19817,7 @@ declare module Ext.grid.locking {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -19888,32 +19831,32 @@ declare module Ext.grid.locking {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -19932,10 +19875,10 @@ declare module Ext.grid.locking {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -19967,22 +19910,22 @@ declare module Ext.grid {
 		/** [Property] (Boolean) */
 		isLockingView?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -19992,7 +19935,7 @@ declare module Ext.grid {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -20006,32 +19949,32 @@ declare module Ext.grid {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -20050,10 +19993,10 @@ declare module Ext.grid {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -20089,10 +20032,10 @@ declare module Ext.grid {
 		/** [Config Option] (String) */
 		viewType?: string;
 		/** [Method] Reconfigures the grid with a new store columns  
-		* @param store Ext.data.IStore The new store. 
+		* @param store Ext.data.Store The new store. 
 		* @param columns Object[] An array of column configs 
 		*/
-		reconfigure?( store?:Ext.data.IStore, columns?:Object[] ): void;
+		reconfigure?( store?:Ext.data.IStore, columns?:any[] ): void;
 	}
 }
 declare module Ext.list {
@@ -20104,10 +20047,10 @@ declare module Ext.list {
 		/** [Config Option] (String) */
 		viewType?: string;
 		/** [Method] Reconfigures the grid with a new store columns  
-		* @param store Ext.data.IStore The new store. 
+		* @param store Ext.data.Store The new store. 
 		* @param columns Object[] An array of column configs 
 		*/
-		reconfigure?( store?:Ext.data.IStore, columns?:Object[] ): void;
+		reconfigure?( store?:Ext.data.IStore, columns?:any[] ): void;
 	}
 }
 declare module Ext {
@@ -20119,10 +20062,10 @@ declare module Ext {
 		/** [Config Option] (String) */
 		viewType?: string;
 		/** [Method] Reconfigures the grid with a new store columns  
-		* @param store Ext.data.IStore The new store. 
+		* @param store Ext.data.Store The new store. 
 		* @param columns Object[] An array of column configs 
 		*/
-		reconfigure?( store?:Ext.data.IStore, columns?:Object[] ): void;
+		reconfigure?( store?:Ext.data.IStore, columns?:any[] ): void;
 	}
 }
 declare module Ext.grid {
@@ -20134,10 +20077,10 @@ declare module Ext.grid {
 		/** [Config Option] (String) */
 		viewType?: string;
 		/** [Method] Reconfigures the grid with a new store columns  
-		* @param store Ext.data.IStore The new store. 
+		* @param store Ext.data.Store The new store. 
 		* @param columns Object[] An array of column configs 
 		*/
-		reconfigure?( store?:Ext.data.IStore, columns?:Object[] ): void;
+		reconfigure?( store?:Ext.data.IStore, columns?:any[] ): void;
 	}
 }
 declare module Ext.grid.plugin {
@@ -20180,8 +20123,8 @@ declare module Ext.grid.plugin {
 		/** [Method] Completes the edit if there is an active edit in progress  */
 		completeEdit?(): void;
 		/** [Method] Starts editing the specified record using the specified Column definition to define which field is being edited  
-		* @param record any The Store data record which backs the row to be edited, or index of the record. 
-		* @param columnHeader any The Column object defining the column to be edited, or index of the column. 
+		* @param record Ext.data.Model/Number The Store data record which backs the row to be edited, or index of the record. 
+		* @param columnHeader Ext.grid.column.Column/Number The Column object defining the column to be edited, or index of the column. 
 		*/
 		startEdit?( record?:any, columnHeader?:any ): any;
 		startEdit?( record?:Ext.data.IModel, columnHeader?:Ext.grid.column.IColumn ): bool;
@@ -20229,22 +20172,22 @@ declare module Ext.grid.plugin {
 		/** [Property] (Boolean) */
 		editing?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -20258,7 +20201,7 @@ declare module Ext.grid.plugin {
 		/** [Method] Completes the edit if there is an active edit in progress  */
 		completeEdit?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -20272,32 +20215,32 @@ declare module Ext.grid.plugin {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -20316,10 +20259,10 @@ declare module Ext.grid.plugin {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -20331,8 +20274,8 @@ declare module Ext.grid.plugin {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Starts editing the specified record using the specified Column definition to define which field is being edited  
-		* @param record any The Store data record which backs the row to be edited, or index of the record in Store. 
-		* @param columnHeader any The Column object defining the column to be edited, or index of the column. 
+		* @param record Ext.data.Model/Number The Store data record which backs the row to be edited, or index of the record in Store. 
+		* @param columnHeader Ext.grid.column.Column/Number The Column object defining the column to be edited, or index of the column. 
 		*/
 		startEdit?( record?:any, columnHeader?:any ): any;
 		startEdit?( record?:Ext.data.IModel, columnHeader?:Ext.grid.column.IColumn ): void;
@@ -20396,8 +20339,8 @@ declare module Ext.grid.plugin {
 		/** [Config Option] (Boolean) */
 		errorSummary?: bool;
 		/** [Method] Starts editing the specified record using the specified Column definition to define which field is being edited  
-		* @param record Ext.data.IModel The Store data record which backs the row to be edited. 
-		* @param columnHeader Ext.data.IModel The Column object defining the column to be edited. 
+		* @param record Ext.data.Model The Store data record which backs the row to be edited. 
+		* @param columnHeader Ext.data.Model The Column object defining the column to be edited. 
 		*/
 		startEdit?( record?:Ext.data.IModel, columnHeader?:Ext.data.IModel ): bool;
 	}
@@ -20563,8 +20506,8 @@ declare module Ext.grid {
 		/** [Method] Allows addition of behavior to the show operation  */
 		onShow?(): void;
 		/** [Method] Start editing the specified grid at the specified position  
-		* @param record Ext.data.IModel The Store data record which backs the row to be edited. 
-		* @param columnHeader Ext.data.IModel The Column object defining the column to be edited. 
+		* @param record Ext.data.Model The Store data record which backs the row to be edited. 
+		* @param columnHeader Ext.data.Model The Column object defining the column to be edited. 
 		*/
 		startEdit?( record?:Ext.data.IModel, columnHeader?:Ext.data.IModel ): void;
 	}
@@ -20616,9 +20559,9 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface Iis {
+	export interface IIs {
 	}
-	export class is {
+	export class Is {
 	}
 }
 declare module Ext {
@@ -20745,13 +20688,13 @@ declare module Ext {
 		*/
 		export function addBehaviors( obj?:any ): void;
 		/** [Method] Adds namespace s to known list  
-		* @param namespace any 
+		* @param namespace String/String[] 
 		*/
 		export function addNamespaces( namespace?:any ): any;
 		export function addNamespaces( namespace?:string ): void;
 		export function addNamespaces( namespace?:string[] ): void;
 		/** [Method] Loads Ext app Application class and starts it up with given configuration after the page is ready  
-		* @param config any Application config object or name of a class derived from Ext.app.Application. 
+		* @param config Object/String Application config object or name of a class derived from Ext.app.Application. 
 		*/
 		export function application( config?:any ): void;
 		/** [Method] Copies all the properties of config to the specified object  
@@ -20771,10 +20714,10 @@ declare module Ext {
 		*/
 		export function batchLayouts( fn?:any, scope?:any ): void;
 		/** [Method] Create a new function from the provided fn change this to the provided scope optionally overrides arguments for the  
-		* @param fn any The function to delegate. 
-		* @param scope any The scope (this reference) in which the function is executed. If omitted, defaults to the default global environment object (usually the browser window). 
-		* @param args any Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
+		* @param fn Function The function to delegate. 
+		* @param scope Object The scope (this reference) in which the function is executed. If omitted, defaults to the default global environment object (usually the browser window). 
+		* @param args Array Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		export function bind( fn?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		export function bind( fn?:any, scope?:any, args?:any[], appendArgs?:bool ): any;
@@ -20800,10 +20743,10 @@ declare module Ext {
 		*/
 		export function coerce( from?:any, to?:any ): any;
 		/** [Method] Copies a set of named properties fom the source object to the destination object  
-		* @param dest any The destination object. 
-		* @param source any The source object. 
-		* @param names any Either an Array of property names, or a comma-delimited list of property names to copy. 
-		* @param usePrototypeKeys any Defaults to false. Pass true to copy keys off of the prototype as well as the instance. 
+		* @param dest Object The destination object. 
+		* @param source Object The source object. 
+		* @param names String/String[] Either an Array of property names, or a comma-delimited list of property names to copy. 
+		* @param usePrototypeKeys Boolean Defaults to false. Pass true to copy keys off of the prototype as well as the instance. 
 		*/
 		export function copyTo( dest?:any, source?:any, names?:any, usePrototypeKeys?:any ): any;
 		export function copyTo( dest?:any, source?:any, names?:string, usePrototypeKeys?:bool ): any;
@@ -20826,11 +20769,11 @@ declare module Ext {
 		*/
 		export function decode( json?:string, safe?:bool ): any;
 		/** [Method] Calls this function after the number of millseconds specified optionally in a specific scope  
-		* @param fn any The function to defer. 
-		* @param millis any The number of milliseconds for the setTimeout call (if less than or equal to 0 the function is executed immediately) 
-		* @param scope any The scope (this reference) in which the function is executed. If omitted, defaults to the browser window. 
-		* @param args any Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
-		* @param appendArgs any if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
+		* @param fn Function The function to defer. 
+		* @param millis Number The number of milliseconds for the setTimeout call (if less than or equal to 0 the function is executed immediately) 
+		* @param scope Object The scope (this reference) in which the function is executed. If omitted, defaults to the browser window. 
+		* @param args Array Overrides arguments for the call. (Defaults to the arguments passed by the caller) 
+		* @param appendArgs Boolean/Number if True args are appended to call args instead of overriding, if a number the args are inserted at the specified position 
 		*/
 		export function defer( fn?:any, millis?:any, scope?:any, args?:any, appendArgs?:any ): any;
 		export function defer( fn?:any, millis?:number, scope?:any, args?:any[], appendArgs?:bool ): number;
@@ -20849,7 +20792,7 @@ declare module Ext {
 		*/
 		export function deprecate( packageName?:string, since?:string, closure?:any, scope?:any ): void;
 		/** [Method] Attempts to destroy any objects passed to it by removing all event listeners removing them from the DOM if applicab  
-		* @param args any Any number of elements or components, or an Array of either of these to destroy. 
+		* @param args Ext.dom.Element/Ext.util.Observable/Ext.dom.Element[]/Ext.util.Observable[]... Any number of elements or components, or an Array of either of these to destroy. 
 		*/
 		export function destroy( args?:any ): any;
 		export function destroy( args?:Ext.dom.IElement ): void;
@@ -20862,7 +20805,7 @@ declare module Ext {
 		*/
 		export function destroyMembers( o:any, ...args:any[] ): void;
 		/** [Method] Iterates an array or an iterable value and invoke the given callback function for each item  
-		* @param iterable any The value to be iterated. If this argument is not iterable, the callback function is called once. 
+		* @param iterable Array/NodeList/Object The value to be iterated. If this argument is not iterable, the callback function is called once. 
 		* @param fn Function The callback function. If it returns false, the iteration stops and this method returns the current index. 
 		* @param scope Object The scope (this reference) in which the specified function is executed. 
 		* @param reverse Boolean Reverse the iteration order (loop from the end to the beginning) Defaults false 
@@ -20890,14 +20833,14 @@ declare module Ext {
 		*/
 		export function flatten( array?:any[] ): any[];
 		/** [Method] Gets the singleton flyweight element with the passed node as the active element  
-		* @param dom any The dom node or id 
-		* @param named any Allows for creation of named reusable flyweights to prevent conflicts (e.g. internally Ext uses "_global") 
+		* @param dom String/HTMLElement The dom node or id 
+		* @param named String Allows for creation of named reusable flyweights to prevent conflicts (e.g. internally Ext uses "_global") 
 		*/
 		export function fly( dom?:any, named?:any ): any;
 		export function fly( dom?:string, named?:string ): Ext.dom.element.IFly;
 		export function fly( dom?:HTMLElement, named?:string ): Ext.dom.element.IFly;
 		/** [Method] Retrieves Ext dom Element objects  
-		* @param el any The id of the node, a DOM Node or an existing Element. 
+		* @param el String/HTMLElement/Ext.Element The id of the node, a DOM Node or an existing Element. 
 		*/
 		export function get( el?:any ): any;
 		export function get( el?:string ): Ext.dom.IElement;
@@ -20910,7 +20853,7 @@ declare module Ext {
 		*/
 		export function getClass( object?:any ): Ext.IClass;
 		/** [Method] Get the name of the class by its reference or its instance  Ext ClassManager getName is usually invoked by the short  
-		* @param object any 
+		* @param object Ext.Class/Object 
 		*/
 		export function getClassName( object?:any ): string;
 		/** [Method] This is shorthand reference to Ext ComponentManager get  
@@ -20920,7 +20863,7 @@ declare module Ext {
 		/** [Method] Returns the current HTML document object as an Ext Element  */
 		export function getDoc(): Ext.IElement;
 		/** [Method] Returns the dom node for the passed String id  dom node or Ext Element  
-		* @param el any 
+		* @param el String/HTMLElement/Ext.Element 
 		*/
 		export function getDom( el?:any ): any;
 		export function getDom( el?:string ): any;
@@ -20943,7 +20886,7 @@ declare module Ext {
 		*/
 		export function getScrollbarSize( force?:bool ): any;
 		/** [Method] Shortcut to Ext data StoreManager lookup  
-		* @param store any The id of the Store, or a Store instance, or a store configuration 
+		* @param store String/Object The id of the Store, or a Store instance, or a store configuration 
 		*/
 		export function getStore( store?:any ): Ext.data.IStore;
 		/** [Method] Get the version number of the supplied package name will return the last registered version last Ext setVersion cal  
@@ -20959,8 +20902,8 @@ declare module Ext {
 		*/
 		export function htmlEncode( value?:string ): string;
 		/** [Method] Generates unique ids  
-		* @param el any The element to generate an id for 
-		* @param prefix any Id prefix (defaults "ext-gen") 
+		* @param el HTMLElement/Ext.Element The element to generate an id for 
+		* @param prefix String Id prefix (defaults "ext-gen") 
 		*/
 		export function id( el?:any, prefix?:any ): any;
 		export function id( el?:HTMLElement, prefix?:string ): string;
@@ -20970,9 +20913,9 @@ declare module Ext {
 		*/
 		export function identityFn( o?:any ): void;
 		/** [Method] Invokes a method on each item in an Array  
-		* @param arr any The Array of items to invoke the method on. 
-		* @param methodName any The method name to invoke. 
-		* @param args any Arguments to send into the method invocation. 
+		* @param arr Array/NodeList The Array of items to invoke the method on. 
+		* @param methodName String The method name to invoke. 
+		* @param args Object... Arguments to send into the method invocation. 
 		*/
 		export function invoke( arr?:any, methodName?:any, args?:any ): any;
 		export function invoke( arr:any[], methodName:string, ...args:any[] ): any[];
@@ -21035,19 +20978,19 @@ declare module Ext {
 		*/
 		export function isTextNode( value?:any ): bool;
 		/** [Method] Iterates either an array or an object  
-		* @param object any The object or array to be iterated. 
+		* @param object Object/Array The object or array to be iterated. 
 		* @param fn Function The function to be called for each iteration. See and Ext.Array.each and Ext.Object.each for detailed lists of arguments passed to this function depending on the given object type that is being iterated. 
 		* @param scope Object The scope (this reference) in which the specified function is executed. Defaults to the object being iterated itself. 
 		*/
 		export function iterate( object?:any, fn?:any, scope?:any ): void;
 		/** [Method] Logs a message  
-		* @param options any The message to log or an options object with any of the following properties:  msg: The message to log (required). level: One of: "error", "warn", "info" or "log" (the default is "log"). dump: An object to dump to the log as part of the message. stack: True to include a stack trace in the log. indent: Cause subsequent log statements to be indented one step. outdent: Cause this and following statements to be one step less indented.  
+		* @param options String/Object The message to log or an options object with any of the following properties:  msg: The message to log (required). level: One of: "error", "warn", "info" or "log" (the default is "log"). dump: An object to dump to the log as part of the message. stack: True to include a stack trace in the log. indent: Cause subsequent log statements to be indented one step. outdent: Cause this and following statements to be one step less indented.  
 		* @param message String... The message to log (required unless specified in options object). 
 		*/
 		export function log( options:any, ...message:any[] ): void;
 		/** [Method] Old alias to Ext Array max 
-		* @param array any The Array from which to select the maximum value. 
-		* @param comparisonFn any a function to perform the comparision which determines maximization. If omitted the ">" operator will be used. Note: gt = 1; eq = 0; lt = -1 
+		* @param array Array/NodeList The Array from which to select the maximum value. 
+		* @param comparisonFn Function a function to perform the comparision which determines maximization. If omitted the ">" operator will be used. Note: gt = 1; eq = 0; lt = -1 
 		*/
 		export function max( array?:any, comparisonFn?:any ): any;
 		export function max( array?:any[], comparisonFn?:any ): any;
@@ -21062,8 +21005,8 @@ declare module Ext {
 		*/
 		export function merge( destination:any, ...object:any[] ): any;
 		/** [Method] Old alias to Ext Array min 
-		* @param array any The Array from which to select the minimum value. 
-		* @param comparisonFn any a function to perform the comparision which determines minimization. If omitted the "&lt;" operator will be used. Note: gt = 1; eq = 0; lt = -1 
+		* @param array Array/NodeList The Array from which to select the minimum value. 
+		* @param comparisonFn Function a function to perform the comparision which determines minimization. If omitted the "&lt;" operator will be used. Note: gt = 1; eq = 0; lt = -1 
 		*/
 		export function min( array?:any, comparisonFn?:any ): any;
 		export function min( array?:any[], comparisonFn?:any ): any;
@@ -21082,7 +21025,7 @@ declare module Ext {
 		*/
 		export function num( value?:any, defaultValue?:number ): number;
 		/** [Method] Shorthand for the Ext util Observable addListener method of the globalEvents Observable instance  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -21106,8 +21049,8 @@ declare module Ext {
 		*/
 		export function override( target?:any, overrides?:any ): void;
 		/** [Method] Partitions the set into two sets a true set and a false set  
-		* @param arr any The array to partition 
-		* @param truth any a function to determine truth. If this is omitted the element itself must be able to be evaluated for its truthfulness. 
+		* @param arr Array/NodeList The array to partition 
+		* @param truth Function a function to determine truth. If this is omitted the element itself must be able to be evaluated for its truthfulness. 
 		*/
 		export function partition( arr?:any, truth?:any ): any;
 		export function partition( arr?:any[], truth?:any ): any[];
@@ -21119,8 +21062,8 @@ declare module Ext {
 		*/
 		export function pass( fn?:any, args?:any[], scope?:any ): any;
 		/** [Method] Old alias to Ext Array pluck 
-		* @param array any The Array of items to pluck the value from. 
-		* @param propertyName any The property name to pluck from each element. 
+		* @param array Array/NodeList The Array of items to pluck the value from. 
+		* @param propertyName String The property name to pluck from each element. 
 		*/
 		export function pluck( array?:any, propertyName?:any ): any;
 		export function pluck( array?:any[], propertyName?:string ): any[];
@@ -21152,10 +21095,10 @@ declare module Ext {
 		*/
 		export function removeNode( node?:HTMLElement ): void;
 		/** [Method] Loads all classes by the given names and all their direct dependencies optionally executes the given callback functi  
-		* @param expressions any Can either be a string or an array of string 
-		* @param fn any The callback function 
-		* @param scope any The execution scope (this) of the callback function 
-		* @param excludes any Classes to be excluded, useful when being used with expressions 
+		* @param expressions String/Array Can either be a string or an array of string 
+		* @param fn Function The callback function 
+		* @param scope Object The execution scope (this) of the callback function 
+		* @param excludes String/Array Classes to be excluded, useful when being used with expressions 
 		*/
 		export function require( expressions?:any, fn?:any, scope?:any, excludes?:any ): any;
 		export function require( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
@@ -21176,8 +21119,8 @@ declare module Ext {
 		*/
 		export function setGlyphFontFamily( fontFamily?:string ): void;
 		/** [Method] Set version number for the given package name  
-		* @param packageName any The package name, for example: 'core', 'touch', 'extjs' 
-		* @param version any The version, for example: '1.2.3alpha', '2.4.0-dev' 
+		* @param packageName String The package name, for example: 'core', 'touch', 'extjs' 
+		* @param version String/Ext.Version The version, for example: '1.2.3alpha', '2.4.0-dev' 
 		*/
 		export function setVersion( packageName?:any, version?:any ): any;
 		export function setVersion( packageName?:string, version?:string ): Ext;
@@ -21189,10 +21132,10 @@ declare module Ext {
 		/** [Method]  */
 		export function suspendLayouts(): void;
 		/** [Method] Synchronously loads all classes by the given names and all their direct dependencies optionally executes the given c  
-		* @param expressions any Can either be a string or an array of string 
-		* @param fn any The callback function 
-		* @param scope any The execution scope (this) of the callback function 
-		* @param excludes any Classes to be excluded, useful when being used with expressions 
+		* @param expressions String/Array Can either be a string or an array of string 
+		* @param fn Function The callback function 
+		* @param scope Object The execution scope (this) of the callback function 
+		* @param excludes String/Array Classes to be excluded, useful when being used with expressions 
 		*/
 		export function syncRequire( expressions?:any, fn?:any, scope?:any, excludes?:any ): any;
 		export function syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
@@ -21261,8 +21204,8 @@ declare module Ext {
 		*/
 		export function widget( name?:string, config?:any ): any;
 		/** [Method] Zips N sets together  
-		* @param arr any This argument may be repeated. Array(s) to contribute values. 
-		* @param zipper any The last item in the argument list. This will drive how the items are zipped together. 
+		* @param arr Array/NodeList... This argument may be repeated. Array(s) to contribute values. 
+		* @param zipper Function The last item in the argument list. This will drive how the items are zipped together. 
 		*/
 		export function zip( arr?:any, zipper?:any ): any;
 		export function zip( arr?:any[], zipper?:any ): any[];
@@ -21421,7 +21364,7 @@ declare module Ext.layout.component {
 		*/
 		calculate?( ownerContext?:any ): void;
 		/** [Method] We are overriding the Ext layout Layout configureItem method to also add a class that indicates the position of the d  
-		* @param item Ext.IComponent The item we are configuring 
+		* @param item Ext.Component The item we are configuring 
 		*/
 		configureItem?( item?:Ext.IComponent ): void;
 		/** [Method] This method is called after all layouts are complete and their calculations flushed to the DOM  
@@ -21472,7 +21415,7 @@ declare module Ext.layout.component {
 		*/
 		calculate?( ownerContext?:any ): void;
 		/** [Method] We are overriding the Ext layout Layout configureItem method to also add a class that indicates the position of the d  
-		* @param item Ext.IComponent The item we are configuring 
+		* @param item Ext.Component The item we are configuring 
 		*/
 		configureItem?( item?:Ext.IComponent ): void;
 		/** [Method] This method is called after all layouts are complete and their calculations flushed to the DOM  
@@ -21815,7 +21758,7 @@ declare module Ext.layout.container {
 		*/
 		calculate?( ownerContext?:any ): void;
 		/** [Method] Handles overflow processing for a container  
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		calculateOverflow?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] This method if implemented is called at the end of the cycle in which this layout completes by not setting done to  
@@ -21827,18 +21770,18 @@ declare module Ext.layout.container {
 		*/
 		finishedLayout?( ownerContext?:any ): void;
 		/** [Method] Returns the container size that of the target 
-		* @param ownerContext Ext.layout.IContextItem The owner's context item. 
+		* @param ownerContext Ext.layout.ContextItem The owner's context item. 
 		* @param inDom Boolean True if the container size must be in the DOM. 
 		*/
 		getContainerSize?( ownerContext?:Ext.layout.IContextItem, inDom?:bool ): any;
 		/** [Method] Overridden method from Ext layout container Container  */
 		getElementTarget?(): Ext.IElement;
 		/** [Method] Returns the overflow x style of the render target  
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		getOverflowXStyle?( ownerContext?:Ext.layout.IContextItem ): string;
 		/** [Method] Returns the overflow y style of the render target  
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		getOverflowYStyle?( ownerContext?:Ext.layout.IContextItem ): string;
 		/** [Method] Overridden method from Ext layout container Container  */
@@ -21846,7 +21789,7 @@ declare module Ext.layout.container {
 		/** [Method] A one time initialization method called just before rendering  */
 		initLayout?(): void;
 		/** [Method] This method sets the height and or width of the outerCt innerCt to adjust for the following browser specific issues  
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		* @param containerSize Object 
 		*/
 		setCtSizeIfNeeded?( ownerContext?:Ext.layout.IContextItem, containerSize?:any ): void;
@@ -22059,22 +22002,22 @@ declare module Ext.layout.container.boxoverflow {
 		/** [Config Option] (Number) */
 		wheelIncrement?: number;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -22084,7 +22027,7 @@ declare module Ext.layout.container.boxoverflow {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -22098,7 +22041,7 @@ declare module Ext.layout.container.boxoverflow {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the current scroll position of the innerCt element */
 		getScrollPosition?(): number;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
@@ -22106,26 +22049,26 @@ declare module Ext.layout.container.boxoverflow {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -22144,10 +22087,10 @@ declare module Ext.layout.container.boxoverflow {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -22159,8 +22102,8 @@ declare module Ext.layout.container.boxoverflow {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Scrolls to the given component  
-		* @param item any The item to scroll to. Can be a numerical index, component id or a reference to the component itself. 
-		* @param animate any True to animate the scrolling 
+		* @param item String/Number/Ext.Component The item to scroll to. Can be a numerical index, component id or a reference to the component itself. 
+		* @param animate Boolean True to animate the scrolling 
 		*/
 		scrollToItem?( item?:any, animate?:any ): any;
 		scrollToItem?( item?:string, animate?:bool ): void;
@@ -22205,22 +22148,22 @@ declare module Ext.layout.boxoverflow {
 		/** [Config Option] (Number) */
 		wheelIncrement?: number;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -22230,7 +22173,7 @@ declare module Ext.layout.boxoverflow {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -22244,7 +22187,7 @@ declare module Ext.layout.boxoverflow {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the current scroll position of the innerCt element */
 		getScrollPosition?(): number;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
@@ -22252,26 +22195,26 @@ declare module Ext.layout.boxoverflow {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -22290,10 +22233,10 @@ declare module Ext.layout.boxoverflow {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -22305,8 +22248,8 @@ declare module Ext.layout.boxoverflow {
 		/** [Method] Resumes firing events see suspendEvents */
 		resumeEvents?(): void;
 		/** [Method] Scrolls to the given component  
-		* @param item any The item to scroll to. Can be a numerical index, component id or a reference to the component itself. 
-		* @param animate any True to animate the scrolling 
+		* @param item String/Number/Ext.Component The item to scroll to. Can be a numerical index, component id or a reference to the component itself. 
+		* @param animate Boolean True to animate the scrolling 
 		*/
 		scrollToItem?( item?:any, animate?:any ): any;
 		scrollToItem?( item?:string, animate?:bool ): void;
@@ -22349,7 +22292,7 @@ declare module Ext.layout.container {
 		/** [Method] Sets the active visible component in the layout to the previous card */
 		prev?(): Ext.IComponent;
 		/** [Method] Makes the given card active  
-		* @param newCard any The component, component id, itemId, or index of component. 
+		* @param newCard Ext.Component/Number/String The component, component id, itemId, or index of component. 
 		*/
 		setActiveItem?( newCard?:any ): any;
 		setActiveItem?( newCard?:Ext.IComponent ): Ext.IComponent;
@@ -22378,7 +22321,7 @@ declare module Ext.layout {
 		/** [Method] Sets the active visible component in the layout to the previous card */
 		prev?(): Ext.IComponent;
 		/** [Method] Makes the given card active  
-		* @param newCard any The component, component id, itemId, or index of component. 
+		* @param newCard Ext.Component/Number/String The component, component id, itemId, or index of component. 
 		*/
 		setActiveItem?( newCard?:any ): any;
 		setActiveItem?( newCard?:Ext.IComponent ): Ext.IComponent;
@@ -22470,7 +22413,7 @@ declare module Ext.layout.container {
 		*/
 		configureItem?( item?:any ): void;
 		/** [Method] Returns the container size that of the target 
-		* @param ownerContext Ext.layout.IContextItem The owner's context item. 
+		* @param ownerContext Ext.layout.ContextItem The owner's context item. 
 		* @param inDom Boolean True if the container size must be in the DOM. 
 		*/
 		getContainerSize?( ownerContext?:Ext.layout.IContextItem, inDom?:bool ): any;
@@ -22514,7 +22457,7 @@ declare module Ext.layout {
 		*/
 		configureItem?( item?:any ): void;
 		/** [Method] Returns the container size that of the target 
-		* @param ownerContext Ext.layout.IContextItem The owner's context item. 
+		* @param ownerContext Ext.layout.ContextItem The owner's context item. 
 		* @param inDom Boolean True if the container size must be in the DOM. 
 		*/
 		getContainerSize?( ownerContext?:Ext.layout.IContextItem, inDom?:bool ): any;
@@ -22606,7 +22549,7 @@ declare module Ext.layout.container {
 		*/
 		calculate?( ownerContext?:any ): void;
 		/** [Method] Handles overflow processing for a container  
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		* @param containerSize Object 
 		* @param dimensions Number A bit mask for the overflow managed dimensions. The 0-bit is for width and the 1-bit is for height. In other words, a value of 1 would be only width, 2 would be only height and 3 would be both. 
 		*/
@@ -22621,7 +22564,7 @@ declare module Ext.layout.container {
 		*/
 		doRenderPadder?( out?:any, renderData?:any ): void;
 		/** [Method] Returns the container size that of the target 
-		* @param ownerContext Ext.layout.IContextItem The owner's context item. 
+		* @param ownerContext Ext.layout.ContextItem The owner's context item. 
 		* @param inDom Boolean True if the container size must be in the DOM. 
 		* @param ignoreOverflow Boolean if true scrollbar size will not be subtracted from container size. 
 		*/
@@ -22631,11 +22574,11 @@ declare module Ext.layout.container {
 		*/
 		getItemSizePolicy?( item?:any ): Ext.layout.ISizePolicy;
 		/** [Method] returns the overflow x style of the render target 
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		getOverflowXStyle?( ownerContext?:Ext.layout.IContextItem ): string;
 		/** [Method] returns the overflow y style of the render target 
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		getOverflowYStyle?( ownerContext?:Ext.layout.IContextItem ): string;
 		/** [Method] Returns the element into which rendering must take place  */
@@ -22664,7 +22607,7 @@ declare module Ext.layout {
 		*/
 		calculate?( ownerContext?:any ): void;
 		/** [Method] Handles overflow processing for a container  
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		* @param containerSize Object 
 		* @param dimensions Number A bit mask for the overflow managed dimensions. The 0-bit is for width and the 1-bit is for height. In other words, a value of 1 would be only width, 2 would be only height and 3 would be both. 
 		*/
@@ -22679,7 +22622,7 @@ declare module Ext.layout {
 		*/
 		doRenderPadder?( out?:any, renderData?:any ): void;
 		/** [Method] Returns the container size that of the target 
-		* @param ownerContext Ext.layout.IContextItem The owner's context item. 
+		* @param ownerContext Ext.layout.ContextItem The owner's context item. 
 		* @param inDom Boolean True if the container size must be in the DOM. 
 		* @param ignoreOverflow Boolean if true scrollbar size will not be subtracted from container size. 
 		*/
@@ -22689,11 +22632,11 @@ declare module Ext.layout {
 		*/
 		getItemSizePolicy?( item?:any ): Ext.layout.ISizePolicy;
 		/** [Method] returns the overflow x style of the render target 
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		getOverflowXStyle?( ownerContext?:Ext.layout.IContextItem ): string;
 		/** [Method] returns the overflow y style of the render target 
-		* @param ownerContext Ext.layout.IContextItem 
+		* @param ownerContext Ext.layout.ContextItem 
 		*/
 		getOverflowYStyle?( ownerContext?:Ext.layout.IContextItem ): string;
 		/** [Method] Returns the element into which rendering must take place  */
@@ -22811,24 +22754,24 @@ declare module Ext.layout {
 		/** [Method] Flushes any pending writes to the DOM by calling each ContextItem in the flushQueue  */
 		flush?(): void;
 		/** [Method] Returns the ContextItem for a component  
-		* @param cmp Ext.IComponent 
+		* @param cmp Ext.Component 
 		*/
 		getCmp?( cmp?:Ext.IComponent ): void;
 		/** [Method] Returns the ContextItem for an element  
-		* @param parent Ext.layout.IContextItem 
-		* @param el Ext.dom.IElement 
+		* @param parent Ext.layout.ContextItem 
+		* @param el Ext.dom.Element 
 		*/
 		getEl?( parent?:Ext.layout.IContextItem, el?:Ext.dom.IElement ): void;
 		/** [Method] Invalidates one or more components layouts component and container 
-		* @param components any An array of Components or a single Component. 
-		* @param full any True if all properties should be invalidated, otherwise only those calculated by the component should be invalidated. 
+		* @param components Ext.Component/Array An array of Components or a single Component. 
+		* @param full Boolean True if all properties should be invalidated, otherwise only those calculated by the component should be invalidated. 
 		*/
 		invalidate?( components?:any, full?:any ): any;
 		invalidate?( components?:Ext.IComponent, full?:bool ): void;
 		invalidate?( components?:any[], full?:bool ): void;
 		/** [Method] Removes the ContextItem for an element from the cache and from the parent s children array  
-		* @param parent Ext.layout.IContextItem 
-		* @param el Ext.dom.IElement 
+		* @param parent Ext.layout.ContextItem 
+		* @param el Ext.dom.Element 
 		*/
 		removeEl?( parent?:Ext.layout.IContextItem, el?:Ext.dom.IElement ): void;
 		/** [Method] Resets the given layout object  
@@ -22842,9 +22785,9 @@ declare module Ext.layout {
 		/** [Method] Performs one layout cycle by calling each layout in the layout queue  */
 		runCycle?(): bool;
 		/** [Method] Set the size of a component element or composite or an array of components or elements  
-		* @param items any The item(s) to size. 
-		* @param width any The new width to set (ignored if undefined or NaN). 
-		* @param height any The new height to set (ignored if undefined or NaN). 
+		* @param items Ext.Component/Ext.Component[]/Ext.dom.Element/Ext.dom.Element[]/Ext.dom.CompositeElement The item(s) to size. 
+		* @param width Number The new width to set (ignored if undefined or NaN). 
+		* @param height Number The new height to set (ignored if undefined or NaN). 
 		*/
 		setItemSize?( items?:any, width?:any, height?:any ): any;
 		setItemSize?( items?:Ext.IComponent, width?:number, height?:number ): void;
@@ -22865,14 +22808,14 @@ declare module Ext.layout {
 		*/
 		addCls?( newCls?:any ): void;
 		/** [Method] Registers a layout in the block list for the given property  
-		* @param layout Ext.layout.ILayout 
+		* @param layout Ext.layout.Layout 
 		* @param propName String The property name that blocked the layout (e.g., 'width'). 
 		*/
 		block?( layout?:Ext.layout.ILayout, propName?:string ): void;
 		/** [Method] clears the margin cache so that marginInfo get re read from the dom on the next call to getMarginInfo  This is neede  */
 		clearMarginCache?(): void;
 		/** [Method] Registers a layout in the DOM block list for the given property  
-		* @param layout Ext.layout.ILayout 
+		* @param layout Ext.layout.Layout 
 		* @param propName String The property name that blocked the layout (e.g., 'width'). 
 		*/
 		domBlock?( layout?:Ext.layout.ILayout, propName?:string ): void;
@@ -22887,8 +22830,8 @@ declare module Ext.layout {
 		*/
 		getDomProp?( propName?:string ): any;
 		/** [Method] Returns the context item for an owned element  
-		* @param nameOrEl any The element or the name of an owned element 
-		* @param owner any The owner of the named element if the passed "nameOrEl" parameter is a String. Defaults to this ContextItem's "target" property. For more details on owned elements see childEls and renderSelectors 
+		* @param nameOrEl String/Ext.dom.Element The element or the name of an owned element 
+		* @param owner Ext.layout.container.Container/Ext.Component The owner of the named element if the passed "nameOrEl" parameter is a String. Defaults to this ContextItem's "target" property. For more details on owned elements see childEls and renderSelectors 
 		*/
 		getEl?( nameOrEl?:any, owner?:any ): any;
 		getEl?( nameOrEl?:string, owner?:Ext.layout.container.IContainer ): Ext.layout.IContextItem;
@@ -22937,8 +22880,8 @@ declare module Ext.layout {
 		*/
 		removeCls?( removeCls?:any ): void;
 		/** [Method] Removes a cached ContextItem that was created using getEl  
-		* @param nameOrEl any The element or the name of an owned element 
-		* @param owner any The owner of the named element if the passed "nameOrEl" parameter is a String. Defaults to this ContextItem's "target" property. 
+		* @param nameOrEl String/Ext.dom.Element The element or the name of an owned element 
+		* @param owner Ext.layout.container.Container/Ext.Component The owner of the named element if the passed "nameOrEl" parameter is a String. Defaults to this ContextItem's "target" property. 
 		*/
 		removeEl?( nameOrEl?:any, owner?:any ): any;
 		removeEl?( nameOrEl?:string, owner?:Ext.layout.container.IContainer ): void;
@@ -22995,37 +22938,37 @@ declare module Ext.layout {
 		*/
 		afterRemove?( item?:any ): void;
 		/** [Method] Called before any calculation cycles to prepare for layout  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		beginLayout?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] Called before any calculation cycles to reset DOM values and prepare for calculation  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		beginLayoutCycle?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] Called to perform the calculations for this layout  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		calculate?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] This method if implemented is called at the end of the cycle in which this layout completes by not setting done to  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		completeLayout?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] Called before an item is rendered to allow the layout to configure the item  
-		* @param item Ext.IComponent The item to be configured 
+		* @param item Ext.Component The item to be configured 
 		*/
 		configureItem?( item?:Ext.IComponent ): void;
 		/** [Method] Destroys this layout  */
 		destroy?(): void;
 		/** [Method] This method if implemented is called after all layouts have completed  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		finalizeLayout?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] This method is called after all layouts are complete and their calculations flushed to the DOM  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		finishedLayout?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] Returns an object describing how this layout manages the size of the given component  
-		* @param item Ext.IComponent 
+		* @param item Ext.Component 
 		*/
 		getItemSizePolicy?( item?:Ext.IComponent ): Ext.layout.ISizePolicy;
 		/** [Method] Returns the set of items to layout empty by default */
@@ -23039,11 +22982,11 @@ declare module Ext.layout {
 		*/
 		isValidParent?( item?:any, target?:any, position?:any ): void;
 		/** [Method] This method if implemented is called after all layouts are finished and all have a lastComponentSize cached  
-		* @param ownerContext Ext.layout.IContextItem The context item for the layout's owner component. 
+		* @param ownerContext Ext.layout.ContextItem The context item for the layout's owner component. 
 		*/
 		notifyOwner?( ownerContext?:Ext.layout.IContextItem ): void;
 		/** [Method] This method is called when a child item changes in some way  
-		* @param child Ext.IComponent The child item that has changed. 
+		* @param child Ext.Component The child item that has changed. 
 		*/
 		onContentChange?( child?:Ext.IComponent ): bool;
 		/** [Method] Iterates over all passed items ensuring they are rendered  
@@ -23082,7 +23025,7 @@ declare module Ext.layout {
 		/** [Property] (Number) */
 		ordinal?: number;
 		/** [Property] (Object[]) */
-		pairsByHeightOrdinal?: Object[];
+		pairsByHeightOrdinal?: any[];
 		/** [Property] (Boolean) */
 		shrinkWrap?: bool;
 	}
@@ -23120,7 +23063,7 @@ declare module Ext {
 		*/
 		static getPath( className?:string ): string;
 		/** [Method] Loads the specified script URL and calls the supplied callbacks  
-		* @param options any The options object or simply the URL to load. 
+		* @param options Object/String The options object or simply the URL to load. 
 		*/
 		static loadScript( options?:any ): void;
 		/** [Method] Add a new listener to be executed when all required scripts are fully loaded 
@@ -23130,10 +23073,10 @@ declare module Ext {
 		*/
 		static onReady( fn?:any, scope?:any, withDomReady?:bool ): void;
 		/** [Method] Loads all classes by the given names and all their direct dependencies optionally executes the given callback functi  
-		* @param expressions any Can either be a string or an array of string 
-		* @param fn any The callback function 
-		* @param scope any The execution scope (this) of the callback function 
-		* @param excludes any Classes to be excluded, useful when being used with expressions 
+		* @param expressions String/Array Can either be a string or an array of string 
+		* @param fn Function The callback function 
+		* @param scope Object The execution scope (this) of the callback function 
+		* @param excludes String/Array Classes to be excluded, useful when being used with expressions 
 		*/
 		static require( expressions?:any, fn?:any, scope?:any, excludes?:any ): any;
 		static require( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
@@ -23145,15 +23088,15 @@ declare module Ext {
 		*/
 		static setConfig( config?:any ): Ext.ILoader;
 		/** [Method] Sets the path of a namespace  
-		* @param name any See flexSetter 
+		* @param name String/Object See flexSetter 
 		* @param path String See flexSetter 
 		*/
 		static setPath( name?:any, path?:string ): Ext.ILoader;
 		/** [Method] Synchronously loads all classes by the given names and all their direct dependencies optionally executes the given c  
-		* @param expressions any Can either be a string or an array of string 
-		* @param fn any The callback function 
-		* @param scope any The execution scope (this) of the callback function 
-		* @param excludes any Classes to be excluded, useful when being used with expressions 
+		* @param expressions String/Array Can either be a string or an array of string 
+		* @param fn Function The callback function 
+		* @param scope Object The execution scope (this) of the callback function 
+		* @param excludes String/Array Classes to be excluded, useful when being used with expressions 
 		*/
 		static syncRequire( expressions?:any, fn?:any, scope?:any, excludes?:any ): any;
 		static syncRequire( expressions?:string, fn?:any, scope?:any, excludes?:string ): void;
@@ -23187,17 +23130,17 @@ declare module Ext {
 		/** [Method] Invoked after the Component is shown after onShow is called */
 		afterShow?(): void;
 		/** [Method] Changes the data store bound to this LoadMask  
-		* @param store Ext.data.IStore The store to bind to this LoadMask 
+		* @param store Ext.data.Store The store to bind to this LoadMask 
 		*/
 		bindStore?( store?:Ext.data.IStore ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Center this Component in its container  */
 		center?(): Ext.IComponent;
 		/** [Method] Moves this floating Component into a constrain region  
-		* @param constrainTo any The Element or Region into which this Component is to be constrained. Defaults to the element into which this floating Component was rendered. 
+		* @param constrainTo String/HTMLElement/Ext.Element/Ext.util.Region The Element or Region into which this Component is to be constrained. Defaults to the element into which this floating Component was rendered. 
 		*/
 		doConstrain?( constrainTo?:any ): any;
 		doConstrain?( constrainTo?:string ): void;
@@ -23213,7 +23156,7 @@ declare module Ext {
 		/** [Method] Hides this Component setting it to invisible using the configured hideMode  */
 		hide?(): Ext.IComponent;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
@@ -23226,13 +23169,13 @@ declare module Ext {
 		/** [Method] Allows addition of behavior to the show operation  */
 		onShow?(): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] This method is called internally by Ext ZIndexManager to signal that a floating Component has either been moved to th  
 		* @param active Boolean True to activate the Component, false to deactivate it. 
-		* @param newActive Ext.IComponent The newly active Component which is taking over topmost zIndex position. 
+		* @param newActive Ext.Component The newly active Component which is taking over topmost zIndex position. 
 		*/
 		setActive?( active?:bool, newActive?:Ext.IComponent ): void;
 		/** [Method] Shows this Component rendering it first if autoRender or floating are true  */
@@ -23244,7 +23187,7 @@ declare module Ext {
 		*/
 		toFront?( preventFocus?:bool ): Ext.IComponent;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -23359,13 +23302,13 @@ declare module Ext.menu {
 		/** [Property] (Ext.menu.Menu) */
 		parentMenu?: Ext.menu.IMenu;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
 		child?( selector?:Ext.IComponent ): any;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -23405,7 +23348,7 @@ declare module Ext.menu {
 		*/
 		setIconCls?( iconCls?:string ): void;
 		/** [Method] Set a child menu for this item  
-		* @param menu any A menu, or menu configuration. null may be passed to remove the menu. 
+		* @param menu Ext.menu.Menu/Object A menu, or menu configuration. null may be passed to remove the menu. 
 		* @param destroyMenu Boolean True to destroy any existing menu. False to prevent destruction. If not specified, the destroyMenu configuration will be used. 
 		*/
 		setMenu?( menu?:any, destroyMenu?:bool ): void;
@@ -23414,7 +23357,7 @@ declare module Ext.menu {
 		*/
 		setText?( text?:string ): void;
 		/** [Method] Sets the tooltip for this menu item  
-		* @param tooltip any This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
+		* @param tooltip String/Object This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
 		*/
 		setTooltip?( tooltip?:any ): Ext.menu.IItem;
 	}
@@ -23470,13 +23413,13 @@ declare module Ext.menu {
 		/** [Property] (Ext.menu.Menu) */
 		parentMenu?: Ext.menu.IMenu;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
 		child?( selector?:Ext.IComponent ): any;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -23516,7 +23459,7 @@ declare module Ext.menu {
 		*/
 		setIconCls?( iconCls?:string ): void;
 		/** [Method] Set a child menu for this item  
-		* @param menu any A menu, or menu configuration. null may be passed to remove the menu. 
+		* @param menu Ext.menu.Menu/Object A menu, or menu configuration. null may be passed to remove the menu. 
 		* @param destroyMenu Boolean True to destroy any existing menu. False to prevent destruction. If not specified, the destroyMenu configuration will be used. 
 		*/
 		setMenu?( menu?:any, destroyMenu?:bool ): void;
@@ -23525,7 +23468,7 @@ declare module Ext.menu {
 		*/
 		setText?( text?:string ): void;
 		/** [Method] Sets the tooltip for this menu item  
-		* @param tooltip any This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
+		* @param tooltip String/Object This may be:  String : A string to be used as innerHTML (html tags are accepted) to show in a tooltip Object : A configuration object for Ext.tip.QuickTipManager.register.  
 		*/
 		setTooltip?( tooltip?:any ): Ext.menu.IItem;
 	}
@@ -23539,7 +23482,7 @@ declare module Ext.menu {
 	}
 	export class Manager {
 		/** [Method] Returns a Ext menu Menu object 
-		* @param menu any The string menu id, an existing menu object reference, or a Menu config that will be used to generate and return a new Menu this. 
+		* @param menu String/Object The string menu id, an existing menu object reference, or a Menu config that will be used to generate and return a new Menu this. 
 		*/
 		static get( menu?:any ): Ext.menu.IMenu;
 		/** [Method] Hides all menus that are currently visible */
@@ -23551,7 +23494,7 @@ declare module Ext.menu {
 	}
 	export class MenuMgr {
 		/** [Method] Returns a Ext menu Menu object 
-		* @param menu any The string menu id, an existing menu object reference, or a Menu config that will be used to generate and return a new Menu this. 
+		* @param menu String/Object The string menu id, an existing menu object reference, or a Menu config that will be used to generate and return a new Menu this. 
 		*/
 		static get( menu?:any ): Ext.menu.IMenu;
 		/** [Method] Hides all menus that are currently visible */
@@ -23637,7 +23580,7 @@ declare module Ext {
 		*/
 		static create( data?:any, name?:string, id?:number ): void;
 		/** [Method] Returns the Ext data Model class for a given model name 
-		* @param id any The classname of the model or the model class itself. 
+		* @param id String/Object The classname of the model or the model class itself. 
 		*/
 		static getModel( id?:any ): Ext.data.IModel;
 	}
@@ -23653,7 +23596,7 @@ declare module Ext {
 		*/
 		static create( data?:any, name?:string, id?:number ): void;
 		/** [Method] Returns the Ext data Model class for a given model name 
-		* @param id any The classname of the model or the model class itself. 
+		* @param id String/Object The classname of the model or the model class itself. 
 		*/
 		static getModel( id?:any ): Ext.data.IModel;
 	}
@@ -23755,7 +23698,7 @@ declare module Ext {
 		static merge( destination:any, ...object:any[] ): any;
 		/** [Method] Converts a name  value pair to an array of objects with support for nested structures  
 		* @param name String 
-		* @param value any 
+		* @param value Object/Array 
 		* @param recursive Boolean True to traverse object recursively 
 		*/
 		static toQueryObjects( name?:string, value?:any, recursive?:bool ): any[];
@@ -23799,7 +23742,7 @@ declare module Ext.panel {
 		*/
 		addBodyCls?( cls?:string ): Ext.panel.IPanel;
 		/** [Method] Adds docked item s to the container  
-		* @param component any The Component or array of components to add. The components must include a 'dock' parameter on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
+		* @param component Object/Object[] The Component or array of components to add. The components must include a 'dock' parameter on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
 		* @param pos Number The index at which the Component will be added 
 		*/
 		addDocked?( component?:any, pos?:number ): Ext.IComponent[];
@@ -23808,13 +23751,13 @@ declare module Ext.panel {
 		*/
 		addUIClsToElement?( cls?:any ): void;
 		/** [Method] Attempts a default component lookup see Ext container Container getComponent 
-		* @param comp any The component id, itemId or position to find 
+		* @param comp String/Number The component id, itemId or position to find 
 		*/
 		getComponent?( comp?:any ): any;
 		getComponent?( comp?:string ): Ext.IComponent;
 		getComponent?( comp?:number ): Ext.IComponent;
 		/** [Method] Finds a docked component by id itemId or position  
-		* @param comp any The id, itemId or position of the docked component (see getComponent for details) 
+		* @param comp String/Number The id, itemId or position of the docked component (see getComponent for details) 
 		*/
 		getDockedComponent?( comp?:any ): any;
 		getDockedComponent?( comp?:string ): Ext.IComponent;
@@ -23830,15 +23773,15 @@ declare module Ext.panel {
 		getRefItems?( deep?:any ): void;
 		/** [Method] Inserts docked item s to the panel at the indicated position  
 		* @param pos Number The index at which the Component will be inserted 
-		* @param component any The Component or array of components to add. The components must include a 'dock' paramater on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
+		* @param component Object/Object[] The Component or array of components to add. The components must include a 'dock' paramater on each component to indicate where it should be docked ('top', 'right', 'bottom', 'left'). 
 		*/
 		insertDocked?( pos?:number, component?:any ): void;
 		/** [Method] Invoked after a docked item is added to the Panel  
-		* @param component Ext.IComponent 
+		* @param component Ext.Component 
 		*/
 		onDockedAdd?( component?:Ext.IComponent ): void;
 		/** [Method] Invoked after a docked item is removed from the Panel  
-		* @param component Ext.IComponent 
+		* @param component Ext.Component 
 		*/
 		onDockedRemove?( component?:Ext.IComponent ): void;
 		/** [Method] Removes a CSS class from the body element  
@@ -23846,7 +23789,7 @@ declare module Ext.panel {
 		*/
 		removeBodyCls?( cls?:string ): Ext.panel.IPanel;
 		/** [Method] Removes the docked item from the panel  
-		* @param item Ext.IComponent The Component to remove. 
+		* @param item Ext.Component The Component to remove. 
 		* @param autoDestroy Boolean Destroy the component after removal. 
 		*/
 		removeDocked?( item?:Ext.IComponent, autoDestroy?:bool ): void;
@@ -23928,7 +23871,7 @@ declare module Ext.panel {
 		*/
 		removeUIClsFromElement?( cls?:any ): void;
 		/** [Method] Sets glyph that provides the icon image for this header  
-		* @param glyph any the numeric charCode or string charCode/font-family. This parameter expects a format consistent with that of glyph 
+		* @param glyph Number/String the numeric charCode or string charCode/font-family. This parameter expects a format consistent with that of glyph 
 		*/
 		setGlyph?( glyph?:any ): any;
 		setGlyph?( glyph?:number ): void;
@@ -24032,7 +23975,7 @@ declare module Ext.panel {
 		/** [Property] (Ext.dd.DragSource/Ext.util.ComponentDragger) */
 		dd?: any;
 		/** [Method] Add tools to this panel 
-		* @param tools any The tools to add 
+		* @param tools Object[]/Ext.panel.Tool[] The tools to add 
 		*/
 		addTool?( tools?:any ): void;
 		/** [Method] Invoked after the Panel is Collapsed  
@@ -24086,7 +24029,7 @@ declare module Ext.panel {
 		*/
 		setBorder?( border?:any, targetEl?:any ): void;
 		/** [Method] Set the glyph for the panel s header  
-		* @param newGlyph any The new glyph This parameter expects a format consistent with that of glyph 
+		* @param newGlyph Number/String The new glyph This parameter expects a format consistent with that of glyph 
 		*/
 		setGlyph?( newGlyph?:any ): any;
 		setGlyph?( newGlyph?:number ): void;
@@ -24196,7 +24139,7 @@ declare module Ext {
 		/** [Property] (Ext.dd.DragSource/Ext.util.ComponentDragger) */
 		dd?: any;
 		/** [Method] Add tools to this panel 
-		* @param tools any The tools to add 
+		* @param tools Object[]/Ext.panel.Tool[] The tools to add 
 		*/
 		addTool?( tools?:any ): void;
 		/** [Method] Invoked after the Panel is Collapsed  
@@ -24250,7 +24193,7 @@ declare module Ext {
 		*/
 		setBorder?( border?:any, targetEl?:any ): void;
 		/** [Method] Set the glyph for the panel s header  
-		* @param newGlyph any The new glyph This parameter expects a format consistent with that of glyph 
+		* @param newGlyph Number/String The new glyph This parameter expects a format consistent with that of glyph 
 		*/
 		setGlyph?( newGlyph?:any ): any;
 		setGlyph?( newGlyph?:number ): void;
@@ -24626,7 +24569,7 @@ declare module Ext.picker {
 		/** [Method] Sets the current value to today  */
 		selectToday?(): Ext.picker.IDate;
 		/** [Method] Replaces any existing disabled dates with new values and refreshes the DatePicker  
-		* @param disabledDates any An array of date strings (see the disabledDates config for details on supported values), or a JavaScript regular expression used to disable a pattern of dates. 
+		* @param disabledDates String[]/RegExp An array of date strings (see the disabledDates config for details on supported values), or a JavaScript regular expression used to disable a pattern of dates. 
 		*/
 		setDisabledDates?( disabledDates?:any ): any;
 		setDisabledDates?( disabledDates?:string[] ): Ext.picker.IDate;
@@ -24748,7 +24691,7 @@ declare module Ext {
 		/** [Method] Sets the current value to today  */
 		selectToday?(): Ext.picker.IDate;
 		/** [Method] Replaces any existing disabled dates with new values and refreshes the DatePicker  
-		* @param disabledDates any An array of date strings (see the disabledDates config for details on supported values), or a JavaScript regular expression used to disable a pattern of dates. 
+		* @param disabledDates String[]/RegExp An array of date strings (see the disabledDates config for details on supported values), or a JavaScript regular expression used to disable a pattern of dates. 
 		*/
 		setDisabledDates?( disabledDates?:any ): any;
 		setDisabledDates?( disabledDates?:string[] ): Ext.picker.IDate;
@@ -24814,7 +24757,7 @@ declare module Ext.picker {
 		/** [Method] Allows addition of behavior to the destroy operation  */
 		onDestroy?(): void;
 		/** [Method] Set the value for the picker  
-		* @param value any The value to set. It can be a Date object, where the month/year will be extracted, or it can be an array, with the month as the first index and the year as the second. 
+		* @param value Date/Number[] The value to set. It can be a Date object, where the month/year will be extracted, or it can be an array, with the month as the first index and the year as the second. 
 		*/
 		setValue?( value?:any ): any;
 		setValue?( value?:number[] ): Ext.picker.IMonth;
@@ -24847,7 +24790,7 @@ declare module Ext {
 		/** [Method] Allows addition of behavior to the destroy operation  */
 		onDestroy?(): void;
 		/** [Method] Set the value for the picker  
-		* @param value any The value to set. It can be a Date object, where the month/year will be extracted, or it can be an array, with the month as the first index and the year as the second. 
+		* @param value Date/Number[] The value to set. It can be a Date object, where the month/year will be extracted, or it can be an array, with the month as the first index and the year as the second. 
 		*/
 		setValue?( value?:any ): any;
 		setValue?( value?:number[] ): Ext.picker.IMonth;
@@ -24966,13 +24909,13 @@ declare module Ext {
 declare module Ext {
 	export interface IQueryable extends Ext.IBase {
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
 		child?( selector?:Ext.IComponent ): any;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -25053,22 +24996,22 @@ declare module Ext.resizer {
 		/** [Property] (Ext.resizer.ResizeTracker) */
 		resizeTracker?: Ext.resizer.IResizeTracker;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -25078,7 +25021,7 @@ declare module Ext.resizer {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -25092,7 +25035,7 @@ declare module Ext.resizer {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the element that was configured with the el or target config property  */
 		getEl?(): Ext.IElement;
 		/** [Method] Returns the element or component that was configured with the target config property  */
@@ -25104,26 +25047,26 @@ declare module Ext.resizer {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -25142,10 +25085,10 @@ declare module Ext.resizer {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -25216,22 +25159,22 @@ declare module Ext {
 		/** [Property] (Ext.resizer.ResizeTracker) */
 		resizeTracker?: Ext.resizer.IResizeTracker;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -25241,7 +25184,7 @@ declare module Ext {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -25255,7 +25198,7 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the element that was configured with the el or target config property  */
 		getEl?(): Ext.IElement;
 		/** [Method] Returns the element or component that was configured with the target config property  */
@@ -25267,26 +25210,26 @@ declare module Ext {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -25305,10 +25248,10 @@ declare module Ext {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -25345,7 +25288,7 @@ declare module Ext.resizer {
 		/** [Config Option] (Ext.util.Region/Ext.Element) */
 		constrainTo?: any;
 		/** [Method] Create a proxy for this resizer 
-		* @param target any The target 
+		* @param target Ext.Component/Ext.Element The target 
 		*/
 		createProxy?( target?:any ): any;
 		createProxy?( target?:Ext.IComponent ): Ext.IElement;
@@ -25506,12 +25449,12 @@ declare module Ext.selection {
 		*/
 		bindStore?( store?:any, initial?:any ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Deselects a record instance by record instance or index  
-		* @param records any An array of records or an index 
-		* @param suppressEvent any True to not fire a deselect event 
+		* @param records Ext.data.Model[]/Number An array of records or an index 
+		* @param suppressEvent Boolean True to not fire a deselect event 
 		*/
 		deselect?( records?:any, suppressEvent?:any ): any;
 		deselect?( records?:Ext.data.IModel[], suppressEvent?:bool ): void;
@@ -25521,8 +25464,8 @@ declare module Ext.selection {
 		*/
 		deselectAll?( suppressEvent?:bool ): void;
 		/** [Method] Deselects a range of rows if the selection model is not locked  
-		* @param startRow any The record or index of the first row in the range 
-		* @param endRow any The record or index of the last row in the range 
+		* @param startRow Ext.data.Model/Number The record or index of the first row in the range 
+		* @param endRow Ext.data.Model/Number The record or index of the last row in the range 
 		*/
 		deselectRange?( startRow?:any, endRow?:any ): any;
 		deselectRange?( startRow?:Ext.data.IModel, endRow?:Ext.data.IModel ): void;
@@ -25544,14 +25487,14 @@ declare module Ext.selection {
 		/** [Method] Returns true if there are any a selected records  */
 		hasSelection?(): bool;
 		/** [Method] Determines if this record is currently focused  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		*/
 		isFocused?( record?:Ext.data.IModel ): void;
 		/** [Method] Returns true if the selections are locked  */
 		isLocked?(): bool;
 		/** [Method] Returns true if the specified row is selected  
-		* @param from any The start of the range to check. 
-		* @param to any The end of the range to check. 
+		* @param from Ext.data.Model/Number The start of the range to check. 
+		* @param to Ext.data.Model/Number The end of the range to check. 
 		*/
 		isRangeSelected?( from?:any, to?:any ): any;
 		isRangeSelected?( from?:Ext.data.IModel, to?:Ext.data.IModel ): bool;
@@ -25559,25 +25502,25 @@ declare module Ext.selection {
 		isRangeSelected?( from?:Ext.data.IModel, to?:number ): bool;
 		isRangeSelected?( from?:number, to?:number ): bool;
 		/** [Method] Returns true if the specified row is selected  
-		* @param record any The record or index of the record to check 
+		* @param record Ext.data.Model/Number The record or index of the record to check 
 		*/
 		isSelected?( record?:any ): any;
 		isSelected?( record?:Ext.data.IModel ): bool;
 		isSelected?( record?:number ): bool;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Selects a record instance by record instance or index  
-		* @param records any An array of records or an index 
-		* @param keepExisting any True to retain existing selections 
-		* @param suppressEvent any True to not fire a select event 
+		* @param records Ext.data.Model[]/Number An array of records or an index 
+		* @param keepExisting Boolean True to retain existing selections 
+		* @param suppressEvent Boolean True to not fire a select event 
 		*/
 		select?( records?:any, keepExisting?:any, suppressEvent?:any ): any;
 		select?( records?:Ext.data.IModel[], keepExisting?:bool, suppressEvent?:bool ): void;
@@ -25587,9 +25530,9 @@ declare module Ext.selection {
 		*/
 		selectAll?( suppressEvent?:bool ): void;
 		/** [Method] Selects a range of rows if the selection model is not locked  
-		* @param startRow any The record or index of the first row in the range 
-		* @param endRow any The record or index of the last row in the range 
-		* @param keepExisting any True to retain existing selections 
+		* @param startRow Ext.data.Model/Number The record or index of the first row in the range 
+		* @param endRow Ext.data.Model/Number The record or index of the last row in the range 
+		* @param keepExisting Boolean True to retain existing selections 
 		*/
 		selectRange?( startRow?:any, endRow?:any, keepExisting?:any ): any;
 		selectRange?( startRow?:Ext.data.IModel, endRow?:Ext.data.IModel, keepExisting?:bool ): void;
@@ -25597,7 +25540,7 @@ declare module Ext.selection {
 		selectRange?( startRow?:Ext.data.IModel, endRow?:number, keepExisting?:bool ): void;
 		selectRange?( startRow?:number, endRow?:number, keepExisting?:bool ): void;
 		/** [Method] Sets a record as the last focused record  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		*/
 		setLastFocused?( record?:Ext.data.IModel ): void;
 		/** [Method] Locks the current selection and disables any changes from happening to the selection  
@@ -25609,7 +25552,7 @@ declare module Ext.selection {
 		*/
 		setSelectionMode?( selMode?:string ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -25632,12 +25575,12 @@ declare module Ext {
 		*/
 		bindStore?( store?:any, initial?:any ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Deselects a record instance by record instance or index  
-		* @param records any An array of records or an index 
-		* @param suppressEvent any True to not fire a deselect event 
+		* @param records Ext.data.Model[]/Number An array of records or an index 
+		* @param suppressEvent Boolean True to not fire a deselect event 
 		*/
 		deselect?( records?:any, suppressEvent?:any ): any;
 		deselect?( records?:Ext.data.IModel[], suppressEvent?:bool ): void;
@@ -25647,8 +25590,8 @@ declare module Ext {
 		*/
 		deselectAll?( suppressEvent?:bool ): void;
 		/** [Method] Deselects a range of rows if the selection model is not locked  
-		* @param startRow any The record or index of the first row in the range 
-		* @param endRow any The record or index of the last row in the range 
+		* @param startRow Ext.data.Model/Number The record or index of the first row in the range 
+		* @param endRow Ext.data.Model/Number The record or index of the last row in the range 
 		*/
 		deselectRange?( startRow?:any, endRow?:any ): any;
 		deselectRange?( startRow?:Ext.data.IModel, endRow?:Ext.data.IModel ): void;
@@ -25670,14 +25613,14 @@ declare module Ext {
 		/** [Method] Returns true if there are any a selected records  */
 		hasSelection?(): bool;
 		/** [Method] Determines if this record is currently focused  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		*/
 		isFocused?( record?:Ext.data.IModel ): void;
 		/** [Method] Returns true if the selections are locked  */
 		isLocked?(): bool;
 		/** [Method] Returns true if the specified row is selected  
-		* @param from any The start of the range to check. 
-		* @param to any The end of the range to check. 
+		* @param from Ext.data.Model/Number The start of the range to check. 
+		* @param to Ext.data.Model/Number The end of the range to check. 
 		*/
 		isRangeSelected?( from?:any, to?:any ): any;
 		isRangeSelected?( from?:Ext.data.IModel, to?:Ext.data.IModel ): bool;
@@ -25685,25 +25628,25 @@ declare module Ext {
 		isRangeSelected?( from?:Ext.data.IModel, to?:number ): bool;
 		isRangeSelected?( from?:number, to?:number ): bool;
 		/** [Method] Returns true if the specified row is selected  
-		* @param record any The record or index of the record to check 
+		* @param record Ext.data.Model/Number The record or index of the record to check 
 		*/
 		isSelected?( record?:any ): any;
 		isSelected?( record?:Ext.data.IModel ): bool;
 		isSelected?( record?:number ): bool;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Selects a record instance by record instance or index  
-		* @param records any An array of records or an index 
-		* @param keepExisting any True to retain existing selections 
-		* @param suppressEvent any True to not fire a select event 
+		* @param records Ext.data.Model[]/Number An array of records or an index 
+		* @param keepExisting Boolean True to retain existing selections 
+		* @param suppressEvent Boolean True to not fire a select event 
 		*/
 		select?( records?:any, keepExisting?:any, suppressEvent?:any ): any;
 		select?( records?:Ext.data.IModel[], keepExisting?:bool, suppressEvent?:bool ): void;
@@ -25713,9 +25656,9 @@ declare module Ext {
 		*/
 		selectAll?( suppressEvent?:bool ): void;
 		/** [Method] Selects a range of rows if the selection model is not locked  
-		* @param startRow any The record or index of the first row in the range 
-		* @param endRow any The record or index of the last row in the range 
-		* @param keepExisting any True to retain existing selections 
+		* @param startRow Ext.data.Model/Number The record or index of the first row in the range 
+		* @param endRow Ext.data.Model/Number The record or index of the last row in the range 
+		* @param keepExisting Boolean True to retain existing selections 
 		*/
 		selectRange?( startRow?:any, endRow?:any, keepExisting?:any ): any;
 		selectRange?( startRow?:Ext.data.IModel, endRow?:Ext.data.IModel, keepExisting?:bool ): void;
@@ -25723,7 +25666,7 @@ declare module Ext {
 		selectRange?( startRow?:Ext.data.IModel, endRow?:number, keepExisting?:bool ): void;
 		selectRange?( startRow?:number, endRow?:number, keepExisting?:bool ): void;
 		/** [Method] Sets a record as the last focused record  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		*/
 		setLastFocused?( record?:Ext.data.IModel ): void;
 		/** [Method] Locks the current selection and disables any changes from happening to the selection  
@@ -25735,7 +25678,7 @@ declare module Ext {
 		*/
 		setSelectionMode?( selMode?:string ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -25795,7 +25738,7 @@ declare module Ext {
 		*/
 		setZIndex?( zindex?:number ): void;
 		/** [Method] Displays the shadow under the target element 
-		* @param targetEl any The id or element under which the shadow should display 
+		* @param targetEl String/HTMLElement/Ext.Element The id or element under which the shadow should display 
 		*/
 		show?( targetEl?:any ): any;
 		show?( targetEl?:string ): void;
@@ -25886,9 +25829,9 @@ declare module Ext.slider {
 		*/
 		setReadOnly?( readOnly?:any ): void;
 		/** [Method] Programmatically sets the value of the Slider  
-		* @param index any Index of the thumb to move. Alternatively, it can be an array of values to set for each thumb in the slider. 
-		* @param value any The value to set the slider to. (This will be constrained within minValue and maxValue) 
-		* @param animate any Turn on or off animation 
+		* @param index Number/Number[] Index of the thumb to move. Alternatively, it can be an array of values to set for each thumb in the slider. 
+		* @param value Number The value to set the slider to. (This will be constrained within minValue and maxValue) 
+		* @param animate Boolean Turn on or off animation 
 		*/
 		setValue?( index?:any, value?:any, animate?:any ): any;
 		setValue?( index?:number, value?:number, animate?:bool ): any;
@@ -25974,9 +25917,9 @@ declare module Ext.slider {
 		*/
 		setReadOnly?( readOnly?:any ): void;
 		/** [Method] Programmatically sets the value of the Slider  
-		* @param index any Index of the thumb to move. Alternatively, it can be an array of values to set for each thumb in the slider. 
-		* @param value any The value to set the slider to. (This will be constrained within minValue and maxValue) 
-		* @param animate any Turn on or off animation 
+		* @param index Number/Number[] Index of the thumb to move. Alternatively, it can be an array of values to set for each thumb in the slider. 
+		* @param value Number The value to set the slider to. (This will be constrained within minValue and maxValue) 
+		* @param animate Boolean Turn on or off animation 
 		*/
 		setValue?( index?:any, value?:any, animate?:any ): any;
 		setValue?( index?:number, value?:number, animate?:bool ): any;
@@ -26067,7 +26010,7 @@ declare module Ext.slider {
 		/** [Config Option] (String) */
 		position?: string;
 		/** [Method] Used to create the text that appears in the Tip s body  
-		* @param thumb Ext.slider.IThumb The Thumb that the Tip is attached to 
+		* @param thumb Ext.slider.Thumb The Thumb that the Tip is attached to 
 		*/
 		getText?( thumb?:Ext.slider.IThumb ): string;
 	}
@@ -26129,7 +26072,7 @@ declare module Ext.state {
 		*/
 		static set( name?:string, value?:any ): void;
 		/** [Method] Configures the default state provider for your application 
-		* @param stateProvider Ext.state.IProvider The state provider to set 
+		* @param stateProvider Ext.state.Provider The state provider to set 
 		*/
 		static setProvider( stateProvider?:Ext.state.IProvider ): void;
 	}
@@ -26139,22 +26082,22 @@ declare module Ext.state {
 		/** [Config Option] (String) */
 		prefix?: string;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -26172,7 +26115,7 @@ declare module Ext.state {
 		*/
 		decodeValue?( value?:string ): any;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -26190,7 +26133,7 @@ declare module Ext.state {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the current value for a key 
 		* @param name String The key name 
 		* @param defaultValue Object A default value to return if the key's value is not found 
@@ -26201,26 +26144,26 @@ declare module Ext.state {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -26239,10 +26182,10 @@ declare module Ext.state {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -26285,28 +26228,28 @@ declare module Ext.state {
 		/** [Config Option] (Boolean) */
 		stateful?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Add events that will trigger the state to be saved  
-		* @param events any The event name or an array of event names. 
+		* @param events String/String[] The event name or an array of event names. 
 		*/
 		addStateEvents?( events?:any ): any;
 		addStateEvents?( events?:string ): void;
@@ -26322,7 +26265,7 @@ declare module Ext.state {
 		/** [Method] Destroys this stateful object  */
 		destroy?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -26336,7 +26279,7 @@ declare module Ext.state {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Gets the current state of the object  */
 		getState?(): any;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
@@ -26344,26 +26287,26 @@ declare module Ext.state {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -26382,10 +26325,10 @@ declare module Ext.state {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -26403,8 +26346,8 @@ declare module Ext.state {
 		*/
 		savePropToState?( propName?:string, state?:any, stateName?:string ): bool;
 		/** [Method] Gathers additional named properties of the instance and adds their current values to the passed state object  
-		* @param propNames any The name (or array of names) of the property to save. 
-		* @param state any The state object in to which to save the property values. 
+		* @param propNames String/String[] The name (or array of names) of the property to save. 
+		* @param state Object The state object in to which to save the property values. 
 		*/
 		savePropsToState?( propNames?:any, state?:any ): any;
 		savePropsToState?( propNames?:string, state?:any ): any;
@@ -26497,7 +26440,7 @@ declare module Ext {
 		/** [Method] Resets the set of character entity definitions used by htmlEncode and htmlDecode back to the default state  */
 		static resetCharacterEntities(): void;
 		/** [Method] Splits a string of space separated words into an array trimming as needed  
-		* @param words any 
+		* @param words String/Array 
 		*/
 		static splitWords( words?:any ): any;
 		static splitWords( words?:string ): void;
@@ -26530,9 +26473,9 @@ declare module Ext {
 	}
 }
 declare module Ext {
-	export interface Isupports {
+	export interface ISupports {
 	}
-	export class supports {
+	export class Supports {
 	}
 }
 declare module Ext.tab {
@@ -26599,7 +26542,7 @@ declare module Ext.tab {
 		*/
 		onAdd?( item?:any, index?:any ): void;
 		/** [Method] Makes the given card active  
-		* @param card any The card to make active. Either an ID, index or the component itself. 
+		* @param card String/Number/Ext.Component The card to make active. Either an ID, index or the component itself. 
 		*/
 		setActiveTab?( card?:any ): any;
 		setActiveTab?( card?:string ): Ext.IComponent;
@@ -26641,7 +26584,7 @@ declare module Ext {
 		*/
 		onAdd?( item?:any, index?:any ): void;
 		/** [Method] Makes the given card active  
-		* @param card any The card to make active. Either an ID, index or the component itself. 
+		* @param card String/Number/Ext.Component The card to make active. Either an ID, index or the component itself. 
 		*/
 		setActiveTab?( card?:any ): any;
 		setActiveTab?( card?:string ): Ext.IComponent;
@@ -26682,7 +26625,7 @@ declare module Ext.tab {
 		/** [Method] inherit docs */
 		initComponent?(): void;
 		/** [Method] Sets this tab s attached card  
-		* @param card Ext.IComponent The card to set 
+		* @param card Ext.Component The card to set 
 		*/
 		setCard?( card?:Ext.IComponent ): void;
 		/** [Method] Sets the tab as either closable or not  
@@ -26700,100 +26643,100 @@ declare module Ext {
 		/** [Property] (Boolean) */
 		isTemplate?: bool;
 		/** [Method] Applies the supplied values to the template and appends the new node s to the specified el  
-		* @param el any The context element 
-		* @param values any The template values. See applyTemplate for details. 
-		* @param returnElement any true to return an Ext.Element. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
+		* @param returnElement Boolean true to return an Ext.Element. 
 		*/
 		append?( el?:any, values?:any, returnElement?:any ): any;
 		append?( el?:string, values?:any, returnElement?:bool ): HTMLElement;
 		append?( el?:HTMLElement, values?:any, returnElement?:bool ): HTMLElement;
 		append?( el?:Ext.IElement, values?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Applies the supplied values to the template and appends the new node s to the specified el  
-		* @param el String The context element 
-		* @param values any The template values. See applyTemplate for details. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
 		* @param returnElement Boolean true to return an Ext.Element. 
 		*/
 		append?( el?:string, values?:any, returnElement?:bool ): Ext.IElement;
 		append?( el?:HTMLElement, values?:any, returnElement?:bool ): Ext.IElement;
 		append?( el?:Ext.IElement, values?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Returns an HTML fragment of this template with the specified values applied  
-		* @param values any The template values. Can be an array if your params are numeric:  var tpl = new Ext.Template('Name: {0}, Age: {1}'); tpl.apply(['John', 25]); or an object:  var tpl = new Ext.Template('Name: {name}, Age: {age}'); tpl.apply({name: 'John', age: 25});  
+		* @param values Object/Array The template values. Can be an array if your params are numeric:  var tpl = new Ext.Template('Name: {0}, Age: {1}'); tpl.apply(['John', 25]); or an object:  var tpl = new Ext.Template('Name: {name}, Age: {age}'); tpl.apply({name: 'John', age: 25});  
 		*/
 		apply?( values?:any ): string;
 		/** [Method] Appends the result of this template to the provided output array  
-		* @param values any The template values. See apply. 
+		* @param values Object/Array The template values. See apply. 
 		* @param out Array The array to which output is pushed. 
 		*/
 		applyOut?( values?:any, out?:any[] ): any[];
 		/** [Method] Alias for apply  
-		* @param values any The template values. Can be an array if your params are numeric:  var tpl = new Ext.Template('Name: {0}, Age: {1}'); tpl.apply(['John', 25]); or an object:  var tpl = new Ext.Template('Name: {name}, Age: {age}'); tpl.apply({name: 'John', age: 25});  
+		* @param values Object/Array The template values. Can be an array if your params are numeric:  var tpl = new Ext.Template('Name: {0}, Age: {1}'); tpl.apply(['John', 25]); or an object:  var tpl = new Ext.Template('Name: {name}, Age: {age}'); tpl.apply({name: 'John', age: 25});  
 		*/
 		applyTemplate?( values?:any ): string;
 		/** [Method] Compiles the template into an internal function eliminating the RegEx overhead  */
 		compile?(): Ext.ITemplate;
 		/** [Method] Applies the supplied values to the template and inserts the new node s after el  
-		* @param el any The context element 
-		* @param values any The template values. See applyTemplate for details. 
-		* @param returnElement any true to return a Ext.Element. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
+		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		insertAfter?( el?:any, values?:any, returnElement?:any ): any;
 		insertAfter?( el?:string, values?:any, returnElement?:bool ): HTMLElement;
 		insertAfter?( el?:HTMLElement, values?:any, returnElement?:bool ): HTMLElement;
 		insertAfter?( el?:Ext.IElement, values?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Applies the supplied values to the template and inserts the new node s after el  
-		* @param el String The context element 
-		* @param values any The template values. See applyTemplate for details. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
 		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		insertAfter?( el?:string, values?:any, returnElement?:bool ): Ext.IElement;
 		insertAfter?( el?:HTMLElement, values?:any, returnElement?:bool ): Ext.IElement;
 		insertAfter?( el?:Ext.IElement, values?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Applies the supplied values to the template and inserts the new node s before el  
-		* @param el any The context element 
-		* @param values any The template values. See applyTemplate for details. 
-		* @param returnElement any true to return a Ext.Element. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
+		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		insertBefore?( el?:any, values?:any, returnElement?:any ): any;
 		insertBefore?( el?:string, values?:any, returnElement?:bool ): HTMLElement;
 		insertBefore?( el?:HTMLElement, values?:any, returnElement?:bool ): HTMLElement;
 		insertBefore?( el?:Ext.IElement, values?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Applies the supplied values to the template and inserts the new node s before el  
-		* @param el String The context element 
-		* @param values any The template values. See applyTemplate for details. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
 		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		insertBefore?( el?:string, values?:any, returnElement?:bool ): Ext.IElement;
 		insertBefore?( el?:HTMLElement, values?:any, returnElement?:bool ): Ext.IElement;
 		insertBefore?( el?:Ext.IElement, values?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Applies the supplied values to the template and inserts the new node s as the first child of el  
-		* @param el any The context element 
-		* @param values any The template values. See applyTemplate for details. 
-		* @param returnElement any true to return a Ext.Element. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
+		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		insertFirst?( el?:any, values?:any, returnElement?:any ): any;
 		insertFirst?( el?:string, values?:any, returnElement?:bool ): HTMLElement;
 		insertFirst?( el?:HTMLElement, values?:any, returnElement?:bool ): HTMLElement;
 		insertFirst?( el?:Ext.IElement, values?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Applies the supplied values to the template and inserts the new node s as the first child of el  
-		* @param el String The context element 
-		* @param values any The template values. See applyTemplate for details. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
 		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		insertFirst?( el?:string, values?:any, returnElement?:bool ): Ext.IElement;
 		insertFirst?( el?:HTMLElement, values?:any, returnElement?:bool ): Ext.IElement;
 		insertFirst?( el?:Ext.IElement, values?:any, returnElement?:bool ): Ext.IElement;
 		/** [Method] Applies the supplied values to the template and overwrites the content of el with the new node s 
-		* @param el any The context element 
-		* @param values any The template values. See applyTemplate for details. 
-		* @param returnElement any true to return a Ext.Element. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
+		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		overwrite?( el?:any, values?:any, returnElement?:any ): any;
 		overwrite?( el?:string, values?:any, returnElement?:bool ): HTMLElement;
 		overwrite?( el?:HTMLElement, values?:any, returnElement?:bool ): HTMLElement;
 		overwrite?( el?:Ext.IElement, values?:any, returnElement?:bool ): HTMLElement;
 		/** [Method] Applies the supplied values to the template and overwrites the content of el with the new node s 
-		* @param el String The context element 
-		* @param values any The template values. See applyTemplate for details. 
+		* @param el String/HTMLElement/Ext.Element The context element 
+		* @param values Object/Array The template values. See applyTemplate for details. 
 		* @param returnElement Boolean true to return a Ext.Element. 
 		*/
 		overwrite?( el?:string, values?:any, returnElement?:bool ): Ext.IElement;
@@ -26805,8 +26748,8 @@ declare module Ext {
 		*/
 		set?( html?:string, compile?:bool ): Ext.ITemplate;
 		/** [Method] Creates a template from the passed element s value display none textarea preferred or innerHTML  
-		* @param el any A DOM element or its id 
-		* @param config any Config object 
+		* @param el String/HTMLElement A DOM element or its id 
+		* @param config Object Config object 
 		*/
 		from?( el?:any, config?:any ): any;
 		from?( el?:string, config?:any ): Ext.ITemplate;
@@ -26822,7 +26765,7 @@ declare module Ext.tip {
 		/** [Config Option] (String) */
 		title?: string;
 		/** [Method] Hides a visible tip or cancels an impending show for a particular element  
-		* @param el any The element that is the target of the tip or ID of the element. 
+		* @param el String/HTMLElement/Ext.Element The element that is the target of the tip or ID of the element. 
 		*/
 		cancelShow?( el?:any ): any;
 		cancelShow?( el?:string ): void;
@@ -26837,7 +26780,7 @@ declare module Ext.tip {
 		/** [Method] Shows this tooltip at the current event target XY position  */
 		show?(): void;
 		/** [Method] Removes this quick tip from its element and destroys it  
-		* @param el any The element from which the quick tip is to be removed or ID of the element. 
+		* @param el String/HTMLElement/Ext.Element The element from which the quick tip is to be removed or ID of the element. 
 		*/
 		unregister?( el?:any ): any;
 		unregister?( el?:string ): void;
@@ -26854,7 +26797,7 @@ declare module Ext {
 		/** [Config Option] (String) */
 		title?: string;
 		/** [Method] Hides a visible tip or cancels an impending show for a particular element  
-		* @param el any The element that is the target of the tip or ID of the element. 
+		* @param el String/HTMLElement/Ext.Element The element that is the target of the tip or ID of the element. 
 		*/
 		cancelShow?( el?:any ): any;
 		cancelShow?( el?:string ): void;
@@ -26869,7 +26812,7 @@ declare module Ext {
 		/** [Method] Shows this tooltip at the current event target XY position  */
 		show?(): void;
 		/** [Method] Removes this quick tip from its element and destroys it  
-		* @param el any The element from which the quick tip is to be removed or ID of the element. 
+		* @param el String/HTMLElement/Ext.Element The element from which the quick tip is to be removed or ID of the element. 
 		*/
 		unregister?( el?:any ): any;
 		unregister?( el?:string ): void;
@@ -26905,7 +26848,7 @@ declare module Ext.tip {
 		*/
 		static tips( config?:any ): void;
 		/** [Method] Removes any registered quick tip from the target element and destroys it  
-		* @param el any The element from which the quick tip is to be removed or ID of the element. 
+		* @param el String/HTMLElement/Ext.Element The element from which the quick tip is to be removed or ID of the element. 
 		*/
 		static unregister( el?:any ): any;
 		static unregister( el?:string ): void;
@@ -26941,7 +26884,7 @@ declare module Ext {
 		*/
 		static tips( config?:any ): void;
 		/** [Method] Removes any registered quick tip from the target element and destroys it  
-		* @param el any The element from which the quick tip is to be removed or ID of the element. 
+		* @param el String/HTMLElement/Ext.Element The element from which the quick tip is to be removed or ID of the element. 
 		*/
 		static unregister( el?:any ): any;
 		static unregister( el?:string ): void;
@@ -27042,7 +26985,7 @@ declare module Ext.tip {
 		/** [Method] Hides this tooltip if visible  */
 		hide?(): void;
 		/** [Method] Binds this ToolTip to the specified element  
-		* @param t any The Element, HtmlElement, or ID of an element to bind to 
+		* @param t String/HTMLElement/Ext.Element The Element, HtmlElement, or ID of an element to bind to 
 		*/
 		setTarget?( t?:any ): any;
 		setTarget?( t?:string ): void;
@@ -27081,7 +27024,7 @@ declare module Ext {
 		/** [Method] Hides this tooltip if visible  */
 		hide?(): void;
 		/** [Method] Binds this ToolTip to the specified element  
-		* @param t any The Element, HtmlElement, or ID of an element to bind to 
+		* @param t String/HTMLElement/Ext.Element The Element, HtmlElement, or ID of an element to bind to 
 		*/
 		setTarget?( t?:any ): any;
 		setTarget?( t?:string ): void;
@@ -27138,17 +27081,17 @@ declare module Ext.toolbar {
 		/** [Config Option] (Ext.data.Store) */
 		store?: Ext.data.IStore;
 		/** [Method] Binds the paging toolbar to the specified Ext data Store deprecated  
-		* @param store Ext.data.IStore The data store to bind 
+		* @param store Ext.data.Store The data store to bind 
 		*/
 		bind?( store?:Ext.data.IStore ): void;
 		/** [Method] Binds a store to this instance  
-		* @param store any The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
+		* @param store Ext.data.AbstractStore/String The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
 		*/
 		bindStore?( store?:any ): any;
 		bindStore?( store?:Ext.data.IAbstractStore ): void;
 		bindStore?( store?:string ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Refresh the current page has the same effect as clicking the refresh button  */
@@ -27166,21 +27109,21 @@ declare module Ext.toolbar {
 		/** [Method] Move to the previous page has the same effect as clicking the previous button  */
 		movePrevious?(): void;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Unbinds the paging toolbar from the specified Ext data Store deprecated  
-		* @param store Ext.data.IStore The data store to unbind 
+		* @param store Ext.data.Store The data store to unbind 
 		*/
 		unbind?( store?:Ext.data.IStore ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -27214,17 +27157,17 @@ declare module Ext {
 		/** [Config Option] (Ext.data.Store) */
 		store?: Ext.data.IStore;
 		/** [Method] Binds the paging toolbar to the specified Ext data Store deprecated  
-		* @param store Ext.data.IStore The data store to bind 
+		* @param store Ext.data.Store The data store to bind 
 		*/
 		bind?( store?:Ext.data.IStore ): void;
 		/** [Method] Binds a store to this instance  
-		* @param store any The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
+		* @param store Ext.data.AbstractStore/String The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
 		*/
 		bindStore?( store?:any ): any;
 		bindStore?( store?:Ext.data.IAbstractStore ): void;
 		bindStore?( store?:string ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Refresh the current page has the same effect as clicking the refresh button  */
@@ -27242,21 +27185,21 @@ declare module Ext {
 		/** [Method] Move to the previous page has the same effect as clicking the previous button  */
 		movePrevious?(): void;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Unbinds the paging toolbar from the specified Ext data Store deprecated  
-		* @param store Ext.data.IStore The data store to unbind 
+		* @param store Ext.data.Store The data store to unbind 
 		*/
 		unbind?( store?:Ext.data.IStore ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -27306,11 +27249,11 @@ declare module Ext.toolbar {
 		/** [Property] (Boolean) */
 		isToolbar?: bool;
 		/** [Method] Adds element s to the toolbar this function takes a variable number of arguments of mixed type and adds them to t  
-		* @param args any The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
+		* @param args Ext.Component.../Object.../String.../HTMLElement... The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
 		*/
 		add?( args?:any ): Ext.IComponent[];
 		/** [Method] Adds element s to the toolbar this function takes a variable number of arguments of mixed type and adds them to t  
-		* @param args any The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
+		* @param args Ext.Component.../Object.../String.../HTMLElement... The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
 		*/
 		add?( args?:any ): Ext.IComponent;
 		/** [Method] Used by ComponentQuery child and down to retrieve all of the items which can potentially be considered a child of th  
@@ -27319,7 +27262,7 @@ declare module Ext.toolbar {
 		getRefItems?( deep?:any ): void;
 		/** [Method] Inserts a Component into this Container at a specified index  
 		* @param index Number The index at which the Component will be inserted. 
-		* @param component any See add method for overview of possible values. 
+		* @param component Ext.Component/Object/String/HTMLElement See add method for overview of possible values. 
 		*/
 		insert?( index?:number, component?:any ): Ext.IComponent;
 	}
@@ -27343,11 +27286,11 @@ declare module Ext {
 		/** [Property] (Boolean) */
 		isToolbar?: bool;
 		/** [Method] Adds element s to the toolbar this function takes a variable number of arguments of mixed type and adds them to t  
-		* @param args any The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
+		* @param args Ext.Component.../Object.../String.../HTMLElement... The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
 		*/
 		add?( args?:any ): Ext.IComponent[];
 		/** [Method] Adds element s to the toolbar this function takes a variable number of arguments of mixed type and adds them to t  
-		* @param args any The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
+		* @param args Ext.Component.../Object.../String.../HTMLElement... The following types of arguments are all valid:  config: A valid button config object HtmlElement: Any standard HTML element Field: Any form field Item: Any subclass of Ext.toolbar.Item String: Any generic string (gets wrapped in a Ext.toolbar.TextItem). Note that there are a few special strings that are treated differently as explained next:  '-': Creates a separator element ' ': Creates a spacer element '-&gt;': Creates a fill element  
 		*/
 		add?( args?:any ): Ext.IComponent;
 		/** [Method] Used by ComponentQuery child and down to retrieve all of the items which can potentially be considered a child of th  
@@ -27356,7 +27299,7 @@ declare module Ext {
 		getRefItems?( deep?:any ): void;
 		/** [Method] Inserts a Component into this Container at a specified index  
 		* @param index Number The index at which the Component will be inserted. 
-		* @param component any See add method for overview of possible values. 
+		* @param component Ext.Component/Object/String/HTMLElement See add method for overview of possible values. 
 		*/
 		insert?( index?:number, component?:any ): Ext.IComponent;
 	}
@@ -27409,7 +27352,7 @@ declare module Ext.tree {
 		*/
 		collapseAll?( callback?:any, scope?:any ): void;
 		/** [Method] Collapses a record that is loaded in the tree  
-		* @param record Ext.data.IModel The record to collapse 
+		* @param record Ext.data.Model The record to collapse 
 		* @param deep Boolean True to collapse nodes all the way up the tree hierarchy. 
 		* @param callback Function The function to run after the collapse is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27421,7 +27364,7 @@ declare module Ext.tree {
 		*/
 		expandAll?( callback?:any, scope?:any ): void;
 		/** [Method] Expands a record that is loaded in the tree  
-		* @param record Ext.data.IModel The record to expand 
+		* @param record Ext.data.Model The record to expand 
 		* @param deep Boolean True to expand nodes all the way down the tree hierarchy. 
 		* @param callback Function The function to run after the expand is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27448,7 +27391,7 @@ declare module Ext.tree {
 		*/
 		selectPath?( path?:string, field?:string, separator?:string, callback?:any, scope?:any ): void;
 		/** [Method] Sets root node of this tree  
-		* @param root any 
+		* @param root Ext.data.Model/Ext.data.NodeInterface/Object 
 		*/
 		setRootNode?( root?:any ): Ext.data.INodeInterface;
 	}
@@ -27489,7 +27432,7 @@ declare module Ext.tree {
 		*/
 		collapseAll?( callback?:any, scope?:any ): void;
 		/** [Method] Collapses a record that is loaded in the tree  
-		* @param record Ext.data.IModel The record to collapse 
+		* @param record Ext.data.Model The record to collapse 
 		* @param deep Boolean True to collapse nodes all the way up the tree hierarchy. 
 		* @param callback Function The function to run after the collapse is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27501,7 +27444,7 @@ declare module Ext.tree {
 		*/
 		expandAll?( callback?:any, scope?:any ): void;
 		/** [Method] Expands a record that is loaded in the tree  
-		* @param record Ext.data.IModel The record to expand 
+		* @param record Ext.data.Model The record to expand 
 		* @param deep Boolean True to expand nodes all the way down the tree hierarchy. 
 		* @param callback Function The function to run after the expand is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27528,7 +27471,7 @@ declare module Ext.tree {
 		*/
 		selectPath?( path?:string, field?:string, separator?:string, callback?:any, scope?:any ): void;
 		/** [Method] Sets root node of this tree  
-		* @param root any 
+		* @param root Ext.data.Model/Ext.data.NodeInterface/Object 
 		*/
 		setRootNode?( root?:any ): Ext.data.INodeInterface;
 	}
@@ -27569,7 +27512,7 @@ declare module Ext {
 		*/
 		collapseAll?( callback?:any, scope?:any ): void;
 		/** [Method] Collapses a record that is loaded in the tree  
-		* @param record Ext.data.IModel The record to collapse 
+		* @param record Ext.data.Model The record to collapse 
 		* @param deep Boolean True to collapse nodes all the way up the tree hierarchy. 
 		* @param callback Function The function to run after the collapse is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27581,7 +27524,7 @@ declare module Ext {
 		*/
 		expandAll?( callback?:any, scope?:any ): void;
 		/** [Method] Expands a record that is loaded in the tree  
-		* @param record Ext.data.IModel The record to expand 
+		* @param record Ext.data.Model The record to expand 
 		* @param deep Boolean True to expand nodes all the way down the tree hierarchy. 
 		* @param callback Function The function to run after the expand is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27608,7 +27551,7 @@ declare module Ext {
 		*/
 		selectPath?( path?:string, field?:string, separator?:string, callback?:any, scope?:any ): void;
 		/** [Method] Sets root node of this tree  
-		* @param root any 
+		* @param root Ext.data.Model/Ext.data.NodeInterface/Object 
 		*/
 		setRootNode?( root?:any ): Ext.data.INodeInterface;
 	}
@@ -27674,14 +27617,14 @@ declare module Ext.tree {
 		/** [Method] Called by the layout system after the Component has been laid out  */
 		afterComponentLayout?(): void;
 		/** [Method] Collapses a record that is loaded in the view  
-		* @param record Ext.data.IModel The record to collapse 
+		* @param record Ext.data.Model The record to collapse 
 		* @param deep Boolean True to collapse nodes all the way up the tree hierarchy. 
 		* @param callback Function The function to run after the collapse is completed 
 		* @param scope Object The scope of the callback function. 
 		*/
 		collapse?( record?:Ext.data.IModel, deep?:bool, callback?:any, scope?:any ): void;
 		/** [Method] Expands a record that is loaded in the view  
-		* @param record Ext.data.IModel The record to expand 
+		* @param record Ext.data.Model The record to expand 
 		* @param deep Boolean True to expand nodes all the way down the tree hierarchy. 
 		* @param callback Function The function to run after the expand is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27698,7 +27641,7 @@ declare module Ext.tree {
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  */
 		onUnbindStore?(): void;
 		/** [Method] Toggles a record between expanded and collapsed  
-		* @param record Ext.data.IModel 
+		* @param record Ext.data.Model 
 		* @param deep Boolean True to collapse nodes all the way up the tree hierarchy. 
 		* @param callback Function The function to run after the expand/collapse is completed 
 		* @param scope Object The scope of the callback function. 
@@ -27751,31 +27694,31 @@ declare module Ext.util {
 		/** [Property] (Boolean) */
 		isMixedCollection?: bool;
 		/** [Method] Adds an item to the collection  
-		* @param key any The key to associate with the item, or the new item. If a getKey implementation was specified for this MixedCollection, or if the key of the stored items is in a property called id, the MixedCollection will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
+		* @param key String/Object The key to associate with the item, or the new item. If a getKey implementation was specified for this MixedCollection, or if the key of the stored items is in a property called id, the MixedCollection will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
 		* @param obj Object The item to add. 
 		*/
 		add?( key?:any, obj?:any ): any;
 		/** [Method] Adds all elements of an Array or an Object to the collection  
-		* @param objs any An Object containing properties which will be added to the collection, or an Array of values, each of which are added to the collection. Functions references will be added to the collection if allowFunctions has been set to true. 
+		* @param objs Object/Array An Object containing properties which will be added to the collection, or an Array of values, each of which are added to the collection. Functions references will be added to the collection if allowFunctions has been set to true. 
 		*/
 		addAll?( objs?:any ): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -27813,16 +27756,16 @@ declare module Ext.util {
 		*/
 		eachKey?( fn?:any, scope?:any ): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
 		enableBubble?( eventNames?:string[] ): void;
 		/** [Method] Filters the objects in this collection by a set of Filters or by a single property value pair with optional paramete  
-		* @param property any A property on your objects, or an array of Filter objects 
-		* @param value any Either string that the property values should start with or a RegExp to test against the property 
-		* @param anyMatch any True to match any part of the string, not just the beginning 
-		* @param caseSensitive any True for case sensitive comparison. 
+		* @param property Ext.util.Filter[]/String A property on your objects, or an array of Filter objects 
+		* @param value String/RegExp Either string that the property values should start with or a RegExp to test against the property 
+		* @param anyMatch Boolean True to match any part of the string, not just the beginning 
+		* @param caseSensitive Boolean True for case sensitive comparison. 
 		*/
 		filter?( property?:any, value?:any, anyMatch?:any, caseSensitive?:any ): any;
 		filter?( property?:Ext.util.IFilter[], value?:string, anyMatch?:bool, caseSensitive?:bool ): Ext.util.IMixedCollection;
@@ -27842,11 +27785,11 @@ declare module Ext.util {
 		*/
 		findBy?( fn?:any, scope?:any ): any;
 		/** [Method] Finds the index of the first matching object in this collection by a specific property value  
-		* @param property any The name of a property on your objects. 
-		* @param value any A string that the property values should start with or a RegExp to test against the property. 
-		* @param start any The index to start searching at. 
-		* @param anyMatch any True to match any part of the string, not just the beginning. 
-		* @param caseSensitive any True for case sensitive comparison. 
+		* @param property String The name of a property on your objects. 
+		* @param value String/RegExp A string that the property values should start with or a RegExp to test against the property. 
+		* @param start Number The index to start searching at. 
+		* @param anyMatch Boolean True to match any part of the string, not just the beginning. 
+		* @param caseSensitive Boolean True for case sensitive comparison. 
 		*/
 		findIndex?( property?:any, value?:any, start?:any, anyMatch?:any, caseSensitive?:any ): any;
 		findIndex?( property?:string, value?:string, start?:number, anyMatch?:bool, caseSensitive?:bool ): number;
@@ -27866,11 +27809,11 @@ declare module Ext.util {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Returns the first item in the collection  */
 		first?(): any;
 		/** [Method] Returns the item associated with the passed key OR index  
-		* @param key any The key or index of the item. 
+		* @param key String/Number The key or index of the item. 
 		*/
 		get?( key?:any ): any;
 		get?( key?:string ): any;
@@ -27880,7 +27823,7 @@ declare module Ext.util {
 		*/
 		getAt?( index?:number ): any;
 		/** [Method] Returns the item associated with the passed key  
-		* @param key any The key of the item. 
+		* @param key String/Number The key of the item. 
 		*/
 		getByKey?( key?:any ): any;
 		getByKey?( key?:string ): any;
@@ -27910,33 +27853,33 @@ declare module Ext.util {
 		indexOfKey?( key?:string ): number;
 		/** [Method] Inserts an item at the specified index in the collection  
 		* @param index Number The index to insert the item at. 
-		* @param key any The key to associate with the new item, or the item itself. May also be an array of either to insert multiple items at once. 
-		* @param o any If the second parameter was a key, the new item. May also be an array to insert multiple items at once. 
+		* @param key String/Object/String[]/Object[] The key to associate with the new item, or the item itself. May also be an array of either to insert multiple items at once. 
+		* @param o Object/Object[] If the second parameter was a key, the new item. May also be an array to insert multiple items at once. 
 		*/
 		insert?( index?:number, key?:any, o?:any ): any;
 		/** [Method] Returns the last item in the collection  */
 		last?(): any;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -27971,10 +27914,10 @@ declare module Ext.util {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -28048,33 +27991,33 @@ declare module Ext.util {
 declare module Ext.util {
 	export interface IBindable extends Ext.IBase {
 		/** [Method] Binds a store to this instance  
-		* @param store any The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
+		* @param store Ext.data.AbstractStore/String The store to bind or ID of the store. When no store given (or when null or undefined passed), unbinds the existing store. 
 		*/
 		bindStore?( store?:any ): any;
 		bindStore?( store?:Ext.data.IAbstractStore ): void;
 		bindStore?( store?:string ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Gets the current store instance  */
 		getStore?(): Ext.data.IAbstractStore;
 		/** [Method] Gets the listeners to bind to a new store  
-		* @param store Ext.data.IStore The Store which is being bound to for which a listeners object should be returned. 
+		* @param store Ext.data.Store The Store which is being bound to for which a listeners object should be returned. 
 		*/
 		getStoreListeners?( store?:Ext.data.IStore ): any;
 		/** [Method] Template method it is called when a new store is bound to the current instance  
-		* @param store Ext.data.IAbstractStore The store being bound 
+		* @param store Ext.data.AbstractStore The store being bound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onBindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Template method it is called when an existing store is unbound from the current instance  
-		* @param store Ext.data.IAbstractStore The store being unbound 
+		* @param store Ext.data.AbstractStore The store being unbound 
 		* @param initial Boolean True if this store is being bound as initialization of the instance. 
 		*/
 		onUnbindStore?( store?:Ext.data.IAbstractStore, initial?:bool ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -28167,8 +28110,8 @@ declare module Ext.util {
 		*/
 		static createStyleSheet( cssText?:string, id?:string ): CSSStyleSheet;
 		/** [Method] Gets an an individual CSS rule by selector s  
-		* @param selector any The CSS selector or an array of selectors to try. The first selector that is found is returned. 
-		* @param refreshCache any true to refresh the internal cache if you have recently updated any rules or added styles dynamically 
+		* @param selector String/String[] The CSS selector or an array of selectors to try. The first selector that is found is returned. 
+		* @param refreshCache Boolean true to refresh the internal cache if you have recently updated any rules or added styles dynamically 
 		*/
 		static getRule( selector?:any, refreshCache?:any ): any;
 		static getRule( selector?:string, refreshCache?:bool ): CSSStyleRule;
@@ -28189,9 +28132,9 @@ declare module Ext.util {
 		*/
 		static swapStyleSheet( id?:string, url?:string ): void;
 		/** [Method] Updates a rule property 
-		* @param selector any If it's an array it tries each selector until it finds one. Stops immediately once one is found. 
-		* @param property any The css property or a cssText specification eg "color:red;font-weight:bold;text-decoration:underline" 
-		* @param value any The new value for the property 
+		* @param selector String/String[] If it's an array it tries each selector until it finds one. Stops immediately once one is found. 
+		* @param property String The css property or a cssText specification eg "color:red;font-weight:bold;text-decoration:underline" 
+		* @param value String The new value for the property 
 		*/
 		static updateRule( selector?:any, property?:any, value?:any ): any;
 		static updateRule( selector?:string, property?:string, value?:string ): bool;
@@ -28260,7 +28203,7 @@ declare module Ext.util {
 		*/
 		setValue?( value?:any ): void;
 		/** [Method] Creates a single filter function which encapsulates the passed Filter array  
-		* @param filters Ext.util.IFilter[] The filter set for which to create a filter function 
+		* @param filters Ext.util.Filter[] The filter set for which to create a filter function 
 		*/
 		createFilterFn?( filters?:Ext.util.IFilter[] ): any;
 	}
@@ -28280,7 +28223,7 @@ declare module Ext.util {
 		/** [Method] Center this Component in its container  */
 		center?(): Ext.IComponent;
 		/** [Method] Moves this floating Component into a constrain region  
-		* @param constrainTo any The Element or Region into which this Component is to be constrained. Defaults to the element into which this floating Component was rendered. 
+		* @param constrainTo String/HTMLElement/Ext.Element/Ext.util.Region The Element or Region into which this Component is to be constrained. Defaults to the element into which this floating Component was rendered. 
 		*/
 		doConstrain?( constrainTo?:any ): any;
 		doConstrain?( constrainTo?:string ): void;
@@ -28289,7 +28232,7 @@ declare module Ext.util {
 		doConstrain?( constrainTo?:Ext.util.IRegion ): void;
 		/** [Method] This method is called internally by Ext ZIndexManager to signal that a floating Component has either been moved to th  
 		* @param active Boolean True to activate the Component, false to deactivate it. 
-		* @param newActive Ext.IComponent The newly active Component which is taking over topmost zIndex position. 
+		* @param newActive Ext.Component The newly active Component which is taking over topmost zIndex position. 
 		*/
 		setActive?( active?:bool, newActive?:Ext.IComponent ): void;
 		/** [Method] Sends this Component to the back of lower z index than any other visible windows */
@@ -28313,17 +28256,17 @@ declare module Ext.util {
 		*/
 		static capitalize( string?:string ): string;
 		/** [Method] Format a number as a currency  
-		* @param value any The numeric value to format 
-		* @param sign any The currency sign to use (defaults to currencySign) 
-		* @param decimals any The number of decimals to use for the currency (defaults to currencyPrecision) 
-		* @param end any True if the currency sign should be at the end of the string (defaults to currencyAtEnd) 
+		* @param value Number/String The numeric value to format 
+		* @param sign String The currency sign to use (defaults to currencySign) 
+		* @param decimals Number The number of decimals to use for the currency (defaults to currencyPrecision) 
+		* @param end Boolean True if the currency sign should be at the end of the string (defaults to currencyAtEnd) 
 		*/
 		static currency( value?:any, sign?:any, decimals?:any, end?:any ): any;
 		static currency( value?:number, sign?:string, decimals?:number, end?:bool ): string;
 		static currency( value?:string, sign?:string, decimals?:number, end?:bool ): string;
 		/** [Method] Formats the passed date using the specified format pattern  
-		* @param value any The value to format. If a string is passed, it is converted to a Date by the Javascript's built-in Date.parse method. 
-		* @param format any Any valid date format string. Defaults to Ext.Date.defaultFormat. 
+		* @param value String/Date The value to format. If a string is passed, it is converted to a Date by the Javascript's built-in Date.parse method. 
+		* @param format String Any valid date format string. Defaults to Ext.Date.defaultFormat. 
 		*/
 		static date( value?:any, format?:any ): any;
 		static date( value?:string, format?:string ): string;
@@ -28348,7 +28291,7 @@ declare module Ext.util {
 		*/
 		static escapeRegex( str?:string ): string;
 		/** [Method] Simple format for a file size xxx bytes xxx KB xxx MB 
-		* @param size any The numeric value to format 
+		* @param size Number/String The numeric value to format 
 		*/
 		static fileSize( size?:any ): any;
 		static fileSize( size?:number ): string;
@@ -28392,7 +28335,7 @@ declare module Ext.util {
 		*/
 		static numberRenderer( format?:string ): any;
 		/** [Method] Parses a number or string representing margin sizes into an object  
-		* @param v any The encoded margins 
+		* @param v Number/String The encoded margins 
 		*/
 		static parseBox( v?:any ): any;
 		static parseBox( v?:number ): any;
@@ -28404,8 +28347,8 @@ declare module Ext.util {
 		*/
 		static plural( value?:number, singular?:string, plural?:string ): void;
 		/** [Method] Rounds the passed number to the required decimal precision  
-		* @param value any The numeric value to round. 
-		* @param precision any The number of decimal places to which to round the first parameter's value. 
+		* @param value Number/String The numeric value to round. 
+		* @param precision Number The number of decimal places to which to round the first parameter's value. 
 		*/
 		static round( value?:any, precision?:any ): any;
 		static round( value?:number, precision?:number ): number;
@@ -28437,7 +28380,7 @@ declare module Ext.util {
 		*/
 		static uppercase( value?:string ): string;
 		/** [Method] Format a number as US currency  
-		* @param value any The numeric value to format 
+		* @param value Number/String The numeric value to format 
 		*/
 		static usMoney( value?:any ): any;
 		static usMoney( value?:number ): string;
@@ -28447,7 +28390,7 @@ declare module Ext.util {
 declare module Ext.util {
 	export interface IGrouper extends Ext.util.ISorter {
 		/** [Method] Returns the value for grouping to be used  
-		* @param instance Ext.data.IModel The Model instance 
+		* @param instance Ext.data.Model The Model instance 
 		*/
 		getGroupString?( instance?:Ext.data.IModel ): string;
 	}
@@ -28457,27 +28400,27 @@ declare module Ext.util {
 		/** [Config Option] (Function) */
 		keyFn?: any;
 		/** [Method] Adds an item to the collection  
-		* @param key any The key to associate with the item, or the new item. If a getKey implementation was specified for this HashMap, or if the key of the stored items is in a property called id, the HashMap will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
+		* @param key String/Object The key to associate with the item, or the new item. If a getKey implementation was specified for this HashMap, or if the key of the stored items is in a property called id, the HashMap will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
 		* @param o Object The item to add. 
 		*/
 		add?( key?:any, o?:any ): any;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -28506,7 +28449,7 @@ declare module Ext.util {
 		*/
 		each?( fn?:any, scope?:any ): Ext.util.IHashMap;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -28520,7 +28463,7 @@ declare module Ext.util {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Retrieves an item with a particular key  
 		* @param key String The key to lookup. 
 		*/
@@ -28540,26 +28483,26 @@ declare module Ext.util {
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -28586,10 +28529,10 @@ declare module Ext.util {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -28633,22 +28576,22 @@ declare module Ext.util {
 		*/
 		static add( token?:string, preventDuplicates?:bool ): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		static addEvents( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static addListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static addManagedListener( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -28660,7 +28603,7 @@ declare module Ext.util {
 		/** [Method] Removes all managed listeners for this object  */
 		static clearManagedListeners(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		static enableBubble( eventNames?:any ): any;
 		static enableBubble( eventNames?:string ): void;
@@ -28674,7 +28617,7 @@ declare module Ext.util {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		static fireEventArgs( eventName?:string, args?:Object[] ): bool;
+		static fireEventArgs( eventName?:string, args?:any[] ): bool;
 		/** [Method] Programmatically steps forward one step in browser history equivalent to the user pressing the Forward button */
 		static forward(): void;
 		/** [Method] Retrieves the currently active history token  */
@@ -28689,26 +28632,26 @@ declare module Ext.util {
 		*/
 		static init( onReady?:any, scope?:any ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static mon( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static mun( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static mun( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static mun( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -28727,10 +28670,10 @@ declare module Ext.util {
 		*/
 		static removeListener( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static removeManagedListener( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static removeManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -28769,22 +28712,22 @@ declare module Ext {
 		*/
 		static add( token?:string, preventDuplicates?:bool ): void;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		static addEvents( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		static addListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static addManagedListener( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static addManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -28796,7 +28739,7 @@ declare module Ext {
 		/** [Method] Removes all managed listeners for this object  */
 		static clearManagedListeners(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		static enableBubble( eventNames?:any ): any;
 		static enableBubble( eventNames?:string ): void;
@@ -28810,7 +28753,7 @@ declare module Ext {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		static fireEventArgs( eventName?:string, args?:Object[] ): bool;
+		static fireEventArgs( eventName?:string, args?:any[] ): bool;
 		/** [Method] Programmatically steps forward one step in browser history equivalent to the user pressing the Forward button */
 		static forward(): void;
 		/** [Method] Retrieves the currently active history token  */
@@ -28825,26 +28768,26 @@ declare module Ext {
 		*/
 		static init( onReady?:any, scope?:any ): void;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		static mon( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		static mon( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static mun( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static mun( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		static mun( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -28863,10 +28806,10 @@ declare module Ext {
 		*/
 		static removeListener( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		static removeManagedListener( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		static removeManagedListener( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -28948,7 +28891,7 @@ declare module Ext.util {
 		/** [Config Option] (Ext.Component/Ext.Element/HTMLElement/String) */
 		target?: any;
 		/** [Method] Add a new binding to this KeyMap  
-		* @param binding any A single KeyMap config or an array of configs. The following config object properties are supported: 
+		* @param binding Object/Object[] A single KeyMap config or an array of configs. The following config object properties are supported: 
 		*/
 		addBinding?( binding?:any ): void;
 		/** [Method] Destroys the KeyMap instance and removes all handlers  
@@ -28962,7 +28905,7 @@ declare module Ext.util {
 		/** [Method] Returns true if this KeyMap is enabled */
 		isEnabled?(): bool;
 		/** [Method] Shorthand for adding a single key listener  
-		* @param key any Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
+		* @param key Number/Number[]/Object Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
 		*/
@@ -28976,7 +28919,7 @@ declare module Ext.util {
 		*/
 		setDisabled?( disabled?:bool ): void;
 		/** [Method] Shorthand for removing a single key listener  
-		* @param key any Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
+		* @param key Number/Number[]/Object Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
 		*/
@@ -28998,7 +28941,7 @@ declare module Ext {
 		/** [Config Option] (Ext.Component/Ext.Element/HTMLElement/String) */
 		target?: any;
 		/** [Method] Add a new binding to this KeyMap  
-		* @param binding any A single KeyMap config or an array of configs. The following config object properties are supported: 
+		* @param binding Object/Object[] A single KeyMap config or an array of configs. The following config object properties are supported: 
 		*/
 		addBinding?( binding?:any ): void;
 		/** [Method] Destroys the KeyMap instance and removes all handlers  
@@ -29012,7 +28955,7 @@ declare module Ext {
 		/** [Method] Returns true if this KeyMap is enabled */
 		isEnabled?(): bool;
 		/** [Method] Shorthand for adding a single key listener  
-		* @param key any Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
+		* @param key Number/Number[]/Object Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
 		*/
@@ -29026,7 +28969,7 @@ declare module Ext {
 		*/
 		setDisabled?( disabled?:bool ): void;
 		/** [Method] Shorthand for removing a single key listener  
-		* @param key any Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
+		* @param key Number/Number[]/Object Either the numeric key code, array of key codes or an object with the following options: {key: (number or array), shift: (true/false), ctrl: (true/false), alt: (true/false)} 
 		* @param fn Function The function to call 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
 		*/
@@ -29135,22 +29078,22 @@ declare module Ext.util {
 		/** [Property] (Object) */
 		target?: any;
 		/** [Method] Captures the specified properties from the target object in this memento  
-		* @param props any The property or array of properties to capture. 
-		* @param target any The object from which to capture properties. 
+		* @param props String/String[] The property or array of properties to capture. 
+		* @param target Object The object from which to capture properties. 
 		*/
 		capture?( props?:any, target?:any ): any;
 		capture?( props?:string, target?:any ): void;
 		capture?( props?:string[], target?:any ): void;
 		/** [Method] Removes the specified properties from this memento  
-		* @param props any The property or array of properties to remove. 
+		* @param props String/String[] The property or array of properties to remove. 
 		*/
 		remove?( props?:any ): any;
 		remove?( props?:string ): void;
 		remove?( props?:string[] ): void;
 		/** [Method] Restores the specified properties from this memento to the target object  
-		* @param props any The property or array of properties to restore. 
-		* @param clear any True to remove the restored properties from this memento or false to keep them (default is true). 
-		* @param target any The object to which to restore properties. 
+		* @param props String/String[] The property or array of properties to restore. 
+		* @param clear Boolean True to remove the restored properties from this memento or false to keep them (default is true). 
+		* @param target Object The object to which to restore properties. 
 		*/
 		restore?( props?:any, clear?:any, target?:any ): any;
 		restore?( props?:string, clear?:bool, target?:any ): void;
@@ -29182,8 +29125,8 @@ declare module Ext.util {
 		*/
 		reorder?( mapping?:any ): void;
 		/** [Method] Sorts the data in the Store by one or more of its properties  
-		* @param sorters any Either a string name of one of the fields in this Store's configured Model, or an array of sorter configurations. 
-		* @param direction any The overall direction to sort the data by. 
+		* @param sorters String/Ext.util.Sorter[] Either a string name of one of the fields in this Store's configured Model, or an array of sorter configurations. 
+		* @param direction String The overall direction to sort the data by. 
 		*/
 		sort?( sorters?:any, direction?:any ): any;
 		sort?( sorters?:string, direction?:string ): Ext.util.ISorter[];
@@ -29208,22 +29151,22 @@ declare module Ext.util {
 		/** [Property] (Boolean) */
 		isObservable?: bool;
 		/** [Method] Adds the specified events to the list of events which this Observable may fire  
-		* @param eventNames any Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true. For example: this.addEvents({  storeloaded: true,  storecleared: true });  Or any number of event names as separate parameters. For example: this.addEvents('storeloaded', 'storecleared'); 
 		*/
 		addEvents?( eventNames?:any ): void;
 		/** [Method] Appends an event handler to this object  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
 		*/
 		addListener?( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Adds listeners to any Observable object or Ext Element which are automatically removed when this Component is destr  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		addManagedListener?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		addManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
@@ -29233,7 +29176,7 @@ declare module Ext.util {
 		/** [Method] Removes all managed listeners for this object  */
 		clearManagedListeners?(): void;
 		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
-		* @param eventNames any The event name to bubble, or an Array of event names. 
+		* @param eventNames String/String[] The event name to bubble, or an Array of event names. 
 		*/
 		enableBubble?( eventNames?:any ): any;
 		enableBubble?( eventNames?:string ): void;
@@ -29247,32 +29190,32 @@ declare module Ext.util {
 		* @param eventName String The name of the event to fire. 
 		* @param args Object[] An array of parameters which are passed to handlers. 
 		*/
-		fireEventArgs?( eventName?:string, args?:Object[] ): bool;
+		fireEventArgs?( eventName?:string, args?:any[] ): bool;
 		/** [Method] Checks to see if this object has any listeners for a specified event or whether the event bubbles  
 		* @param eventName String The name of the event to check for 
 		*/
 		hasListener?( eventName?:string ): bool;
 		/** [Method] Shorthand for addManagedListener  
-		* @param item any The item to which to add a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
-		* @param options any If the ename parameter was an event name, this is the addListener options. 
+		* @param item Ext.util.Observable/Ext.Element The item to which to add a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param options Object If the ename parameter was an event name, this is the addListener options. 
 		*/
 		mon?( item?:any, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		mon?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any, options?:any ): any;
 		/** [Method] Shorthand for removeManagedListener  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		mun?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		mun?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
 		mun?( item?:Ext.IElement, ename?:any, fn?:any, scope?:any ): void;
 		/** [Method] Shorthand for addListener  
-		* @param eventName any The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param eventName String/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function The method the event invokes, or if scope is specified, the name* of the method within the specified scope. Will be called with arguments given to Ext.util.Observable.fireEvent plus the options parameter described below. 
 		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
 		* @param options Object An object containing handler configuration.  Note: Unlike in ExtJS 3.x, the options object will also be passed as the last argument to every event handler.  This object may contain any of the following properties: 
@@ -29291,10 +29234,10 @@ declare module Ext.util {
 		*/
 		removeListener?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Removes listeners that were added by the mon method  
-		* @param item any The item from which to remove a listener/listeners. 
-		* @param ename any The event name, or an object containing event name properties. 
-		* @param fn any If the ename parameter was an event name, this is the handler function. 
-		* @param scope any If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
+		* @param item Ext.util.Observable/Ext.Element The item from which to remove a listener/listeners. 
+		* @param ename Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the ename parameter was an event name, this is the handler function. 
+		* @param scope Object If the ename parameter was an event name, this is the scope (this reference) in which the handler function is executed. 
 		*/
 		removeManagedListener?( item?:any, ename?:any, fn?:any, scope?:any ): any;
 		removeManagedListener?( item?:Ext.util.IObservable, ename?:any, fn?:any, scope?:any ): void;
@@ -29320,7 +29263,7 @@ declare module Ext.util {
 		*/
 		un?( eventName?:string, fn?:any, scope?:any ): void;
 		/** [Method] Starts capture on the specified Observable  
-		* @param o Ext.util.IObservable The Observable to capture events from. 
+		* @param o Ext.util.Observable The Observable to capture events from. 
 		* @param fn Function The function to call when an event is fired. 
 		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the Observable firing the event. 
 		*/
@@ -29331,7 +29274,7 @@ declare module Ext.util {
 		*/
 		observe?( c?:any, listeners?:any ): void;
 		/** [Method] Removes all added captures from the Observable  
-		* @param o Ext.util.IObservable The Observable to release 
+		* @param o Ext.util.Observable The Observable to release 
 		*/
 		releaseCapture?( o?:Ext.util.IObservable ): void;
 	}
@@ -29343,11 +29286,11 @@ declare module Ext.util {
 declare module Ext.util {
 	export interface IPoint extends Ext.util.IRegion {
 		/** [Method] Compare this point and another point 
-		* @param p any The point to compare with, either an instance of Ext.util.Point or an object with left and top properties 
+		* @param p Ext.util.Point/Object The point to compare with, either an instance of Ext.util.Point or an object with left and top properties 
 		*/
 		equals?( p?:any ): bool;
 		/** [Method] Determins whether this Point contained by the passed Region Component or element  
-		* @param region any The rectangle to check that this Point is within. 
+		* @param region Ext.util.Region/Ext.Component/Ext.dom.Element/HTMLElement The rectangle to check that this Point is within. 
 		*/
 		isContainedBy?( region?:any ): any;
 		isContainedBy?( region?:Ext.util.IRegion ): bool;
@@ -29355,23 +29298,23 @@ declare module Ext.util {
 		isContainedBy?( region?:Ext.dom.IElement ): bool;
 		isContainedBy?( region?:HTMLElement ): bool;
 		/** [Method] Whether the given point is not away from this point within the given threshold amount  
-		* @param p any The point to check with, either an instance of Ext.util.Point or an object with left and top properties 
-		* @param threshold any Can be either an object with x and y properties or a number 
+		* @param p Ext.util.Point/Object The point to check with, either an instance of Ext.util.Point or an object with left and top properties 
+		* @param threshold Object/Number Can be either an object with x and y properties or a number 
 		*/
 		isWithin?( p?:any, threshold?:any ): bool;
 		/** [Method] Compare this point with another point when the x and y values of both points are rounded  
-		* @param p any The point to compare with, either an instance of Ext.util.Point or an object with x and y properties 
+		* @param p Ext.util.Point/Object The point to compare with, either an instance of Ext.util.Point or an object with x and y properties 
 		*/
 		roundedEquals?( p?:any ): bool;
 		/** [Method] Returns a human eye friendly string that represents this point useful for debugging */
 		toString?(): string;
 		/** [Method] Alias for translateBy 
-		* @param x any Object containing the x and y properties. Or the x value is using the two argument form. 
+		* @param x Ext.util.Offset/Object Object containing the x and y properties. Or the x value is using the two argument form. 
 		* @param y Number The y value unless using an Offset object. 
 		*/
 		translate?( x?:any, y?:number ): Ext.util.IRegion;
 		/** [Method] Returns a new instance of Ext util Point base on the pageX  pageY values of the given event 
-		* @param e any The event 
+		* @param e Ext.EventObject/Event The event 
 		*/
 		fromEvent?( e?:any ): Ext.util.IPoint;
 	}
@@ -29379,22 +29322,22 @@ declare module Ext.util {
 declare module Ext.util {
 	export interface IPositionable extends Ext.IBase {
 		/** [Method] Aligns the element with another element relative to the specified anchor points  
-		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
-		* @param position any The position to align to 
-		* @param offsets any Offset the positioning by [x, y] 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param element Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or id of the element to align to. 
+		* @param position String The position to align to 
+		* @param offsets Number[] Offset the positioning by [x, y] 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		alignTo?( element?:any, position?:any, offsets?:any, animate?:any ): any;
 		alignTo?( element?:Ext.util.IPositionable, position?:string, offsets?:number[], animate?:any ): Ext.util.IPositionable;
 		alignTo?( element?:HTMLElement, position?:string, offsets?:number[], animate?:any ): Ext.util.IPositionable;
 		alignTo?( element?:string, position?:string, offsets?:number[], animate?:any ): Ext.util.IPositionable;
 		/** [Method] Anchors an element to another element and realigns it when the window is resized  
-		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
-		* @param position any The position to align to 
-		* @param offsets any Offset the positioning by [x, y] 
-		* @param animate any true for the default animation or a standard Element animation config object 
-		* @param monitorScroll any True to monitor body scroll and reposition. If this parameter is a number, it is used as the buffer delay in milliseconds. 
-		* @param callback any The function to call after the animation finishes 
+		* @param element Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or id of the element to align to. 
+		* @param position String The position to align to 
+		* @param offsets Number[] Offset the positioning by [x, y] 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
+		* @param monitorScroll Boolean/Number True to monitor body scroll and reposition. If this parameter is a number, it is used as the buffer delay in milliseconds. 
+		* @param callback Function The function to call after the animation finishes 
 		*/
 		anchorTo?( element?:any, position?:any, offsets?:any, animate?:any, monitorScroll?:any, callback?:any ): any;
 		anchorTo?( element?:Ext.util.IPositionable, position?:string, offsets?:number[], animate?:any, monitorScroll?:bool, callback?:any ): Ext.util.IPositionable;
@@ -29404,10 +29347,10 @@ declare module Ext.util {
 		anchorTo?( element?:HTMLElement, position?:string, offsets?:number[], animate?:any, monitorScroll?:number, callback?:any ): Ext.util.IPositionable;
 		anchorTo?( element?:string, position?:string, offsets?:number[], animate?:any, monitorScroll?:number, callback?:any ): Ext.util.IPositionable;
 		/** [Method] Calculates the new x y position to move this Positionable into a constrain region  
-		* @param constrainTo any The Element or Region into which this Component is to be constrained. Defaults to the element into which this Positionable was rendered, or this Component's {@link Ext.Component.constrainTo. 
-		* @param proposedPosition any A proposed [X, Y] position to test for validity and to coerce into constraints instead of using this Positionable's current position. 
-		* @param local any The proposedPosition is local (relative to floatParent if a floating Component) 
-		* @param proposedSize any A proposed [width, height] size to use when calculating constraints instead of using this Positionable's current size. 
+		* @param constrainTo String/HTMLElement/Ext.Element/Ext.util.Region The Element or Region into which this Component is to be constrained. Defaults to the element into which this Positionable was rendered, or this Component's {@link Ext.Component.constrainTo. 
+		* @param proposedPosition Number[] A proposed [X, Y] position to test for validity and to coerce into constraints instead of using this Positionable's current position. 
+		* @param local Boolean The proposedPosition is local (relative to floatParent if a floating Component) 
+		* @param proposedSize Number[] A proposed [width, height] size to use when calculating constraints instead of using this Positionable's current size. 
 		*/
 		calculateConstrainedPosition?( constrainTo?:any, proposedPosition?:any, local?:any, proposedSize?:any ): any;
 		calculateConstrainedPosition?( constrainTo?:string, proposedPosition?:number[], local?:bool, proposedSize?:number[] ): number[];
@@ -29415,9 +29358,9 @@ declare module Ext.util {
 		calculateConstrainedPosition?( constrainTo?:Ext.IElement, proposedPosition?:number[], local?:bool, proposedSize?:number[] ): number[];
 		calculateConstrainedPosition?( constrainTo?:Ext.util.IRegion, proposedPosition?:number[], local?:bool, proposedSize?:number[] ): number[];
 		/** [Method] Gets the x y coordinates to align this element with another element  
-		* @param element any The Positionable, HTMLElement, or id of the element to align to. 
-		* @param position any The position to align to 
-		* @param offsets any Offset the positioning by [x, y] 
+		* @param element Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or id of the element to align to. 
+		* @param position String The position to align to 
+		* @param offsets Number[] Offset the positioning by [x, y] 
 		*/
 		getAlignToXY?( element?:any, position?:any, offsets?:any ): any;
 		getAlignToXY?( element?:Ext.util.IPositionable, position?:string, offsets?:number[] ): number[];
@@ -29435,9 +29378,9 @@ declare module Ext.util {
 		*/
 		getBox?( contentBox?:bool, local?:bool ): any;
 		/** [Method] Returns the X Y vector by which this Positionable s element must be translated to make a best attempt to constrain  
-		* @param constrainTo any The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
-		* @param proposedPosition any A proposed [X, Y] position to test for validity and to produce a vector for instead of using the element's current position 
-		* @param proposedSize any A proposed [width, height] size to constrain instead of using the element's current size 
+		* @param constrainTo Ext.util.Positionable/HTMLElement/String/Ext.util.Region The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
+		* @param proposedPosition Number[] A proposed [X, Y] position to test for validity and to produce a vector for instead of using the element's current position 
+		* @param proposedSize Number[] A proposed [width, height] size to constrain instead of using the element's current size 
 		*/
 		getConstrainVector?( constrainTo?:any, proposedPosition?:any, proposedSize?:any ): any;
 		getConstrainVector?( constrainTo?:Ext.util.IPositionable, proposedPosition?:number[], proposedSize?:number[] ): number[];
@@ -29445,7 +29388,7 @@ declare module Ext.util {
 		getConstrainVector?( constrainTo?:string, proposedPosition?:number[], proposedSize?:number[] ): number[];
 		getConstrainVector?( constrainTo?:Ext.util.IRegion, proposedPosition?:number[], proposedSize?:number[] ): number[];
 		/** [Method] Returns the X Y vector by which this Positionable s element must be translated to make a best attempt to constrain  
-		* @param constrainTo Ext.util.IPositionable The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
+		* @param constrainTo Ext.util.Positionable/HTMLElement/String/Ext.util.Region The Positionable, HTMLElement, element id, or Region into which the element is to be constrained. 
 		* @param proposedPosition Number[] A proposed [X, Y] position to test for validity and to produce a vector for instead of using the element's current position 
 		* @param proposedSize Number[] A proposed [width, height] size to constrain instead of using the element's current size 
 		*/
@@ -29460,7 +29403,7 @@ declare module Ext.util {
 		/** [Method] Returns the y coordinate of this element reletive to its offsetParent  */
 		getLocalY?(): number;
 		/** [Method] Returns the offsets of this element from the passed element  
-		* @param offsetsTo any The Positionable, HTMLElement, or element id to get get the offsets from. 
+		* @param offsetsTo Ext.util.Positionable/HTMLElement/String The Positionable, HTMLElement, or element id to get get the offsets from. 
 		*/
 		getOffsetsTo?( offsetsTo?:any ): any;
 		getOffsetsTo?( offsetsTo?:Ext.util.IPositionable ): number[];
@@ -29479,14 +29422,14 @@ declare module Ext.util {
 		/** [Method] Move the element relative to its current position  
 		* @param direction String Possible values are:  "l" (or "left") "r" (or "right") "t" (or "top", or "up") "b" (or "bottom", or "down")  
 		* @param distance Number How far to move the element in pixels 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		move?( direction?:string, distance?:number, animate?:any ): void;
 		/** [Method] Remove any anchor to this element  */
 		removeAnchor?(): Ext.util.IPositionable;
 		/** [Method] Sets the element s box  
 		* @param box Object The box to fill {x, y, width, height} 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setBox?( box?:any, animate?:any ): Ext.util.IPositionable;
 		/** [Method] Sets the local x coordinate of this element using CSS style  
@@ -29494,8 +29437,8 @@ declare module Ext.util {
 		*/
 		setLocalX?( x?:number ): Ext.util.IPositionable;
 		/** [Method] Sets the local x and y coordinates of this element using CSS style  
-		* @param x any The x coordinate or an array containing [x, y]. A value of null sets the left style to 'auto' 
-		* @param y any The y coordinate, required if x is not an array. A value of null sets the top style to 'auto' 
+		* @param x Number/Array The x coordinate or an array containing [x, y]. A value of null sets the left style to 'auto' 
+		* @param y Number The y coordinate, required if x is not an array. A value of null sets the top style to 'auto' 
 		*/
 		setLocalXY?( x?:any, y?:any ): any;
 		setLocalXY?( x?:number, y?:number ): Ext.util.IPositionable;
@@ -29505,28 +29448,28 @@ declare module Ext.util {
 		*/
 		setLocalY?( y?:number ): Ext.util.IPositionable;
 		/** [Method] Sets the element s position and size to the specified region  
-		* @param region Ext.util.IRegion The region to fill 
-		* @param animate any true for the default animation or a standard Element animation config object 
+		* @param region Ext.util.Region The region to fill 
+		* @param animate Boolean/Object true for the default animation or a standard Element animation config object 
 		*/
 		setRegion?( region?:Ext.util.IRegion, animate?:any ): Ext.util.IPositionable;
 		/** [Method] Sets the X position of the DOM element based on page coordinates  
 		* @param The Number X position 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setX?( The?:number, animate?:any ): Ext.util.IPositionable;
 		/** [Method] Sets the position of the DOM element in page coordinates  
 		* @param pos Number[] Contains X &amp; Y [x, y] values for new position (coordinates are page-based) 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setXY?( pos?:number[], animate?:any ): Ext.util.IPositionable;
 		/** [Method] Sets the Y position of the DOM element based on page coordinates  
 		* @param The Number Y position 
-		* @param animate any True for the default animation, or a standard Element animation config object 
+		* @param animate Boolean/Object True for the default animation, or a standard Element animation config object 
 		*/
 		setY?( The?:number, animate?:any ): Ext.util.IPositionable;
 		/** [Method] Translates the passed page coordinates into left top css values for the element 
-		* @param x any The page x or an array containing [x, y] 
-		* @param y any The page y, required if x is not an array 
+		* @param x Number/Array The page x or an array containing [x, y] 
+		* @param y Number The page y, required if x is not an array 
 		*/
 		translatePoints?( x?:any, y?:any ): any;
 		translatePoints?( x?:number, y?:number ): any;
@@ -29558,7 +29501,7 @@ declare module Ext.util {
 		*/
 		removeCls?( cls?:string ): Ext.util.IProtoElement;
 		/** [Method] Adds styles to the element  
-		* @param prop any The style property to be set, or an object of multiple styles. 
+		* @param prop String/Object The style property to be set, or an object of multiple styles. 
 		* @param value String The value to apply to the given property. 
 		*/
 		setStyle?( prop?:any, value?:string ): Ext.util.IProtoElement;
@@ -29590,26 +29533,26 @@ declare module Ext.util {
 		*/
 		adjust?( top?:number, right?:number, bottom?:number, left?:number ): Ext.util.IRegion;
 		/** [Method] Modifies the current region to be constrained to the targetRegion  
-		* @param targetRegion Ext.util.IRegion 
+		* @param targetRegion Ext.util.Region 
 		*/
 		constrainTo?( targetRegion?:Ext.util.IRegion ): Ext.util.IRegion;
 		/** [Method] Checks if this region completely contains the region that is passed in  
-		* @param region Ext.util.IRegion 
+		* @param region Ext.util.Region 
 		*/
 		contains?( region?:Ext.util.IRegion ): bool;
 		/** [Method] Create a copy of this Region  */
 		copy?(): Ext.util.IRegion;
 		/** [Method] Copy the values of another Region to this Region 
-		* @param p Ext.util.IRegion The region to copy from. 
+		* @param p Ext.util.Region The region to copy from. 
 		*/
 		copyFrom?( p?:Ext.util.IRegion ): Ext.util.IRegion;
 		/** [Method] Check whether this region is equivalent to the given region 
-		* @param region Ext.util.IRegion The region to compare with 
+		* @param region Ext.util.Region The region to compare with 
 		*/
 		equals?( region?:Ext.util.IRegion ): bool;
 		/** [Method] Get the offset amount of a point outside the region 
 		* @param axis String 
-		* @param p Ext.util.IPoint the point 
+		* @param p Ext.util.Point the point 
 		*/
 		getOutOfBoundOffset?( axis?:string, p?:Ext.util.IPoint ): Ext.util.IOffset;
 		/** [Method] Get the offset amount on the x axis 
@@ -29621,16 +29564,16 @@ declare module Ext.util {
 		*/
 		getOutOfBoundOffsetY?( p?:number ): number;
 		/** [Method] Checks if this region intersects the region passed in  
-		* @param region Ext.util.IRegion 
+		* @param region Ext.util.Region 
 		*/
 		intersect?( region?:Ext.util.IRegion ): Ext.util.IRegion;
 		/** [Method] Checks if this region intersects the region passed in  
-		* @param region Ext.util.IRegion 
+		* @param region Ext.util.Region 
 		*/
 		intersect?( region?:Ext.util.IRegion ): bool;
 		/** [Method] Check whether the point  offset is out of bound 
-		* @param axis any 
-		* @param p any the point / offset 
+		* @param axis String 
+		* @param p Ext.util.Point/Number the point / offset 
 		*/
 		isOutOfBound?( axis?:any, p?:any ): any;
 		isOutOfBound?( axis?:string, p?:Ext.util.IPoint ): bool;
@@ -29646,12 +29589,12 @@ declare module Ext.util {
 		/** [Method] Round all the properties of this region */
 		round?(): Ext.util.IRegion;
 		/** [Method] Translate this region by the given offset amount 
-		* @param x any Object containing the x and y properties. Or the x value is using the two argument form. 
+		* @param x Ext.util.Offset/Object Object containing the x and y properties. Or the x value is using the two argument form. 
 		* @param y Number The y value unless using an Offset object. 
 		*/
 		translateBy?( x?:any, y?:number ): Ext.util.IRegion;
 		/** [Method] Returns the smallest region that contains the current AND targetRegion  
-		* @param region Ext.util.IRegion 
+		* @param region Ext.util.Region 
 		*/
 		union?( region?:Ext.util.IRegion ): Ext.util.IRegion;
 		/** [Method] Creates a Region from a box Object which contains four numeric properties top right bottom and left  
@@ -29659,7 +29602,7 @@ declare module Ext.util {
 		*/
 		from?( o?:any ): Ext.util.IRegion;
 		/** [Method] Retrieves an Ext util Region for a particular element  
-		* @param el any An element ID, htmlElement or Ext.Element representing an element in the document. 
+		* @param el String/HTMLElement/Ext.Element An element ID, htmlElement or Ext.Element representing an element in the document. 
 		*/
 		getRegion?( el?:any ): any;
 		getRegion?( el?:string ): Ext.util.IRegion;
@@ -29678,7 +29621,7 @@ declare module Ext.util {
 		*/
 		ensureAttachedToBody?( runLayout?:bool ): void;
 		/** [Method] This function takes the position argument passed to onRender and returns a DOM element that you can use in the insert  
-		* @param position any Index, element id or element you want to put this component before. 
+		* @param position String/Number/Ext.dom.Element/HTMLElement Index, element id or element you want to put this component before. 
 		*/
 		getInsertPosition?( position?:any ): any;
 		getInsertPosition?( position?:string ): HTMLElement;
@@ -29688,13 +29631,13 @@ declare module Ext.util {
 		/** [Method] Initialized the renderData to be used when rendering the renderTpl  */
 		initRenderData?(): any;
 		/** [Method] Template method called when this Component s DOM structure is created  
-		* @param parentNode Ext.core.IElement The parent Element in which this Component's encapsulating element is contained. 
+		* @param parentNode Ext.core.Element The parent Element in which this Component's encapsulating element is contained. 
 		* @param containerIdx Number The index within the parent Container's child collection of this Component. 
 		*/
 		onRender?( parentNode?:Ext.core.IElement, containerIdx?:number ): void;
 		/** [Method] Renders the Component into the passed HTML element  
-		* @param container any The element this Component should be rendered into. If it is being created from existing markup, this should be omitted. 
-		* @param position any The element ID or DOM node index within the container before which this component will be inserted (defaults to appending to the end of the container) 
+		* @param container Ext.Element/HTMLElement/String The element this Component should be rendered into. If it is being created from existing markup, this should be omitted. 
+		* @param position String/Number The element ID or DOM node index within the container before which this component will be inserted (defaults to appending to the end of the container) 
 		*/
 		render?( container?:any, position?:any ): any;
 		render?( container?:Ext.IElement, position?:string ): void;
@@ -29722,14 +29665,14 @@ declare module Ext.util {
 		/** [Method] Performs initialization of this mixin  */
 		initSortable?(): void;
 		/** [Method] Sorts the data in the Store by one or more of its properties  
-		* @param sorters any Either a string name of one of the fields in this Store's configured Model, or an array of sorter configurations. 
-		* @param direction any The overall direction to sort the data by. 
+		* @param sorters String/Ext.util.Sorter[] Either a string name of one of the fields in this Store's configured Model, or an array of sorter configurations. 
+		* @param direction String The overall direction to sort the data by. 
 		*/
 		sort?( sorters?:any, direction?:any ): any;
 		sort?( sorters?:string, direction?:string ): Ext.util.ISorter[];
 		sort?( sorters?:Ext.util.ISorter[], direction?:string ): Ext.util.ISorter[];
 		/** [Method] Creates a single comparator function which encapsulates the passed Sorter array  
-		* @param sorters Ext.util.ISorter[] The sorter set for which to create a comparator function 
+		* @param sorters Ext.util.Sorter[] The sorter set for which to create a comparator function 
 		*/
 		createComparator?( sorters?:Ext.util.ISorter[] ): any;
 	}
@@ -29815,7 +29758,7 @@ declare module Ext.util.taskrunner {
 declare module Ext.util {
 	export interface ITextMetrics extends Ext.IBase {
 		/** [Method] Binds this TextMetrics instance to a new element 
-		* @param el any The element or its ID. 
+		* @param el String/HTMLElement/Ext.Element The element or its ID. 
 		*/
 		bind?( el?:any ): any;
 		bind?( el?:string ): void;
@@ -29840,9 +29783,9 @@ declare module Ext.util {
 		*/
 		setFixedWidth?( width?:number ): void;
 		/** [Method] Measures the size of the specified text 
-		* @param el any The element, dom node or id from which to copy existing CSS styles that can affect the size of the rendered text 
-		* @param text any The text to measure 
-		* @param fixedWidth any If the text will be multiline, you have to set a fixed width in order to accurately measure the text height 
+		* @param el String/HTMLElement The element, dom node or id from which to copy existing CSS styles that can affect the size of the rendered text 
+		* @param text String The text to measure 
+		* @param fixedWidth Number If the text will be multiline, you have to set a fixed width in order to accurately measure the text height 
 		*/
 		measure?( el?:any, text?:any, fixedWidth?:any ): any;
 		measure?( el?:string, text?:string, fixedWidth?:number ): any;
@@ -29852,7 +29795,7 @@ declare module Ext.util {
 declare module Ext {
 	export interface IVersion {
 		/** [Method] Returns whether this version equals to the supplied argument 
-		* @param target any The version to compare with 
+		* @param target String/Number The version to compare with 
 		*/
 		equals?( target?:any ): any;
 		equals?( target?:string ): bool;
@@ -29870,55 +29813,55 @@ declare module Ext {
 		/** [Method] Returns shortVersion version without dots and release */
 		getShortVersion?(): string;
 		/** [Method] Convenient alias to isGreaterThan 
-		* @param target any 
+		* @param target String/Number 
 		*/
 		gt?( target?:any ): any;
 		gt?( target?:string ): bool;
 		gt?( target?:number ): bool;
 		/** [Method] Convenient alias to isGreaterThanOrEqual 
-		* @param target any 
+		* @param target String/Number 
 		*/
 		gtEq?( target?:any ): any;
 		gtEq?( target?:string ): bool;
 		gtEq?( target?:number ): bool;
 		/** [Method] Returns whether this version if greater than the supplied argument 
-		* @param target any The version to compare with 
+		* @param target String/Number The version to compare with 
 		*/
 		isGreaterThan?( target?:any ): any;
 		isGreaterThan?( target?:string ): bool;
 		isGreaterThan?( target?:number ): bool;
 		/** [Method] Returns whether this version if greater than or equal to the supplied argument 
-		* @param target any The version to compare with 
+		* @param target String/Number The version to compare with 
 		*/
 		isGreaterThanOrEqual?( target?:any ): any;
 		isGreaterThanOrEqual?( target?:string ): bool;
 		isGreaterThanOrEqual?( target?:number ): bool;
 		/** [Method] Returns whether this version if smaller than the supplied argument 
-		* @param target any The version to compare with 
+		* @param target String/Number The version to compare with 
 		*/
 		isLessThan?( target?:any ): any;
 		isLessThan?( target?:string ): bool;
 		isLessThan?( target?:number ): bool;
 		/** [Method] Returns whether this version if less than or equal to the supplied argument 
-		* @param target any The version to compare with 
+		* @param target String/Number The version to compare with 
 		*/
 		isLessThanOrEqual?( target?:any ): any;
 		isLessThanOrEqual?( target?:string ): bool;
 		isLessThanOrEqual?( target?:number ): bool;
 		/** [Method] Convenient alias to isLessThan 
-		* @param target any 
+		* @param target String/Number 
 		*/
 		lt?( target?:any ): any;
 		lt?( target?:string ): bool;
 		lt?( target?:number ): bool;
 		/** [Method] Convenient alias to isLessThanOrEqual 
-		* @param target any 
+		* @param target String/Number 
 		*/
 		ltEq?( target?:any ): any;
 		ltEq?( target?:string ): bool;
 		ltEq?( target?:number ): bool;
 		/** [Method] Returns whether this version matches the supplied argument  
-		* @param target any The version to compare with 
+		* @param target String/Number The version to compare with 
 		*/
 		match?( target?:any ): any;
 		match?( target?:string ): bool;
@@ -29983,23 +29926,23 @@ declare module Ext.view {
 		/** [Method] Allows addition of behavior after rendering is complete  */
 		afterRender?(): void;
 		/** [Method] Changes the data store bound to this view and refreshes it  
-		* @param store Ext.data.IStore The store to bind to this view 
+		* @param store Ext.data.Store The store to bind to this view 
 		*/
 		bindStore?( store?:Ext.data.IStore ): void;
 		/** [Method] Binds listeners for this component to the store  
-		* @param store Ext.data.IAbstractStore The store to bind to 
+		* @param store Ext.data.AbstractStore The store to bind to 
 		*/
 		bindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 		/** [Method] Deselects all selected records  */
 		clearSelections?(): void;
 		/** [Method] Function which can be overridden which returns the data object passed to this DataView s template to render the whole  
-		* @param records Ext.data.IModel[] An Array of Ext.data.Models to be rendered into the DataView. 
+		* @param records Ext.data.Model[] An Array of Ext.data.Models to be rendered into the DataView. 
 		* @param startIndex Number the index number of the Record being prepared for rendering. 
 		*/
-		collectData?( records?:Ext.data.IModel[], startIndex?:number ): Object[];
+		collectData?( records?:Ext.data.IModel[], startIndex?:number ): any[];
 		/** [Method] Deselects a record instance by record instance or index  
-		* @param records any An array of records or an index 
-		* @param suppressEvent any Set to false to not fire a deselect event 
+		* @param records Ext.data.Model[]/Number An array of records or an index 
+		* @param suppressEvent Boolean Set to false to not fire a deselect event 
 		*/
 		deselect?( records?:any, suppressEvent?:any ): any;
 		deselect?( records?:Ext.data.IModel[], suppressEvent?:bool ): void;
@@ -30009,11 +29952,11 @@ declare module Ext.view {
 		*/
 		findItemByChild?( node?:HTMLElement ): HTMLElement;
 		/** [Method] Returns the template node by the Ext EventObject or null if it is not found  
-		* @param e Ext.IEventObject 
+		* @param e Ext.EventObject 
 		*/
 		findTargetByEvent?( e?:Ext.IEventObject ): void;
 		/** [Method] Gets a template node  
-		* @param nodeInfo any An HTMLElement template node, index of a template node, the id of a template node or the record associated with the node. 
+		* @param nodeInfo HTMLElement/String/Number/Ext.data.Model An HTMLElement template node, index of a template node, the id of a template node or the record associated with the node. 
 		*/
 		getNode?( nodeInfo?:any ): any;
 		getNode?( nodeInfo?:HTMLElement ): HTMLElement;
@@ -30026,7 +29969,7 @@ declare module Ext.view {
 		*/
 		getNodes?( start?:number, end?:number ): HTMLElement[];
 		/** [Method] Gets a record from a node 
-		* @param node any The node to evaluate 
+		* @param node Ext.Element/HTMLElement The node to evaluate 
 		*/
 		getRecord?( node?:any ): any;
 		getRecord?( node?:Ext.IElement ): Ext.data.IModel;
@@ -30048,7 +29991,7 @@ declare module Ext.view {
 		/** [Method] Gets the listeners to bind to a new store  */
 		getStoreListeners?(): any;
 		/** [Method] Finds the index of the passed node  
-		* @param nodeInfo any An HTMLElement template node, index of a template node, the id of a template node or a record associated with a node. 
+		* @param nodeInfo HTMLElement/String/Number/Ext.data.Model An HTMLElement template node, index of a template node, the id of a template node or a record associated with a node. 
 		*/
 		indexOf?( nodeInfo?:any ): any;
 		indexOf?( nodeInfo?:HTMLElement ): number;
@@ -30058,7 +30001,7 @@ declare module Ext.view {
 		/** [Method] private */
 		initComponent?(): void;
 		/** [Method] Returns true if the passed node is selected else false  
-		* @param node any The node, node index or record to check 
+		* @param node HTMLElement/Number/Ext.data.Model The node, node index or record to check 
 		*/
 		isSelected?( node?:any ): any;
 		isSelected?( node?:HTMLElement ): bool;
@@ -30079,9 +30022,9 @@ declare module Ext.view {
 		*/
 		onUnbindStore?( store?:any ): void;
 		/** [Method] Function which can be overridden to provide custom formatting for each Record that is used by this DataView s templat  
-		* @param data any The raw data object that was used to create the Record. 
+		* @param data Object/Object[] The raw data object that was used to create the Record. 
 		* @param recordIndex Number the index number of the Record being prepared for rendering. 
-		* @param record Ext.data.IModel The Record being prepared for rendering. 
+		* @param record Ext.data.Model The Record being prepared for rendering. 
 		*/
 		prepareData?( data?:any, recordIndex?:number, record?:Ext.data.IModel ): any;
 		/** [Method] Refreshes the view by reloading the data from the store and re rendering the template  */
@@ -30091,15 +30034,15 @@ declare module Ext.view {
 		*/
 		refreshNode?( index?:number ): void;
 		/** [Method] Selects a record instance by record instance or index  
-		* @param records any An array of records or an index 
-		* @param keepExisting any 
-		* @param suppressEvent any Set to false to not fire a select event 
+		* @param records Ext.data.Model[]/Number An array of records or an index 
+		* @param keepExisting Boolean 
+		* @param suppressEvent Boolean Set to false to not fire a select event 
 		*/
 		select?( records?:any, keepExisting?:any, suppressEvent?:any ): any;
 		select?( records?:Ext.data.IModel[], keepExisting?:bool, suppressEvent?:bool ): void;
 		select?( records?:number, keepExisting?:bool, suppressEvent?:bool ): void;
 		/** [Method] Unbinds listeners from this component to the store  
-		* @param store Ext.data.IAbstractStore The store to unbind from 
+		* @param store Ext.data.AbstractStore The store to unbind from 
 		*/
 		unbindStoreListeners?( store?:Ext.data.IAbstractStore ): void;
 	}
@@ -30134,13 +30077,13 @@ declare module Ext.view {
 		*/
 		bindStore?( store?:any, initial?:any ): void;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
 		child?( selector?:Ext.IComponent ): any;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -30198,13 +30141,13 @@ declare module Ext {
 		*/
 		bindStore?( store?:any, initial?:any ): void;
 		/** [Method] Retrieves the first direct child of this container which matches the passed selector or component  
-		* @param selector any An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector. If no selector is specified, the first child will be returned. 
 		*/
 		child?( selector?:any ): any;
 		child?( selector?:string ): any;
 		child?( selector?:Ext.IComponent ): any;
 		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
-		* @param selector any An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
+		* @param selector String/Ext.Component An Ext.ComponentQuery selector or Ext.Component. If no selector is specified, the first child will be returned. 
 		*/
 		down?( selector?:any ): any;
 		down?( selector?:string ): any;
@@ -30326,7 +30269,7 @@ declare module Ext.view {
 		*/
 		fill?( els?:HTMLElement[] ): Ext.view.INodeCache;
 		/** [Method] Find the index of the passed element within the composite collection  
-		* @param el any The id of an element, or an Ext.dom.Element, or an HtmlElement to find within the composite collection. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, or an Ext.dom.Element, or an HtmlElement to find within the composite collection. 
 		*/
 		indexOf?( el?:any ): any;
 		indexOf?( el?:string ): number;
@@ -30334,8 +30277,8 @@ declare module Ext.view {
 		indexOf?( el?:Ext.IElement ): number;
 		indexOf?( el?:number ): number;
 		/** [Method] Removes the specified element s 
-		* @param el any The id of an element, the Element itself, the index of the element in this composite or an array of any of those. 
-		* @param removeDom any True to also remove the element from the document 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, the Element itself, the index of the element in this composite or an array of any of those. 
+		* @param removeDom Boolean True to also remove the element from the document 
 		*/
 		removeElement?( el?:any, removeDom?:any ): any;
 		removeElement?( el?:string, removeDom?:bool ): void;
@@ -30343,9 +30286,9 @@ declare module Ext.view {
 		removeElement?( el?:Ext.IElement, removeDom?:bool ): void;
 		removeElement?( el?:number, removeDom?:bool ): void;
 		/** [Method] Replaces the specified element with the passed element  
-		* @param el any The id of an element, the Element itself, the index of the element in this composite to replace. 
-		* @param replacement any The id of an element or the Element itself. 
-		* @param domReplace any True to remove and replace the element in the document too. 
+		* @param el String/HTMLElement/Ext.Element/Number The id of an element, the Element itself, the index of the element in this composite to replace. 
+		* @param replacement String/Ext.Element The id of an element or the Element itself. 
+		* @param domReplace Boolean True to remove and replace the element in the document too. 
 		*/
 		replaceElement?( el?:any, replacement?:any, domReplace?:any ): any;
 		replaceElement?( el?:string, replacement?:string, domReplace?:bool ): Ext.view.INodeCache;
@@ -30357,7 +30300,7 @@ declare module Ext.view {
 		replaceElement?( el?:Ext.IElement, replacement?:Ext.IElement, domReplace?:bool ): Ext.view.INodeCache;
 		replaceElement?( el?:number, replacement?:Ext.IElement, domReplace?:bool ): Ext.view.INodeCache;
 		/** [Method] Appends prepends records depending on direction flag 
-		* @param newRecords Ext.data.IModel[] Items to append/prepend 
+		* @param newRecords Ext.data.Model[] Items to append/prepend 
 		* @param direction Number -1' = scroll up,0` = scroll down. 
 		* @param removeCount Number The number of records to remove from the end. if scrolling down, rows are removed from the top and the new rows are added at the bottom. 
 		*/
@@ -30389,8 +30332,8 @@ declare module Ext.view {
 		/** [Config Option] (Boolean) */
 		trackOver?: bool;
 		/** [Method] Adds a CSS Class to a specific row  
-		* @param rowInfo any An HTMLElement, index or instance of a model representing this row 
-		* @param cls any 
+		* @param rowInfo HTMLElement/String/Number/Ext.data.Model An HTMLElement, index or instance of a model representing this row 
+		* @param cls String 
 		*/
 		addRowCls?( rowInfo?:any, cls?:any ): any;
 		addRowCls?( rowInfo?:HTMLElement, cls?:string ): void;
@@ -30398,7 +30341,7 @@ declare module Ext.view {
 		addRowCls?( rowInfo?:number, cls?:string ): void;
 		addRowCls?( rowInfo?:Ext.data.IModel, cls?:string ): void;
 		/** [Method] Sizes the passed header to fit the max content width  
-		* @param header any The header (or index of header) to auto size. 
+		* @param header Ext.grid.column.Column/Number The header (or index of header) to auto size. 
 		*/
 		autoSizeColumn?( header?:any ): any;
 		autoSizeColumn?( header?:Ext.grid.column.IColumn ): void;
@@ -30409,7 +30352,7 @@ declare module Ext.view {
 		* @param records Object 
 		* @param startIndex Object 
 		*/
-		collectData?( records?:any, startIndex?:any ): Object[];
+		collectData?( records?:any, startIndex?:any ): any[];
 		/** [Method] Expands a particular header to fit the max content width  
 		* @param header Object 
 		*/
@@ -30420,8 +30363,8 @@ declare module Ext.view {
 		*/
 		focus?( selectText?:any, delay?:any ): Ext.IComponent;
 		/** [Method] Focuses a particular row and brings it into view  
-		* @param row any An HTMLElement template node, index of a template node, the id of a template node or the 
-		* @param delay any Delay the focus this number of milliseconds (true for 10 milliseconds). record associated with the node. 
+		* @param row HTMLElement/String/Number/Ext.data.Model An HTMLElement template node, index of a template node, the id of a template node or the 
+		* @param delay Boolean/Number Delay the focus this number of milliseconds (true for 10 milliseconds). record associated with the node. 
 		*/
 		focusRow?( row?:any, delay?:any ): any;
 		focusRow?( row?:HTMLElement, delay?:bool ): void;
@@ -30435,7 +30378,7 @@ declare module Ext.view {
 		/** [Method] Returns a CSS selector which selects the outermost element s in this view  */
 		getBodySelector?(): void;
 		/** [Method] Returns a CSS selector which selects a particular column if the desired header is passed or a general cell selector 
-		* @param header Ext.grid.column.IColumn The column for which to return the selector. If omitted, the general cell selector which matches ant cell will be returned. 
+		* @param header Ext.grid.column.Column The column for which to return the selector. If omitted, the general cell selector which matches ant cell will be returned. 
 		*/
 		getCellSelector?( header?:Ext.grid.column.IColumn ): void;
 		/** [Method] Returns a CSS selector which selects the element s which define the width of a column  
@@ -30451,8 +30394,8 @@ declare module Ext.view {
 		/** [Method] Returns a CSS selector which selects items of the view rendered by the rowTpl */
 		getItemSelector?(): void;
 		/** [Method] Returns the node given the passed Record or index or node  
-		* @param nodeInfo any The node or record 
-		* @param dataRow any true to return the data row (not the top level row if wrapped), false to return the top level row. 
+		* @param nodeInfo HTMLElement/String/Number/Ext.data.Model The node or record 
+		* @param dataRow Boolean true to return the data row (not the top level row if wrapped), false to return the top level row. 
 		*/
 		getNode?( nodeInfo?:any, dataRow?:any ): any;
 		getNode?( nodeInfo?:HTMLElement, dataRow?:bool ): HTMLElement;
@@ -30471,10 +30414,10 @@ declare module Ext.view {
 		*/
 		getRecord?( node?:any ): Ext.data.IModel;
 		/** [Method] Override this function to apply custom CSS classes to rows during rendering  
-		* @param record Ext.data.IModel The record corresponding to the current row. 
+		* @param record Ext.data.Model The record corresponding to the current row. 
 		* @param index Number The row index. 
 		* @param rowParams Object DEPRECATED. For row body use the getAdditionalData method of the rowbody feature. 
-		* @param store Ext.data.IStore The store this grid is bound to 
+		* @param store Ext.data.Store The store this grid is bound to 
 		*/
 		getRowClass?( record?:Ext.data.IModel, index?:number, rowParams?:any, store?:Ext.data.IStore ): string;
 		/** [Method] Finds the index of the passed node  
@@ -30488,8 +30431,8 @@ declare module Ext.view {
 		/** [Method] Refreshes the grid view  */
 		refresh?(): void;
 		/** [Method] Removes a CSS Class from a specific row  
-		* @param rowInfo any An HTMLElement, index or instance of a model representing this row 
-		* @param cls any 
+		* @param rowInfo HTMLElement/String/Number/Ext.data.Model An HTMLElement, index or instance of a model representing this row 
+		* @param cls String 
 		*/
 		removeRowCls?( rowInfo?:any, cls?:any ): any;
 		removeRowCls?( rowInfo?:HTMLElement, cls?:string ): void;
@@ -30497,7 +30440,7 @@ declare module Ext.view {
 		removeRowCls?( rowInfo?:number, cls?:string ): void;
 		removeRowCls?( rowInfo?:Ext.data.IModel, cls?:string ): void;
 		/** [Method] Navigates from the passed record by the passed increment which may be ve or ve Skips hidden records  
-		* @param startRec Ext.data.IModel The Record to start from. 
+		* @param startRec Ext.data.Model The Record to start from. 
 		* @param distance Number The distance to move from the record. May be +ve or -ve. 
 		*/
 		walkRecs?( startRec?:Ext.data.IModel, distance?:number ): void;
@@ -30529,7 +30472,7 @@ declare module Ext.view {
 		/** [Method] Un highlights the currently highlighted item if any  */
 		clearHighlight?(): void;
 		/** [Method] Focuses a node in the view  
-		* @param rec Ext.data.IModel The record associated to the node that is to be focused. 
+		* @param rec Ext.data.Model The record associated to the node that is to be focused. 
 		*/
 		focusNode?( rec?:Ext.data.IModel ): void;
 		/** [Method] Highlights a given item in the View  
@@ -30549,7 +30492,7 @@ declare module Ext {
 		/** [Method] Un highlights the currently highlighted item if any  */
 		clearHighlight?(): void;
 		/** [Method] Focuses a node in the view  
-		* @param rec Ext.data.IModel The record associated to the node that is to be focused. 
+		* @param rec Ext.data.Model The record associated to the node that is to be focused. 
 		*/
 		focusNode?( rec?:Ext.data.IModel ): void;
 		/** [Method] Highlights a given item in the View  
@@ -30643,12 +30586,12 @@ declare module Ext.window {
 		*/
 		progress?( title?:string, msg?:string, progressText?:string ): Ext.window.IMessageBox;
 		/** [Method] Displays a message box with OK and Cancel buttons prompting the user to enter some text comparable to JavaScript s p  
-		* @param title any The title bar text 
-		* @param msg any The message box body text 
-		* @param fn any The callback function invoked after the message box is closed. See show method for details. 
-		* @param scope any The scope (this reference) in which the callback is executed. 
-		* @param multiline any True to create a multiline textbox using the defaultTextHeight property, or the height in pixels to create the textbox/ 
-		* @param value any Default value of the text input element 
+		* @param title String The title bar text 
+		* @param msg String The message box body text 
+		* @param fn Function The callback function invoked after the message box is closed. See show method for details. 
+		* @param scope Object The scope (this reference) in which the callback is executed. 
+		* @param multiline Boolean/Number True to create a multiline textbox using the defaultTextHeight property, or the height in pixels to create the textbox/ 
+		* @param value String Default value of the text input element 
 		*/
 		prompt?( title?:any, msg?:any, fn?:any, scope?:any, multiline?:any, value?:any ): any;
 		prompt?( title?:string, msg?:string, fn?:any, scope?:any, multiline?:bool, value?:string ): Ext.window.IMessageBox;
@@ -31005,7 +30948,7 @@ declare module Ext {
 declare module Ext {
 	export interface IZIndexManager extends Ext.IBase {
 		/** [Method] Brings the specified Component to the front of any other active Components in this ZIndexManager  
-		* @param comp any The id of the Component or a Ext.Component instance 
+		* @param comp String/Object The id of the Component or a Ext.Component instance 
 		*/
 		bringToFront?( comp?:any ): bool;
 		/** [Method] Executes the specified function once for every Component in this ZIndexManager passing each Component as the only pa  
@@ -31024,7 +30967,7 @@ declare module Ext {
 		*/
 		eachTopDown?( fn?:any, scope?:any ): void;
 		/** [Method] Gets a registered Component by id  
-		* @param id any The id of the Component or a Ext.Component instance 
+		* @param id String/Object The id of the Component or a Ext.Component instance 
 		*/
 		get?( id?:any ): Ext.IComponent;
 		/** [Method] Gets the currently active Component in this ZIndexManager  */
@@ -31037,15 +30980,15 @@ declare module Ext {
 		/** [Method] Hides all Components managed by this ZIndexManager  */
 		hideAll?(): void;
 		/** [Method] Registers a floating Ext Component with this ZIndexManager  
-		* @param comp Ext.IComponent The Component to register. 
+		* @param comp Ext.Component The Component to register. 
 		*/
 		register?( comp?:Ext.IComponent ): void;
 		/** [Method] Sends the specified Component to the back of other active Components in this ZIndexManager  
-		* @param comp any The id of the Component or a Ext.Component instance 
+		* @param comp String/Object The id of the Component or a Ext.Component instance 
 		*/
 		sendToBack?( comp?:any ): Ext.IComponent;
 		/** [Method] Unregisters a Ext Component from this ZIndexManager  
-		* @param comp Ext.IComponent The Component to unregister. 
+		* @param comp Ext.Component The Component to unregister. 
 		*/
 		unregister?( comp?:Ext.IComponent ): void;
 	}
@@ -31053,7 +30996,7 @@ declare module Ext {
 declare module Ext {
 	export interface IWindowGroup extends Ext.IBase {
 		/** [Method] Brings the specified Component to the front of any other active Components in this ZIndexManager  
-		* @param comp any The id of the Component or a Ext.Component instance 
+		* @param comp String/Object The id of the Component or a Ext.Component instance 
 		*/
 		bringToFront?( comp?:any ): bool;
 		/** [Method] Executes the specified function once for every Component in this ZIndexManager passing each Component as the only pa  
@@ -31072,7 +31015,7 @@ declare module Ext {
 		*/
 		eachTopDown?( fn?:any, scope?:any ): void;
 		/** [Method] Gets a registered Component by id  
-		* @param id any The id of the Component or a Ext.Component instance 
+		* @param id String/Object The id of the Component or a Ext.Component instance 
 		*/
 		get?( id?:any ): Ext.IComponent;
 		/** [Method] Gets the currently active Component in this ZIndexManager  */
@@ -31085,15 +31028,15 @@ declare module Ext {
 		/** [Method] Hides all Components managed by this ZIndexManager  */
 		hideAll?(): void;
 		/** [Method] Registers a floating Ext Component with this ZIndexManager  
-		* @param comp Ext.IComponent The Component to register. 
+		* @param comp Ext.Component The Component to register. 
 		*/
 		register?( comp?:Ext.IComponent ): void;
 		/** [Method] Sends the specified Component to the back of other active Components in this ZIndexManager  
-		* @param comp any The id of the Component or a Ext.Component instance 
+		* @param comp String/Object The id of the Component or a Ext.Component instance 
 		*/
 		sendToBack?( comp?:any ): Ext.IComponent;
 		/** [Method] Unregisters a Ext Component from this ZIndexManager  
-		* @param comp Ext.IComponent The Component to unregister. 
+		* @param comp Ext.Component The Component to unregister. 
 		*/
 		unregister?( comp?:Ext.IComponent ): void;
 	}

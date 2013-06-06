@@ -62,6 +62,7 @@ class MethodProcessor
 
 									def paramNames = []
 									def paramTypes = []
+									def rawParamTypes = [:]
 									def requiresOverrides = false
 
 									thisMethod.params.each { thisParam ->
@@ -77,20 +78,22 @@ class MethodProcessor
 										else {
 											paramTypes.add( thisParam.type )
 										}
+
+										rawParamTypes[ thisParam.name ] = thisParam.type
 									}
 
 									def methodWritten = false
 									def usedPermutations = [:]
 
 									if( !config.useFullTyping || !paramNames.size() ) {
-										writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, thisType, isInterface, shouldUseExport, isSingleton )
+										writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, rawParamTypes, thisType, isInterface, shouldUseExport, isSingleton )
 									}
 									else if( config.useFullTyping && requiresOverrides && tokenizedTypes.first() == thisType ) {
 										def overrideTypes = []
 										paramNames.each { thisParamName ->
 											overrideTypes.add( "any" )
 										}
-										writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, "any", isInterface, shouldUseExport, isSingleton )
+										writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, rawParamTypes, "any", isInterface, shouldUseExport, isSingleton )
 										usedPermutations[ overrideTypes.join( ',' ) ] = true
 										methodWritten = true
 									}
@@ -102,7 +105,7 @@ class MethodProcessor
 											if( !requiresOverrides || ( requiresOverrides && thisPermutation.count{ typeManager.normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
 												def thisPermutationAsString = thisPermutation.join( ',' )
 												if( !usedPermutations[ thisPermutationAsString ] ) {
-													writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, thisType, isInterface, shouldUseExport, isSingleton, methodWritten )
+													writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, rawParamTypes, thisType, isInterface, shouldUseExport, isSingleton, methodWritten )
 													usedPermutations[ thisPermutationAsString ] = true
 													methodWritten = true
 												}
@@ -118,7 +121,7 @@ class MethodProcessor
 		}
 	}
 
-	def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, returnType, isInterface, useExport, isStatic=false, omitComment=false ) {
+	def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, isInterface, useExport, isStatic=false, omitComment=false ) {
 		def paramsContainSpread = paramTypes.count{ ( it.startsWith( "..." ) || it.endsWith( "..." ) ) } > 0
 		def exportString = useExport ? "export function " : ""
 		def staticString = ( isStatic && !useExport && methodName != "constructor" ) ? "static " : ""
@@ -136,7 +139,7 @@ class MethodProcessor
 				def thisParamType = typeManager.convertToInterface( paramTypes[ i ] )
 				def thisParamName = thisParam.name
 
-				paramsDoc += "\t\t* @param ${ thisParamName } ${ thisParamType } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
+				paramsDoc += "\t\t* @param ${ thisParamName } ${ rawParamTypes[ thisParamName ] } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
 				if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
 
 				def spread = ""

@@ -8,7 +8,7 @@ defaultTasks 'build'
 class JsonDocLocations {
 	static String TEST = "./jsondocs_test"
 	static String EXTJS_4_2_0 = "./jsondocs_ExtJS_4.2.0"
-	static String TOUCH_4_2_1 = "./jsondocs_ExtJS_4.2.1"
+	static String EXTJS_4_2_1 = "./jsondocs_ExtJS_4.2.1"
 	static String TOUCH_2_2_1 = "./jsondocs_Touch_2.2.1"
 }
 
@@ -16,9 +16,9 @@ class JsonDocLocations {
 // Project-level extra properties
 project.ext {
 	config = new Config(
-		libraryName: "Touch",
-		libraryVersion: "2.2.1",
-		jsonDocPath: JsonDocLocations.TOUCH_2_2_1,
+		libraryName: "ExtJS",
+		libraryVersion: "4.2.1",
+		jsonDocPath: JsonDocLocations.EXTJS_4_2_1,
 		singleDefinition: true,
 		useFullTyping: true,
 		interfaceOnly: true,
@@ -32,11 +32,10 @@ project.ext {
 
 // TASKS
 
-/*
+
 task wrapper( type: Wrapper ) {
 	gradleVersion = '1.4'
 }
-*/
 
 task initialize() << {
 	Config config = project.config

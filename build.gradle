@@ -5,13 +5,20 @@ import groovy.json.*
 defaultTasks 'build'
 
 
+class JsonDocLocations {
+	static String TEST = "./jsondocs_test"
+	static String EXTJS_4_2_0 = "./jsondocs_ExtJS_4.2.0"
+	static String TOUCH_4_2_1 = "./jsondocs_ExtJS_4.2.1"
+	static String TOUCH_2_2_1 = "./jsondocs_Touch_2.2.1"
+}
+
+
 // Project-level extra properties
 project.ext {
-
 	config = new Config(
 		libraryName: "Touch",
 		libraryVersion: "2.2.1",
-		jsonDocPath: "./jsondocs_Touch_2.2.1",
+		jsonDocPath: JsonDocLocations.TOUCH_2_2_1,
 		singleDefinition: true,
 		useFullTyping: true,
 		interfaceOnly: true,
@@ -20,13 +27,6 @@ project.ext {
 		outputPath: "./target",
 		omitOverrideComments: true
 	)
-
-	definitionWriter = new DefinitionWriter( config: config )
-	definitionWriter.init()
-	typeManager = new TypeManager( config: config )
-	specialCases = new SpecialCasesExtJS420()
-	aliasManager = new AliasManager( config: config, typeManager: typeManager )
-	aliasManager.init()
 }
 
 
@@ -48,362 +48,18 @@ task initialize() << {
 }
 
 task readFiles( dependsOn: initialize ) << {
-	TypeManager typeManager = project.typeManager
 	Config config = project.config
+	LibraryProcessor processor = new LibraryProcessor( config: config )
+	processor.init()
+
 	def jsonDocPath = new File( config.jsonDocPath )
 	def jsonDocCollection = files { jsonDocPath.listFiles() }
 	def jsonDocFiles = jsonDocCollection.getFiles()
-
-	jsonDocFiles.each { file ->
-		def slurper = new JsonSlurper()
-    	def fileJson = slurper.parseText( file.text )
-
-		// Only handle classes, not JS primitives like String
-		if( fileJson.name.contains( "Ext" ) ) {
-			def aliases = typeManager.getAliases( fileJson )
-			println( "Processing ${ fileJson.name }" )
-			processModule( fileJson.name, fileJson )
-
-			// Also generate definitions for alternate class names, since crazy ExtJS swaps them out all over the docs...
-			fileJson.alternateClassNames.each { thisAlias ->
-
-				// Some aliases are absurdly the same as the original, but with different package case, so skip these
-				if( thisAlias.toLowerCase() != fileJson.name.toLowerCase() )
-					processModule( thisAlias, fileJson )
-			}
-		}
-	}
-}
-
-def processModule( className, fileJson ) {
-	TypeManager typeManager = project.typeManager
-	config.currentModule = typeManager.getModule( className )
-	DefinitionWriter definitionWriter = project.definitionWriter
-
-	definitionWriter.writeToDefinition( "declare module ${ typeManager.getModule( className ) } {" )
-	def processedNames
-
-	// Ext class has special handling to turn it into Ext module-level properties and methods.
-	if( className == "Ext" ) {
-		processedNames = writeProperties( fileJson, false, true )
-		writeMethods( fileJson, processedNames, false, true )
-	}
-	else {
-		processClass( className, fileJson )
-	}
-
-	definitionWriter.writeToDefinition( "}" )
-}
-
-def processClass( className, fileJson ) {
-	DefinitionWriter definitionWriter = project.definitionWriter
-	TypeManager typeManager = project.typeManager
-	AliasManager aliasManager = project.aliasManager
-	Config config = project.config
-
-	def processedNames
-	aliasManager.addAliases( className, fileJson )
-
-	definitionWriter.writeToDefinition( "\texport interface I${ typeManager.getClassName( className ) } ${ typeManager.getExtends( fileJson, true ) } {" )
-	if( !fileJson.singleton ) {
-		processedNames = writeProperties( fileJson, true, false )
-		writeMethods( fileJson, processedNames, true, false )
-	}
-	definitionWriter.writeToDefinition( "\t}" )
-
-	if( !config.interfaceOnly || fileJson.singleton ) {
-		if( !config.interfaceOnly ) {
-			definitionWriter.writeToDefinition( "\texport class ${ typeManager.getClassName( className ) } ${ typeManager.getExtends( fileJson, false ) } implements ${typeManager.getImplementedInterfaces( fileJson ) } {" )
-			processedNames = writeProperties( fileJson, false, false )
-		}
-		else {
-			definitionWriter.writeToDefinition( "\texport class ${ typeManager.getClassName( className ) } {" )
-			processedNames = [:]
-		}
-
-		writeMethods( fileJson, processedNames, false, false )
-		definitionWriter.writeToDefinition( "\t}" )
-	}
+	processor.iterateFiles( jsonDocFiles )
 }
 
 task build( dependsOn: readFiles ) << {
 	println " "
 	println "Build complete"
 	println " "
-}
-
-
-// HELPER METHODS
-
-def writeProperties( fileJson, isInterface, useExport ) {
-	DefinitionWriter definitionWriter = project.definitionWriter
-	ISpecialCases specialCases = project.specialCases
-	TypeManager typeManager = project.typeManager
-	Config config = project.config
-
-	def classConfig
-	def classProperties
-
-	if( fileJson.members instanceof Map ) {
-		classConfig = fileJson.members.cfg
-		classProperties = fileJson.members.property
-	}
-	else {
-		classConfig = fileJson.members.findAll{ m -> m.tagname == "cfg" }
-		classProperties = fileJson.members.findAll{ m -> m.tagname == "property" }
-	}
-
-	def optionalFlag = isInterface ? "?" : ""
-	def thisType
-	def processedConfigNames = [:]
-	def exportString = useExport ? "export var " : ""
-
-	classConfig.each { value ->
-		if( value?.owner == fileJson.name ) {
-			if( !config.includePrivate && value.private != true ) {
-
-				// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
-				if( !specialCases.shouldRemoveProperty( fileJson.name, value.name ) ) {
-					thisType = value.type
-
-					// Property type conversions
-					if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
-
-					definitionWriter.writeToDefinition( "\t\t/** [Config Option] (${value.type}) ${ definitionWriter.formatCommentText( value.shortDoc ) } */" )
-					definitionWriter.writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ typeManager.normalizeType( typeManager.convertToInterface( thisType ) ) };" )
-				}
-
-				processedConfigNames[ value.name ] = true
-			}
-		}
-	}
-
-	classProperties.each { value ->
-		if( value?.owner == fileJson.name ) {
-			if( !config.includePrivate && value.private != true ) {
-				if( !processedConfigNames[ value.name ] && !specialCases.shouldRemoveProperty( fileJson.name, value.name ) ) {
-					thisType = value.type
-					if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
-
-					definitionWriter.writeToDefinition( "\t\t/** [Property] (${value.type}) ${ definitionWriter.formatCommentText( value.shortDoc ) } */" )
-					definitionWriter.writeToDefinition( "\t\t${ exportString }${ value.name.replaceAll( '-', '' ) }${ optionalFlag }: ${ typeManager.normalizeType( typeManager.convertToInterface( thisType ) ) };" )
-					processedConfigNames[ value.name ] = true
-				}
-			}
-		}
-	}
-	return processedConfigNames
-}
-
-def writeMethods( fileJson, processedNames, isInterface, useExport ) {
-	DefinitionWriter definitionWriter = project.definitionWriter
-	ISpecialCases specialCases = project.specialCases
-	TypeManager typeManager = project.typeManager
-
-	def classMethods
-
-	if( fileJson.members instanceof Map ) {
-		classMethods = fileJson.members?.method
-	}
-	else {
-		classMethods = fileJson.members.findAll{ m -> m.tagname == "method" }
-	}
-
-	def optionalFlag = isInterface ? "?" : ""
-	def shouldUseExport = useExport
-	def isSingleton = fileJson.singleton && !isInterface
-
-	classMethods.each { thisMethod ->
-
-		if( !isInterface || ( isInterface && thisMethod.name != "constructor" ) ) {
-			def forceInclude = specialCases.shouldForceInclude( fileJson.name, thisMethod.name )
-
-			if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || forceInclude ) {
-				if( ( !config.includePrivate && thisMethod.private != true ) || forceInclude || thisMethod.meta?.protected || thisMethod.meta?.template ) {
-					if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
-
-						processedNames[ thisMethod.name ] = true
-
-						if( !thisMethod.shortDoc && thisMethod.short_doc )
-							thisMethod.shortDoc = thisMethod.short_doc
-
-						// Convert return types for special cases where original return type isn't valid
-						if( specialCases.getReturnTypeOverride( thisMethod.return?.type ) ) {
-							thisMethod.return.type = specialCases.getReturnTypeOverride( thisMethod.return.type )
-						}
-
-						// Convert return types for special cases where an overridden subclass method returns an invalid type
-						if( thisMethod.return && specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name ) ) {
-							thisMethod.return.type = specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name )
-						}
-
-						// Convert methods to property fields for special cases where an item has incompatible ExtJS API overrides in subclasses
-						if( specialCases.shouldConvertToProperty( fileJson.name, thisMethod.name ) ) {
-							definitionWriter.writeToDefinition( "\t\t/** [Method] ${ definitionWriter.formatCommentText( thisMethod.shortDoc ) } */" )
-							definitionWriter.writeToDefinition( "\t\t${ thisMethod.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
-						}
-						else {
-
-							def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedTypes( thisMethod.return?.type ) : [ "any" ]
-
-							tokenizedTypes.each { thisType ->
-
-								// Return type conversions
-								if( thisType == "undefined" ) thisType = "void"
-
-								def paramNames = []
-								def paramTypes = []
-								def requiresOverrides = false
-
-								thisMethod.params.each { thisParam ->
-									paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
-
-									if( config.useFullTyping ) {
-										def tokenizedParamTypes = typeManager.getTokenizedTypes( thisParam.type )
-										if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) {
-											requiresOverrides = true
-										}
-										paramTypes.add( tokenizedParamTypes )
-									}
-									else {
-										paramTypes.add( thisParam.type )
-									}
-								}
-
-								def methodWritten = false
-								def usedPermutations = [:]
-
-								if( !config.useFullTyping || !paramNames.size() ) {
-									writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, thisType, isInterface, shouldUseExport, isSingleton )
-								}
-								else if( config.useFullTyping && requiresOverrides && tokenizedTypes.first() == thisType ) {
-									def overrideTypes = []
-									paramNames.each { thisParamName ->
-										overrideTypes.add( "any" )
-									}
-									writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, "any", isInterface, shouldUseExport, isSingleton )
-									usedPermutations[ overrideTypes.join( ',' ) ] = true
-									methodWritten = true
-								}
-
-								if( config.useFullTyping ) {
-									def paramPermutations = GroovyCollections.combinations( paramTypes )
-
-									paramPermutations.each { thisPermutation ->
-										if( !requiresOverrides || ( requiresOverrides && thisPermutation.count{ typeManager.normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
-											def thisPermutationAsString = thisPermutation.join( ',' )
-											if( !usedPermutations[ thisPermutationAsString ] ) {
-												writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, thisType, isInterface, shouldUseExport, isSingleton, methodWritten )
-												usedPermutations[ thisPermutationAsString ] = true
-												methodWritten = true
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, returnType, isInterface, useExport, isStatic=false, omitComment=false ) {
-	DefinitionWriter definitionWriter = project.definitionWriter
-	TypeManager typeManager = project.typeManager
-	Config config = project.config
-
-	def paramsContainSpread = paramTypes.count{ ( it.startsWith( "..." ) || it.endsWith( "..." ) ) } > 0
-	def exportString = useExport ? "export function " : ""
-	def staticString = ( isStatic && !useExport && methodName != "constructor" ) ? "static " : ""
-	comment = "\t\t/** [Method] ${ comment?.replaceAll( "[\\W]", " " ) }"
-
-	def paramsDoc = ""
-
-	if( !config.interfaceOnly || ( config.interfaceOnly && ( isInterface || useExport || isStatic ) ) ) {
-		if( config.interfaceOnly )
-			returnType = typeManager.convertToInterface( returnType )
-
-		def methodOutput = "${ staticString }${ methodName }${ optionalFlag }("
-
-		paramNames.eachWithIndex { thisParam, i ->
-			def thisParamType = typeManager.convertToInterface( paramTypes[ i ] )
-			def thisParamName = thisParam.name
-
-			paramsDoc += "\t\t* @param ${ thisParamName } ${ thisParamType } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
-			if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
-
-			def spread = ""
-			if( paramNames.last() == thisParam && ( thisParamType.startsWith( "..." ) || thisParamType.endsWith( "..." ) ) ) {
-				spread = "..."
-			}
-
-			// Param name conversions
-			if( thisParamName == "class" ) thisParamName = "clazz"
-
-			def optionalParamFlag = ( thisParam.optional || spread.size() > 0 ) ? "?" : ""
-			if( spread.size() == 0 && config.forceAllParamsToOptional ) {
-				optionalParamFlag = "?"
-			}
-			if( paramsContainSpread ) {
-				optionalParamFlag = ""
-			}
-
-			methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.size() > 0 ? "any[]" : typeManager.normalizeType( thisParamType ) }"
-
-			if( thisParam == paramNames.last() ) {
-				methodOutput += " "
-			}
-			else {
-				methodOutput += ","
-				paramsDoc += "\n"
-			}
-		}
-
-		if( !config.omitOverrideComments || ( config.omitOverrideComments && !omitComment ) ) {
-			if( paramsDoc.length() > 0 ) {
-				definitionWriter.writeToDefinition( comment )
-				definitionWriter.writeToDefinition( paramsDoc )
-				definitionWriter.writeToDefinition( "\t\t*/" )
-			}
-			else {
-				definitionWriter.writeToDefinition( "${ comment }*/" )
-			}
-		}
-
-		if( methodName != "constructor" ) {
-			definitionWriter.writeToDefinition( "\t\t${exportString}${ methodOutput }): ${ typeManager.normalizeType( returnType ) };" )
-		}
-		else {
-			definitionWriter.writeToDefinition( "\t\t${ methodOutput });" )
-		}
-	}
-}
-
-
-// TODO: Remove when not needed for testing any longer...
-
-def iterateSections( fileJson ) {
-	println( "Sections:" )
-	fileJson.members.each { key, value ->
-		println( key )
-		//iterateSectionElements( value )
-	}
-	println( " " )
-}
-
-def iterateSection( section ) {
-	section.each { value ->
-		iterateSectionElements( value )
-	}
-	println( " " )
-}
-
-def iterateSectionElements( section ) {
-	println( section.name )
-	section.each { key, value ->
-		//println( key )
-	}
-	println( " " )
 }

@@ -128,70 +128,82 @@ class MethodProcessor
 	}
 
 	def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, isInterface, useExport, isStatic=false, omitComment=false ) {
-		def paramsContainSpread = paramTypes.count{ ( it.startsWith( "..." ) || it.endsWith( "..." ) ) } > 0
+		def paramsContainSpread = hasParametersWithSpread( paramTypes )
 		def exportString = useExport ? "export function " : ""
-		def staticString = ( isStatic && !useExport && methodName != "constructor" ) ? "static " : ""
-		comment = "\t\t/** [Method] ${ comment?.replaceAll( "[\\W]", " " ) }"
+		def staticString = isStaticMethod( isStatic, useExport, methodName ) ? "static " : ""
 
+		comment = "\t\t/** [Method] ${ comment?.replaceAll( "[\\W]", " " ) }"
 		def paramsDoc = ""
 
-		if( !config.interfaceOnly || ( config.interfaceOnly && ( isInterface || useExport || isStatic ) ) ) {
+		if( shouldWriteMethod( useExport, isStatic ) ) {
+
 			if( config.interfaceOnly )
 				returnType = typeManager.convertToInterface( returnType )
 
 			def methodOutput = "${ staticString }${ methodName }${ optionalFlag }("
+			def paramResult = appendMethodParamOutput( methodOutput, paramsDoc, paramNames, paramTypes, rawParamTypes, paramsContainSpread )
+			writeMethodComment( comment, paramResult.paramsDoc, omitComment )
+			writeMethodDefinition( paramResult.methodOutput, exportString, methodName, returnType )
+		}
+	}
 
-			paramNames.eachWithIndex { thisParam, i ->
-				def thisParamType = typeManager.convertToInterface( paramTypes[ i ] )
-				def thisParamName = thisParam.name
+	def appendMethodParamOutput( methodOutput, paramsDoc, paramNames, paramTypes, rawParamTypes, paramsContainSpread ) {
+		paramNames.eachWithIndex { thisParam, i ->
+			def thisParamType = typeManager.convertToInterface( paramTypes[ i ] )
+			def thisParamName = thisParam.name
 
-				paramsDoc += "\t\t* @param ${ thisParamName } ${ rawParamTypes[ thisParamName ] } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
-				if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
+			paramsDoc += "\t\t* @param ${ thisParamName } ${ rawParamTypes[ thisParamName ] } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
+			if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
 
-				def spread = ""
-				if( paramNames.last() == thisParam && ( thisParamType.startsWith( "..." ) || thisParamType.endsWith( "..." ) ) ) {
-					spread = "..."
-				}
-
-				// Param name conversions
-				if( thisParamName == "class" ) thisParamName = "clazz"
-
-				def optionalParamFlag = ( thisParam.optional || spread.size() > 0 ) ? "?" : ""
-				if( spread.size() == 0 && config.forceAllParamsToOptional ) {
-					optionalParamFlag = "?"
-				}
-				if( paramsContainSpread ) {
-					optionalParamFlag = ""
-				}
-
-				methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.size() > 0 ? "any[]" : typeManager.normalizeType( thisParamType ) }"
-
-				if( thisParam == paramNames.last() ) {
-					methodOutput += " "
-				}
-				else {
-					methodOutput += ","
-					paramsDoc += "\n"
-				}
+			def spread = ""
+			if( isParamWithSpread( paramNames, thisParam, thisParamType ) ) {
+				spread = "..."
 			}
 
-			if( !config.omitOverrideComments || ( config.omitOverrideComments && !omitComment ) ) {
-				if( paramsDoc.length() > 0 ) {
-					definitionWriter.writeToDefinition( comment )
-					definitionWriter.writeToDefinition( paramsDoc )
-					definitionWriter.writeToDefinition( "\t\t*/" )
-				}
-				else {
-					definitionWriter.writeToDefinition( "${ comment }*/" )
-				}
+			// class is a reserved word in TypeScript
+			if( thisParamName == "class" ) thisParamName = "clazz"
+
+			def optionalParamFlag = ( thisParam.optional || spread.size() > 0 ) ? "?" : ""
+			if( spread.size() == 0 && config.forceAllParamsToOptional ) {
+				optionalParamFlag = "?"
+			}
+			if( paramsContainSpread ) {
+				optionalParamFlag = ""
 			}
 
-			if( methodName != "constructor" ) {
-				definitionWriter.writeToDefinition( "\t\t${exportString}${ methodOutput }): ${ typeManager.normalizeType( returnType ) };" )
+			methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.size() > 0 ? "any[]" : typeManager.normalizeType( thisParamType ) }"
+
+			if( thisParam == paramNames.last() ) {
+				methodOutput += " "
 			}
 			else {
-				definitionWriter.writeToDefinition( "\t\t${ methodOutput });" )
+				methodOutput += ","
+				paramsDoc += "\n"
 			}
+		}
+
+		return [ methodOutput: methodOutput, paramsDoc: paramsDoc ]
+	}
+
+	def writeMethodComment( comment, paramsDoc, omitComment ) {
+		if( shouldIncludeComment( omitComment ) ) {
+			if( paramsDoc.length() > 0 ) {
+				definitionWriter.writeToDefinition( comment )
+				definitionWriter.writeToDefinition( paramsDoc )
+				definitionWriter.writeToDefinition( "\t\t*/" )
+			}
+			else {
+				definitionWriter.writeToDefinition( "${ comment }*/" )
+			}
+		}
+	}
+
+	def writeMethodDefinition( methodOutput, exportString, methodName, returnType ) {
+		if( methodName != "constructor" ) {
+			definitionWriter.writeToDefinition( "\t\t${exportString}${ methodOutput }): ${ typeManager.normalizeType( returnType ) };" )
+		}
+		else {
+			definitionWriter.writeToDefinition( "\t\t${ methodOutput });" )
 		}
 	}
 
@@ -240,4 +252,25 @@ class MethodProcessor
 	def shouldCreateOverrideMethod( requiresOverrides, tokenizedReturnTypes, returnType ) {
 		return config.useFullTyping && requiresOverrides && tokenizedReturnTypes.first() == returnType
 	}
+
+	def hasParametersWithSpread( paramTypes ) {
+		return paramTypes.count{ ( it.startsWith( "..." ) || it.endsWith( "..." ) ) } > 0
+	}
+
+	def isStaticMethod( isStatic, useExport, methodName ) {
+		return isStatic && !useExport && methodName != "constructor"
+	}
+
+	def shouldWriteMethod( useExport, isStatic ) {
+		return !config.interfaceOnly || ( config.interfaceOnly && ( isInterface || useExport || isStatic ) )
+	}
+
+	def shouldIncludeComment( omitComment ) {
+		return !config.omitOverrideComments || ( config.omitOverrideComments && !omitComment )
+	}
+
+	def isParamWithSpread( paramNames, thisParam, thisParamType ) {
+		paramNames.last() == thisParam && ( thisParamType.startsWith( "..." ) || thisParamType.endsWith( "..." ) )
+	}
+
 }

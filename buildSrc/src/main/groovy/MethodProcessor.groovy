@@ -67,14 +67,14 @@ class MethodProcessor
 			def methodWritten = false
 
 			if( hasOnlyOneSignature( paramNames ) ) {
-				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, isInterface, shouldUseExport, isSingleton )
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, shouldUseExport, isSingleton )
 			}
 			else if( shouldCreateOverrideMethod( requiresOverrides, tokenizedTypes, returnType ) ) {
 				def overrideTypes = []
 				paramNames.each { thisParamName ->
 					overrideTypes.add( "any" )
 				}
-				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, rawParamTypes, "any", isInterface, shouldUseExport, isSingleton )
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, rawParamTypes, "any", shouldUseExport, isSingleton )
 				usedPermutations[ overrideTypes.join( ',' ) ] = true
 				methodWritten = true
 			}
@@ -119,7 +119,7 @@ class MethodProcessor
 				def thisPermutationAsString = thisPermutation.join( ',' )
 
 				if( !usedPermutations[ thisPermutationAsString ] ) {
-					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, rawParamTypes, thisType, isInterface, shouldUseExport, isSingleton, methodWritten )
+					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, rawParamTypes, thisType, shouldUseExport, isSingleton, methodWritten )
 					usedPermutations[ thisPermutationAsString ] = true
 					methodWritten = true
 				}
@@ -127,7 +127,7 @@ class MethodProcessor
 		}
 	}
 
-	def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, isInterface, useExport, isStatic=false, omitComment=false ) {
+	def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, useExport, isStatic=false, omitComment=false ) {
 		def paramsContainSpread = hasParametersWithSpread( paramTypes )
 		def exportString = useExport ? "export function " : ""
 		def staticString = isStaticMethod( isStatic, useExport, methodName ) ? "static " : ""

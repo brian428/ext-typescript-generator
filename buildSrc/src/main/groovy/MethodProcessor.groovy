@@ -5,10 +5,22 @@ class MethodProcessor
 	DefinitionWriter definitionWriter
 	ISpecialCases specialCases
 
+	String optionalFlag
+	Boolean shouldUseExport
+	Boolean isSingleton
+	Boolean isInterface
+	Map processedNames
+
 	def init() {
 	}
 
-	def writeMethods( fileJson, processedNames, isInterface, useExport ) {
+	def writeMethods( fileJson, alreadyProcessedNames, isAnInterface, useExport ) {
+		processedNames = alreadyProcessedNames
+		shouldUseExport = useExport
+		isInterface = isAnInterface
+		isSingleton = fileJson.singleton && !isInterface
+		optionalFlag = isInterface ? "?" : ""
+
 		def classMethods
 
 		if( fileJson.members instanceof Map ) {
@@ -18,104 +30,98 @@ class MethodProcessor
 			classMethods = fileJson.members.findAll{ m -> m.tagname == "method" }
 		}
 
-		def optionalFlag = isInterface ? "?" : ""
-		def shouldUseExport = useExport
-		def isSingleton = fileJson.singleton && !isInterface
-
 		classMethods.each { thisMethod ->
 
-			if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || isSingleton ) {
-				def forceInclude = specialCases.shouldForceInclude( fileJson.name, thisMethod.name )
+			if( shouldIncludeMethod( fileJson, thisMethod ) || specialCases.shouldForceInclude( fileJson.name, thisMethod.name ) ) {
 
-				if( ( !isInterface && ( !isSingleton || ( isSingleton && thisMethod.name != "constructor" ) ) ) || ( isInterface && thisMethod.name != "constructor" ) || forceInclude ) {
-					if( ( !config.includePrivate && thisMethod.private != true ) || forceInclude || thisMethod.meta?.protected || thisMethod.meta?.template ) {
-						if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
+				processedNames[ thisMethod.name ] = true
+				normalizeMethodDoc( thisMethod )
+				normalizeReturnType( thisMethod, fileJson )
 
-							processedNames[ thisMethod.name ] = true
+				// Convert methods to property fields for special cases where an item has incompatible ExtJS API overrides in subclasses
+				if( specialCases.shouldConvertToProperty( fileJson.name, thisMethod.name ) ) {
+					writeMethodAsProperty( thisMethod )
+				}
+				else {
+					iterateMethodSignatures( thisMethod )
+				}
+			}
+		}
+	}
 
-							if( !thisMethod.shortDoc && thisMethod.short_doc )
-								thisMethod.shortDoc = thisMethod.short_doc
+	def iterateMethodSignatures( thisMethod ) {
+		def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedReturnTypes( thisMethod.return?.type ) : [ "any" ]
 
-							// Convert return types for special cases where original return type isn't valid
-							if( specialCases.getReturnTypeOverride( thisMethod.return?.type ) ) {
-								thisMethod.return.type = specialCases.getReturnTypeOverride( thisMethod.return.type )
-							}
+		tokenizedTypes.each { returnType ->
 
-							// Convert return types for special cases where an overridden subclass method returns an invalid type
-							if( thisMethod.return && specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name ) ) {
-								thisMethod.return.type = specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name )
-							}
+			// Return type conversions
+			if( returnType == "undefined" ) returnType = "void"
+			def methodParamResults = iterateMethodParameters( thisMethod )
 
-							// Convert methods to property fields for special cases where an item has incompatible ExtJS API overrides in subclasses
-							if( specialCases.shouldConvertToProperty( fileJson.name, thisMethod.name ) ) {
-								definitionWriter.writeToDefinition( "\t\t/** [Method] ${ definitionWriter.formatCommentText( thisMethod.shortDoc ) } */" )
-								definitionWriter.writeToDefinition( "\t\t${ thisMethod.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
-							}
-							else {
+			def paramNames = methodParamResults.paramNames
+			def paramTypes = methodParamResults.paramTypes
+			def rawParamTypes = methodParamResults.rawParamTypes
+			def requiresOverrides = methodParamResults.requiresOverrides
 
-								def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedReturnTypes( thisMethod.return?.type ) : [ "any" ]
+			def usedPermutations = [:]
+			def methodWritten = false
 
-								tokenizedTypes.each { thisType ->
+			if( hasOnlyOneSignature( paramNames ) ) {
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, isInterface, shouldUseExport, isSingleton )
+			}
+			else if( shouldCreateOverrideMethod( requiresOverrides, tokenizedTypes, returnType ) ) {
+				def overrideTypes = []
+				paramNames.each { thisParamName ->
+					overrideTypes.add( "any" )
+				}
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, rawParamTypes, "any", isInterface, shouldUseExport, isSingleton )
+				usedPermutations[ overrideTypes.join( ',' ) ] = true
+				methodWritten = true
+			}
 
-									// Return type conversions
-									if( thisType == "undefined" ) thisType = "void"
+			if( config.useFullTyping ) {
+				processSignaturePermutations( thisMethod, returnType, paramNames, paramTypes, rawParamTypes, requiresOverrides, usedPermutations, methodWritten )
+			}
+		}
+	}
 
-									def paramNames = []
-									def paramTypes = []
-									def rawParamTypes = [:]
-									def requiresOverrides = false
+	def iterateMethodParameters( thisMethod ) {
+		def paramNames = []
+		def paramTypes = []
+		def rawParamTypes = [:]
+		def requiresOverrides = false
 
-									thisMethod.params.each { thisParam ->
-										paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
+		thisMethod.params.each { thisParam ->
+			paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
 
-										if( config.useFullTyping ) {
-											def tokenizedParamTypes = typeManager.getTokenizedTypes( thisParam.type )
-											if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) {
-												requiresOverrides = true
-											}
-											paramTypes.add( tokenizedParamTypes )
-										}
-										else {
-											paramTypes.add( thisParam.type )
-										}
+			if( config.useFullTyping ) {
+				def tokenizedParamTypes = typeManager.getTokenizedTypes( thisParam.type )
+				if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) {
+					requiresOverrides = true
+				}
+				paramTypes.add( tokenizedParamTypes )
+			}
+			else {
+				paramTypes.add( thisParam.type )
+			}
 
-										rawParamTypes[ thisParam.name ] = thisParam.type
-									}
+			rawParamTypes[ thisParam.name ] = thisParam.type
+		}
 
-									def methodWritten = false
-									def usedPermutations = [:]
+		return [ paramNames: paramNames, paramTypes: paramTypes, rawParamTypes: rawParamTypes, requiresOverrides: requiresOverrides ]
+	}
 
-									if( !config.useFullTyping || !paramNames.size() ) {
-										writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, rawParamTypes, thisType, isInterface, shouldUseExport, isSingleton )
-									}
-									else if( config.useFullTyping && requiresOverrides && tokenizedTypes.first() == thisType ) {
-										def overrideTypes = []
-										paramNames.each { thisParamName ->
-											overrideTypes.add( "any" )
-										}
-										writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, rawParamTypes, "any", isInterface, shouldUseExport, isSingleton )
-										usedPermutations[ overrideTypes.join( ',' ) ] = true
-										methodWritten = true
-									}
+	def processSignaturePermutations( thisMethod, thisType, paramNames, paramTypes, rawParamTypes, requiresOverrides, usedPermutations, methodWritten ) {
+		def paramPermutations = GroovyCollections.combinations( paramTypes )
 
-									if( config.useFullTyping ) {
-										def paramPermutations = GroovyCollections.combinations( paramTypes )
+		paramPermutations.each { thisPermutation ->
+			if( !requiresOverrides || ( requiresOverrides && thisPermutation.count{ typeManager.normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
+				def thisPermutationAsString = thisPermutation.join( ',' )
 
-										paramPermutations.each { thisPermutation ->
-											if( !requiresOverrides || ( requiresOverrides && thisPermutation.count{ typeManager.normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
-												def thisPermutationAsString = thisPermutation.join( ',' )
-												if( !usedPermutations[ thisPermutationAsString ] ) {
-													writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, rawParamTypes, thisType, isInterface, shouldUseExport, isSingleton, methodWritten )
-													usedPermutations[ thisPermutationAsString ] = true
-													methodWritten = true
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
+				if( !usedPermutations[ thisPermutationAsString ] ) {
+					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, rawParamTypes, thisType, isInterface, shouldUseExport, isSingleton, methodWritten )
+					usedPermutations[ thisPermutationAsString ] = true
+					methodWritten = true
 				}
 			}
 		}
@@ -187,5 +193,51 @@ class MethodProcessor
 				definitionWriter.writeToDefinition( "\t\t${ methodOutput });" )
 			}
 		}
+	}
+
+	def shouldIncludeMethod( fileJson, thisMethod ) {
+		def result = false
+
+		if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || isSingleton ) {
+			if( ( !isInterface && ( !isSingleton || ( isSingleton && thisMethod.name != "constructor" ) ) ) || ( isInterface && thisMethod.name != "constructor" ) ) {
+				if( ( !config.includePrivate && thisMethod.private != true ) || thisMethod.meta?.protected || thisMethod.meta?.template ) {
+					if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
+						result = true
+					}
+				}
+			}
+		}
+
+		return result
+	}
+
+	def normalizeMethodDoc( thisMethod ) {
+		if( !thisMethod.shortDoc && thisMethod.short_doc )
+			thisMethod.shortDoc = thisMethod.short_doc
+	}
+
+	def normalizeReturnType( thisMethod, fileJson ) {
+		// Convert return types for special cases where original return type isn't valid
+		if( specialCases.getReturnTypeOverride( thisMethod.return?.type ) ) {
+			thisMethod.return.type = specialCases.getReturnTypeOverride( thisMethod.return.type )
+		}
+
+		// Convert return types for special cases where an overridden subclass method returns an invalid type
+		if( thisMethod.return && specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name ) ) {
+			thisMethod.return.type = specialCases.getReturnTypeOverride( fileJson.name, thisMethod.name )
+		}
+	}
+
+	def writeMethodAsProperty( thisMethod ) {
+		definitionWriter.writeToDefinition( "\t\t/** [Method] ${ definitionWriter.formatCommentText( thisMethod.shortDoc ) } */" )
+		definitionWriter.writeToDefinition( "\t\t${ thisMethod.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
+	}
+
+	def hasOnlyOneSignature( paramNames ) {
+		return !config.useFullTyping || !paramNames.size()
+	}
+
+	def shouldCreateOverrideMethod( requiresOverrides, tokenizedReturnTypes, returnType ) {
+		return config.useFullTyping && requiresOverrides && tokenizedReturnTypes.first() == returnType
 	}
 }

@@ -24,10 +24,10 @@ class MethodProcessor
 
 		classMethods.each { thisMethod ->
 
-			if( !isInterface || ( isInterface && thisMethod.name != "constructor" ) ) {
+			if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || isSingleton ) {
 				def forceInclude = specialCases.shouldForceInclude( fileJson.name, thisMethod.name )
 
-				if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || forceInclude ) {
+				if( ( !isInterface && ( !isSingleton || ( isSingleton && thisMethod.name != "constructor" ) ) ) || ( isInterface && thisMethod.name != "constructor" ) || forceInclude ) {
 					if( ( !config.includePrivate && thisMethod.private != true ) || forceInclude || thisMethod.meta?.protected || thisMethod.meta?.template ) {
 						if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
 

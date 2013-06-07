@@ -108,16 +108,404 @@ declare module Ext {
 	export interface IAjax extends Ext.data.IConnection {
 	}
 	export class Ajax {
+		/** [Method] Aborts any outstanding request  
+		* @param request Object Defaults to the last request. 
+		*/
+		static abort( request?:any ): void;
+		/** [Method] Aborts all outstanding requests  */
+		static abortAll(): void;
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of async  */
+		static getAsync(): bool;
+		/** [Method] Returns the value of autoAbort  */
+		static getAutoAbort(): bool;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
+		/** [Method] Returns the value of defaultHeaders  */
+		static getDefaultHeaders(): any;
+		/** [Method] Returns the value of defaultPostHeader  */
+		static getDefaultPostHeader(): string;
+		/** [Method] Returns the value of defaultXhrHeader  */
+		static getDefaultXhrHeader(): string;
+		/** [Method] Returns the value of disableCaching  */
+		static getDisableCaching(): bool;
+		/** [Method] Returns the value of disableCachingParam  */
+		static getDisableCachingParam(): string;
+		/** [Method] Returns the value of extraParams  */
+		static getExtraParams(): any;
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
+		/** [Method] Returns the value of method  */
+		static getMethod(): string;
+		/** [Method] Returns the value of password  */
+		static getPassword(): string;
+		/** [Method] Returns the value of timeout  */
+		static getTimeout(): number;
+		/** [Method] Returns the value of url  */
+		static getUrl(): string;
+		/** [Method] Returns the value of useDefaultHeader  */
+		static getUseDefaultHeader(): bool;
+		/** [Method] Returns the value of useDefaultXhrHeader  */
+		static getUseDefaultXhrHeader(): bool;
+		/** [Method] Returns the value of username  */
+		static getUsername(): string;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Determines whether this object has a request outstanding  
+		* @param request Object The request to check. 
+		*/
+		static isLoading( request?:any ): bool;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Checks if the response status was successful  
+		* @param status Number The status code. 
+		* @param xhr Object 
+		*/
+		static parseStatus( status?:number, xhr?:any ): any;
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Sends an HTTP request to a remote server  
+		* @param options Object An object which may contain the following properties: (The options object may also contain any other property which might be needed to perform post-processing in a callback because it is passed to callback functions.) 
+		*/
+		static request( options?:any ): any;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of async  
+		* @param async Boolean 
+		*/
+		static setAsync( async?:bool ): void;
+		/** [Method] Sets the value of autoAbort  
+		* @param autoAbort Boolean 
+		*/
+		static setAutoAbort( autoAbort?:bool ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
+		/** [Method] Sets the value of defaultHeaders  
+		* @param defaultHeaders Object 
+		*/
+		static setDefaultHeaders( defaultHeaders?:any ): void;
+		/** [Method] Sets the value of defaultPostHeader  
+		* @param defaultPostHeader String 
+		*/
+		static setDefaultPostHeader( defaultPostHeader?:string ): void;
+		/** [Method] Sets the value of defaultXhrHeader  
+		* @param defaultXhrHeader String 
+		*/
+		static setDefaultXhrHeader( defaultXhrHeader?:string ): void;
+		/** [Method] Sets the value of disableCaching  
+		* @param disableCaching Boolean 
+		*/
+		static setDisableCaching( disableCaching?:bool ): void;
+		/** [Method] Sets the value of disableCachingParam  
+		* @param disableCachingParam String 
+		*/
+		static setDisableCachingParam( disableCachingParam?:string ): void;
+		/** [Method] Sets the value of extraParams  
+		* @param extraParams Object 
+		*/
+		static setExtraParams( extraParams?:any ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
+		/** [Method] Sets the value of method  
+		* @param method String 
+		*/
+		static setMethod( method?:string ): void;
+		/** [Method] Sets various options such as the url params for the request  
+		* @param options Object The initial options. 
+		* @param scope Object The scope to execute in. 
+		*/
+		static setOptions( options?:any, scope?:any ): any;
+		/** [Method] Sets the value of password  
+		* @param password String 
+		*/
+		static setPassword( password?:string ): void;
+		/** [Method] Sets the value of timeout  
+		* @param timeout Number 
+		*/
+		static setTimeout( timeout?:number ): void;
+		/** [Method] Sets the value of url  
+		* @param url String 
+		*/
+		static setUrl( url?:string ): void;
+		/** [Method] Sets the value of useDefaultHeader  
+		* @param useDefaultHeader Boolean 
+		*/
+		static setUseDefaultHeader( useDefaultHeader?:bool ): void;
+		/** [Method] Sets the value of useDefaultXhrHeader  
+		* @param useDefaultXhrHeader Boolean 
+		*/
+		static setUseDefaultXhrHeader( useDefaultXhrHeader?:bool ): void;
+		/** [Method] Sets the value of username  
+		* @param username String 
+		*/
+		static setUsername( username?:string ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Uploads a form using a hidden iframe  
+		* @param form String/HTMLElement/Ext.Element The form to upload. 
+		* @param url String The url to post to. 
+		* @param params String Any extra parameters to pass. 
+		* @param options Object The initial options. 
+		*/
+		static upload( form?:any, url?:any, params?:any, options?:any ): any;
+		static upload( form?:string, url?:string, params?:string, options?:any ): void;
+		static upload( form?:HTMLElement, url?:string, params?:string, options?:any ): void;
+		static upload( form?:Ext.IElement, url?:string, params?:string, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IAnim extends Ext.IBase {
 	}
 	export class Anim {
-		/** [Method]  
-		* @param config Object 
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
 		*/
-		constructor( config?:any );
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Initialize configuration for this class  
 		* @param el Object 
 		* @param runConfig Object 
@@ -131,26 +519,95 @@ declare module Ext {
 		static run( el?:any, anim?:any, config?:any ): any;
 		static run( el?:Ext.IElement, anim?:string, config?:any ): void;
 		static run( el?:HTMLElement, anim?:string, config?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IAnimationQueue extends Ext.IBase {
 	}
 	export class AnimationQueue {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method]  
 		* @param fn Object 
 		* @param scope Object 
 		* @param args Object 
 		*/
 		static start( fn?:any, scope?:any, args?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method]  
 		* @param fn Object 
 		* @param scope Object 
 		* @param args Object 
 		*/
 		static stop( fn?:any, scope?:any, args?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
@@ -1464,6 +1921,58 @@ declare module Ext {
 	export interface IBrowser extends Ext.env.IBrowser {
 	}
 	export class Browser {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] A hybrid property can be either accessed as a method call for example  if Ext browser is IE 
+		* @param value String The OS name to check. 
+		*/
+		static is( value?:string ): bool;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
@@ -5949,17 +6458,40 @@ declare module Ext {
 	export interface IComponentManager extends Ext.IBase {
 	}
 	export class ComponentManager {
-		/** [Method]  */
-		constructor();
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Creates a new Component from the specified config object using the config object s xtype to determine the class to in  
 		* @param component Object A configuration object for the Component you wish to create. 
 		* @param defaultType Function The constructor to provide the default Component type if the config object does not contain a xtype. (Optional if the config contains an xtype). 
 		*/
 		static create( component?:any, defaultType?:any ): Ext.IComponent;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Returns an item by id  
 		* @param id String The id of the item. 
 		*/
 		static get( id?:string ): any;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Checks if an item type is registered  
 		* @param component String The mnemonic string by which the class may be looked up. 
 		*/
@@ -5968,27 +6500,71 @@ declare module Ext {
 		* @param component Object The item to register. 
 		*/
 		static register( component?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Unregisters an item by removing it from this manager  
 		* @param component Object The item to unregister. 
 		*/
 		static unregister( component?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IComponentMgr extends Ext.IBase {
 	}
 	export class ComponentMgr {
-		/** [Method]  */
-		constructor();
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Creates a new Component from the specified config object using the config object s xtype to determine the class to in  
 		* @param component Object A configuration object for the Component you wish to create. 
 		* @param defaultType Function The constructor to provide the default Component type if the config object does not contain a xtype. (Optional if the config contains an xtype). 
 		*/
 		static create( component?:any, defaultType?:any ): Ext.IComponent;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Returns an item by id  
 		* @param id String The id of the item. 
 		*/
 		static get( id?:string ): any;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Checks if an item type is registered  
 		* @param component String The mnemonic string by which the class may be looked up. 
 		*/
@@ -5997,10 +6573,31 @@ declare module Ext {
 		* @param component Object The item to register. 
 		*/
 		static register( component?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Unregisters an item by removing it from this manager  
 		* @param component Object The item to unregister. 
 		*/
 		static unregister( component?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
@@ -7618,10 +8215,58 @@ declare module Ext.data {
 		* @param request Object/String The request to abort. 
 		*/
 		static abort( request?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Makes a JSONP request  
 		* @param options Object An object which may contain the following properties. Note that options will take priority over any defaults that are specified in the class. 
 		*/
 		static request( options?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.util {
@@ -7632,10 +8277,58 @@ declare module Ext.util {
 		* @param request Object/String The request to abort. 
 		*/
 		static abort( request?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Makes a JSONP request  
 		* @param options Object An object which may contain the following properties. Note that options will take priority over any defaults that are specified in the class. 
 		*/
 		static request( options?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data {
@@ -8444,63 +9137,288 @@ declare module Ext.data {
 	export interface IModelManager extends Ext.IAbstractManager {
 	}
 	export class ModelManager {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Creates a new instance of a Model using the given data  
 		* @param data Object Data to initialize the Model's fields with. 
 		* @param name String The name of the model to create. 
 		* @param id Number Unique id of the Model instance (see Ext.data.Model). 
 		*/
 		static create( data?:any, name?:string, id?:number ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for each item in the collection  
+		* @param fn Function The function to execute. 
+		* @param scope Object The scope to execute in. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Returns an item by id  
+		* @param id String The id of the item. 
+		*/
+		static get( id?:string ): any;
+		/** [Method] Gets the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the Ext data Model for a given model name  
 		* @param id String/Object The id of the model or the model instance. 
 		*/
 		static getModel( id?:any ): Ext.data.IModel;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Checks if an item type is registered  
+		* @param type String The mnemonic string by which the class may be looked up. 
+		*/
+		static isRegistered( type?:string ): bool;
+		/** [Method] Registers a function that will be called when an item with the specified id is added to the manager  
+		* @param id String The item id. 
+		* @param fn Function The callback function. Called with a single parameter, the item. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to the item. 
+		*/
+		static onAvailable( id?:string, fn?:any, scope?:any ): void;
+		/** [Method] Registers an item to be managed  
+		* @param item Object The item to register. 
+		*/
+		static register( item?:any ): void;
 		/** [Method] Registers a model definition  
 		* @param name Object 
 		* @param config Object 
 		*/
 		static registerType( name?:any, config?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Unregisters an item by removing it from this manager  
+		* @param item Object The item to unregister. 
+		*/
+		static unregister( item?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IModelMgr extends Ext.IAbstractManager {
 	}
 	export class ModelMgr {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Creates a new instance of a Model using the given data  
 		* @param data Object Data to initialize the Model's fields with. 
 		* @param name String The name of the model to create. 
 		* @param id Number Unique id of the Model instance (see Ext.data.Model). 
 		*/
 		static create( data?:any, name?:string, id?:number ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for each item in the collection  
+		* @param fn Function The function to execute. 
+		* @param scope Object The scope to execute in. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Returns an item by id  
+		* @param id String The id of the item. 
+		*/
+		static get( id?:string ): any;
+		/** [Method] Gets the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the Ext data Model for a given model name  
 		* @param id String/Object The id of the model or the model instance. 
 		*/
 		static getModel( id?:any ): Ext.data.IModel;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Checks if an item type is registered  
+		* @param type String The mnemonic string by which the class may be looked up. 
+		*/
+		static isRegistered( type?:string ): bool;
+		/** [Method] Registers a function that will be called when an item with the specified id is added to the manager  
+		* @param id String The item id. 
+		* @param fn Function The callback function. Called with a single parameter, the item. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to the item. 
+		*/
+		static onAvailable( id?:string, fn?:any, scope?:any ): void;
+		/** [Method] Registers an item to be managed  
+		* @param item Object The item to register. 
+		*/
+		static register( item?:any ): void;
 		/** [Method] Registers a model definition  
 		* @param name Object 
 		* @param config Object 
 		*/
 		static registerType( name?:any, config?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Unregisters an item by removing it from this manager  
+		* @param item Object The item to unregister. 
+		*/
+		static unregister( item?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IModelManager extends Ext.IAbstractManager {
 	}
 	export class ModelManager {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Creates a new instance of a Model using the given data  
 		* @param data Object Data to initialize the Model's fields with. 
 		* @param name String The name of the model to create. 
 		* @param id Number Unique id of the Model instance (see Ext.data.Model). 
 		*/
 		static create( data?:any, name?:string, id?:number ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for each item in the collection  
+		* @param fn Function The function to execute. 
+		* @param scope Object The scope to execute in. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Returns an item by id  
+		* @param id String The id of the item. 
+		*/
+		static get( id?:string ): any;
+		/** [Method] Gets the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the Ext data Model for a given model name  
 		* @param id String/Object The id of the model or the model instance. 
 		*/
 		static getModel( id?:any ): Ext.data.IModel;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Checks if an item type is registered  
+		* @param type String The mnemonic string by which the class may be looked up. 
+		*/
+		static isRegistered( type?:string ): bool;
+		/** [Method] Registers a function that will be called when an item with the specified id is added to the manager  
+		* @param id String The item id. 
+		* @param fn Function The callback function. Called with a single parameter, the item. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to the item. 
+		*/
+		static onAvailable( id?:string, fn?:any, scope?:any ): void;
+		/** [Method] Registers an item to be managed  
+		* @param item Object The item to register. 
+		*/
+		static register( item?:any ): void;
 		/** [Method] Registers a model definition  
 		* @param name Object 
 		* @param config Object 
 		*/
 		static registerType( name?:any, config?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Unregisters an item by removing it from this manager  
+		* @param item Object The item to unregister. 
+		*/
+		static unregister( item?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data {
@@ -11604,10 +12522,58 @@ declare module Ext.data {
 		* @param value Object The value being converted. 
 		*/
 		static asUCText( value?:any ): string;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Default sort that does nothing  
 		* @param value Object The value being converted. 
 		*/
 		static none( value?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data {
@@ -12000,10 +12966,189 @@ declare module Ext.data {
 	export interface IStoreManager extends Ext.util.ICollection {
 	}
 	export class StoreManager {
+		/** [Method] Adds an item to the collection  
+		* @param key String The key to associate with the item, or the new item. If a getKey implementation was specified for this MixedCollection, or if the key of the stored items is in a property called id, the MixedCollection will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
+		* @param item Object The item to add. 
+		*/
+		static add( key?:string, item?:any ): any;
+		/** [Method] Adds all elements of an Array or an Object to the collection  
+		* @param addItems Object/Array An Object containing properties which will be added to the collection, or an Array of values, each of which are added to the collection. Functions references will be added to the collection if {@link} Ext.util.MixedCollection.allowFunctions allowFunctions} has been set to true. 
+		*/
+		static addAll( addItems?:any ): void;
+		/** [Method] This method adds a filter  
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static addFilter( filter?:any ): void;
+		/** [Method] This method adds all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static addFilters( filters?:any ): any;
+		/** [Method] This method adds a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorter( sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method adds all the sorters in a passed array  
+		* @param sorters Array An array with sorters. A sorter can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorters( sorters?:any[], defaultDirection?:string ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all items from the collection  */
+		static clear(): void;
+		/** [Method] Creates a shallow copy of this collection */
+		static clone(): Ext.util.IMixedCollection;
+		/** [Method] Returns true if the collection contains the passed Object as an item  
+		* @param item Object The Object to look for in the collection. 
+		*/
+		static contains( item?:any ): bool;
+		/** [Method] Returns true if the collection contains the passed Object as a key  
+		* @param key String The key to look for in the collection. 
+		*/
+		static containsKey( key?:string ): bool;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for every item in the collection  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current item in the iteration. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Executes the specified function once for every key in the collection passing each key and its associated item as th  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static eachKey( fn?:any, scope?:any ): void;
+		/** [Method] This method will sort a collection based on the currently configured sorters  
+		* @param property Object 
+		* @param value Object 
+		* @param anyMatch Object 
+		* @param caseSensitive Object 
+		*/
+		static filter( property?:any, value?:any, anyMatch?:any, caseSensitive?:any ): any[];
+		/** [Method] Filter by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		*/
+		static filterBy( fn?:any, scope?:any ): Ext.util.IMixedCollection;
+		/** [Method] Returns the first item in the collection which elicits a true return value from the passed selection function  
+		* @param fn Function The selection function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static findBy( fn?:any, scope?:any ): any;
+		/** [Method] Find the index of the first matching object in this collection by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		* @param start Number The index to start searching at. 
+		*/
+		static findIndexBy( fn?:any, scope?:any, start?:number ): number;
+		/** [Method] This method returns the index that a given item would be inserted into a given array based on the current sorters  
+		* @param items Array The array that you want to insert the item into. 
+		* @param item Mixed The item that you want to insert into the items array. 
+		*/
+		static findInsertionIndex( items?:any[], item?:any ): number;
+		/** [Method] Returns the first item in the collection  */
+		static first(): any;
+		/** [Method] Returns the item associated with the passed key OR index  
+		* @param key String/Number The key or index of the item. 
+		*/
+		static get( key?:any ): any;
+		static get( key?:string ): any;
+		static get( key?:number ): any;
+		/** [Method] Returns the item at the specified index  
+		* @param index Number The index of the item. 
+		*/
+		static getAt( index?:number ): any;
+		/** [Method] Returns the value of autoFilter  */
+		static getAutoFilter(): bool;
+		/** [Method] Returns the value of autoSort  */
+		static getAutoSort(): bool;
+		/** [Method] Returns the item associated with the passed key  
+		* @param key String/Number The key of the item. 
+		*/
+		static getByKey( key?:any ): any;
+		static getByKey( key?:string ): any;
+		static getByKey( key?:number ): any;
+		/** [Method] Returns the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the value of defaultSortDirection  */
+		static getDefaultSortDirection(): string;
+		/** [Method] Returns an up to date sort function  */
+		static getFilterFn(): any;
+		/** [Method] Returns the value of filterRoot  */
+		static getFilterRoot(): string;
+		/** [Method] Returns the value of filters  */
+		static getFilters(): any[];
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] getKey implementation for MixedCollection 
 		* @param o Object 
 		*/
 		static getKey( o?:any ): any;
+		/** [Method] Returns a range of items in this collection 
+		* @param start Number The starting index. 
+		* @param end Number The ending index. Defaults to the last item. 
+		*/
+		static getRange( start?:number, end?:number ): any[];
+		/** [Method] Returns an up to date sort function  */
+		static getSortFn(): any;
+		/** [Method] Returns the value of sortRoot  */
+		static getSortRoot(): string;
+		/** [Method] Returns the value of sorters  */
+		static getSorters(): any[];
+		/** [Method] Returns index within the collection of the passed Object  
+		* @param item Object The item to find the index of. 
+		*/
+		static indexOf( item?:any ): number;
+		/** [Method] Returns index within the collection of the passed key  
+		* @param key String The key to find the index of. 
+		*/
+		static indexOfKey( key?:string ): number;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Inserts an item at the specified index in the collection  
+		* @param index Number The index to insert the item at. 
+		* @param key String The key to associate with the new item, or the item itself. 
+		* @param item Object If the second parameter was a key, the new item. 
+		*/
+		static insert( index?:number, key?:string, item?:any ): any;
+		/** [Method] This method adds a filter at a given index  
+		* @param index Number The index at which to insert the filter. 
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilter( index?:number, filter?:any ): any;
+		/** [Method] This method inserts all the filters in the passed array at the given index  
+		* @param index Number The index at which to insert the filters. 
+		* @param filters Array Each filter can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilters( index?:number, filters?:any[] ): any[];
+		/** [Method] This method adds a sorter at a given index  
+		* @param index Number The index at which to insert the sorter. 
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static insertSorter( index?:number, sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method inserts all the sorters in the passed array at the given index  */
+		static insertSorters(): Ext.util.ICollection;
+		/** [Method] Returns the last item in the collection  */
+		static last(): any;
 		/** [Method] Gets a registered Store by id  
 		* @param store String/Object The id of the Store, or a Store instance, or a store configuration. 
 		*/
@@ -12012,20 +13157,288 @@ declare module Ext.data {
 		* @param stores Ext.data.Store... Any number of Store instances. 
 		*/
 		static register( stores:Ext.data.IStore ): void;
+		/** [Method] Remove an item from the collection  
+		* @param item Object The item to remove. 
+		*/
+		static remove( item?:any ): any;
+		/** [Method] Remove all items in the passed array from the collection  
+		* @param items Array An array of items to be removed. 
+		*/
+		static removeAll( items?:any[] ): Ext.util.IMixedCollection;
+		/** [Method] Remove an item from a specified index in the collection  
+		* @param index Number The index within the collection of the item to remove. 
+		*/
+		static removeAt( index?:number ): any;
+		/** [Method] Removed an item associated with the passed key from the collection  
+		* @param key String The key of the item to remove. 
+		*/
+		static removeAtKey( key?:string ): any;
+		/** [Method] This method removes all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static removeFilters( filters?:any ): Ext.util.ICollection;
+		/** [Method] This method removes a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		*/
+		static removeSorter( sorter?:any ): void;
+		/** [Method] This method removes all the sorters in a passed array  
+		* @param sorters Object 
+		*/
+		static removeSorters( sorters?:any ): Ext.util.ICollection;
+		/** [Method] Replaces an item in the collection  
+		* @param oldKey String The key associated with the item to replace, or the replacement item. If you supplied a getKey implementation for this MixedCollection, or if the key of your stored items is in a property called id, then the MixedCollection will be able to derive the key of the replacement item. If you want to replace an item with one having the same key value, then just pass the replacement item in this parameter. 
+		* @param item Object {Object} item (optional) If the first parameter passed was a key, the item to associate with that key. 
+		*/
+		static replace( oldKey?:string, item?:any ): any;
+		/** [Method] Sets the value of autoFilter  
+		* @param autoFilter Boolean 
+		*/
+		static setAutoFilter( autoFilter?:bool ): void;
+		/** [Method] Sets the value of autoSort  
+		* @param autoSort Boolean 
+		*/
+		static setAutoSort( autoSort?:bool ): void;
+		/** [Method] Sets the value of defaultSortDirection  
+		* @param defaultSortDirection String 
+		*/
+		static setDefaultSortDirection( defaultSortDirection?:string ): void;
+		/** [Method] Sets the value of filterRoot  
+		* @param filterRoot String 
+		*/
+		static setFilterRoot( filterRoot?:string ): void;
+		/** [Method] Sets the value of filters  
+		* @param filters Array 
+		*/
+		static setFilters( filters?:any[] ): void;
+		/** [Method] Sets the value of sortRoot  
+		* @param sortRoot String 
+		*/
+		static setSortRoot( sortRoot?:string ): void;
+		/** [Method] Sets the value of sorters  
+		* @param sorters Array 
+		*/
+		static setSorters( sorters?:any[] ): void;
+		/** [Method] This method will sort an array based on the currently configured sorters  
+		* @param sorters Object 
+		* @param defaultDirection Object 
+		*/
+		static sort( sorters?:any, defaultDirection?:any ): any[];
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Unregisters one or more Stores with the StoreManager  
 		* @param stores String/Object... Any number of Store instances or ID-s. 
 		*/
 		static unregister( stores?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IStoreMgr extends Ext.util.ICollection {
 	}
 	export class StoreMgr {
+		/** [Method] Adds an item to the collection  
+		* @param key String The key to associate with the item, or the new item. If a getKey implementation was specified for this MixedCollection, or if the key of the stored items is in a property called id, the MixedCollection will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
+		* @param item Object The item to add. 
+		*/
+		static add( key?:string, item?:any ): any;
+		/** [Method] Adds all elements of an Array or an Object to the collection  
+		* @param addItems Object/Array An Object containing properties which will be added to the collection, or an Array of values, each of which are added to the collection. Functions references will be added to the collection if {@link} Ext.util.MixedCollection.allowFunctions allowFunctions} has been set to true. 
+		*/
+		static addAll( addItems?:any ): void;
+		/** [Method] This method adds a filter  
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static addFilter( filter?:any ): void;
+		/** [Method] This method adds all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static addFilters( filters?:any ): any;
+		/** [Method] This method adds a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorter( sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method adds all the sorters in a passed array  
+		* @param sorters Array An array with sorters. A sorter can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorters( sorters?:any[], defaultDirection?:string ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all items from the collection  */
+		static clear(): void;
+		/** [Method] Creates a shallow copy of this collection */
+		static clone(): Ext.util.IMixedCollection;
+		/** [Method] Returns true if the collection contains the passed Object as an item  
+		* @param item Object The Object to look for in the collection. 
+		*/
+		static contains( item?:any ): bool;
+		/** [Method] Returns true if the collection contains the passed Object as a key  
+		* @param key String The key to look for in the collection. 
+		*/
+		static containsKey( key?:string ): bool;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for every item in the collection  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current item in the iteration. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Executes the specified function once for every key in the collection passing each key and its associated item as th  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static eachKey( fn?:any, scope?:any ): void;
+		/** [Method] This method will sort a collection based on the currently configured sorters  
+		* @param property Object 
+		* @param value Object 
+		* @param anyMatch Object 
+		* @param caseSensitive Object 
+		*/
+		static filter( property?:any, value?:any, anyMatch?:any, caseSensitive?:any ): any[];
+		/** [Method] Filter by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		*/
+		static filterBy( fn?:any, scope?:any ): Ext.util.IMixedCollection;
+		/** [Method] Returns the first item in the collection which elicits a true return value from the passed selection function  
+		* @param fn Function The selection function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static findBy( fn?:any, scope?:any ): any;
+		/** [Method] Find the index of the first matching object in this collection by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		* @param start Number The index to start searching at. 
+		*/
+		static findIndexBy( fn?:any, scope?:any, start?:number ): number;
+		/** [Method] This method returns the index that a given item would be inserted into a given array based on the current sorters  
+		* @param items Array The array that you want to insert the item into. 
+		* @param item Mixed The item that you want to insert into the items array. 
+		*/
+		static findInsertionIndex( items?:any[], item?:any ): number;
+		/** [Method] Returns the first item in the collection  */
+		static first(): any;
+		/** [Method] Returns the item associated with the passed key OR index  
+		* @param key String/Number The key or index of the item. 
+		*/
+		static get( key?:any ): any;
+		static get( key?:string ): any;
+		static get( key?:number ): any;
+		/** [Method] Returns the item at the specified index  
+		* @param index Number The index of the item. 
+		*/
+		static getAt( index?:number ): any;
+		/** [Method] Returns the value of autoFilter  */
+		static getAutoFilter(): bool;
+		/** [Method] Returns the value of autoSort  */
+		static getAutoSort(): bool;
+		/** [Method] Returns the item associated with the passed key  
+		* @param key String/Number The key of the item. 
+		*/
+		static getByKey( key?:any ): any;
+		static getByKey( key?:string ): any;
+		static getByKey( key?:number ): any;
+		/** [Method] Returns the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the value of defaultSortDirection  */
+		static getDefaultSortDirection(): string;
+		/** [Method] Returns an up to date sort function  */
+		static getFilterFn(): any;
+		/** [Method] Returns the value of filterRoot  */
+		static getFilterRoot(): string;
+		/** [Method] Returns the value of filters  */
+		static getFilters(): any[];
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] getKey implementation for MixedCollection 
 		* @param o Object 
 		*/
 		static getKey( o?:any ): any;
+		/** [Method] Returns a range of items in this collection 
+		* @param start Number The starting index. 
+		* @param end Number The ending index. Defaults to the last item. 
+		*/
+		static getRange( start?:number, end?:number ): any[];
+		/** [Method] Returns an up to date sort function  */
+		static getSortFn(): any;
+		/** [Method] Returns the value of sortRoot  */
+		static getSortRoot(): string;
+		/** [Method] Returns the value of sorters  */
+		static getSorters(): any[];
+		/** [Method] Returns index within the collection of the passed Object  
+		* @param item Object The item to find the index of. 
+		*/
+		static indexOf( item?:any ): number;
+		/** [Method] Returns index within the collection of the passed key  
+		* @param key String The key to find the index of. 
+		*/
+		static indexOfKey( key?:string ): number;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Inserts an item at the specified index in the collection  
+		* @param index Number The index to insert the item at. 
+		* @param key String The key to associate with the new item, or the item itself. 
+		* @param item Object If the second parameter was a key, the new item. 
+		*/
+		static insert( index?:number, key?:string, item?:any ): any;
+		/** [Method] This method adds a filter at a given index  
+		* @param index Number The index at which to insert the filter. 
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilter( index?:number, filter?:any ): any;
+		/** [Method] This method inserts all the filters in the passed array at the given index  
+		* @param index Number The index at which to insert the filters. 
+		* @param filters Array Each filter can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilters( index?:number, filters?:any[] ): any[];
+		/** [Method] This method adds a sorter at a given index  
+		* @param index Number The index at which to insert the sorter. 
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static insertSorter( index?:number, sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method inserts all the sorters in the passed array at the given index  */
+		static insertSorters(): Ext.util.ICollection;
+		/** [Method] Returns the last item in the collection  */
+		static last(): any;
 		/** [Method] Gets a registered Store by id  
 		* @param store String/Object The id of the Store, or a Store instance, or a store configuration. 
 		*/
@@ -12034,20 +13447,288 @@ declare module Ext {
 		* @param stores Ext.data.Store... Any number of Store instances. 
 		*/
 		static register( stores:Ext.data.IStore ): void;
+		/** [Method] Remove an item from the collection  
+		* @param item Object The item to remove. 
+		*/
+		static remove( item?:any ): any;
+		/** [Method] Remove all items in the passed array from the collection  
+		* @param items Array An array of items to be removed. 
+		*/
+		static removeAll( items?:any[] ): Ext.util.IMixedCollection;
+		/** [Method] Remove an item from a specified index in the collection  
+		* @param index Number The index within the collection of the item to remove. 
+		*/
+		static removeAt( index?:number ): any;
+		/** [Method] Removed an item associated with the passed key from the collection  
+		* @param key String The key of the item to remove. 
+		*/
+		static removeAtKey( key?:string ): any;
+		/** [Method] This method removes all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static removeFilters( filters?:any ): Ext.util.ICollection;
+		/** [Method] This method removes a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		*/
+		static removeSorter( sorter?:any ): void;
+		/** [Method] This method removes all the sorters in a passed array  
+		* @param sorters Object 
+		*/
+		static removeSorters( sorters?:any ): Ext.util.ICollection;
+		/** [Method] Replaces an item in the collection  
+		* @param oldKey String The key associated with the item to replace, or the replacement item. If you supplied a getKey implementation for this MixedCollection, or if the key of your stored items is in a property called id, then the MixedCollection will be able to derive the key of the replacement item. If you want to replace an item with one having the same key value, then just pass the replacement item in this parameter. 
+		* @param item Object {Object} item (optional) If the first parameter passed was a key, the item to associate with that key. 
+		*/
+		static replace( oldKey?:string, item?:any ): any;
+		/** [Method] Sets the value of autoFilter  
+		* @param autoFilter Boolean 
+		*/
+		static setAutoFilter( autoFilter?:bool ): void;
+		/** [Method] Sets the value of autoSort  
+		* @param autoSort Boolean 
+		*/
+		static setAutoSort( autoSort?:bool ): void;
+		/** [Method] Sets the value of defaultSortDirection  
+		* @param defaultSortDirection String 
+		*/
+		static setDefaultSortDirection( defaultSortDirection?:string ): void;
+		/** [Method] Sets the value of filterRoot  
+		* @param filterRoot String 
+		*/
+		static setFilterRoot( filterRoot?:string ): void;
+		/** [Method] Sets the value of filters  
+		* @param filters Array 
+		*/
+		static setFilters( filters?:any[] ): void;
+		/** [Method] Sets the value of sortRoot  
+		* @param sortRoot String 
+		*/
+		static setSortRoot( sortRoot?:string ): void;
+		/** [Method] Sets the value of sorters  
+		* @param sorters Array 
+		*/
+		static setSorters( sorters?:any[] ): void;
+		/** [Method] This method will sort an array based on the currently configured sorters  
+		* @param sorters Object 
+		* @param defaultDirection Object 
+		*/
+		static sort( sorters?:any, defaultDirection?:any ): any[];
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Unregisters one or more Stores with the StoreManager  
 		* @param stores String/Object... Any number of Store instances or ID-s. 
 		*/
 		static unregister( stores?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data {
 	export interface IStoreMgr extends Ext.util.ICollection {
 	}
 	export class StoreMgr {
+		/** [Method] Adds an item to the collection  
+		* @param key String The key to associate with the item, or the new item. If a getKey implementation was specified for this MixedCollection, or if the key of the stored items is in a property called id, the MixedCollection will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
+		* @param item Object The item to add. 
+		*/
+		static add( key?:string, item?:any ): any;
+		/** [Method] Adds all elements of an Array or an Object to the collection  
+		* @param addItems Object/Array An Object containing properties which will be added to the collection, or an Array of values, each of which are added to the collection. Functions references will be added to the collection if {@link} Ext.util.MixedCollection.allowFunctions allowFunctions} has been set to true. 
+		*/
+		static addAll( addItems?:any ): void;
+		/** [Method] This method adds a filter  
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static addFilter( filter?:any ): void;
+		/** [Method] This method adds all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static addFilters( filters?:any ): any;
+		/** [Method] This method adds a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorter( sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method adds all the sorters in a passed array  
+		* @param sorters Array An array with sorters. A sorter can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorters( sorters?:any[], defaultDirection?:string ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all items from the collection  */
+		static clear(): void;
+		/** [Method] Creates a shallow copy of this collection */
+		static clone(): Ext.util.IMixedCollection;
+		/** [Method] Returns true if the collection contains the passed Object as an item  
+		* @param item Object The Object to look for in the collection. 
+		*/
+		static contains( item?:any ): bool;
+		/** [Method] Returns true if the collection contains the passed Object as a key  
+		* @param key String The key to look for in the collection. 
+		*/
+		static containsKey( key?:string ): bool;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for every item in the collection  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current item in the iteration. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Executes the specified function once for every key in the collection passing each key and its associated item as th  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static eachKey( fn?:any, scope?:any ): void;
+		/** [Method] This method will sort a collection based on the currently configured sorters  
+		* @param property Object 
+		* @param value Object 
+		* @param anyMatch Object 
+		* @param caseSensitive Object 
+		*/
+		static filter( property?:any, value?:any, anyMatch?:any, caseSensitive?:any ): any[];
+		/** [Method] Filter by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		*/
+		static filterBy( fn?:any, scope?:any ): Ext.util.IMixedCollection;
+		/** [Method] Returns the first item in the collection which elicits a true return value from the passed selection function  
+		* @param fn Function The selection function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static findBy( fn?:any, scope?:any ): any;
+		/** [Method] Find the index of the first matching object in this collection by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		* @param start Number The index to start searching at. 
+		*/
+		static findIndexBy( fn?:any, scope?:any, start?:number ): number;
+		/** [Method] This method returns the index that a given item would be inserted into a given array based on the current sorters  
+		* @param items Array The array that you want to insert the item into. 
+		* @param item Mixed The item that you want to insert into the items array. 
+		*/
+		static findInsertionIndex( items?:any[], item?:any ): number;
+		/** [Method] Returns the first item in the collection  */
+		static first(): any;
+		/** [Method] Returns the item associated with the passed key OR index  
+		* @param key String/Number The key or index of the item. 
+		*/
+		static get( key?:any ): any;
+		static get( key?:string ): any;
+		static get( key?:number ): any;
+		/** [Method] Returns the item at the specified index  
+		* @param index Number The index of the item. 
+		*/
+		static getAt( index?:number ): any;
+		/** [Method] Returns the value of autoFilter  */
+		static getAutoFilter(): bool;
+		/** [Method] Returns the value of autoSort  */
+		static getAutoSort(): bool;
+		/** [Method] Returns the item associated with the passed key  
+		* @param key String/Number The key of the item. 
+		*/
+		static getByKey( key?:any ): any;
+		static getByKey( key?:string ): any;
+		static getByKey( key?:number ): any;
+		/** [Method] Returns the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the value of defaultSortDirection  */
+		static getDefaultSortDirection(): string;
+		/** [Method] Returns an up to date sort function  */
+		static getFilterFn(): any;
+		/** [Method] Returns the value of filterRoot  */
+		static getFilterRoot(): string;
+		/** [Method] Returns the value of filters  */
+		static getFilters(): any[];
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] getKey implementation for MixedCollection 
 		* @param o Object 
 		*/
 		static getKey( o?:any ): any;
+		/** [Method] Returns a range of items in this collection 
+		* @param start Number The starting index. 
+		* @param end Number The ending index. Defaults to the last item. 
+		*/
+		static getRange( start?:number, end?:number ): any[];
+		/** [Method] Returns an up to date sort function  */
+		static getSortFn(): any;
+		/** [Method] Returns the value of sortRoot  */
+		static getSortRoot(): string;
+		/** [Method] Returns the value of sorters  */
+		static getSorters(): any[];
+		/** [Method] Returns index within the collection of the passed Object  
+		* @param item Object The item to find the index of. 
+		*/
+		static indexOf( item?:any ): number;
+		/** [Method] Returns index within the collection of the passed key  
+		* @param key String The key to find the index of. 
+		*/
+		static indexOfKey( key?:string ): number;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Inserts an item at the specified index in the collection  
+		* @param index Number The index to insert the item at. 
+		* @param key String The key to associate with the new item, or the item itself. 
+		* @param item Object If the second parameter was a key, the new item. 
+		*/
+		static insert( index?:number, key?:string, item?:any ): any;
+		/** [Method] This method adds a filter at a given index  
+		* @param index Number The index at which to insert the filter. 
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilter( index?:number, filter?:any ): any;
+		/** [Method] This method inserts all the filters in the passed array at the given index  
+		* @param index Number The index at which to insert the filters. 
+		* @param filters Array Each filter can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilters( index?:number, filters?:any[] ): any[];
+		/** [Method] This method adds a sorter at a given index  
+		* @param index Number The index at which to insert the sorter. 
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static insertSorter( index?:number, sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method inserts all the sorters in the passed array at the given index  */
+		static insertSorters(): Ext.util.ICollection;
+		/** [Method] Returns the last item in the collection  */
+		static last(): any;
 		/** [Method] Gets a registered Store by id  
 		* @param store String/Object The id of the Store, or a Store instance, or a store configuration. 
 		*/
@@ -12056,20 +13737,288 @@ declare module Ext.data {
 		* @param stores Ext.data.Store... Any number of Store instances. 
 		*/
 		static register( stores:Ext.data.IStore ): void;
+		/** [Method] Remove an item from the collection  
+		* @param item Object The item to remove. 
+		*/
+		static remove( item?:any ): any;
+		/** [Method] Remove all items in the passed array from the collection  
+		* @param items Array An array of items to be removed. 
+		*/
+		static removeAll( items?:any[] ): Ext.util.IMixedCollection;
+		/** [Method] Remove an item from a specified index in the collection  
+		* @param index Number The index within the collection of the item to remove. 
+		*/
+		static removeAt( index?:number ): any;
+		/** [Method] Removed an item associated with the passed key from the collection  
+		* @param key String The key of the item to remove. 
+		*/
+		static removeAtKey( key?:string ): any;
+		/** [Method] This method removes all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static removeFilters( filters?:any ): Ext.util.ICollection;
+		/** [Method] This method removes a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		*/
+		static removeSorter( sorter?:any ): void;
+		/** [Method] This method removes all the sorters in a passed array  
+		* @param sorters Object 
+		*/
+		static removeSorters( sorters?:any ): Ext.util.ICollection;
+		/** [Method] Replaces an item in the collection  
+		* @param oldKey String The key associated with the item to replace, or the replacement item. If you supplied a getKey implementation for this MixedCollection, or if the key of your stored items is in a property called id, then the MixedCollection will be able to derive the key of the replacement item. If you want to replace an item with one having the same key value, then just pass the replacement item in this parameter. 
+		* @param item Object {Object} item (optional) If the first parameter passed was a key, the item to associate with that key. 
+		*/
+		static replace( oldKey?:string, item?:any ): any;
+		/** [Method] Sets the value of autoFilter  
+		* @param autoFilter Boolean 
+		*/
+		static setAutoFilter( autoFilter?:bool ): void;
+		/** [Method] Sets the value of autoSort  
+		* @param autoSort Boolean 
+		*/
+		static setAutoSort( autoSort?:bool ): void;
+		/** [Method] Sets the value of defaultSortDirection  
+		* @param defaultSortDirection String 
+		*/
+		static setDefaultSortDirection( defaultSortDirection?:string ): void;
+		/** [Method] Sets the value of filterRoot  
+		* @param filterRoot String 
+		*/
+		static setFilterRoot( filterRoot?:string ): void;
+		/** [Method] Sets the value of filters  
+		* @param filters Array 
+		*/
+		static setFilters( filters?:any[] ): void;
+		/** [Method] Sets the value of sortRoot  
+		* @param sortRoot String 
+		*/
+		static setSortRoot( sortRoot?:string ): void;
+		/** [Method] Sets the value of sorters  
+		* @param sorters Array 
+		*/
+		static setSorters( sorters?:any[] ): void;
+		/** [Method] This method will sort an array based on the currently configured sorters  
+		* @param sorters Object 
+		* @param defaultDirection Object 
+		*/
+		static sort( sorters?:any, defaultDirection?:any ): any[];
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Unregisters one or more Stores with the StoreManager  
 		* @param stores String/Object... Any number of Store instances or ID-s. 
 		*/
 		static unregister( stores?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IStoreManager extends Ext.util.ICollection {
 	}
 	export class StoreManager {
+		/** [Method] Adds an item to the collection  
+		* @param key String The key to associate with the item, or the new item. If a getKey implementation was specified for this MixedCollection, or if the key of the stored items is in a property called id, the MixedCollection will be able to derive the key for the new item. In this case just pass the new item in this parameter. 
+		* @param item Object The item to add. 
+		*/
+		static add( key?:string, item?:any ): any;
+		/** [Method] Adds all elements of an Array or an Object to the collection  
+		* @param addItems Object/Array An Object containing properties which will be added to the collection, or an Array of values, each of which are added to the collection. Functions references will be added to the collection if {@link} Ext.util.MixedCollection.allowFunctions allowFunctions} has been set to true. 
+		*/
+		static addAll( addItems?:any ): void;
+		/** [Method] This method adds a filter  
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static addFilter( filter?:any ): void;
+		/** [Method] This method adds all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static addFilters( filters?:any ): any;
+		/** [Method] This method adds a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorter( sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method adds all the sorters in a passed array  
+		* @param sorters Array An array with sorters. A sorter can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static addSorters( sorters?:any[], defaultDirection?:string ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all items from the collection  */
+		static clear(): void;
+		/** [Method] Creates a shallow copy of this collection */
+		static clone(): Ext.util.IMixedCollection;
+		/** [Method] Returns true if the collection contains the passed Object as an item  
+		* @param item Object The Object to look for in the collection. 
+		*/
+		static contains( item?:any ): bool;
+		/** [Method] Returns true if the collection contains the passed Object as a key  
+		* @param key String The key to look for in the collection. 
+		*/
+		static containsKey( key?:string ): bool;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Executes the specified function once for every item in the collection  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the current item in the iteration. 
+		*/
+		static each( fn?:any, scope?:any ): void;
+		/** [Method] Executes the specified function once for every key in the collection passing each key and its associated item as th  
+		* @param fn Function The function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static eachKey( fn?:any, scope?:any ): void;
+		/** [Method] This method will sort a collection based on the currently configured sorters  
+		* @param property Object 
+		* @param value Object 
+		* @param anyMatch Object 
+		* @param caseSensitive Object 
+		*/
+		static filter( property?:any, value?:any, anyMatch?:any, caseSensitive?:any ): any[];
+		/** [Method] Filter by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		*/
+		static filterBy( fn?:any, scope?:any ): Ext.util.IMixedCollection;
+		/** [Method] Returns the first item in the collection which elicits a true return value from the passed selection function  
+		* @param fn Function The selection function to execute for each item. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to the browser window. 
+		*/
+		static findBy( fn?:any, scope?:any ): any;
+		/** [Method] Find the index of the first matching object in this collection by a function  
+		* @param fn Function The function to be called. 
+		* @param scope Object The scope (this reference) in which the function is executed. Defaults to this MixedCollection. 
+		* @param start Number The index to start searching at. 
+		*/
+		static findIndexBy( fn?:any, scope?:any, start?:number ): number;
+		/** [Method] This method returns the index that a given item would be inserted into a given array based on the current sorters  
+		* @param items Array The array that you want to insert the item into. 
+		* @param item Mixed The item that you want to insert into the items array. 
+		*/
+		static findInsertionIndex( items?:any[], item?:any ): number;
+		/** [Method] Returns the first item in the collection  */
+		static first(): any;
+		/** [Method] Returns the item associated with the passed key OR index  
+		* @param key String/Number The key or index of the item. 
+		*/
+		static get( key?:any ): any;
+		static get( key?:string ): any;
+		static get( key?:number ): any;
+		/** [Method] Returns the item at the specified index  
+		* @param index Number The index of the item. 
+		*/
+		static getAt( index?:number ): any;
+		/** [Method] Returns the value of autoFilter  */
+		static getAutoFilter(): bool;
+		/** [Method] Returns the value of autoSort  */
+		static getAutoSort(): bool;
+		/** [Method] Returns the item associated with the passed key  
+		* @param key String/Number The key of the item. 
+		*/
+		static getByKey( key?:any ): any;
+		static getByKey( key?:string ): any;
+		static getByKey( key?:number ): any;
+		/** [Method] Returns the number of items in the collection  */
+		static getCount(): number;
+		/** [Method] Returns the value of defaultSortDirection  */
+		static getDefaultSortDirection(): string;
+		/** [Method] Returns an up to date sort function  */
+		static getFilterFn(): any;
+		/** [Method] Returns the value of filterRoot  */
+		static getFilterRoot(): string;
+		/** [Method] Returns the value of filters  */
+		static getFilters(): any[];
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] getKey implementation for MixedCollection 
 		* @param o Object 
 		*/
 		static getKey( o?:any ): any;
+		/** [Method] Returns a range of items in this collection 
+		* @param start Number The starting index. 
+		* @param end Number The ending index. Defaults to the last item. 
+		*/
+		static getRange( start?:number, end?:number ): any[];
+		/** [Method] Returns an up to date sort function  */
+		static getSortFn(): any;
+		/** [Method] Returns the value of sortRoot  */
+		static getSortRoot(): string;
+		/** [Method] Returns the value of sorters  */
+		static getSorters(): any[];
+		/** [Method] Returns index within the collection of the passed Object  
+		* @param item Object The item to find the index of. 
+		*/
+		static indexOf( item?:any ): number;
+		/** [Method] Returns index within the collection of the passed key  
+		* @param key String The key to find the index of. 
+		*/
+		static indexOfKey( key?:string ): number;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Inserts an item at the specified index in the collection  
+		* @param index Number The index to insert the item at. 
+		* @param key String The key to associate with the new item, or the item itself. 
+		* @param item Object If the second parameter was a key, the new item. 
+		*/
+		static insert( index?:number, key?:string, item?:any ): any;
+		/** [Method] This method adds a filter at a given index  
+		* @param index Number The index at which to insert the filter. 
+		* @param filter Ext.util.Sorter/Function/Object Can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilter( index?:number, filter?:any ): any;
+		/** [Method] This method inserts all the filters in the passed array at the given index  
+		* @param index Number The index at which to insert the filters. 
+		* @param filters Array Each filter can be an instance of Ext.util.Filter, an object representing an Ext.util.Filter configuration, or a filter function. 
+		*/
+		static insertFilters( index?:number, filters?:any[] ): any[];
+		/** [Method] This method adds a sorter at a given index  
+		* @param index Number The index at which to insert the sorter. 
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		* @param defaultDirection String The default direction for each sorter in the array. Defaults to the value of defaultSortDirection. Can be either 'ASC' or 'DESC'. 
+		*/
+		static insertSorter( index?:number, sorter?:any, defaultDirection?:string ): void;
+		/** [Method] This method inserts all the sorters in the passed array at the given index  */
+		static insertSorters(): Ext.util.ICollection;
+		/** [Method] Returns the last item in the collection  */
+		static last(): any;
 		/** [Method] Gets a registered Store by id  
 		* @param store String/Object The id of the Store, or a Store instance, or a store configuration. 
 		*/
@@ -12078,10 +14027,99 @@ declare module Ext {
 		* @param stores Ext.data.Store... Any number of Store instances. 
 		*/
 		static register( stores:Ext.data.IStore ): void;
+		/** [Method] Remove an item from the collection  
+		* @param item Object The item to remove. 
+		*/
+		static remove( item?:any ): any;
+		/** [Method] Remove all items in the passed array from the collection  
+		* @param items Array An array of items to be removed. 
+		*/
+		static removeAll( items?:any[] ): Ext.util.IMixedCollection;
+		/** [Method] Remove an item from a specified index in the collection  
+		* @param index Number The index within the collection of the item to remove. 
+		*/
+		static removeAt( index?:number ): any;
+		/** [Method] Removed an item associated with the passed key from the collection  
+		* @param key String The key of the item to remove. 
+		*/
+		static removeAtKey( key?:string ): any;
+		/** [Method] This method removes all the filters in a passed array  
+		* @param filters Object 
+		*/
+		static removeFilters( filters?:any ): Ext.util.ICollection;
+		/** [Method] This method removes a sorter  
+		* @param sorter Ext.util.Sorter/String/Function/Object Can be an instance of Ext.util.Sorter, a string indicating a property name, an object representing an Ext.util.Sorter configuration, or a sort function. 
+		*/
+		static removeSorter( sorter?:any ): void;
+		/** [Method] This method removes all the sorters in a passed array  
+		* @param sorters Object 
+		*/
+		static removeSorters( sorters?:any ): Ext.util.ICollection;
+		/** [Method] Replaces an item in the collection  
+		* @param oldKey String The key associated with the item to replace, or the replacement item. If you supplied a getKey implementation for this MixedCollection, or if the key of your stored items is in a property called id, then the MixedCollection will be able to derive the key of the replacement item. If you want to replace an item with one having the same key value, then just pass the replacement item in this parameter. 
+		* @param item Object {Object} item (optional) If the first parameter passed was a key, the item to associate with that key. 
+		*/
+		static replace( oldKey?:string, item?:any ): any;
+		/** [Method] Sets the value of autoFilter  
+		* @param autoFilter Boolean 
+		*/
+		static setAutoFilter( autoFilter?:bool ): void;
+		/** [Method] Sets the value of autoSort  
+		* @param autoSort Boolean 
+		*/
+		static setAutoSort( autoSort?:bool ): void;
+		/** [Method] Sets the value of defaultSortDirection  
+		* @param defaultSortDirection String 
+		*/
+		static setDefaultSortDirection( defaultSortDirection?:string ): void;
+		/** [Method] Sets the value of filterRoot  
+		* @param filterRoot String 
+		*/
+		static setFilterRoot( filterRoot?:string ): void;
+		/** [Method] Sets the value of filters  
+		* @param filters Array 
+		*/
+		static setFilters( filters?:any[] ): void;
+		/** [Method] Sets the value of sortRoot  
+		* @param sortRoot String 
+		*/
+		static setSortRoot( sortRoot?:string ): void;
+		/** [Method] Sets the value of sorters  
+		* @param sorters Array 
+		*/
+		static setSorters( sorters?:any[] ): void;
+		/** [Method] This method will sort an array based on the currently configured sorters  
+		* @param sorters Object 
+		* @param defaultDirection Object 
+		*/
+		static sort( sorters?:any, defaultDirection?:any ): any[];
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Unregisters one or more Stores with the StoreManager  
 		* @param stores String/Object... Any number of Store instances or ID-s. 
 		*/
 		static unregister( stores?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data {
@@ -12156,16 +14194,77 @@ declare module Ext.data {
 	export interface ITypes extends Ext.IBase {
 	}
 	export class Types {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data {
 	export interface IValidations extends Ext.IBase {
 	}
 	export class Validations {
-		/** [Method]  
-		* @param config Object 
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
 		*/
-		constructor( config?:any );
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Validates that an email string is in the correct format  
 		* @param config Object Config object. 
 		* @param email String The email address. 
@@ -12181,6 +14280,10 @@ declare module Ext.data {
 		* @param value String The value to validate. 
 		*/
 		static format( config?:any, value?:string ): bool;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the configured error message for any of the validation types  
 		* @param type String The type of validation you want to get the error message for. 
 		*/
@@ -12190,6 +14293,10 @@ declare module Ext.data {
 		* @param value String The value to validate. 
 		*/
 		static inclusion( config?:any, value?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Returns true if the given value is between the configured min and max values  
 		* @param config Object Config object. 
 		* @param value String The value to validate. 
@@ -12200,6 +14307,29 @@ declare module Ext.data {
 		* @param value Object The value to validate. 
 		*/
 		static presence( config?:any, value?:any ): bool;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.data.writer {
@@ -14449,8 +16579,21 @@ declare module Ext.device {
 	export interface ICamera extends Ext.IBase,Ext.device.camera.IAbstract {
 	}
 	export class Camera {
-		/** [Method]  */
-		constructor();
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Allows you to capture a photo  
 		* @param options Object The options to use when taking a photo. 
 		* @param scope Object The scope in which to call the success and failure functions, if specified. 
@@ -14460,6 +16603,39 @@ declare module Ext.device {
 		* @param height Number The height of the image to return 
 		*/
 		static capture( options?:any, scope?:any, destination?:string, encoding?:string, width?:number, height?:number ): void;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.camera {
@@ -14504,8 +16680,54 @@ declare module Ext.device {
 	export interface ICommunicator extends Ext.IBase {
 	}
 	export class Communicator {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.connection {
@@ -14743,12 +16965,208 @@ declare module Ext.device {
 	export interface IConnection extends Ext.IBase,Ext.device.connection.IAbstract {
 	}
 	export class Connection {
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
 		/** [Method] Returns the value of online  */
 		static getOnline(): bool;
 		/** [Method] Returns the current connection type  */
 		static getType(): string;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] True if the device is currently online */
 		static isOnline(): bool;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
 		/** [Method] Sets the value of online  
 		* @param online Boolean 
 		*/
@@ -14757,6 +17175,57 @@ declare module Ext.device {
 		* @param type Object 
 		*/
 		static setType( type?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.connection {
@@ -15004,14 +17473,101 @@ declare module Ext.device {
 	export interface IContacts extends Ext.IBase,Ext.device.contacts.IAbstract,Ext.device.contacts.ISencha {
 	}
 	export class Contacts {
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
 		/** [Method] Returns an Array of contact objects  
 		* @param config Object 
 		*/
 		static getContacts( config?:any ): any[];
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
 		/** [Method] Returns the value of includeImages  */
 		static getIncludeImages(): bool;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
 		/** [Method] Returns localized user readable label for a contact field i e  
 		* @param config Object 
 		*/
@@ -15020,10 +17576,168 @@ declare module Ext.device {
 		* @param config Object 
 		*/
 		static getThumbnail( config?:any ): string;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
 		/** [Method] Sets the value of includeImages  
 		* @param includeImages Boolean 
 		*/
 		static setIncludeImages( includeImages?:bool ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.contacts {
@@ -15261,12 +17975,257 @@ declare module Ext.device {
 	export interface IDevice extends Ext.IBase,Ext.device.device.IAbstract {
 	}
 	export class Device {
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
 		/** [Method] Opens a specified URL  
 		* @param url String The URL to open 
 		*/
 		static openURL( url?:string ): void;
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.device {
@@ -15335,10 +18294,25 @@ declare module Ext.device {
 	export interface IGeolocation extends Ext.IBase,Ext.device.geolocation.IAbstract {
 	}
 	export class Geolocation {
-		/** [Method]  */
-		constructor();
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] If you are currently watching for the current position this will stop that task  */
 		static clearWatch(): void;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Returns the value of allowHighAccuracy  */
 		static getAllowHighAccuracy(): bool;
 		/** [Method] Attempts to get the current position of this device  
@@ -15347,10 +18321,18 @@ declare module Ext.device {
 		static getCurrentPosition( config?:any ): void;
 		/** [Method] Returns the value of frequency  */
 		static getFrequency(): number;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the value of maximumAge  */
 		static getMaximumAge(): number;
 		/** [Method] Returns the value of timeout  */
 		static getTimeout(): number;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Sets the value of allowHighAccuracy  
 		* @param allowHighAccuracy Boolean 
 		*/
@@ -15367,10 +18349,33 @@ declare module Ext.device {
 		* @param timeout Number 
 		*/
 		static setTimeout( timeout?:number ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Watches for the current position and calls the callback when successful depending on the specified frequency  
 		* @param config Object An object which contains the following config options: 
 		*/
 		static watchPosition( config?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.geolocation {
@@ -15415,14 +18420,60 @@ declare module Ext.device {
 	export interface INotification extends Ext.IBase,Ext.device.notification.IAbstract {
 	}
 	export class Notification {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] A simple way to show a notification  
 		* @param config Object An object which contains the following config options: 
 		*/
 		static show( config?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Vibrates the device  */
 		static vibrate(): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.notification {
@@ -15660,8 +18711,253 @@ declare module Ext.device {
 	export interface IOrientation extends Ext.IBase,Ext.device.orientation.IAbstract {
 	}
 	export class Orientation {
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.orientation {
@@ -15672,16 +18968,35 @@ declare module Ext.device {
 	export interface IPurchases extends Ext.IBase,Ext.device.purchases.ISencha {
 	}
 	export class Purchases {
-		/** [Method]  */
-		constructor();
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Checks if the current user is able to make payments  
 		* @param config Object 
 		*/
 		static canMakePayments( config?:any ): void;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Returns a Ext data Store instance of all purchases delivered to the current user  
 		* @param config Object 
 		*/
 		static getCompletedPurchases( config?:any ): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns a Ext data Store instance of all products available to purchase  
 		* @param config Object 
 		*/
@@ -15690,6 +19005,33 @@ declare module Ext.device {
 		* @param config Object 
 		*/
 		static getPurchases( config?:any ): void;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.purchases {
@@ -15762,12 +19104,58 @@ declare module Ext.device {
 	export interface IPush extends Ext.IBase,Ext.device.push.IAbstract {
 	}
 	export class Push {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Registers a push notification  
 		* @param config Object The configuration for to pass when registering this push notification service. 
 		*/
 		static register( config?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.push {
@@ -15798,12 +19186,58 @@ declare module Ext.device {
 	export interface ISQLite extends Ext.IBase,Ext.device.sqlite.ISencha {
 	}
 	export class SQLite {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Returns a Ext device SQLite Database instance  
 		* @param config Object The object which contains the following config options: 
 		*/
 		static openDatabase( config?:any ): Ext.device.sqlite.IDatabase;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.device.sqlite {
@@ -15934,10 +19368,6 @@ declare module Ext.direct {
 	export interface IManager extends Ext.IBase,Ext.mixin.IObservable {
 	}
 	export class Manager {
-		/** [Method]  
-		* @param config Object 
-		*/
-		constructor( config?:any );
 		/** [Method] Appends an after event handler  
 		* @param eventName String/String[]/Object The name of the event to listen for. 
 		* @param fn Function/String The method the event invokes. 
@@ -15982,6 +19412,21 @@ declare module Ext.direct {
 		* @param provider Ext.direct.Provider/Object... Accepts any number of Provider descriptions (an instance or config object for a Provider). Each Provider description instructs Ext.Direct how to create client-side stub methods. 
 		*/
 		static addProvider( provider?:any ): any;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Removes all listeners for this object  */
 		static clearListeners(): void;
 		/** [Method]  */
@@ -16008,6 +19453,12 @@ declare module Ext.direct {
 		static getBubbleEvents(): string;
 		/** [Method] Returns the value of bubbleEvents  */
 		static getBubbleEvents(): string[];
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the value of listeners  */
 		static getListeners(): any;
 		/** [Method] Retrieves a provider by the id specified when the provider is added  
@@ -16020,6 +19471,10 @@ declare module Ext.direct {
 		* @param eventName String The name of the event to check for 
 		*/
 		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Alias for addManagedListener  
 		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
 		* @param eventName Object/String The event name, or an object containing event name properties. 
@@ -16135,6 +19590,8 @@ declare module Ext.direct {
 		* @param listeners Object 
 		*/
 		static setListeners( listeners?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Suspends the firing of all events  */
 		static suspendEvents(): void;
 		/** [Method] Alias for removeListener  
@@ -16163,16 +19620,33 @@ declare module Ext.direct {
 		*/
 		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
 	export interface IDirect extends Ext.IBase,Ext.mixin.IObservable {
 	}
 	export class Direct {
-		/** [Method]  
-		* @param config Object 
-		*/
-		constructor( config?:any );
 		/** [Method] Appends an after event handler  
 		* @param eventName String/String[]/Object The name of the event to listen for. 
 		* @param fn Function/String The method the event invokes. 
@@ -16217,6 +19691,21 @@ declare module Ext {
 		* @param provider Ext.direct.Provider/Object... Accepts any number of Provider descriptions (an instance or config object for a Provider). Each Provider description instructs Ext.Direct how to create client-side stub methods. 
 		*/
 		static addProvider( provider?:any ): any;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Removes all listeners for this object  */
 		static clearListeners(): void;
 		/** [Method]  */
@@ -16243,6 +19732,12 @@ declare module Ext {
 		static getBubbleEvents(): string;
 		/** [Method] Returns the value of bubbleEvents  */
 		static getBubbleEvents(): string[];
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Returns the value of listeners  */
 		static getListeners(): any;
 		/** [Method] Retrieves a provider by the id specified when the provider is added  
@@ -16255,6 +19750,10 @@ declare module Ext {
 		* @param eventName String The name of the event to check for 
 		*/
 		static hasListener( eventName?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Alias for addManagedListener  
 		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
 		* @param eventName Object/String The event name, or an object containing event name properties. 
@@ -16370,6 +19869,8 @@ declare module Ext {
 		* @param listeners Object 
 		*/
 		static setListeners( listeners?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Suspends the firing of all events  */
 		static suspendEvents(): void;
 		/** [Method] Alias for removeListener  
@@ -16398,6 +19899,27 @@ declare module Ext {
 		*/
 		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
 		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.direct {
@@ -20497,12 +24019,152 @@ declare module Ext {
 	export interface IDomQuery extends Ext.dom.IQuery {
 	}
 	export class DomQuery {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Returns true if the passed element s match the passed simple selector e g  
+		* @param el String/HTMLElement/Array An element id, element or array of elements 
+		* @param selector String The simple selector to test 
+		*/
+		static is( el?:any, selector?:any ): any;
+		static is( el?:string, selector?:string ): bool;
+		static is( el?:HTMLElement, selector?:string ): bool;
+		static is( el?:any[], selector?:string ): bool;
+		/** [Method] Selects a group of elements  
+		* @param selector String The selector/xpath query (can be a comma separated list of selectors) 
+		* @param root HTMLElement/String The start of the query (defaults to document). 
+		*/
+		static select( selector?:any, root?:any ): any;
+		static select( selector?:string, root?:HTMLElement ): HTMLElement[];
+		static select( selector?:string, root?:string ): HTMLElement[];
+		/** [Method] Selects a single element  
+		* @param selector String The selector/xpath query 
+		* @param root HTMLElement/String The start of the query (defaults to document). 
+		*/
+		static selectNode( selector?:any, root?:any ): any;
+		static selectNode( selector?:string, root?:HTMLElement ): HTMLElement;
+		static selectNode( selector?:string, root?:string ): HTMLElement;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.core {
 	export interface IDomQuery extends Ext.dom.IQuery {
 	}
 	export class DomQuery {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Returns true if the passed element s match the passed simple selector e g  
+		* @param el String/HTMLElement/Array An element id, element or array of elements 
+		* @param selector String The simple selector to test 
+		*/
+		static is( el?:any, selector?:any ): any;
+		static is( el?:string, selector?:string ): bool;
+		static is( el?:HTMLElement, selector?:string ): bool;
+		static is( el?:any[], selector?:string ): bool;
+		/** [Method] Selects a group of elements  
+		* @param selector String The selector/xpath query (can be a comma separated list of selectors) 
+		* @param root HTMLElement/String The start of the query (defaults to document). 
+		*/
+		static select( selector?:any, root?:any ): any;
+		static select( selector?:string, root?:HTMLElement ): HTMLElement[];
+		static select( selector?:string, root?:string ): HTMLElement[];
+		/** [Method] Selects a single element  
+		* @param selector String The selector/xpath query 
+		* @param root HTMLElement/String The start of the query (defaults to document). 
+		*/
+		static selectNode( selector?:any, root?:any ): any;
+		static selectNode( selector?:string, root?:HTMLElement ): HTMLElement;
+		static selectNode( selector?:string, root?:string ): HTMLElement;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw {
@@ -20520,6 +24182,21 @@ declare module Ext.draw {
 		static addFrameCallback( callback?:any, scope?:any ): string;
 		/** [Method] Cross platform animationTime implementation  */
 		static animationTime(): number;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Cancel a registered one time callback 
 		* @param id Object 
 		*/
@@ -20528,8 +24205,18 @@ declare module Ext.draw {
 		* @param animation Object The animation to check for. 
 		*/
 		static contains( animation?:any ): bool;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Returns true or false whether the pool is empty or not  */
 		static empty(): bool;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Removes an animation from the pool  
 		* @param animation Object The animation to remove from the pool. 
 		*/
@@ -20543,10 +24230,33 @@ declare module Ext.draw {
 		* @param scope Object 
 		*/
 		static schedule( callback?:any, scope?:any ): string;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Given a frame time it will filter out finished animations from the pool  
 		* @param frameTime Number The frame's start time, in milliseconds. 
 		*/
 		static step( frameTime?:number ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw {
@@ -20691,10 +24401,35 @@ declare module Ext.draw {
 	export interface IDraw extends Ext.IBase {
 	}
 	export class Draw {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Converting radians to degrees  
 		* @param radian Number 
 		*/
 		static degrees( radian?:number ): number;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method]  
 		* @param bbox1 Object 
 		* @param bbox2 Object 
@@ -20713,6 +24448,29 @@ declare module Ext.draw {
 		* @param points Array Array of numbers. 
 		*/
 		static spline( points?:any[] ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw.engine {
@@ -21983,6 +25741,21 @@ declare module Ext.draw {
 	export interface ISolver extends Ext.IBase {
 	}
 	export class Solver {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Returns the function f x a  x3  b  x2  c  x  d and solver for f x y 
 		* @param a Object 
 		* @param b Object 
@@ -21994,6 +25767,16 @@ declare module Ext.draw {
 		* @param number Object {Number} 
 		*/
 		static cubicRoot( number?:any ): void;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Returns the function f x a  x  b and solver for f x y 
 		* @param a Object 
 		* @param b Object 
@@ -22005,12 +25788,83 @@ declare module Ext.draw {
 		* @param c Object 
 		*/
 		static quadraticFunction( a?:any, b?:any, c?:any ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw.sprite {
 	export interface IAnimationParser extends Ext.IBase {
 	}
 	export class AnimationParser {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw.sprite {
@@ -22082,6 +25936,54 @@ declare module Ext.draw.sprite {
 	export interface IAttributeParser extends Ext.IBase {
 	}
 	export class AttributeParser {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw.sprite {
@@ -22720,6 +26622,31 @@ declare module Ext.draw {
 	export interface ITextMeasurer extends Ext.IBase {
 	}
 	export class TextMeasurer {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Measure a text with specific font  
 		* @param text String 
 		* @param font String 
@@ -22730,12 +26657,83 @@ declare module Ext.draw {
 		* @param font String 
 		*/
 		static measureTextSingleLine( text?:string, font?:string ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.draw {
 	export interface ITimingFunctions extends Ext.IBase {
 	}
 	export class TimingFunctions {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.env {
@@ -23494,10 +27492,58 @@ declare module Ext {
 	export interface IFeature extends Ext.env.IFeature {
 	}
 	export class Feature {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Verifies if a browser feature exists or not on the current device  
 		* @param value String The feature name to check. 
 		*/
 		static has( value?:string ): bool;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.field {
@@ -28897,6 +32943,945 @@ declare module Ext {
 	export interface IMsg extends Ext.IMessageBox {
 	}
 	export class Msg {
+		/** [Method] Adds one or more Components to this Container  
+		* @param newItems Object/Object[]/Ext.Component/Ext.Component[] The new items to add to the Container. 
+		*/
+		static add( newItems?:any ): Ext.IComponent;
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds an array of Components to this Container  
+		* @param items Array The array of items to add to this container. 
+		*/
+		static addAll( items?:any[] ): any[];
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds a CSS class or classes to this Component s rendered element  
+		* @param cls String The CSS class to add. 
+		* @param prefix String Optional prefix to add to each class. 
+		* @param suffix String Optional suffix to add to each class. 
+		*/
+		static addCls( cls?:string, prefix?:string, suffix?:string ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Displays a standard read only message box with an OK button comparable to the basic JavaScript alert prompt 
+		* @param title String The title bar text. 
+		* @param message String The message box body text. 
+		* @param fn Function A callback function which is called when the dialog is dismissed by clicking on the configured buttons. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to: the browser window 
+		*/
+		static alert( title?:string, message?:string, fn?:any, scope?:any ): Ext.IMessageBox;
+		/** [Method] Animates to the supplied activeItem with a specified animation  
+		* @param activeItem Object/Number The item or item index to make active. 
+		* @param animation Object/Ext.fx.layout.Card Card animation configuration or instance. 
+		*/
+		static animateActiveItem( activeItem?:any, animation?:any ): void;
+		/** [Method] Changes the masked configuration when its setter is called which will convert the value into a proper object instanc  
+		* @param masked Boolean/Object/Ext.Mask/Ext.LoadMask 
+		*/
+		static applyMasked( masked?:any ): any;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Retrieves the first direct child of this container which matches the passed selector  
+		* @param selector String An Ext.ComponentQuery selector. 
+		*/
+		static child( selector?:string ): Ext.IComponent;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
+		/** [Method] Displays a confirmation message box with Yes and No buttons comparable to JavaScript s confirm 
+		* @param title String The title bar text. 
+		* @param message String The message box body text. 
+		* @param fn Function A callback function which is called when the dialog is dismissed by clicking on the configured buttons. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to: the browser window 
+		*/
+		static confirm( title?:string, message?:string, fn?:any, scope?:any ): Ext.IMessageBox;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Disables this Component */
+		static disable(): void;
+		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
+		* @param selector String An Ext.ComponentQuery selector. 
+		*/
+		static down( selector?:string ): Ext.IComponent;
+		/** [Method] Enables this Component */
+		static enable(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of activeItem  */
+		static getActiveItem(): any;
+		/** [Method] Returns the Component for a given index in the Container s items  
+		* @param index Number The index of the Component to return. 
+		*/
+		static getAt( index?:number ): Ext.IComponent;
+		/** [Method] Returns the value of autoDestroy  */
+		static getAutoDestroy(): bool;
+		/** [Method] Returns the value of baseCls  */
+		static getBaseCls(): string;
+		/** [Method] Returns the value of bodyBorder  */
+		static getBodyBorder(): number;
+		/** [Method] Returns the value of bodyBorder  */
+		static getBodyBorder(): bool;
+		/** [Method] Returns the value of bodyBorder  */
+		static getBodyBorder(): string;
+		/** [Method] Returns the value of bodyMargin  */
+		static getBodyMargin(): number;
+		/** [Method] Returns the value of bodyMargin  */
+		static getBodyMargin(): bool;
+		/** [Method] Returns the value of bodyMargin  */
+		static getBodyMargin(): string;
+		/** [Method] Returns the value of bodyPadding  */
+		static getBodyPadding(): number;
+		/** [Method] Returns the value of bodyPadding  */
+		static getBodyPadding(): bool;
+		/** [Method] Returns the value of bodyPadding  */
+		static getBodyPadding(): string;
+		/** [Method] Returns the value of border  */
+		static getBorder(): number;
+		/** [Method] Returns the value of border  */
+		static getBorder(): string;
+		/** [Method] Returns the value of bottom  */
+		static getBottom(): number;
+		/** [Method] Returns the value of bottom  */
+		static getBottom(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
+		/** [Method] Returns the value of buttons  */
+		static getButtons(): any;
+		/** [Method] Returns the value of centered  */
+		static getCentered(): bool;
+		/** [Method] Returns the value of cls  */
+		static getCls(): string;
+		/** [Method] Returns the value of cls  */
+		static getCls(): string[];
+		/** [Method] Examines this container s items property and gets a direct child component of this container  
+		* @param component String/Number This parameter may be any of the following:  {String} : representing the itemId or id of the child component. {Number} : representing the position of the child component within the items property. For additional information see Ext.util.MixedCollection.get. 
+		*/
+		static getComponent( component?:any ): any;
+		static getComponent( component?:string ): Ext.IComponent;
+		static getComponent( component?:number ): Ext.IComponent;
+		/** [Method] Returns the value of contentEl  */
+		static getContentEl(): Ext.IElement;
+		/** [Method] Returns the value of contentEl  */
+		static getContentEl(): HTMLElement;
+		/** [Method] Returns the value of contentEl  */
+		static getContentEl(): string;
+		/** [Method] Returns the value of control  */
+		static getControl(): any;
+		/** [Method] Returns the value of data  */
+		static getData(): any;
+		/** [Method] Returns the value of defaultTextHeight  */
+		static getDefaultTextHeight(): number;
+		/** [Method] Returns the value of defaultType  */
+		static getDefaultType(): string;
+		/** [Method] Returns the value of defaults  */
+		static getDefaults(): any;
+		/** [Method] Returns the value of disabled  */
+		static getDisabled(): bool;
+		/** [Method] Returns the value of disabledCls  */
+		static getDisabledCls(): string;
+		/** [Method] Returns the value of docked  */
+		static getDocked(): string;
+		/** [Method] Finds a docked item of this container using a reference idor an index of its location in getDockedItems  
+		* @param component String/Number The id or index of the component to find. 
+		*/
+		static getDockedComponent( component?:any ): any;
+		static getDockedComponent( component?:string ): Ext.IComponent;
+		static getDockedComponent( component?:number ): Ext.IComponent;
+		/** [Method] Finds a docked item of this container using a reference idor an index of its location in getDockedItems  
+		* @param component String/Number The id or index of the component to find. 
+		*/
+		static getDockedComponent( component?:string ): bool;
+		static getDockedComponent( component?:number ): bool;
+		/** [Method] Returns all the Ext Component docked items in this container  */
+		static getDockedItems(): any[];
+		/** [Method] Retrieves the top level element representing this component  */
+		static getEl(): Ext.dom.IElement;
+		/** [Method] Returns the value of enter  */
+		static getEnter(): string;
+		/** [Method] Returns the value of enterAnimation  */
+		static getEnterAnimation(): string;
+		/** [Method] Returns the value of enterAnimation  */
+		static getEnterAnimation(): any;
+		/** [Method] Returns the value of exit  */
+		static getExit(): string;
+		/** [Method] Returns the value of exitAnimation  */
+		static getExitAnimation(): string;
+		/** [Method] Returns the value of exitAnimation  */
+		static getExitAnimation(): any;
+		/** [Method] Returns the value of flex  */
+		static getFlex(): number;
+		/** [Method] Returns the value of floatingCls  */
+		static getFloatingCls(): string;
+		/** [Method] Returns the value of height  */
+		static getHeight(): number;
+		/** [Method] Returns the value of height  */
+		static getHeight(): string;
+		/** [Method] Returns the value of hidden  */
+		static getHidden(): bool;
+		/** [Method] Returns the value of hiddenCls  */
+		static getHiddenCls(): string;
+		/** [Method] Returns the value of hideAnimation  */
+		static getHideAnimation(): any;
+		/** [Method] Returns the value of hideOnMaskTap  */
+		static getHideOnMaskTap(): bool;
+		/** [Method] Returns the value of html  */
+		static getHtml(): string;
+		/** [Method] Returns the value of html  */
+		static getHtml(): Ext.IElement;
+		/** [Method] Returns the value of html  */
+		static getHtml(): HTMLElement;
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns all inner items of this container  */
+		static getInnerItems(): any[];
+		/** [Method] Returns the value of itemId  */
+		static getItemId(): string;
+		/** [Method] Returns the value of items  */
+		static getItems(): any;
+		/** [Method] Returns the value of layout  */
+		static getLayout(): any;
+		/** [Method] Returns the value of left  */
+		static getLeft(): number;
+		/** [Method] Returns the value of left  */
+		static getLeft(): string;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
+		/** [Method] Returns the value of margin  */
+		static getMargin(): number;
+		/** [Method] Returns the value of margin  */
+		static getMargin(): string;
+		/** [Method] Returns the value of masked  */
+		static getMasked(): any;
+		/** [Method] Returns the value of maxHeight  */
+		static getMaxHeight(): number;
+		/** [Method] Returns the value of maxHeight  */
+		static getMaxHeight(): string;
+		/** [Method] Returns the value of maxWidth  */
+		static getMaxWidth(): number;
+		/** [Method] Returns the value of maxWidth  */
+		static getMaxWidth(): string;
+		/** [Method] Returns the value of minHeight  */
+		static getMinHeight(): number;
+		/** [Method] Returns the value of minHeight  */
+		static getMinHeight(): string;
+		/** [Method] Returns the value of minWidth  */
+		static getMinWidth(): number;
+		/** [Method] Returns the value of minWidth  */
+		static getMinWidth(): string;
+		/** [Method] Returns the value of padding  */
+		static getPadding(): number;
+		/** [Method] Returns the value of padding  */
+		static getPadding(): string;
+		/** [Method] Returns the parent of this component if it has one  */
+		static getParent(): Ext.IComponent;
+		/** [Method] Returns the value of plugins  */
+		static getPlugins(): any;
+		/** [Method] Returns the value of prompt  */
+		static getPrompt(): any;
+		/** [Method] Returns the value of record  */
+		static getRecord(): Ext.data.IModel;
+		/** [Method] Returns the value of renderTo  */
+		static getRenderTo(): Ext.IElement;
+		/** [Method] Returns the value of right  */
+		static getRight(): number;
+		/** [Method] Returns the value of right  */
+		static getRight(): string;
+		/** [Method] Returns an the scrollable instance for this container which is a Ext scroll View class  */
+		static getScrollable(): Ext.scroll.IView;
+		/** [Method] Returns the value of showAnimation  */
+		static getShowAnimation(): any;
+		/** [Method] Returns the height and width of the Component  */
+		static getSize(): any;
+		/** [Method] Returns the value of stretchX  */
+		static getStretchX(): bool;
+		/** [Method] Returns the value of stretchY  */
+		static getStretchY(): bool;
+		/** [Method] Returns the value of style  */
+		static getStyle(): any;
+		/** [Method] Returns the value of styleHtmlCls  */
+		static getStyleHtmlCls(): string;
+		/** [Method] Returns the value of styleHtmlContent  */
+		static getStyleHtmlContent(): bool;
+		/** [Method] Returns the value of title  */
+		static getTitle(): string;
+		/** [Method] Returns the value of top  */
+		static getTop(): number;
+		/** [Method] Returns the value of top  */
+		static getTop(): string;
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): string;
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): string[];
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): Ext.ITemplate[];
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): Ext.IXTemplate[];
+		/** [Method] Returns the value of tplWriteMode  */
+		static getTplWriteMode(): string;
+		/** [Method] Returns the value of ui  */
+		static getUi(): string;
+		/** [Method] Returns the value of width  */
+		static getWidth(): number;
+		/** [Method] Returns the value of width  */
+		static getWidth(): string;
+		/** [Method] Returns this Component s xtype hierarchy as a slash delimited string  */
+		static getXTypes(): string;
+		/** [Method] Returns the value of zIndex  */
+		static getZIndex(): number;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Returns true if this component has a parent  */
+		static hasParent(): bool;
+		/** [Method] Hides this Component 
+		* @param animation Object/Boolean 
+		*/
+		static hide( animation?:any ): Ext.IComponent;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Allows addition of behavior to the rendering phase  */
+		static initialize(): void;
+		/** [Method] Adds a child Component at the given index  
+		* @param index Number The index to insert the Component at. 
+		* @param item Object The Component to insert. 
+		*/
+		static insert( index?:number, item?:any ): void;
+		/** [Method] Returns true if this Component is currently disabled  */
+		static isDisabled(): bool;
+		/** [Method] Returns true if this Component is currently hidden  */
+		static isHidden(): bool;
+		/** [Method] Tests whether or not this Component is of a specific xtype  
+		* @param xtype String The xtype to check for this Component. 
+		* @param shallow Boolean false to check whether this Component is descended from the xtype (this is the default), or true to check whether this Component is directly of the specified xtype. 
+		*/
+		static isXType( xtype?:string, shallow?:bool ): bool;
+		/** [Method] Convenience method which calls setMasked with a value of true to show the mask 
+		* @param mask Object 
+		*/
+		static mask( mask?:any ): void;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Displays a message box with OK and Cancel buttons prompting the user to enter some text comparable to JavaScript s p  
+		* @param title String The title bar text. 
+		* @param message String The message box body text. 
+		* @param fn Function A callback function which is called when the dialog is dismissed by clicking on the configured buttons. 
+		* @param scope Object The scope (this reference) in which the callback is executed. Defaults to: the browser window. 
+		* @param multiLine Boolean/Number true to create a multiline textbox using the defaultTextHeight property, or the height in pixels to create the textbox. 
+		* @param value String Default value of the text input element. 
+		* @param prompt Object The configuration for the prompt. See the prompt documentation in Ext.MessageBox for more information. 
+		*/
+		static prompt( title?:any, message?:any, fn?:any, scope?:any, multiLine?:any, value?:any, prompt?:any ): any;
+		static prompt( title?:string, message?:string, fn?:any, scope?:any, multiLine?:bool, value?:string, prompt?:any ): Ext.IMessageBox;
+		static prompt( title?:string, message?:string, fn?:any, scope?:any, multiLine?:number, value?:string, prompt?:any ): Ext.IMessageBox;
+		/** [Method] Retrieves all descendant components which match the passed selector  
+		* @param selector String Selector complying to an Ext.ComponentQuery selector. 
+		*/
+		static query( selector?:string ): any[];
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes an item from this Container optionally destroying it  
+		* @param item Object The item to remove. 
+		* @param destroy Boolean Calls the Component's destroy method if true. 
+		*/
+		static remove( item?:any, destroy?:bool ): Ext.IComponent;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes all items currently in the Container optionally destroying them all  
+		* @param destroy Boolean If true, destroys each removed Component. 
+		* @param everything Boolean If true, completely remove all items including docked / centered and floating items. 
+		*/
+		static removeAll( destroy?:bool, everything?:bool ): Ext.IComponent;
+		/** [Method] Removes the Component at the specified index  myContainer removeAt 0 removes the first item 
+		* @param index Number The index of the Component to remove. 
+		*/
+		static removeAt( index?:number ): Ext.IContainer;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes the given CSS class es from this Component s rendered element  
+		* @param cls String The class(es) to remove. 
+		* @param prefix String Optional prefix to prepend before each class. 
+		* @param suffix String Optional suffix to append to each class. 
+		*/
+		static removeCls( cls?:string, prefix?:string, suffix?:string ): void;
+		/** [Method] Removes a docked item from this Container  
+		* @param item Object The item to remove. 
+		* @param destroy Boolean Calls the Component's destroy method if true. 
+		*/
+		static removeDocked( item?:any, destroy?:bool ): Ext.IComponent;
+		/** [Method] Removes an inner Component at the specified index  myContainer removeInnerAt 0 removes the first item of the in  
+		* @param index Number The index of the Component to remove. 
+		*/
+		static removeInnerAt( index?:number ): Ext.IContainer;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Replaces specified classes with the newly specified classes  
+		* @param oldCls String The class(es) to remove. 
+		* @param newCls String The class(es) to add. 
+		* @param prefix String Optional prefix to prepend before each class. 
+		* @param suffix String Optional suffix to append to each class. 
+		*/
+		static replaceCls( oldCls?:string, newCls?:string, prefix?:string, suffix?:string ): void;
+		/** [Method] Resets top right bottom and left configurations to null which will un float this component  */
+		static resetFloating(): void;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of activeItem  
+		* @param activeItem Object/String/Number 
+		*/
+		static setActiveItem( activeItem?:any ): void;
+		/** [Method] Sets the value of autoDestroy  
+		* @param autoDestroy Boolean 
+		*/
+		static setAutoDestroy( autoDestroy?:bool ): void;
+		/** [Method] Sets the value of baseCls  
+		* @param baseCls String 
+		*/
+		static setBaseCls( baseCls?:string ): void;
+		/** [Method] Sets the value of bodyBorder  
+		* @param bodyBorder Number/Boolean/String 
+		*/
+		static setBodyBorder( bodyBorder?:any ): any;
+		static setBodyBorder( bodyBorder?:number ): void;
+		static setBodyBorder( bodyBorder?:bool ): void;
+		static setBodyBorder( bodyBorder?:string ): void;
+		/** [Method] Sets the value of bodyMargin  
+		* @param bodyMargin Number/Boolean/String 
+		*/
+		static setBodyMargin( bodyMargin?:any ): any;
+		static setBodyMargin( bodyMargin?:number ): void;
+		static setBodyMargin( bodyMargin?:bool ): void;
+		static setBodyMargin( bodyMargin?:string ): void;
+		/** [Method] Sets the value of bodyPadding  
+		* @param bodyPadding Number/Boolean/String 
+		*/
+		static setBodyPadding( bodyPadding?:any ): any;
+		static setBodyPadding( bodyPadding?:number ): void;
+		static setBodyPadding( bodyPadding?:bool ): void;
+		static setBodyPadding( bodyPadding?:string ): void;
+		/** [Method] Sets the value of border  
+		* @param border Number/String 
+		*/
+		static setBorder( border?:any ): any;
+		static setBorder( border?:number ): void;
+		static setBorder( border?:string ): void;
+		/** [Method] Sets the value of bottom  
+		* @param bottom Number/String 
+		*/
+		static setBottom( bottom?:any ): any;
+		static setBottom( bottom?:number ): void;
+		static setBottom( bottom?:string ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
+		/** [Method] Sets the value of buttons  
+		* @param buttons Array/Object 
+		*/
+		static setButtons( buttons?:any ): void;
+		/** [Method] Sets the value of centered  
+		* @param centered Boolean 
+		*/
+		static setCentered( centered?:bool ): void;
+		/** [Method] Sets the value of cls  
+		* @param cls String/String[] 
+		*/
+		static setCls( cls?:any ): any;
+		static setCls( cls?:string ): void;
+		static setCls( cls?:string[] ): void;
+		/** [Method] Sets the value of contentEl  
+		* @param contentEl Ext.Element/HTMLElement/String 
+		*/
+		static setContentEl( contentEl?:any ): any;
+		static setContentEl( contentEl?:Ext.IElement ): void;
+		static setContentEl( contentEl?:HTMLElement ): void;
+		static setContentEl( contentEl?:string ): void;
+		/** [Method] Sets the value of control  
+		* @param control Object 
+		*/
+		static setControl( control?:any ): void;
+		/** [Method] Sets the value of data  
+		* @param data Object 
+		*/
+		static setData( data?:any ): void;
+		/** [Method] Sets the value of defaultTextHeight  
+		* @param defaultTextHeight Number 
+		*/
+		static setDefaultTextHeight( defaultTextHeight?:number ): void;
+		/** [Method] Sets the value of defaultType  
+		* @param defaultType String 
+		*/
+		static setDefaultType( defaultType?:string ): void;
+		/** [Method] Sets the value of defaults  
+		* @param defaults Object 
+		*/
+		static setDefaults( defaults?:any ): void;
+		/** [Method] Sets the value of disabled  
+		* @param disabled Boolean 
+		*/
+		static setDisabled( disabled?:bool ): void;
+		/** [Method] Sets the value of disabledCls  
+		* @param disabledCls String 
+		*/
+		static setDisabledCls( disabledCls?:string ): void;
+		/** [Method] Sets the value of docked  
+		* @param docked String 
+		*/
+		static setDocked( docked?:string ): void;
+		/** [Method] Sets the value of draggable  
+		* @param draggable Object 
+		*/
+		static setDraggable( draggable?:any ): void;
+		/** [Method] Sets the value of enter  
+		* @param enter String 
+		*/
+		static setEnter( enter?:string ): void;
+		/** [Method] Sets the value of enterAnimation  
+		* @param enterAnimation String/Mixed 
+		*/
+		static setEnterAnimation( enterAnimation?:any ): any;
+		static setEnterAnimation( enterAnimation?:string ): void;
+		/** [Method] Sets the value of exit  
+		* @param exit String 
+		*/
+		static setExit( exit?:string ): void;
+		/** [Method] Sets the value of exitAnimation  
+		* @param exitAnimation String/Mixed 
+		*/
+		static setExitAnimation( exitAnimation?:any ): any;
+		static setExitAnimation( exitAnimation?:string ): void;
+		/** [Method] Sets the value of flex  
+		* @param flex Number 
+		*/
+		static setFlex( flex?:number ): void;
+		/** [Method] Used to update the floating state of this component  
+		* @param floating Boolean true if you want to float this component. 
+		*/
+		static setFloating( floating?:bool ): void;
+		/** [Method] Sets the value of floatingCls  
+		* @param floatingCls String 
+		*/
+		static setFloatingCls( floatingCls?:string ): void;
+		/** [Method] Sets the value of height  
+		* @param height Number/String 
+		*/
+		static setHeight( height?:any ): any;
+		static setHeight( height?:number ): void;
+		static setHeight( height?:string ): void;
+		/** [Method] Sets the value of hidden  
+		* @param hidden Boolean 
+		*/
+		static setHidden( hidden?:bool ): void;
+		/** [Method] Sets the value of hiddenCls  
+		* @param hiddenCls String 
+		*/
+		static setHiddenCls( hiddenCls?:string ): void;
+		/** [Method] Sets the value of hideAnimation  
+		* @param hideAnimation Object 
+		*/
+		static setHideAnimation( hideAnimation?:any ): void;
+		/** [Method] Sets the value of hideOnMaskTap  
+		* @param hideOnMaskTap Boolean 
+		*/
+		static setHideOnMaskTap( hideOnMaskTap?:bool ): void;
+		/** [Method] Sets the value of html  
+		* @param html String/Ext.Element/HTMLElement 
+		*/
+		static setHtml( html?:any ): any;
+		static setHtml( html?:string ): void;
+		static setHtml( html?:Ext.IElement ): void;
+		static setHtml( html?:HTMLElement ): void;
+		/** [Method] Sets icon  
+		* @param iconCls String A CSS class name or empty string to clear the icon. 
+		*/
+		static setIcon( iconCls?:string ): Ext.IMessageBox;
+		/** [Method] Sets the value of iconCls  
+		* @param iconCls String 
+		*/
+		static setIconCls( iconCls?:string ): void;
+		/** [Method] Sets the value of itemId  
+		* @param itemId String 
+		*/
+		static setItemId( itemId?:string ): void;
+		/** [Method] Sets the value of items  
+		* @param items Array/Object 
+		*/
+		static setItems( items?:any ): void;
+		/** [Method] Sets the value of layout  
+		* @param layout Object 
+		*/
+		static setLayout( layout?:any ): void;
+		/** [Method] Sets the value of left  
+		* @param left Number/String 
+		*/
+		static setLeft( left?:any ): any;
+		static setLeft( left?:number ): void;
+		static setLeft( left?:string ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
+		/** [Method] Sets the value of margin  
+		* @param margin Number/String 
+		*/
+		static setMargin( margin?:any ): any;
+		static setMargin( margin?:number ): void;
+		static setMargin( margin?:string ): void;
+		/** [Method] Sets the value of masked  
+		* @param masked Boolean/Object/Ext.Mask/Ext.LoadMask 
+		*/
+		static setMasked( masked?:any ): void;
+		/** [Method] Sets the value of maxHeight  
+		* @param maxHeight Number/String 
+		*/
+		static setMaxHeight( maxHeight?:any ): any;
+		static setMaxHeight( maxHeight?:number ): void;
+		static setMaxHeight( maxHeight?:string ): void;
+		/** [Method] Sets the value of maxWidth  
+		* @param maxWidth Number/String 
+		*/
+		static setMaxWidth( maxWidth?:any ): any;
+		static setMaxWidth( maxWidth?:number ): void;
+		static setMaxWidth( maxWidth?:string ): void;
+		/** [Method] Sets the value of message  
+		* @param message String 
+		*/
+		static setMessage( message?:string ): void;
+		/** [Method] Sets the value of minHeight  
+		* @param minHeight Number/String 
+		*/
+		static setMinHeight( minHeight?:any ): any;
+		static setMinHeight( minHeight?:number ): void;
+		static setMinHeight( minHeight?:string ): void;
+		/** [Method] Sets the value of minWidth  
+		* @param minWidth Number/String 
+		*/
+		static setMinWidth( minWidth?:any ): any;
+		static setMinWidth( minWidth?:number ): void;
+		static setMinWidth( minWidth?:string ): void;
+		/** [Method] Sets the value of padding  
+		* @param padding Number/String 
+		*/
+		static setPadding( padding?:any ): any;
+		static setPadding( padding?:number ): void;
+		static setPadding( padding?:string ): void;
+		/** [Method] Sets the value of plugins  
+		* @param plugins Object/Array 
+		*/
+		static setPlugins( plugins?:any ): void;
+		/** [Method] Sets the value of prompt  
+		* @param prompt Object 
+		*/
+		static setPrompt( prompt?:any ): void;
+		/** [Method] Sets the value of record  
+		* @param record Ext.data.Model 
+		*/
+		static setRecord( record?:Ext.data.IModel ): void;
+		/** [Method] Sets the value of renderTo  
+		* @param renderTo Ext.Element 
+		*/
+		static setRenderTo( renderTo?:Ext.IElement ): void;
+		/** [Method] Sets the value of right  
+		* @param right Number/String 
+		*/
+		static setRight( right?:any ): any;
+		static setRight( right?:number ): void;
+		static setRight( right?:string ): void;
+		/** [Method] Sets the value of scrollable  
+		* @param scrollable Boolean/String/Object 
+		*/
+		static setScrollable( scrollable?:any ): void;
+		/** [Method] Sets the value of showAnimation  
+		* @param showAnimation Object 
+		*/
+		static setShowAnimation( showAnimation?:any ): void;
+		/** [Method] Sets the size of the Component  
+		* @param width Number The new width for the Component. 
+		* @param height Number The new height for the Component. 
+		*/
+		static setSize( width?:number, height?:number ): void;
+		/** [Method] Sets the value of stretchX  
+		* @param stretchX Boolean 
+		*/
+		static setStretchX( stretchX?:bool ): void;
+		/** [Method] Sets the value of stretchY  
+		* @param stretchY Boolean 
+		*/
+		static setStretchY( stretchY?:bool ): void;
+		/** [Method] Sets the value of style  
+		* @param style String/Object 
+		*/
+		static setStyle( style?:any ): void;
+		/** [Method] Sets the value of styleHtmlCls  
+		* @param styleHtmlCls String 
+		*/
+		static setStyleHtmlCls( styleHtmlCls?:string ): void;
+		/** [Method] Sets the value of styleHtmlContent  
+		* @param styleHtmlContent Boolean 
+		*/
+		static setStyleHtmlContent( styleHtmlContent?:bool ): void;
+		/** [Method] Sets the value of title  
+		* @param title String 
+		*/
+		static setTitle( title?:string ): void;
+		/** [Method] Sets the value of top  
+		* @param top Number/String 
+		*/
+		static setTop( top?:any ): any;
+		static setTop( top?:number ): void;
+		static setTop( top?:string ): void;
+		/** [Method] Sets the value of tpl  
+		* @param tpl String/String[]/Ext.Template[]/Ext.XTemplate[] 
+		*/
+		static setTpl( tpl?:any ): any;
+		static setTpl( tpl?:string ): void;
+		static setTpl( tpl?:string[] ): void;
+		static setTpl( tpl?:Ext.ITemplate[] ): void;
+		static setTpl( tpl?:Ext.IXTemplate[] ): void;
+		/** [Method] Sets the value of tplWriteMode  
+		* @param tplWriteMode String 
+		*/
+		static setTplWriteMode( tplWriteMode?:string ): void;
+		/** [Method] Sets the value of ui  
+		* @param ui String 
+		*/
+		static setUi( ui?:string ): void;
+		/** [Method] Sets the value of width  
+		* @param width Number/String 
+		*/
+		static setWidth( width?:any ): any;
+		static setWidth( width?:number ): void;
+		static setWidth( width?:string ): void;
+		/** [Method] Sets the value of zIndex  
+		* @param zIndex Number 
+		*/
+		static setZIndex( zIndex?:number ): void;
+		/** [Method] Displays the Ext MessageBox with a specified configuration  
+		* @param config Object An object with the following config options: 
+		*/
+		static show( config?:any ): Ext.IMessageBox;
+		/** [Method] Shows this component by another component  
+		* @param component Ext.Component The target component to show this component by. 
+		* @param alignment String The specific alignment. 
+		*/
+		static showBy( component?:Ext.IComponent, alignment?:string ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Convenience method which calls setMasked with a value of false to hide the mask */
+		static unmask(): void;
+		/** [Method] Walks up the ownerCt axis looking for an ancestor Container which matches the passed simple selector  
+		* @param selector String The simple selector to test. 
+		*/
+		static up( selector?:string ): Ext.IContainer;
+		/** [Method] Updates the HTML content of the Component  */
+		static update(): void;
+		/** [Method] Updates the styleHtmlCls configuration 
+		* @param newHtmlCls Object 
+		* @param oldHtmlCls Object 
+		*/
+		static updateStyleHtmlCls( newHtmlCls?:any, oldHtmlCls?:any ): void;
+		/** [Method] Sets the value of message  
+		* @param message String 
+		*/
+		static updateText( message?:string ): Ext.IMessageBox;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.navigation {
@@ -29134,6 +34119,58 @@ declare module Ext {
 	export interface IOs extends Ext.env.IOS {
 	}
 	export class Os {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] A hybrid property can be either accessed as a method call i e  if Ext os is Android 
+		* @param value String The OS name to check. 
+		*/
+		static is( value?:string ): bool;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
@@ -30913,8 +35950,54 @@ declare module Ext {
 	export interface ITaskQueue extends Ext.IBase {
 	}
 	export class TaskQueue {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method]  */
-		constructor();
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext {
@@ -32403,6 +37486,21 @@ declare module Ext.util {
 	export interface IFormat extends Ext.IBase {
 	}
 	export class Format {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Parse a value into a formatted date using the specified format pattern  
 		* @param value String/Date The value to format. Strings must conform to the format expected by the JavaScript Date object's parse() method. 
 		* @param format String Any valid date format string. 
@@ -32410,6 +37508,8 @@ declare module Ext.util {
 		static date( value?:any, format?:any ): any;
 		static date( value?:string, format?:string ): string;
 		static date( value?:any, format?:string ): string;
+		/** [Method]  */
+		static destroy(): void;
 		/** [Method] Truncate a string and add an ellipsis  to the end if it exceeds the specified length  
 		* @param value String The string to truncate. 
 		* @param length Number The maximum length to allow before truncating. 
@@ -32429,6 +37529,10 @@ declare module Ext.util {
 		* @param values String... The values to replace token {0}, {1}, etc. 
 		*/
 		static format( string:string, ...values:any[] ): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
 		/** [Method] Convert certain characters  amp lt and from their HTML character equivalents  
 		* @param value String The string to decode. 
 		*/
@@ -32437,12 +37541,18 @@ declare module Ext.util {
 		* @param value String The string to encode. 
 		*/
 		static htmlEncode( value?:string ): string;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Pads the left side of a string with a specified character  
 		* @param string String The original string. 
 		* @param size Number The total length of the output string. 
 		* @param char String The character with which to pad the original string. 
 		*/
 		static leftPad( string?:string, size?:number, char?:string ): string;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
 		/** [Method] Utility function that allows you to easily switch a string between two alternating values  
 		* @param string String The current string 
 		* @param value String The value to compare to the current string 
@@ -32453,6 +37563,27 @@ declare module Ext.util {
 		* @param string String The string to escape 
 		*/
 		static trim( string?:string ): string;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.util {
@@ -32806,6 +37937,21 @@ declare module Ext.util {
 	export interface IInflector extends Ext.IBase {
 	}
 	export class Inflector {
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
 		/** [Method] Returns the correct Model name for a given string  
 		* @param word String The word to classify 
 		*/
@@ -32814,6 +37960,16 @@ declare module Ext.util {
 		static clearPlurals(): void;
 		/** [Method] Removes all registered singularization rules */
 		static clearSingulars(): void;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
 		/** [Method] Returns true if the given word is transnumeral the word is its own singular and plural form  e g  
 		* @param word String The word to test 
 		*/
@@ -32840,6 +37996,29 @@ declare module Ext.util {
 		* @param word String The word to singularize 
 		*/
 		static singularize( word?:string ): string;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.util {
@@ -33773,6 +38952,838 @@ declare module Ext {
 	export interface IViewport extends Ext.viewport.IDefault {
 	}
 	export class Viewport {
+		/** [Method] Adds one or more Components to this Container  
+		* @param newItems Object/Object[]/Ext.Component/Ext.Component[] The new items to add to the Container. 
+		*/
+		static add( newItems?:any ): Ext.IComponent;
+		/** [Method] Appends an after event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds an array of Components to this Container  
+		* @param items Array The array of items to add to this container. 
+		*/
+		static addAll( items?:any[] ): any[];
+		/** [Method] Appends a before event handler  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static addBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Adds a CSS class or classes to this Component s rendered element  
+		* @param cls String The CSS class to add. 
+		* @param prefix String Optional prefix to add to each class. 
+		* @param suffix String Optional suffix to add to each class. 
+		*/
+		static addCls( cls?:string, prefix?:string, suffix?:string ): void;
+		/** [Method] Adds the specified events to the list of events which this Observable may fire  
+		* @param eventNames Object/String... Either an object with event names as properties with a value of true or the first event name string if multiple event names are being passed as separate parameters. 
+		*/
+		static addEvents( eventNames?:any ): void;
+		/** [Method] Appends an event handler to this object  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static addListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static addListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static addManagedListener( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static addManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static addManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Animates to the supplied activeItem with a specified animation  
+		* @param activeItem Object/Number The item or item index to make active. 
+		* @param animation Object/Ext.fx.layout.Card Card animation configuration or instance. 
+		*/
+		static animateActiveItem( activeItem?:any, animation?:any ): void;
+		/** [Method] Changes the masked configuration when its setter is called which will convert the value into a proper object instanc  
+		* @param masked Boolean/Object/Ext.Mask/Ext.LoadMask 
+		*/
+		static applyMasked( masked?:any ): any;
+		/** [Method] Call the original method that was previously overridden with override  This method is deprecated as callParent does 
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callOverridden(arguments) 
+		*/
+		static callOverridden( args?:any ): any;
+		static callOverridden( args?:any[] ): any;
+		/** [Method] Call the parent method of the current method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callParent(arguments) 
+		*/
+		static callParent( args?:any ): any;
+		static callParent( args?:any[] ): any;
+		/** [Method] This method is used by an override to call the superclass method but bypass any overridden method  
+		* @param args Array/Arguments The arguments, either an array or the arguments object from the current method, for example: this.callSuper(arguments) 
+		*/
+		static callSuper( args?:any ): any;
+		static callSuper( args?:any[] ): any;
+		/** [Method] Retrieves the first direct child of this container which matches the passed selector  
+		* @param selector String An Ext.ComponentQuery selector. 
+		*/
+		static child( selector?:string ): Ext.IComponent;
+		/** [Method] Removes all listeners for this object  */
+		static clearListeners(): void;
+		/** [Method]  */
+		static destroy(): void;
+		/** [Method] Disables this Component */
+		static disable(): void;
+		/** [Method] Retrieves the first descendant of this container which matches the passed selector  
+		* @param selector String An Ext.ComponentQuery selector. 
+		*/
+		static down( selector?:string ): Ext.IComponent;
+		/** [Method] Enables this Component */
+		static enable(): void;
+		/** [Method] Enables events fired by this Observable to bubble up an owner hierarchy by calling this getBubbleTarget  if present  
+		* @param events String/String[] The event name to bubble, or an Array of event names. 
+		*/
+		static enableBubble( events?:any ): any;
+		static enableBubble( events?:string ): void;
+		static enableBubble( events?:string[] ): void;
+		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
+		* @param eventName String The name of the event to fire. 
+		* @param args Array Arguments to pass to handers. 
+		* @param fn Function Action. 
+		* @param scope Object Scope of fn. 
+		*/
+		static fireAction( eventName?:string, args?:any[], fn?:any, scope?:any ): any;
+		/** [Method] Fires the specified event with the passed parameters minus the event name plus the options object passed to addList  
+		* @param eventName String The name of the event to fire. 
+		* @param args Object... Variable number of parameters are passed to handlers. 
+		*/
+		static fireEvent( eventName:string, ...args:any[] ): bool;
+		/** [Method] Returns the value of activeItem  */
+		static getActiveItem(): any;
+		/** [Method] Returns the Component for a given index in the Container s items  
+		* @param index Number The index of the Component to return. 
+		*/
+		static getAt( index?:number ): Ext.IComponent;
+		/** [Method] Returns the value of autoDestroy  */
+		static getAutoDestroy(): bool;
+		/** [Method] Returns the value of autoMaximize  */
+		static getAutoMaximize(): bool;
+		/** [Method] Returns the value of baseCls  */
+		static getBaseCls(): string;
+		/** [Method] Returns the value of border  */
+		static getBorder(): number;
+		/** [Method] Returns the value of border  */
+		static getBorder(): string;
+		/** [Method] Returns the value of bottom  */
+		static getBottom(): number;
+		/** [Method] Returns the value of bottom  */
+		static getBottom(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string;
+		/** [Method] Returns the value of bubbleEvents  */
+		static getBubbleEvents(): string[];
+		/** [Method] Returns the value of centered  */
+		static getCentered(): bool;
+		/** [Method] Returns the value of cls  */
+		static getCls(): string;
+		/** [Method] Returns the value of cls  */
+		static getCls(): string[];
+		/** [Method] Examines this container s items property and gets a direct child component of this container  
+		* @param component String/Number This parameter may be any of the following:  {String} : representing the itemId or id of the child component. {Number} : representing the position of the child component within the items property. For additional information see Ext.util.MixedCollection.get. 
+		*/
+		static getComponent( component?:any ): any;
+		static getComponent( component?:string ): Ext.IComponent;
+		static getComponent( component?:number ): Ext.IComponent;
+		/** [Method] Returns the value of contentEl  */
+		static getContentEl(): Ext.IElement;
+		/** [Method] Returns the value of contentEl  */
+		static getContentEl(): HTMLElement;
+		/** [Method] Returns the value of contentEl  */
+		static getContentEl(): string;
+		/** [Method] Returns the value of control  */
+		static getControl(): any;
+		/** [Method] Returns the value of data  */
+		static getData(): any;
+		/** [Method] Returns the value of defaultType  */
+		static getDefaultType(): string;
+		/** [Method] Returns the value of defaults  */
+		static getDefaults(): any;
+		/** [Method] Returns the value of disabled  */
+		static getDisabled(): bool;
+		/** [Method] Returns the value of disabledCls  */
+		static getDisabledCls(): string;
+		/** [Method] Returns the value of docked  */
+		static getDocked(): string;
+		/** [Method] Finds a docked item of this container using a reference idor an index of its location in getDockedItems  
+		* @param component String/Number The id or index of the component to find. 
+		*/
+		static getDockedComponent( component?:any ): any;
+		static getDockedComponent( component?:string ): Ext.IComponent;
+		static getDockedComponent( component?:number ): Ext.IComponent;
+		/** [Method] Finds a docked item of this container using a reference idor an index of its location in getDockedItems  
+		* @param component String/Number The id or index of the component to find. 
+		*/
+		static getDockedComponent( component?:string ): bool;
+		static getDockedComponent( component?:number ): bool;
+		/** [Method] Returns all the Ext Component docked items in this container  */
+		static getDockedItems(): any[];
+		/** [Method] Retrieves the top level element representing this component  */
+		static getEl(): Ext.dom.IElement;
+		/** [Method] Returns the value of enterAnimation  */
+		static getEnterAnimation(): string;
+		/** [Method] Returns the value of enterAnimation  */
+		static getEnterAnimation(): any;
+		/** [Method] Returns the value of exitAnimation  */
+		static getExitAnimation(): string;
+		/** [Method] Returns the value of exitAnimation  */
+		static getExitAnimation(): any;
+		/** [Method] Returns the value of flex  */
+		static getFlex(): number;
+		/** [Method] Returns the value of floatingCls  */
+		static getFloatingCls(): string;
+		/** [Method] Returns the value of hidden  */
+		static getHidden(): bool;
+		/** [Method] Returns the value of hiddenCls  */
+		static getHiddenCls(): string;
+		/** [Method] Returns the value of hideAnimation  */
+		static getHideAnimation(): string;
+		/** [Method] Returns the value of hideAnimation  */
+		static getHideAnimation(): any;
+		/** [Method] Returns the value of hideOnMaskTap  */
+		static getHideOnMaskTap(): bool;
+		/** [Method] Returns the value of html  */
+		static getHtml(): string;
+		/** [Method] Returns the value of html  */
+		static getHtml(): Ext.IElement;
+		/** [Method] Returns the value of html  */
+		static getHtml(): HTMLElement;
+		/** [Method] Retrieves the id of this component  */
+		static getId(): string;
+		/** [Method] Returns the initial configuration passed to constructor  
+		* @param name String When supplied, value for particular configuration option is returned, otherwise the full config object is returned. 
+		*/
+		static getInitialConfig( name?:string ): any;
+		/** [Method] Returns all inner items of this container  */
+		static getInnerItems(): any[];
+		/** [Method] Returns the value of itemId  */
+		static getItemId(): string;
+		/** [Method] Returns the value of items  */
+		static getItems(): any;
+		/** [Method] Returns the value of layout  */
+		static getLayout(): any;
+		/** [Method] Returns the value of left  */
+		static getLeft(): number;
+		/** [Method] Returns the value of left  */
+		static getLeft(): string;
+		/** [Method] Returns the value of listeners  */
+		static getListeners(): any;
+		/** [Method] Returns the value of margin  */
+		static getMargin(): number;
+		/** [Method] Returns the value of margin  */
+		static getMargin(): string;
+		/** [Method] Returns the value of masked  */
+		static getMasked(): any;
+		/** [Method] Returns the value of maxHeight  */
+		static getMaxHeight(): number;
+		/** [Method] Returns the value of maxHeight  */
+		static getMaxHeight(): string;
+		/** [Method] Returns the value of maxWidth  */
+		static getMaxWidth(): number;
+		/** [Method] Returns the value of maxWidth  */
+		static getMaxWidth(): string;
+		/** [Method] Returns the value of minHeight  */
+		static getMinHeight(): number;
+		/** [Method] Returns the value of minHeight  */
+		static getMinHeight(): string;
+		/** [Method] Returns the value of minWidth  */
+		static getMinWidth(): number;
+		/** [Method] Returns the value of minWidth  */
+		static getMinWidth(): string;
+		/** [Method] Returns the value of modal  */
+		static getModal(): bool;
+		/** [Method] Returns the current orientation  */
+		static getOrientation(): string;
+		/** [Method] Returns the value of padding  */
+		static getPadding(): number;
+		/** [Method] Returns the value of padding  */
+		static getPadding(): string;
+		/** [Method] Returns the parent of this component if it has one  */
+		static getParent(): Ext.IComponent;
+		/** [Method] Returns the value of plugins  */
+		static getPlugins(): any;
+		/** [Method] Returns the value of preventPanning  */
+		static getPreventPanning(): bool;
+		/** [Method] Returns the value of preventZooming  */
+		static getPreventZooming(): bool;
+		/** [Method] Returns the value of record  */
+		static getRecord(): Ext.data.IModel;
+		/** [Method] Returns the value of renderTo  */
+		static getRenderTo(): Ext.IElement;
+		/** [Method] Returns the value of right  */
+		static getRight(): number;
+		/** [Method] Returns the value of right  */
+		static getRight(): string;
+		/** [Method] Returns an the scrollable instance for this container which is a Ext scroll View class  */
+		static getScrollable(): Ext.scroll.IView;
+		/** [Method] Returns the value of showAnimation  */
+		static getShowAnimation(): string;
+		/** [Method] Returns the value of showAnimation  */
+		static getShowAnimation(): any;
+		/** [Method] Returns the height and width of the Component  */
+		static getSize(): any;
+		/** [Method] Returns the value of style  */
+		static getStyle(): any;
+		/** [Method] Returns the value of styleHtmlCls  */
+		static getStyleHtmlCls(): string;
+		/** [Method] Returns the value of styleHtmlContent  */
+		static getStyleHtmlContent(): bool;
+		/** [Method] Returns the value of top  */
+		static getTop(): number;
+		/** [Method] Returns the value of top  */
+		static getTop(): string;
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): string;
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): string[];
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): Ext.ITemplate[];
+		/** [Method] Returns the value of tpl  */
+		static getTpl(): Ext.IXTemplate[];
+		/** [Method] Returns the value of tplWriteMode  */
+		static getTplWriteMode(): string;
+		/** [Method] Returns the value of ui  */
+		static getUi(): string;
+		/** [Method] Returns the value of useBodyElement  */
+		static getUseBodyElement(): bool;
+		/** [Method] Retrieves the document height  */
+		static getWindowHeight(): number;
+		/** [Method] Retrieves the document width  */
+		static getWindowWidth(): number;
+		/** [Method] Returns this Component s xtype hierarchy as a slash delimited string  */
+		static getXTypes(): string;
+		/** [Method] Returns the value of zIndex  */
+		static getZIndex(): number;
+		/** [Method] Checks to see if this object has any listeners for a specified event 
+		* @param eventName String The name of the event to check for 
+		*/
+		static hasListener( eventName?:string ): bool;
+		/** [Method] Returns true if this component has a parent  */
+		static hasParent(): bool;
+		/** [Method] Hides this Component 
+		* @param animation Object/Boolean 
+		*/
+		static hide( animation?:any ): Ext.IComponent;
+		/** [Method] Initialize configuration for this class  
+		* @param instanceConfig Object 
+		*/
+		static initConfig( instanceConfig?:any ): any;
+		/** [Method] Allows addition of behavior to the rendering phase  */
+		static initialize(): void;
+		/** [Method] Adds a child Component at the given index  
+		* @param index Number The index to insert the Component at. 
+		* @param item Object The Component to insert. 
+		*/
+		static insert( index?:number, item?:any ): void;
+		/** [Method] Returns true if this Component is currently disabled  */
+		static isDisabled(): bool;
+		/** [Method] Returns true if this Component is currently hidden  */
+		static isHidden(): bool;
+		/** [Method] Tests whether or not this Component is of a specific xtype  
+		* @param xtype String The xtype to check for this Component. 
+		* @param shallow Boolean false to check whether this Component is descended from the xtype (this is the default), or true to check whether this Component is directly of the specified xtype. 
+		*/
+		static isXType( xtype?:string, shallow?:bool ): bool;
+		/** [Method] Convenience method which calls setMasked with a value of true to show the mask 
+		* @param mask Object 
+		*/
+		static mask( mask?:any ): void;
+		/** [Method] Alias for addManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		* @param options Object If the eventName parameter was an event name, this is the addListener options. 
+		*/
+		static mon( object?:any, eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static mon( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		static mon( object?:HTMLElement, eventName?:any, fn?:any, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeManagedListener  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static mun( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static mun( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static mun( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Alias for addListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
+		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
+		* @param scope Object The scope (this reference) in which the handler function is executed. If omitted, defaults to the object which fired the event. 
+		* @param options Object An object containing handler configuration.  This object may contain any of the following properties: 
+		* @param order String The order of when the listener should be added into the listener queue. Possible values are before, current and after. 
+		*/
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static on( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static on( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for addAfterListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for addBeforeListener  
+		* @param eventName String/String[]/Object The name of the event to listen for. 
+		* @param fn Function/String The method the event invokes. 
+		* @param scope Object The scope for fn. 
+		* @param options Object An object containing handler configuration. 
+		*/
+		static onBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static onBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Retrieves all descendant components which match the passed selector  
+		* @param selector String Selector complying to an Ext.ComponentQuery selector. 
+		*/
+		static query( selector?:string ): any[];
+		/** [Method] Relays selected events from the specified Observable as if the events were fired by this  
+		* @param object Object The Observable whose events this object is to relay. 
+		* @param events String/Array/Object Array of event names to relay. 
+		*/
+		static relayEvents( object?:any, events?:any ): Ext.mixin.IObservable;
+		/** [Method] Removes an item from this Container optionally destroying it  
+		* @param item Object The item to remove. 
+		* @param destroy Boolean Calls the Component's destroy method if true. 
+		*/
+		static remove( item?:any, destroy?:bool ): Ext.IComponent;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeAfterListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeAfterListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes all items currently in the Container optionally destroying them all  
+		* @param destroy Boolean If true, destroys each removed Component. 
+		* @param everything Boolean If true, completely remove all items including docked / centered and floating items. 
+		*/
+		static removeAll( destroy?:bool, everything?:bool ): Ext.IComponent;
+		/** [Method] Removes the Component at the specified index  myContainer removeAt 0 removes the first item 
+		* @param index Number The index of the Component to remove. 
+		*/
+		static removeAt( index?:number ): Ext.IContainer;
+		/** [Method] Removes a before event handler  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static removeBeforeListener( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static removeBeforeListener( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Removes the given CSS class es from this Component s rendered element  
+		* @param cls String The class(es) to remove. 
+		* @param prefix String Optional prefix to prepend before each class. 
+		* @param suffix String Optional suffix to append to each class. 
+		*/
+		static removeCls( cls?:string, prefix?:string, suffix?:string ): void;
+		/** [Method] Removes a docked item from this Container  
+		* @param item Object The item to remove. 
+		* @param destroy Boolean Calls the Component's destroy method if true. 
+		*/
+		static removeDocked( item?:any, destroy?:bool ): Ext.IComponent;
+		/** [Method] Removes an inner Component at the specified index  myContainer removeInnerAt 0 removes the first item of the in  
+		* @param index Number The index of the Component to remove. 
+		*/
+		static removeInnerAt( index?:number ): Ext.IContainer;
+		/** [Method] Removes an event handler  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static removeListener( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static removeListener( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Adds listeners to any Observable object or Element which are automatically removed when this Component is destroyed  
+		* @param object Ext.mixin.Observable/HTMLElement The item to which to add a listener/listeners. 
+		* @param eventName Object/String The event name, or an object containing event name properties. 
+		* @param fn Function If the eventName parameter was an event name, this is the handler function. 
+		* @param scope Object If the eventName parameter was an event name, this is the scope in which the handler function is executed. 
+		*/
+		static removeManagedListener( object?:any, eventName?:any, fn?:any, scope?:any ): any;
+		static removeManagedListener( object?:Ext.mixin.IObservable, eventName?:any, fn?:any, scope?:any ): void;
+		static removeManagedListener( object?:HTMLElement, eventName?:any, fn?:any, scope?:any ): void;
+		/** [Method] Replaces specified classes with the newly specified classes  
+		* @param oldCls String The class(es) to remove. 
+		* @param newCls String The class(es) to add. 
+		* @param prefix String Optional prefix to prepend before each class. 
+		* @param suffix String Optional suffix to append to each class. 
+		*/
+		static replaceCls( oldCls?:string, newCls?:string, prefix?:string, suffix?:string ): void;
+		/** [Method] Resets top right bottom and left configurations to null which will un float this component  */
+		static resetFloating(): void;
+		/** [Method] Resumes firing events see suspendEvents 
+		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
+		*/
+		static resumeEvents( discardQueuedEvents?:bool ): void;
+		/** [Method] Sets the value of activeItem  
+		* @param activeItem Object/String/Number 
+		*/
+		static setActiveItem( activeItem?:any ): void;
+		/** [Method] Sets the value of autoDestroy  
+		* @param autoDestroy Boolean 
+		*/
+		static setAutoDestroy( autoDestroy?:bool ): void;
+		/** [Method] Sets the value of autoMaximize  
+		* @param autoMaximize Boolean 
+		*/
+		static setAutoMaximize( autoMaximize?:bool ): void;
+		/** [Method] Sets the value of baseCls  
+		* @param baseCls String 
+		*/
+		static setBaseCls( baseCls?:string ): void;
+		/** [Method] Sets the value of border  
+		* @param border Number/String 
+		*/
+		static setBorder( border?:any ): any;
+		static setBorder( border?:number ): void;
+		static setBorder( border?:string ): void;
+		/** [Method] Sets the value of bottom  
+		* @param bottom Number/String 
+		*/
+		static setBottom( bottom?:any ): any;
+		static setBottom( bottom?:number ): void;
+		static setBottom( bottom?:string ): void;
+		/** [Method] Sets the value of bubbleEvents  
+		* @param bubbleEvents String/String[] 
+		*/
+		static setBubbleEvents( bubbleEvents?:any ): any;
+		static setBubbleEvents( bubbleEvents?:string ): void;
+		static setBubbleEvents( bubbleEvents?:string[] ): void;
+		/** [Method] Sets the value of centered  
+		* @param centered Boolean 
+		*/
+		static setCentered( centered?:bool ): void;
+		/** [Method] Sets the value of cls  
+		* @param cls String/String[] 
+		*/
+		static setCls( cls?:any ): any;
+		static setCls( cls?:string ): void;
+		static setCls( cls?:string[] ): void;
+		/** [Method] Sets the value of contentEl  
+		* @param contentEl Ext.Element/HTMLElement/String 
+		*/
+		static setContentEl( contentEl?:any ): any;
+		static setContentEl( contentEl?:Ext.IElement ): void;
+		static setContentEl( contentEl?:HTMLElement ): void;
+		static setContentEl( contentEl?:string ): void;
+		/** [Method] Sets the value of control  
+		* @param control Object 
+		*/
+		static setControl( control?:any ): void;
+		/** [Method] Sets the value of data  
+		* @param data Object 
+		*/
+		static setData( data?:any ): void;
+		/** [Method] Sets the value of defaultType  
+		* @param defaultType String 
+		*/
+		static setDefaultType( defaultType?:string ): void;
+		/** [Method] Sets the value of defaults  
+		* @param defaults Object 
+		*/
+		static setDefaults( defaults?:any ): void;
+		/** [Method] Sets the value of disabled  
+		* @param disabled Boolean 
+		*/
+		static setDisabled( disabled?:bool ): void;
+		/** [Method] Sets the value of disabledCls  
+		* @param disabledCls String 
+		*/
+		static setDisabledCls( disabledCls?:string ): void;
+		/** [Method] Sets the value of docked  
+		* @param docked String 
+		*/
+		static setDocked( docked?:string ): void;
+		/** [Method] Sets the value of draggable  
+		* @param draggable Object 
+		*/
+		static setDraggable( draggable?:any ): void;
+		/** [Method] Sets the value of enterAnimation  
+		* @param enterAnimation String/Mixed 
+		*/
+		static setEnterAnimation( enterAnimation?:any ): any;
+		static setEnterAnimation( enterAnimation?:string ): void;
+		/** [Method] Sets the value of exitAnimation  
+		* @param exitAnimation String/Mixed 
+		*/
+		static setExitAnimation( exitAnimation?:any ): any;
+		static setExitAnimation( exitAnimation?:string ): void;
+		/** [Method] Sets the value of flex  
+		* @param flex Number 
+		*/
+		static setFlex( flex?:number ): void;
+		/** [Method] Used to update the floating state of this component  
+		* @param floating Boolean true if you want to float this component. 
+		*/
+		static setFloating( floating?:bool ): void;
+		/** [Method] Sets the value of floatingCls  
+		* @param floatingCls String 
+		*/
+		static setFloatingCls( floatingCls?:string ): void;
+		/** [Method] Sets the value of hidden  
+		* @param hidden Boolean 
+		*/
+		static setHidden( hidden?:bool ): void;
+		/** [Method] Sets the value of hiddenCls  
+		* @param hiddenCls String 
+		*/
+		static setHiddenCls( hiddenCls?:string ): void;
+		/** [Method] Sets the value of hideAnimation  
+		* @param hideAnimation String/Mixed 
+		*/
+		static setHideAnimation( hideAnimation?:any ): any;
+		static setHideAnimation( hideAnimation?:string ): void;
+		/** [Method] Sets the value of hideOnMaskTap  
+		* @param hideOnMaskTap Boolean 
+		*/
+		static setHideOnMaskTap( hideOnMaskTap?:bool ): void;
+		/** [Method] Sets the value of html  
+		* @param html String/Ext.Element/HTMLElement 
+		*/
+		static setHtml( html?:any ): any;
+		static setHtml( html?:string ): void;
+		static setHtml( html?:Ext.IElement ): void;
+		static setHtml( html?:HTMLElement ): void;
+		/** [Method] Sets the value of itemId  
+		* @param itemId String 
+		*/
+		static setItemId( itemId?:string ): void;
+		/** [Method] Sets the value of items  
+		* @param items Array/Object 
+		*/
+		static setItems( items?:any ): void;
+		/** [Method] Sets the value of layout  
+		* @param layout Object/String 
+		*/
+		static setLayout( layout?:any ): void;
+		/** [Method] Sets the value of left  
+		* @param left Number/String 
+		*/
+		static setLeft( left?:any ): any;
+		static setLeft( left?:number ): void;
+		static setLeft( left?:string ): void;
+		/** [Method] Sets the value of listeners  
+		* @param listeners Object 
+		*/
+		static setListeners( listeners?:any ): void;
+		/** [Method] Sets the value of margin  
+		* @param margin Number/String 
+		*/
+		static setMargin( margin?:any ): any;
+		static setMargin( margin?:number ): void;
+		static setMargin( margin?:string ): void;
+		/** [Method] Sets the value of masked  
+		* @param masked Boolean/Object/Ext.Mask/Ext.LoadMask 
+		*/
+		static setMasked( masked?:any ): void;
+		/** [Method] Sets the value of maxHeight  
+		* @param maxHeight Number/String 
+		*/
+		static setMaxHeight( maxHeight?:any ): any;
+		static setMaxHeight( maxHeight?:number ): void;
+		static setMaxHeight( maxHeight?:string ): void;
+		/** [Method] Sets the value of maxWidth  
+		* @param maxWidth Number/String 
+		*/
+		static setMaxWidth( maxWidth?:any ): any;
+		static setMaxWidth( maxWidth?:number ): void;
+		static setMaxWidth( maxWidth?:string ): void;
+		/** [Method] Sets the value of minHeight  
+		* @param minHeight Number/String 
+		*/
+		static setMinHeight( minHeight?:any ): any;
+		static setMinHeight( minHeight?:number ): void;
+		static setMinHeight( minHeight?:string ): void;
+		/** [Method] Sets the value of minWidth  
+		* @param minWidth Number/String 
+		*/
+		static setMinWidth( minWidth?:any ): any;
+		static setMinWidth( minWidth?:number ): void;
+		static setMinWidth( minWidth?:string ): void;
+		/** [Method] Sets the value of modal  
+		* @param modal Boolean 
+		*/
+		static setModal( modal?:bool ): void;
+		/** [Method] Sets the value of padding  
+		* @param padding Number/String 
+		*/
+		static setPadding( padding?:any ): any;
+		static setPadding( padding?:number ): void;
+		static setPadding( padding?:string ): void;
+		/** [Method] Sets the value of plugins  
+		* @param plugins Object/Array 
+		*/
+		static setPlugins( plugins?:any ): void;
+		/** [Method] Sets the value of preventPanning  
+		* @param preventPanning Boolean 
+		*/
+		static setPreventPanning( preventPanning?:bool ): void;
+		/** [Method] Sets the value of preventZooming  
+		* @param preventZooming Boolean 
+		*/
+		static setPreventZooming( preventZooming?:bool ): void;
+		/** [Method] Sets the value of record  
+		* @param record Ext.data.Model 
+		*/
+		static setRecord( record?:Ext.data.IModel ): void;
+		/** [Method] Sets the value of renderTo  
+		* @param renderTo Ext.Element 
+		*/
+		static setRenderTo( renderTo?:Ext.IElement ): void;
+		/** [Method] Sets the value of right  
+		* @param right Number/String 
+		*/
+		static setRight( right?:any ): any;
+		static setRight( right?:number ): void;
+		static setRight( right?:string ): void;
+		/** [Method] Sets the value of scrollable  
+		* @param scrollable Boolean/String/Object 
+		*/
+		static setScrollable( scrollable?:any ): void;
+		/** [Method] Sets the value of showAnimation  
+		* @param showAnimation String/Mixed 
+		*/
+		static setShowAnimation( showAnimation?:any ): any;
+		static setShowAnimation( showAnimation?:string ): void;
+		/** [Method] Sets the size of the Component  
+		* @param width Number The new width for the Component. 
+		* @param height Number The new height for the Component. 
+		*/
+		static setSize( width?:number, height?:number ): void;
+		/** [Method] Sets the value of style  
+		* @param style String/Object 
+		*/
+		static setStyle( style?:any ): void;
+		/** [Method] Sets the value of styleHtmlCls  
+		* @param styleHtmlCls String 
+		*/
+		static setStyleHtmlCls( styleHtmlCls?:string ): void;
+		/** [Method] Sets the value of styleHtmlContent  
+		* @param styleHtmlContent Boolean 
+		*/
+		static setStyleHtmlContent( styleHtmlContent?:bool ): void;
+		/** [Method] Sets the value of top  
+		* @param top Number/String 
+		*/
+		static setTop( top?:any ): any;
+		static setTop( top?:number ): void;
+		static setTop( top?:string ): void;
+		/** [Method] Sets the value of tpl  
+		* @param tpl String/String[]/Ext.Template[]/Ext.XTemplate[] 
+		*/
+		static setTpl( tpl?:any ): any;
+		static setTpl( tpl?:string ): void;
+		static setTpl( tpl?:string[] ): void;
+		static setTpl( tpl?:Ext.ITemplate[] ): void;
+		static setTpl( tpl?:Ext.IXTemplate[] ): void;
+		/** [Method] Sets the value of tplWriteMode  
+		* @param tplWriteMode String 
+		*/
+		static setTplWriteMode( tplWriteMode?:string ): void;
+		/** [Method] Sets the value of ui  
+		* @param ui String 
+		*/
+		static setUi( ui?:string ): void;
+		/** [Method] Sets the value of useBodyElement  
+		* @param useBodyElement Boolean 
+		*/
+		static setUseBodyElement( useBodyElement?:bool ): void;
+		/** [Method] Sets the value of zIndex  
+		* @param zIndex Number 
+		*/
+		static setZIndex( zIndex?:number ): void;
+		/** [Method] Shows this component  
+		* @param animation Object/Boolean 
+		*/
+		static show( animation?:any ): Ext.IComponent;
+		/** [Method] Shows this component by another component  
+		* @param component Ext.Component The target component to show this component by. 
+		* @param alignment String The specific alignment. 
+		*/
+		static showBy( component?:Ext.IComponent, alignment?:string ): void;
+		/** [Method] Get the reference to the class from which this object was instantiated  */
+		static statics(): Ext.IClass;
+		/** [Method] Suspends the firing of all events  */
+		static suspendEvents(): void;
+		/** [Method] Alias for removeListener  
+		* @param eventName String/String[]/Object The type of event the handler was associated with. 
+		* @param fn Function/String The handler to remove. This must be a reference to the function passed into the addListener call. 
+		* @param scope Object The scope originally specified for the handler. It must be the same as the scope argument specified in the original call to addListener or the listener will not be removed. 
+		* @param options Object Extra options object. See addListener for details. 
+		* @param order String The order of the listener to remove. Possible values are before, current and after. 
+		*/
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:any ): any;
+		static un( eventName?:any, fn?:any, scope?:any, options?:any, order?:string ): void;
+		static un( eventName?:any, fn?:string, scope?:any, options?:any, order?:string ): void;
+		/** [Method] Alias for removeAfterListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unAfter( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unAfter( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Alias for removeBeforeListener  
+		* @param eventName String/String[]/Object The name of the event the handler was associated with. 
+		* @param fn Function/String The handler to remove. 
+		* @param scope Object The scope originally specified for fn. 
+		* @param options Object Extra options object. 
+		*/
+		static unBefore( eventName?:any, fn?:any, scope?:any, options?:any ): any;
+		static unBefore( eventName?:any, fn?:string, scope?:any, options?:any ): void;
+		/** [Method] Convenience method which calls setMasked with a value of false to hide the mask */
+		static unmask(): void;
+		/** [Method] Walks up the ownerCt axis looking for an ancestor Container which matches the passed simple selector  
+		* @param selector String The simple selector to test. 
+		*/
+		static up( selector?:string ): Ext.IContainer;
+		/** [Method] Updates the HTML content of the Component  */
+		static update(): void;
+		/** [Method] Updates the styleHtmlCls configuration 
+		* @param newHtmlCls Object 
+		* @param oldHtmlCls Object 
+		*/
+		static updateStyleHtmlCls( newHtmlCls?:any, oldHtmlCls?:any ): void;
+		/** [Method] Add methods  properties to the prototype of this class  
+		* @param members Object 
+		*/
+		static addMembers( members?:any ): void;
+		/** [Method] Add  override static properties of this class  
+		* @param members Object 
+		*/
+		static addStatics( members?:any ): Ext.IBase;
+		/** [Method] Create a new instance of this Class  */
+		static create(): any;
+		/** [Method] Create aliases for existing prototype methods  
+		* @param alias String/Object The new method name, or an object to set multiple aliases. See flexSetter 
+		* @param origin String/Object The original method name 
+		*/
+		static createAlias( alias?:any, origin?:any ): void;
+		/** [Method] Get the current class name in string format  */
+		static getName(): string;
+		/** [Method] Override members of this class  
+		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
+		*/
+		static override( members?:any ): Ext.IBase;
 	}
 }
 declare module Ext.viewport {

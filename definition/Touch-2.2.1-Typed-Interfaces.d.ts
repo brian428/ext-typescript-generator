@@ -1,5 +1,5 @@
 // Type definitions for Touch 2.2.1
-// Project: http://www.sencha.com/products/extjs/
+// Project: http://www.sencha.com/products/touch/
 // Definitions by: Brian Kotek <https://github.com/brian428/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 

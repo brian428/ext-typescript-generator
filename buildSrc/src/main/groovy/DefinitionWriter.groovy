@@ -19,7 +19,7 @@ class DefinitionWriter
 		if( config.singleDefinition ) {
 			definitionFile.write( "" )
 			writeToDefinition( "// Type definitions for ${ config.libraryName } ${ config.libraryVersion }" )
-			writeToDefinition( "// Project: http://www.sencha.com/products/extjs/" )
+			writeToDefinition( "// Project: http://www.sencha.com/products/${ config.libraryName.toLowerCase() }/" )
 			writeToDefinition( "// Definitions by: Brian Kotek <https://github.com/brian428/>" )
 			writeToDefinition( "// Definitions: https://github.com/borisyankov/DefinitelyTyped\n" )
 		}

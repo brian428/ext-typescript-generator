@@ -2,48 +2,50 @@ class TypeManager
 {
 	Config config
 
+	def normalizeReturnType( typeName="any", forceFullType=false ) {
+		if( typeName.contains( "/" ) ) {
+			if( typeName == "Ext.dom.CompositeElementLite/Ext.dom.CompositeElement" ) typeName = "Ext.dom.CompositeElementLite"
+			if( typeName == "Date/null" ) typeName = "any"
+		}
+		return typeName
+	}
+
 	def normalizeType( typeName="any", forceFullType=false ) {
 		if( ( !config.useFullTyping && !forceFullType ) || typeName == "any" )
 			return "any"
 
 		typeName = typeName.replaceAll( "\\.\\.\\.", "" )
 
-		if( typeName.contains( "/" ) ) {
-			if( typeName == "Ext.dom.CompositeElementLite/Ext.dom.CompositeElement" ) typeName = "Ext.dom.CompositeElementLite"
-			if( typeName == "Date/null" ) typeName = "any"
-		}
-		else {
-			if( typeName.contains( "Ext." ) || typeName.contains( "ext." ) )
+		if( typeName.contains( "Ext." ) || typeName.contains( "ext." ) )
 			typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
 
-			def capitalizedTypeName = typeName.capitalize()
+		def capitalizedTypeName = typeName.capitalize()
 
-			// TypeScript gets confused between native Function type and Ext.Function class...
-			if( capitalizedTypeName == "Function" ) typeName = "any"
-			if( capitalizedTypeName == "Mixed" ) typeName = "any"
-			if( capitalizedTypeName == "TextNode" ) typeName = "any"
-			if( capitalizedTypeName == "Arguments" ) typeName = "any"
-			if( capitalizedTypeName == "Object" ) typeName = "any"
-			if( capitalizedTypeName == "String" ) typeName = "string"
-			if( capitalizedTypeName == '"SINGLE"' ) typeName = "string"
-			if( capitalizedTypeName == "Boolean" ) typeName = "bool"
-			if( capitalizedTypeName == "Number" ) typeName = "number"
-			if( capitalizedTypeName == "Date" ) typeName = "any"
-			if( capitalizedTypeName == "*" ) typeName = "any"
-			if( capitalizedTypeName == "Null" ) typeName = "undefined"
-			if( capitalizedTypeName == "Htmlelement" ) typeName = "HTMLElement"
-			if( capitalizedTypeName == "Ext.data.INodeinterface" ) typeName = "Ext.data.INodeInterface"
-			if( capitalizedTypeName == "Ext.dom.ICompositeelementlite" ) typeName = "Ext.dom.ICompositeElementLite"
-			if( capitalizedTypeName == "Google.maps.Map" ) typeName = "any"
+		// TypeScript gets confused between native Function type and Ext.Function class...
+		if( capitalizedTypeName == "Function" ) typeName = "any"
+		if( capitalizedTypeName == "Mixed" ) typeName = "any"
+		if( capitalizedTypeName == "TextNode" ) typeName = "any"
+		if( capitalizedTypeName == "Arguments" ) typeName = "any"
+		if( capitalizedTypeName == "Object" ) typeName = "any"
+		if( capitalizedTypeName == "String" ) typeName = "string"
+		if( capitalizedTypeName == '"SINGLE"' ) typeName = "string"
+		if( capitalizedTypeName == "Boolean" ) typeName = "bool"
+		if( capitalizedTypeName == "Number" ) typeName = "number"
+		if( capitalizedTypeName == "Date" ) typeName = "any"
+		if( capitalizedTypeName == "*" ) typeName = "any"
+		if( capitalizedTypeName == "Null" ) typeName = "undefined"
+		if( capitalizedTypeName == "Htmlelement" ) typeName = "HTMLElement"
+		if( capitalizedTypeName == "Ext.data.INodeinterface" ) typeName = "Ext.data.INodeInterface"
+		if( capitalizedTypeName == "Ext.dom.ICompositeelementlite" ) typeName = "Ext.dom.ICompositeElementLite"
+		if( capitalizedTypeName == "Google.maps.Map" ) typeName = "any"
 
-			if( capitalizedTypeName == "Array" ) typeName = "any[]"
-			if( capitalizedTypeName == "String[]" ) typeName = "string[]"
-			if( capitalizedTypeName == "Boolean[]" ) typeName = "bool[]"
-			if( capitalizedTypeName == "Number[]" ) typeName = "number[]"
-			if( capitalizedTypeName == "Date[]" ) typeName = "any"
-			if( capitalizedTypeName == "Object[]" ) typeName = "any[]"
-			if( capitalizedTypeName == "Htmlelement[]" ) typeName = "HTMLElement[]"
-		}
+		if( capitalizedTypeName == "Array" ) typeName = "any[]"
+		if( capitalizedTypeName == "String[]" ) typeName = "string[]"
+		if( capitalizedTypeName == "Boolean[]" ) typeName = "bool[]"
+		if( capitalizedTypeName == "Number[]" ) typeName = "number[]"
+		if( capitalizedTypeName == "Date[]" ) typeName = "any"
+		if( capitalizedTypeName == "Object[]" ) typeName = "any[]"
+		if( capitalizedTypeName == "Htmlelement[]" ) typeName = "HTMLElement[]"
 
 		return typeName
 	}
@@ -86,11 +88,16 @@ class TypeManager
 
 	def getTokenizedTypes( types ) {
 		if( !types ) types = "void"
-		//types = normalizeType( types )
 		def result = types.replaceAll( "\\|", "/").tokenize( "/" )
 		if( result.size() > 1 && types.contains( "Object" ) )
 			result = ["any"]
 		return result.unique()
+	}
+
+	def getTokenizedReturnTypes( types ) {
+		if( !types ) types = "void"
+		types = normalizeReturnType( types )
+		return getTokenizedTypes( types )
 	}
 
 	def getExtends( fileJson, isInterface ) {

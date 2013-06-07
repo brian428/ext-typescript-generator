@@ -1,24 +1,24 @@
 // Run at command line using 'gradle -q'
 
-import groovy.json.*
-
 defaultTasks 'build'
 
 
-class JsonDocLocations {
-	static String TEST = "./jsondocs_test"
-	static String EXTJS_4_2_0 = "./jsondocs_ExtJS_4.2.0"
-	static String EXTJS_4_2_1 = "./jsondocs_ExtJS_4.2.1"
-	static String TOUCH_2_2_1 = "./jsondocs_Touch_2.2.1"
+class ConfigGroups {
+	static TEST = [ name: "ExtJS", version: "4.2.1", jsonDocPath: "./jsondocs_ExtJS_4.2.1" ]
+	static EXTJS_4_2_0 = [ name: "ExtJS", version: "4.2.0", jsonDocPath: "./jsondocs_ExtJS_4.2.0" ]
+	static EXTJS_4_2_1 = [ name: "ExtJS", version: "4.2.1", jsonDocPath: "./jsondocs_ExtJS_4.2.1" ]
+	static TOUCH_2_2_1 = [ name: "Touch", version: "2.2.1", jsonDocPath: "./jsondocs_Touch_2.2.1" ]
 }
 
 
 // Project-level extra properties
 project.ext {
+	def currentConfigGroup = ConfigGroups.EXTJS_4_2_1
+
 	config = new Config(
-		libraryName: "ExtJS",
-		libraryVersion: "4.2.1",
-		jsonDocPath: JsonDocLocations.EXTJS_4_2_1,
+		libraryName: currentConfigGroup.name,
+		libraryVersion: currentConfigGroup.version,
+		jsonDocPath: currentConfigGroup.jsonDocPath,
 		singleDefinition: true,
 		useFullTyping: true,
 		interfaceOnly: true,

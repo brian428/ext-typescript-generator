@@ -53,7 +53,7 @@ class MethodProcessor
 							}
 							else {
 
-								def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedTypes( thisMethod.return?.type ) : [ "any" ]
+								def tokenizedTypes = config.useFullTyping ? typeManager.getTokenizedReturnTypes( thisMethod.return?.type ) : [ "any" ]
 
 								tokenizedTypes.each { thisType ->
 

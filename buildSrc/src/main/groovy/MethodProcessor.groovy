@@ -36,7 +36,7 @@ class MethodProcessor
 
 				processedNames[ thisMethod.name ] = true
 				normalizeMethodDoc( thisMethod )
-				normalizeReturnType( thisMethod, fileJson )
+				handleReturnTypeSpecialCases( thisMethod, fileJson )
 
 				// Convert methods to property fields for special cases where an item has incompatible ExtJS API overrides in subclasses
 				if( specialCases.shouldConvertToProperty( fileJson.name, thisMethod.name ) ) {
@@ -54,72 +54,43 @@ class MethodProcessor
 
 		tokenizedTypes.each { returnType ->
 
-			// Return type conversions
-			if( returnType == "undefined" ) returnType = "void"
-			def methodParamResults = iterateMethodParameters( thisMethod )
-
-			def paramNames = methodParamResults.paramNames
-			def paramTypes = methodParamResults.paramTypes
-			def rawParamTypes = methodParamResults.rawParamTypes
-			def requiresOverrides = methodParamResults.requiresOverrides
+			def methodParameters = new MethodParameters( config: config, typeManager: typeManager, thisMethod: thisMethod )
+			methodParameters.init()
 
 			def usedPermutations = [:]
 			def methodWritten = false
 
-			if( hasOnlyOneSignature( paramNames ) ) {
-				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, shouldUseExport, isSingleton )
+			if( hasOnlyOneSignature( methodParameters.paramNames ) ) {
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, methodParameters, returnType, shouldUseExport, isSingleton )
 			}
-			else if( shouldCreateOverrideMethod( requiresOverrides, tokenizedTypes, returnType ) ) {
+			else if( shouldCreateOverrideMethod( methodParameters.requiresOverrides, tokenizedTypes, returnType ) ) {
 				def overrideTypes = []
-				paramNames.each { thisParamName ->
+				methodParameters.paramNames.each { thisParamName ->
 					overrideTypes.add( "any" )
 				}
-				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, overrideTypes, rawParamTypes, "any", shouldUseExport, isSingleton )
+
+				def overriddenMethodParams = methodParameters.cloneWithNewParamTypes( overrideTypes )
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, overriddenMethodParams, "any", shouldUseExport, isSingleton )
 				usedPermutations[ overrideTypes.join( ',' ) ] = true
 				methodWritten = true
 			}
 
 			if( config.useFullTyping ) {
-				processSignaturePermutations( thisMethod, returnType, paramNames, paramTypes, rawParamTypes, requiresOverrides, usedPermutations, methodWritten )
+				processSignaturePermutations( thisMethod, returnType, methodParameters, usedPermutations, methodWritten )
 			}
 		}
 	}
 
-	def iterateMethodParameters( thisMethod ) {
-		def paramNames = []
-		def paramTypes = []
-		def rawParamTypes = [:]
-		def requiresOverrides = false
-
-		thisMethod.params.each { thisParam ->
-			paramNames.add( [ name:thisParam.name, optional:thisParam.optional, doc:thisParam.doc, default:thisParam.default ] )
-
-			if( config.useFullTyping ) {
-				def tokenizedParamTypes = typeManager.getTokenizedTypes( thisParam.type )
-				if( tokenizedParamTypes.size() > 1 && !requiresOverrides ) {
-					requiresOverrides = true
-				}
-				paramTypes.add( tokenizedParamTypes )
-			}
-			else {
-				paramTypes.add( thisParam.type )
-			}
-
-			rawParamTypes[ thisParam.name ] = thisParam.type
-		}
-
-		return [ paramNames: paramNames, paramTypes: paramTypes, rawParamTypes: rawParamTypes, requiresOverrides: requiresOverrides ]
-	}
-
-	def processSignaturePermutations( thisMethod, thisType, paramNames, paramTypes, rawParamTypes, requiresOverrides, usedPermutations, methodWritten ) {
-		def paramPermutations = GroovyCollections.combinations( paramTypes )
+	def processSignaturePermutations( thisMethod, thisType, methodParameters, usedPermutations, methodWritten ) {
+		def paramPermutations = GroovyCollections.combinations( methodParameters.paramTypes )
 
 		paramPermutations.each { thisPermutation ->
-			if( !requiresOverrides || ( requiresOverrides && thisPermutation.count{ typeManager.normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
+			if( !methodParameters.requiresOverrides || ( methodParameters.requiresOverrides && thisPermutation.count{ typeManager.normalizeType( it ) == "any" } < thisPermutation.size() ) ) {
 				def thisPermutationAsString = thisPermutation.join( ',' )
 
 				if( !usedPermutations[ thisPermutationAsString ] ) {
-					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, paramNames, thisPermutation, rawParamTypes, thisType, shouldUseExport, isSingleton, methodWritten )
+					def permutationParams = methodParameters.cloneWithNewParamTypes( thisPermutation )
+					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, permutationParams, thisType, shouldUseExport, isSingleton, methodWritten )
 					usedPermutations[ thisPermutationAsString ] = true
 					methodWritten = true
 				}
@@ -127,8 +98,7 @@ class MethodProcessor
 		}
 	}
 
-	def writeMethod( comment, methodName, optionalFlag, paramNames, paramTypes, rawParamTypes, returnType, useExport, isStatic=false, omitComment=false ) {
-		def paramsContainSpread = hasParametersWithSpread( paramTypes )
+	def writeMethod( comment, methodName, optionalFlag, methodParameters, returnType, useExport, isStatic=false, omitComment=false ) {
 		def exportString = useExport ? "export function " : ""
 		def staticString = isStaticMethod( isStatic, useExport, methodName ) ? "static " : ""
 
@@ -141,22 +111,22 @@ class MethodProcessor
 				returnType = typeManager.convertToInterface( returnType )
 
 			def methodOutput = "${ staticString }${ methodName }${ optionalFlag }("
-			def paramResult = appendMethodParamOutput( methodOutput, paramsDoc, paramNames, paramTypes, rawParamTypes, paramsContainSpread )
+			def paramResult = appendMethodParamOutput( methodOutput, paramsDoc, methodParameters )
 			writeMethodComment( comment, paramResult.paramsDoc, omitComment )
 			writeMethodDefinition( paramResult.methodOutput, exportString, methodName, returnType )
 		}
 	}
 
-	def appendMethodParamOutput( methodOutput, paramsDoc, paramNames, paramTypes, rawParamTypes, paramsContainSpread ) {
-		paramNames.eachWithIndex { thisParam, i ->
-			def thisParamType = typeManager.convertToInterface( paramTypes[ i ] )
+	def appendMethodParamOutput( methodOutput, paramsDoc, methodParameters ) {
+		methodParameters.paramNames.eachWithIndex { thisParam, i ->
+			def thisParamType = typeManager.convertToInterface( methodParameters.paramTypes[ i ] )
 			def thisParamName = thisParam.name
 
-			paramsDoc += "\t\t* @param ${ thisParamName } ${ rawParamTypes[ thisParamName ] } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
+			paramsDoc += "\t\t* @param ${ thisParamName } ${ methodParameters.rawParamTypes[ thisParamName ] } ${ definitionWriter.formatCommentText( thisParam.doc ) }"
 			if( thisParam.doc && thisParam.doc.contains( "Optional " ) ) thisParam.optional = true
 
 			def spread = ""
-			if( isParamWithSpread( paramNames, thisParam, thisParamType ) ) {
+			if( methodParameters.isParamWithSpread( thisParam, thisParamType ) ) {
 				spread = "..."
 			}
 
@@ -167,13 +137,13 @@ class MethodProcessor
 			if( spread.size() == 0 && config.forceAllParamsToOptional ) {
 				optionalParamFlag = "?"
 			}
-			if( paramsContainSpread ) {
+			if( methodParameters.hasParametersWithSpread() ) {
 				optionalParamFlag = ""
 			}
 
 			methodOutput += " ${spread}${ thisParamName }${ optionalParamFlag }:${ spread.size() > 0 ? "any[]" : typeManager.normalizeType( thisParamType ) }"
 
-			if( thisParam == paramNames.last() ) {
+			if( thisParam == methodParameters.paramNames.last() ) {
 				methodOutput += " "
 			}
 			else {
@@ -228,7 +198,7 @@ class MethodProcessor
 			thisMethod.shortDoc = thisMethod.short_doc
 	}
 
-	def normalizeReturnType( thisMethod, fileJson ) {
+	def handleReturnTypeSpecialCases( thisMethod, fileJson ) {
 		// Convert return types for special cases where original return type isn't valid
 		if( specialCases.getReturnTypeOverride( thisMethod.return?.type ) ) {
 			thisMethod.return.type = specialCases.getReturnTypeOverride( thisMethod.return.type )
@@ -253,10 +223,6 @@ class MethodProcessor
 		return config.useFullTyping && requiresOverrides && tokenizedReturnTypes.first() == returnType
 	}
 
-	def hasParametersWithSpread( paramTypes ) {
-		return paramTypes.count{ ( it.startsWith( "..." ) || it.endsWith( "..." ) ) } > 0
-	}
-
 	def isStaticMethod( isStatic, useExport, methodName ) {
 		return isStatic && !useExport && methodName != "constructor"
 	}
@@ -267,10 +233,6 @@ class MethodProcessor
 
 	def shouldIncludeComment( omitComment ) {
 		return !config.omitOverrideComments || ( config.omitOverrideComments && !omitComment )
-	}
-
-	def isParamWithSpread( paramNames, thisParam, thisParamType ) {
-		paramNames.last() == thisParam && ( thisParamType.startsWith( "..." ) || thisParamType.endsWith( "..." ) )
 	}
 
 }

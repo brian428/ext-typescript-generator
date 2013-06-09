@@ -13,7 +13,7 @@ class ConfigGroups {
 
 // Project-level extra properties
 project.ext {
-	def currentConfigGroup = ConfigGroups.EXTJS_4_2_1
+	def currentConfigGroup = ConfigGroups.TOUCH_2_2_1
 
 	config = new Config(
 		libraryName: currentConfigGroup.name,

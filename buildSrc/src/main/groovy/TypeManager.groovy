@@ -7,6 +7,7 @@ class TypeManager
 			if( typeName == "Ext.dom.CompositeElementLite/Ext.dom.CompositeElement" ) typeName = "Ext.dom.CompositeElementLite"
 			if( typeName == "Date/null" ) typeName = "any"
 		}
+		if( typeName.contains( "undefined" ) ) typeName = typeName.replaceAll( "undefined", "void" )
 		return typeName
 	}
 

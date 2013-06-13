@@ -4,7 +4,7 @@
 
 ## Quick (Temporary) Initial Notes
 * Untyped and fully typed definition files are available in the /definition folder, BUT...
-* *You almost certainly just want the "-Interfaces" definition, since creating real classes and using them isn't an option (see below)*
+* **You almost certainly just want the "-Interfaces" definition, since creating real classes and using them isn't an option (see below)**
 * Add a reference to the definition at the top of your .ts file.
 * Cast configuration blocks to the appropriate interface to enable code hinting.
 * If you want to try running this with your own JSDuck output, check build.gradle file's ConfigGroups, and place the JSON files in the appropriate location.

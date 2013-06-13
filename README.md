@@ -16,7 +16,7 @@
 
 Example: CompanyGridPanel.ts:
 ```
-/// <reference path="./definitions/ExtJS-4.2.0-Typed.d.ts" />
+/// <reference path="./definitions/ExtJS-4.2.1-Typed-Interfaces.d.ts" />
 
 Ext.define("CompanyGridPanel", <Ext.grid.IPanel>{
     extend: "Ext.grid.Panel",

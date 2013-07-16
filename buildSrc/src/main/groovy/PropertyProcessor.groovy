@@ -28,7 +28,7 @@ class PropertyProcessor
 		def exportString = useExport ? "export var " : ""
 
 		classConfig.each { value ->
-			if( value?.owner == fileJson.name ) {
+			if( value?.owner == fileJson.name && value.name != "" ) {
 				if( !config.includePrivate && value.private != true ) {
 
 					// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
@@ -48,7 +48,7 @@ class PropertyProcessor
 		}
 
 		classProperties.each { value ->
-			if( value?.owner == fileJson.name ) {
+			if( value?.owner == fileJson.name && value.name != "" ) {
 				if( !config.includePrivate && value.private != true ) {
 					if( !processedConfigNames[ value.name ] && !specialCases.shouldRemoveProperty( fileJson.name, value.name ) ) {
 						thisType = value.type

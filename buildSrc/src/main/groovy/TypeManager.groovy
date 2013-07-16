@@ -30,7 +30,7 @@ class TypeManager
 		if( capitalizedTypeName == "Object" ) typeName = "any"
 		if( capitalizedTypeName == "String" ) typeName = "string"
 		if( capitalizedTypeName == '"SINGLE"' ) typeName = "string"
-		if( capitalizedTypeName == "Boolean" ) typeName = "bool"
+		if( capitalizedTypeName == "Boolean" ) typeName = "boolean"
 		if( capitalizedTypeName == "Number" ) typeName = "number"
 		if( capitalizedTypeName == "Date" ) typeName = "any"
 		if( capitalizedTypeName == "*" ) typeName = "any"
@@ -43,10 +43,11 @@ class TypeManager
 
 		if( capitalizedTypeName == "Array" ) typeName = "any[]"
 		if( capitalizedTypeName == "String[]" ) typeName = "string[]"
-		if( capitalizedTypeName == "Boolean[]" ) typeName = "bool[]"
+		if( capitalizedTypeName == "Boolean[]" ) typeName = "boolean[]"
 		if( capitalizedTypeName == "Number[]" ) typeName = "number[]"
 		if( capitalizedTypeName == "Date[]" ) typeName = "any"
 		if( capitalizedTypeName == "Object[]" ) typeName = "any[]"
+		if( capitalizedTypeName == "Mixed[]" ) typeName = "any[]"
 		if( capitalizedTypeName == "Htmlelement[]" ) typeName = "HTMLElement[]"
 
 		return typeName

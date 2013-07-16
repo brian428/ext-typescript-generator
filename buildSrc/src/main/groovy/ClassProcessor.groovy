@@ -30,17 +30,18 @@ class ClassProcessor
 	}
 
 	def processClass( className, fileJson ) {
+		Boolean hasStaticMethods = false
 		def processedNames
 		aliasManager.addAliases( className, fileJson )
 
 		definitionWriter.writeToDefinition( "\texport interface I${ typeManager.getClassName( className ) } ${ typeManager.getExtends( fileJson, true ) } {" )
 		if( !fileJson.singleton ) {
 			processedNames = writeProperties( fileJson, true, false )
-			writeMethods( fileJson, processedNames, true, false )
+			hasStaticMethods = writeMethods( fileJson, processedNames, true, false )
 		}
 		definitionWriter.writeToDefinition( "\t}" )
 
-		if( !config.interfaceOnly || fileJson.singleton ) {
+		if( !config.interfaceOnly || fileJson.singleton || hasStaticMethods ) {
 			if( !config.interfaceOnly ) {
 				definitionWriter.writeToDefinition( "\texport class ${ typeManager.getClassName( className ) } ${ typeManager.getExtends( fileJson, false ) } implements ${typeManager.getImplementedInterfaces( fileJson ) } {" )
 				processedNames = writeProperties( fileJson, false, false )
@@ -50,7 +51,7 @@ class ClassProcessor
 				processedNames = [:]
 			}
 
-			writeMethods( fileJson, processedNames, false, false )
+			writeMethods( fileJson, processedNames, false, false, hasStaticMethods )
 			definitionWriter.writeToDefinition( "\t}" )
 		}
 	}
@@ -59,7 +60,7 @@ class ClassProcessor
 		propertyProcessor.writeProperties( fileJson, isInterface, useExport )
 	}
 
-	def writeMethods( fileJson, processedNames, isInterface, useExport ) {
-		methodProcessor.writeMethods( fileJson, processedNames, isInterface, useExport )
+	Boolean writeMethods( fileJson, processedNames, isInterface, useExport, staticOnly=false ) {
+		return methodProcessor.writeMethods( fileJson, processedNames, isInterface, useExport, staticOnly )
 	}
 }

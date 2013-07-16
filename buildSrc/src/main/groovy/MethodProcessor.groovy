@@ -9,18 +9,21 @@ class MethodProcessor
 	Boolean shouldUseExport
 	Boolean isSingleton
 	Boolean isInterface
+	Boolean includeStaticMethodsOnly
 	Map processedNames
 
 	def init() {
 	}
 
-	def writeMethods( fileJson, alreadyProcessedNames, isAnInterface, useExport ) {
+	Boolean writeMethods( fileJson, alreadyProcessedNames, isAnInterface, useExport, includeStaticOnly ) {
 		processedNames = alreadyProcessedNames
 		shouldUseExport = useExport
 		isInterface = isAnInterface
-		isSingleton = fileJson.singleton && !isInterface
+		isSingleton = !isInterface && ( fileJson.singleton || includeStaticOnly )
+		includeStaticMethodsOnly = includeStaticOnly
 		optionalFlag = isInterface ? "?" : ""
 
+		def hasStaticMethods = false
 		def classMethods
 
 		if( fileJson.members instanceof Map ) {
@@ -32,7 +35,7 @@ class MethodProcessor
 
 		classMethods.each { thisMethod ->
 
-			if( shouldIncludeMethod( fileJson, thisMethod ) || specialCases.shouldForceInclude( fileJson.name, thisMethod.name ) ) {
+			if( shouldIncludeMethod( fileJson, thisMethod, includeStaticMethodsOnly ) || specialCases.shouldForceInclude( fileJson.name, thisMethod.name ) ) {
 
 				if( specialCases.shouldRewriteMethod( fileJson.name, thisMethod.name ) )
 					thisMethod = specialCases.getRewriteMethod( fileJson.name, thisMethod.name, thisMethod )
@@ -49,7 +52,14 @@ class MethodProcessor
 					iterateMethodSignatures( thisMethod )
 				}
 			}
+
+			if( thisMethod.static && !hasStaticMethods && shouldIncludeMethod( fileJson, thisMethod, true ) ) {
+				hasStaticMethods = true
+			}
+
 		}
+
+		return hasStaticMethods
 	}
 
 	def iterateMethodSignatures( thisMethod ) {
@@ -180,7 +190,7 @@ class MethodProcessor
 		}
 	}
 
-	def shouldIncludeMethod( fileJson, thisMethod ) {
+	def shouldIncludeMethod( fileJson, thisMethod, includeStaticMethodsOnly ) {
 		def result = false
 
 		if( typeManager.isOwner( fileJson, thisMethod?.owner ) || ( fileJson.mixins && thisMethod.owner in fileJson.mixins ) || isSingleton ) {
@@ -189,6 +199,15 @@ class MethodProcessor
 					if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
 						result = true
 					}
+				}
+			}
+
+			if( ( !config.includePrivate && thisMethod.private != true ) ) {
+				if( ( !includeStaticMethodsOnly && thisMethod.static ) || ( includeStaticMethodsOnly && !thisMethod.static ) ) {
+					result = false
+				}
+				else if( includeStaticMethodsOnly && thisMethod.static ) {
+					result = true
 				}
 			}
 		}

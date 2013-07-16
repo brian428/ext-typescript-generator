@@ -23,6 +23,10 @@ class DefinitionWriter
 			writeToDefinition( "// Definitions by: Brian Kotek <https://github.com/brian428/>" )
 			writeToDefinition( "// Definitions: https://github.com/borisyankov/DefinitelyTyped\n" )
 		}
+
+		if( config.libraryName != "ExtJS" && config.libraryName != "Touch" ) {
+			writeToDefinition( "declare module Ext { export interface IBase {} }\n" )
+		}
 	}
 
 	def writeToDefinition( value ) {

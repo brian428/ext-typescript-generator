@@ -34,6 +34,9 @@ class MethodProcessor
 
 			if( shouldIncludeMethod( fileJson, thisMethod ) || specialCases.shouldForceInclude( fileJson.name, thisMethod.name ) ) {
 
+				if( specialCases.shouldRewriteMethod( fileJson.name, thisMethod.name ) )
+					thisMethod = specialCases.getRewriteMethod( fileJson.name, thisMethod.name, thisMethod )
+
 				processedNames[ thisMethod.name ] = true
 				normalizeMethodDoc( thisMethod )
 				handleReturnTypeSpecialCases( thisMethod, fileJson )
@@ -60,7 +63,7 @@ class MethodProcessor
 			def usedPermutations = [:]
 			def methodWritten = false
 
-			if( hasOnlyOneSignature( methodParameters.paramNames ) ) {
+			if( methodParameters.hasOnlyOneSignature() ) {
 				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, methodParameters, returnType, shouldUseExport, isSingleton )
 			}
 			else if( shouldCreateOverrideMethod( methodParameters.requiresOverrides, tokenizedTypes, returnType ) ) {
@@ -213,10 +216,6 @@ class MethodProcessor
 	def writeMethodAsProperty( thisMethod ) {
 		definitionWriter.writeToDefinition( "\t\t/** [Method] ${ definitionWriter.formatCommentText( thisMethod.shortDoc ) } */" )
 		definitionWriter.writeToDefinition( "\t\t${ thisMethod.name.replaceAll( '-', '' ) }${ optionalFlag }: any;" )
-	}
-
-	def hasOnlyOneSignature( paramNames ) {
-		return !config.useFullTyping || !paramNames.size()
 	}
 
 	def shouldCreateOverrideMethod( requiresOverrides, tokenizedReturnTypes, returnType ) {

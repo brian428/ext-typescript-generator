@@ -18,7 +18,7 @@ class LibraryProcessor
 			def fileJson = slurper.parseText( file.text )
 
 			// Only handle classes, not JS primitives like String
-			if( fileJson.name.contains( "Ext" ) ) {
+			if( fileJson.name.contains( "Ext" ) || typeManager.isCustomNamespace( fileJson.name ) ) {
 				def aliases = typeManager.getAliases( fileJson )
 				println( "Processing ${ fileJson.name }" )
 				moduleProcessor.processModule( fileJson.name, fileJson )

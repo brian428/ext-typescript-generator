@@ -9,7 +9,18 @@ class ClassProcessor
 	MethodProcessor methodProcessor
 
 	def init() {
-		specialCases = new SpecialCasesExtJS420()
+
+		switch( config.libraryName ) {
+			case "ExtJS":
+				specialCases = new SpecialCasesExtJS()
+				break
+			case "Touch":
+				specialCases = new SpecialCasesTouch()
+				break
+			default:
+				specialCases = new SpecialCases()
+		}
+
 		aliasManager = new AliasManager( config: config, typeManager: typeManager )
 		aliasManager.init()
 		propertyProcessor = new PropertyProcessor( typeManager: typeManager, config: config, definitionWriter: definitionWriter, specialCases: specialCases )

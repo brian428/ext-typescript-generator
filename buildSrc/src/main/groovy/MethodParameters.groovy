@@ -46,4 +46,7 @@ class MethodParameters
 		paramNames.last() == thisParam && ( thisParamType.startsWith( "..." ) || thisParamType.endsWith( "..." ) )
 	}
 
+	def hasOnlyOneSignature() {
+		return !config.useFullTyping || !paramNames.size()
+	}
 }

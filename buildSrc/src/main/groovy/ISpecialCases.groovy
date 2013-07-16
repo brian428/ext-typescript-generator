@@ -16,6 +16,8 @@ public interface ISpecialCases {
 
 	def addForcedInclude( className, methodName )
 
+	def addRewriteMethod( className, methodName, replacementJson )
+
 	def shouldRemoveProperty( className, propertyName )
 
 	def shouldRemoveMethod( className, methodName )
@@ -24,8 +26,12 @@ public interface ISpecialCases {
 
 	def shouldConvertToProperty( className, methodName )
 
+	def shouldRewriteMethod( className, methodName )
+
 	def getReturnTypeOverride( className, methodName )
 
 	def getMethodParameterOverride( className, methodName, parameterName )
+
+	def getRewriteMethod( className, methodName, methodJson )
 
 }

@@ -1,8 +1,11 @@
-class SpecialCasesExtJS420 implements ISpecialCases
+import groovy.json.JsonSlurper
+
+class SpecialCases implements ISpecialCases
 {
+
 	def specialCases = [:]
 
-	SpecialCasesExtJS420() {
+	SpecialCases() {
 		createSpecialCases()
 	}
 
@@ -14,13 +17,13 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		specialCases[ "returnTypeOverride" ] = [:]
 		specialCases[ "convertParamType" ] = [:]
 		specialCases[ "forcedInclude" ] = [:]
+		specialCases[ "rewriteMethod" ] = [:]
 
 		addRemovedProperty( "Ext.grid.column.Action", "isDisabled" )
 		addRemovedProperty( "Ext.Component", "draggable" )
 		addRemovedProperty( "Ext.ComponentLoader", "renderer" )
 		addRemovedProperty( "Ext.data.TreeStore", "fields" )
 		addRemovedProperty( "Ext.util.ComponentDragger", "delegate" )
-		addRemovedProperty( "Ext.Video", "url" )
 
 		addRemovedMethod( "Ext.dd.StatusProxy", "hide" )
 		addRemovedMethod( "Ext.tip.Tip", "showAt" )
@@ -29,6 +32,12 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		addRemovedMethod( "Ext.tip.QuickTip", "showAt" )
 		addRemovedMethod( "Ext.Base", "statics" )
 		addRemovedMethod( "Ext.dom.Element", "select" )
+		addRemovedMethod( "Ext.Component", "getBubbleTarget" )
+		addRemovedMethod( "Ext.tip.ToolTip", "hide" )
+		addRemovedMethod( "Ext.tip.QuickTip", "hide" )
+		addRemovedMethod( "Ext.tip.ToolTip", "show" )
+		addRemovedMethod( "Ext.tip.QuickTip", "show" )
+		addRemovedMethod( "Ext.XTemplate", "compile" )
 
 		addConvertMethodToProperty( "Ext.AbstractComponent", "animate" )
 		addConvertMethodToProperty( "Ext.util.Animate", "animate" )
@@ -44,7 +53,10 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		addReturnTypeOverride( "Ext.dom.AbstractElement", "setVisible", "Ext.dom.Element" )
 		addReturnTypeOverride( "Ext.dom.AbstractElement", "show", "Ext.dom.Element" )
 		addReturnTypeOverride( "Ext.form.field.Text", "setValue", "any" )
-
+		addReturnTypeOverride( "Ext.form.field.Base", "getRawValue", "any" )
+		addReturnTypeOverride( "Ext.form.field.Field", "getName", "string" )
+		addReturnTypeOverride( "Ext.form.field.Checkbox", "getSubmitValue", "any" )
+		addReturnTypeOverride( "Ext.form.field.Base", "getSubmitValue", "any" )
 	}
 
 	def addRemovedProperty( className, propertyName ) {
@@ -82,6 +94,11 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		specialCases[ "forcedInclude" ][ className ][ methodName ] = true
 	}
 
+	def addRewriteMethod( className, methodName, replacementJson ) {
+		if( !specialCases[ "rewriteMethod" ][ className ] ) specialCases[ "rewriteMethod" ][ className ] = [:]
+		specialCases[ "rewriteMethod" ][ className ][ methodName ] = replacementJson
+	}
+
 	def shouldRemoveProperty( className, propertyName ) {
 		return ( specialCases[ "removeProperty" ][ className ] && specialCases[ "removeProperty" ][ className ][ propertyName ] )
 	}
@@ -98,6 +115,10 @@ class SpecialCasesExtJS420 implements ISpecialCases
 		return ( specialCases[ "forcedInclude" ][ className ] && specialCases[ "forcedInclude" ][ className ][ methodName ] )
 	}
 
+	def shouldRewriteMethod( className, methodName ) {
+		return ( specialCases[ "rewriteMethod" ][ className ] && specialCases[ "rewriteMethod" ][ className ][ methodName ] )
+	}
+
 	def getReturnTypeOverride( className, methodName=null ) {
 		if( methodName && specialCases[ "returnTypeOverride" ][ className ] && specialCases[ "returnTypeOverride" ][ className ][ methodName ] )
 			return specialCases[ "returnTypeOverride" ][ className ][ methodName ]
@@ -107,6 +128,13 @@ class SpecialCasesExtJS420 implements ISpecialCases
 	def getMethodParameterOverride( className, methodName, parameterName ) {
 		if( specialCases[ "methodParameterOverride" ][ className ] && specialCases[ "methodParameterOverride" ][ className ][ methodName ] && specialCases[ "methodParameterOverride" ][ className ][ methodName ][ parameterName ] )
 			return specialCases[ "methodParameterOverride" ][ className ][ methodName ][ parameterName ]
+
+		return null
+	}
+
+	def getRewriteMethod( className, methodName, methodJson ) {
+		if( methodName && specialCases[ "rewriteMethod" ][ className ] && specialCases[ "rewriteMethod" ][ className ][ methodName ] )
+			return methodJson << specialCases[ "rewriteMethod" ][ className ][ methodName ]
 
 		return null
 	}

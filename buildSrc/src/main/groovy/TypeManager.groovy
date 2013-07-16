@@ -17,7 +17,7 @@ class TypeManager
 
 		typeName = typeName.replaceAll( "\\.\\.\\.", "" )
 
-		if( typeName.contains( "Ext." ) || typeName.contains( "ext." ) )
+		if( typeName.contains( "Ext." ) || typeName.contains( "ext." ) || isCustomNamespace( typeName ) )
 			typeName = "${ getModule( typeName )}.${ getClassName( typeName ) }"
 
 		def capitalizedTypeName = typeName.capitalize()
@@ -34,7 +34,8 @@ class TypeManager
 		if( capitalizedTypeName == "Number" ) typeName = "number"
 		if( capitalizedTypeName == "Date" ) typeName = "any"
 		if( capitalizedTypeName == "*" ) typeName = "any"
-		if( capitalizedTypeName == "Null" ) typeName = "undefined"
+		if( capitalizedTypeName == "Null" ) typeName = "any"
+		if( capitalizedTypeName == "Undefined" ) typeName = "any"
 		if( capitalizedTypeName == "Htmlelement" ) typeName = "HTMLElement"
 		if( capitalizedTypeName == "Ext.data.INodeinterface" ) typeName = "Ext.data.INodeInterface"
 		if( capitalizedTypeName == "Ext.dom.ICompositeelementlite" ) typeName = "Ext.dom.ICompositeElementLite"
@@ -53,7 +54,7 @@ class TypeManager
 
 	def convertToInterface( type ) {
 		def result = type
-		if( type.contains( "Ext." ) || type.contains( "ext." ) ) {
+		if( type.contains( "Ext." ) || type.contains( "ext." ) || isCustomNamespace( type ) ) {
 			result = "${ getModule( type ) }.I${ getClassName( type ) }"
 		}
 		return result
@@ -70,7 +71,7 @@ class TypeManager
 			if( thisName == "ext" ) {
 				tokenizedName[ i ] = "Ext"
 			}
-			else if( thisName != "Ext" ) {
+			else if( thisName != "Ext" && !isCustomNamespaceRoot( name, thisName ) ) {
 				tokenizedName[ i ] = thisName.toLowerCase()
 			}
 		}
@@ -172,5 +173,11 @@ class TypeManager
 		return result
 	}
 
+	def isCustomNamespace( String typeName ) {
+		return config.customNamespace && typeName.contains( "${ config.customNamespace }." )
+	}
 
+	def isCustomNamespaceRoot( String typeName, String value ) {
+		return isCustomNamespace( typeName ) && typeName.tokenize( "." ).first() == value
+	}
 }

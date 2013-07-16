@@ -1894,7 +1894,7 @@ declare module Ext {
 		*/
 		createAlias?( alias?:any, origin?:any ): void;
 		/** [Method] Get the current class name in string format  */
-		getName?(): string;
+		getName?(): any;
 		/** [Method] Override members of this class  
 		* @param members Object The properties to add to this class. This should be specified as an object literal containing one or more properties. 
 		*/
@@ -2134,7 +2134,7 @@ declare module Ext.carousel {
 		/** [Method] Returns the value of directionLock  */
 		getDirectionLock?(): bool;
 		/** [Method] Returns the value of indicator  */
-		getIndicator?(): bool;
+		getIndicator?(): any;
 		/** [Method] Returns the value of itemConfig  */
 		getItemConfig?(): any;
 		/** [Method] Returns the value of itemLength  */
@@ -2214,7 +2214,7 @@ declare module Ext {
 		/** [Method] Returns the value of directionLock  */
 		getDirectionLock?(): bool;
 		/** [Method] Returns the value of indicator  */
-		getIndicator?(): bool;
+		getIndicator?(): any;
 		/** [Method] Returns the value of itemConfig  */
 		getItemConfig?(): any;
 		/** [Method] Returns the value of itemLength  */
@@ -3943,7 +3943,7 @@ declare module Ext.chart {
 		*/
 		clear?( category?:string ): void;
 		/** [Method] Not supported  */
-		getBBox?(): undefined;
+		getBBox?(): any;
 		/** [Method]  
 		* @param category String 
 		* @param index Mixed 
@@ -4330,8 +4330,6 @@ declare module Ext.chart.series {
 		getDonut?(): bool;
 		/** [Method] Returns the value of donut  */
 		getDonut?(): number;
-		/** [Method] Returns the value of hidden  */
-		getHidden?(): any[];
 		/** [Method] For a given x y point relative to the main region find a corresponding item from this series if any  
 		* @param x Object 
 		* @param y Object 
@@ -5252,8 +5250,6 @@ declare module Ext.chart.series {
 		hidden?: any[];
 		/** [Config Option] (Boolean) */
 		stacked?: bool;
-		/** [Method] Returns the value of hidden  */
-		getHidden?(): any[];
 		/** [Method] For a given x y point relative to the main region find a corresponding item from this series if any  
 		* @param x Object 
 		* @param y Object 
@@ -5511,15 +5507,11 @@ declare module Ext {
 		/** [Method] Returns the value of border  */
 		getBorder?(): string;
 		/** [Method] Returns the value of bottom  */
-		getBottom?(): number;
-		/** [Method] Returns the value of bottom  */
-		getBottom?(): string;
+		getBottom?(): any;
 		/** [Method] Returns the value of centered  */
 		getCentered?(): bool;
 		/** [Method] Returns the value of cls  */
-		getCls?(): string;
-		/** [Method] Returns the value of cls  */
-		getCls?(): string[];
+		getCls?(): any;
 		/** [Method] Returns the value of contentEl  */
 		getContentEl?(): Ext.IElement;
 		/** [Method] Returns the value of contentEl  */
@@ -6046,15 +6038,11 @@ declare module Ext.lib {
 		/** [Method] Returns the value of border  */
 		getBorder?(): string;
 		/** [Method] Returns the value of bottom  */
-		getBottom?(): number;
-		/** [Method] Returns the value of bottom  */
-		getBottom?(): string;
+		getBottom?(): any;
 		/** [Method] Returns the value of centered  */
 		getCentered?(): bool;
 		/** [Method] Returns the value of cls  */
-		getCls?(): string;
-		/** [Method] Returns the value of cls  */
-		getCls?(): string[];
+		getCls?(): any;
 		/** [Method] Returns the value of contentEl  */
 		getContentEl?(): Ext.IElement;
 		/** [Method] Returns the value of contentEl  */
@@ -8654,8 +8642,10 @@ declare module Ext.data {
 		setData?( rawData?:any ): Ext.data.IModel;
 		/** [Method] Marks this Record as dirty  */
 		setDirty?(): void;
-		/** [Method] Updates the collection of Fields that all instances of this Model use  */
-		setFields?(): any[];
+		/** [Method] Updates the collection of Fields that all instances of this Model use  
+		* @param fields Array 
+		*/
+		setFields?( fields?:any[] ): any;
 		/** [Method] Sets the value of hasMany  
 		* @param hasMany String/Object/String[]/Object[] 
 		*/
@@ -9049,8 +9039,10 @@ declare module Ext.data {
 		setData?( rawData?:any ): Ext.data.IModel;
 		/** [Method] Marks this Record as dirty  */
 		setDirty?(): void;
-		/** [Method] Updates the collection of Fields that all instances of this Model use  */
-		setFields?(): any[];
+		/** [Method] Updates the collection of Fields that all instances of this Model use  
+		* @param fields Array 
+		*/
+		setFields?( fields?:any[] ): any;
 		/** [Method] Sets the value of hasMany  
 		* @param hasMany String/Object/String[]/Object[] 
 		*/
@@ -11498,9 +11490,9 @@ declare module Ext.data.reader {
 		/** [Method] Returns the value of rootProperty  */
 		getRootProperty?(): string;
 		/** [Method] Returns the value of successProperty  */
-		getSuccessProperty?(): string;
+		getSuccessProperty?(): any;
 		/** [Method] Returns the value of totalProperty  */
-		getTotalProperty?(): string;
+		getTotalProperty?(): any;
 		/** [Method] Checks to see if this object has any listeners for a specified event 
 		* @param eventName String The name of the event to check for 
 		*/
@@ -11781,9 +11773,9 @@ declare module Ext.data {
 		/** [Method] Returns the value of rootProperty  */
 		getRootProperty?(): string;
 		/** [Method] Returns the value of successProperty  */
-		getSuccessProperty?(): string;
+		getSuccessProperty?(): any;
 		/** [Method] Returns the value of totalProperty  */
-		getTotalProperty?(): string;
+		getTotalProperty?(): any;
 		/** [Method] Checks to see if this object has any listeners for a specified event 
 		* @param eventName String The name of the event to check for 
 		*/
@@ -12064,9 +12056,9 @@ declare module Ext.data {
 		/** [Method] Returns the value of rootProperty  */
 		getRootProperty?(): string;
 		/** [Method] Returns the value of successProperty  */
-		getSuccessProperty?(): string;
+		getSuccessProperty?(): any;
 		/** [Method] Returns the value of totalProperty  */
-		getTotalProperty?(): string;
+		getTotalProperty?(): any;
 		/** [Method] Checks to see if this object has any listeners for a specified event 
 		* @param eventName String The name of the event to check for 
 		*/
@@ -14604,8 +14596,6 @@ declare module Ext.dataview.component {
 		getItems?(): any[];
 		/** [Method] Returns the value of record  */
 		getRecord?(): Ext.data.IModel;
-		/** [Method] Returns the value of width  */
-		getWidth?(): string;
 		/** [Method] Sets the value of baseCls  
 		* @param baseCls String 
 		*/
@@ -14658,10 +14648,6 @@ declare module Ext.dataview.component {
 		getDisclosure?(): any;
 		/** [Method] Returns the value of header  */
 		getHeader?(): any;
-		/** [Method] Returns the value of items  */
-		getItems?(): any;
-		/** [Method] Returns the value of tpl  */
-		getTpl?(): any;
 		/** [Method] Sets the value of baseCls  
 		* @param baseCls String 
 		*/
@@ -15608,8 +15594,6 @@ declare module Ext.dataview {
 		getRefreshHeightOnUpdate?(): bool;
 		/** [Method] Returns all the items that are docked in the scroller in this list  */
 		getScrollDockedItems?(): any[];
-		/** [Method] Returns the value of scrollable  */
-		getScrollable?(): any;
 		/** [Method] Returns the value of striped  */
 		getStriped?(): bool;
 		/** [Method] Returns the value of ui  */
@@ -15766,8 +15750,6 @@ declare module Ext {
 		getRefreshHeightOnUpdate?(): bool;
 		/** [Method] Returns all the items that are docked in the scroller in this list  */
 		getScrollDockedItems?(): any[];
-		/** [Method] Returns the value of scrollable  */
-		getScrollable?(): any;
 		/** [Method] Returns the value of striped  */
 		getStriped?(): bool;
 		/** [Method] Returns the value of ui  */
@@ -15964,8 +15946,6 @@ declare module Ext.dataview {
 		getTitleTextTpl?( node?:Ext.data.IRecord ): string;
 		/** [Method] Returns the value of toolbar  */
 		getToolbar?(): any;
-		/** [Method] Returns the value of ui  */
-		getUi?(): any;
 		/** [Method] Returns the value of updateTitleText  */
 		getUpdateTitleText?(): bool;
 		/** [Method] Returns the value of useSimpleItems  */
@@ -16175,8 +16155,6 @@ declare module Ext {
 		getTitleTextTpl?( node?:Ext.data.IRecord ): string;
 		/** [Method] Returns the value of toolbar  */
 		getToolbar?(): any;
-		/** [Method] Returns the value of ui  */
-		getUi?(): any;
 		/** [Method] Returns the value of updateTitleText  */
 		getUpdateTitleText?(): bool;
 		/** [Method] Returns the value of useSimpleItems  */
@@ -19574,8 +19552,8 @@ declare module Ext.direct {
 		/** [Method] Removes the provider  
 		* @param provider String/Ext.direct.Provider The provider instance or the id of the provider. 
 		*/
-		static removeProvider( provider?:string ): undefined;
-		static removeProvider( provider?:Ext.direct.IProvider ): undefined;
+		static removeProvider( provider?:string ): any;
+		static removeProvider( provider?:Ext.direct.IProvider ): any;
 		/** [Method] Resumes firing events see suspendEvents 
 		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
 		*/
@@ -19853,8 +19831,8 @@ declare module Ext {
 		/** [Method] Removes the provider  
 		* @param provider String/Ext.direct.Provider The provider instance or the id of the provider. 
 		*/
-		static removeProvider( provider?:string ): undefined;
-		static removeProvider( provider?:Ext.direct.IProvider ): undefined;
+		static removeProvider( provider?:string ): any;
+		static removeProvider( provider?:Ext.direct.IProvider ): any;
 		/** [Method] Resumes firing events see suspendEvents 
 		* @param discardQueuedEvents Boolean Pass as true to discard any queued events. 
 		*/
@@ -20488,10 +20466,10 @@ declare module Ext.dom {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 50 || document.body) 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Looks at parent nodes for a match of the passed simple selector e g  
 		* @param simpleSelector String The simple selector to test. 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
@@ -20507,12 +20485,10 @@ declare module Ext.dom {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
-		/** [Method] Returns the first Element */
-		first?(): Ext.dom.IElement;
+		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Gets the x y coordinates to align this element with another element  
 		* @param element Mixed The element to align to. 
 		* @param position String The position to align to. 
@@ -20683,8 +20659,6 @@ declare module Ext.dom {
 		* @param index Number 
 		*/
 		item?( index?:number ): Ext.dom.IElement;
-		/** [Method] Returns the last Element */
-		last?(): Ext.dom.IElement;
 		/** [Method] Puts a mask over this element to disable user interaction  */
 		mask?(): void;
 		/** [Method] Gets the next sibling skipping text nodes  
@@ -20701,7 +20675,7 @@ declare module Ext.dom {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw dom node instead of an Ext.dom.Element. 
 		*/
-		next?( selector?:string, returnDom?:bool ): undefined;
+		next?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the parent node for this element optionally chaining up trying to match a selector  
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
@@ -20716,7 +20690,7 @@ declare module Ext.dom {
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		parent?( selector?:string, returnDom?:bool ): undefined;
+		parent?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the previous sibling skipping text nodes  
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
@@ -20731,7 +20705,7 @@ declare module Ext.dom {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
 		*/
-		prev?( selector?:string, returnDom?:bool ): undefined;
+		prev?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Removes all listeners for this object  */
 		purgeAllListeners?(): void;
 		/** [Method] Selects child nodes based on the passed CSS selector the selector should not contain an id 
@@ -20947,10 +20921,10 @@ declare module Ext.dom {
 		* @param simpleSelector String The simple selector to test 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		*/
-		up?( simpleSelector?:string, maxDepth?:number ): undefined;
-		up?( simpleSelector?:string, maxDepth?:string ): undefined;
-		up?( simpleSelector?:string, maxDepth?:HTMLElement ): undefined;
-		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): undefined;
+		up?( simpleSelector?:string, maxDepth?:number ): any;
+		up?( simpleSelector?:string, maxDepth?:string ): any;
+		up?( simpleSelector?:string, maxDepth?:HTMLElement ): any;
+		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): any;
 		/** [Method] Sets the innerHTML of this element  
 		* @param html String The new HTML. 
 		*/
@@ -21081,10 +21055,10 @@ declare module Ext {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 50 || document.body) 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Looks at parent nodes for a match of the passed simple selector e g  
 		* @param simpleSelector String The simple selector to test. 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
@@ -21100,12 +21074,10 @@ declare module Ext {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
-		/** [Method] Returns the first Element */
-		first?(): Ext.dom.IElement;
+		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Gets the x y coordinates to align this element with another element  
 		* @param element Mixed The element to align to. 
 		* @param position String The position to align to. 
@@ -21276,8 +21248,6 @@ declare module Ext {
 		* @param index Number 
 		*/
 		item?( index?:number ): Ext.dom.IElement;
-		/** [Method] Returns the last Element */
-		last?(): Ext.dom.IElement;
 		/** [Method] Puts a mask over this element to disable user interaction  */
 		mask?(): void;
 		/** [Method] Gets the next sibling skipping text nodes  
@@ -21294,7 +21264,7 @@ declare module Ext {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw dom node instead of an Ext.dom.Element. 
 		*/
-		next?( selector?:string, returnDom?:bool ): undefined;
+		next?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the parent node for this element optionally chaining up trying to match a selector  
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
@@ -21309,7 +21279,7 @@ declare module Ext {
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		parent?( selector?:string, returnDom?:bool ): undefined;
+		parent?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the previous sibling skipping text nodes  
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
@@ -21324,7 +21294,7 @@ declare module Ext {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
 		*/
-		prev?( selector?:string, returnDom?:bool ): undefined;
+		prev?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Removes all listeners for this object  */
 		purgeAllListeners?(): void;
 		/** [Method] Selects child nodes based on the passed CSS selector the selector should not contain an id 
@@ -21540,10 +21510,10 @@ declare module Ext {
 		* @param simpleSelector String The simple selector to test 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		*/
-		up?( simpleSelector?:string, maxDepth?:number ): undefined;
-		up?( simpleSelector?:string, maxDepth?:string ): undefined;
-		up?( simpleSelector?:string, maxDepth?:HTMLElement ): undefined;
-		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): undefined;
+		up?( simpleSelector?:string, maxDepth?:number ): any;
+		up?( simpleSelector?:string, maxDepth?:string ): any;
+		up?( simpleSelector?:string, maxDepth?:HTMLElement ): any;
+		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): any;
 		/** [Method] Sets the innerHTML of this element  
 		* @param html String The new HTML. 
 		*/
@@ -21674,10 +21644,10 @@ declare module Ext {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 50 || document.body) 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Looks at parent nodes for a match of the passed simple selector e g  
 		* @param simpleSelector String The simple selector to test. 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
@@ -21693,12 +21663,10 @@ declare module Ext {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
-		/** [Method] Returns the first Element */
-		first?(): Ext.dom.IElement;
+		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Gets the x y coordinates to align this element with another element  
 		* @param element Mixed The element to align to. 
 		* @param position String The position to align to. 
@@ -21869,8 +21837,6 @@ declare module Ext {
 		* @param index Number 
 		*/
 		item?( index?:number ): Ext.dom.IElement;
-		/** [Method] Returns the last Element */
-		last?(): Ext.dom.IElement;
 		/** [Method] Puts a mask over this element to disable user interaction  */
 		mask?(): void;
 		/** [Method] Gets the next sibling skipping text nodes  
@@ -21887,7 +21853,7 @@ declare module Ext {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw dom node instead of an Ext.dom.Element. 
 		*/
-		next?( selector?:string, returnDom?:bool ): undefined;
+		next?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the parent node for this element optionally chaining up trying to match a selector  
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
@@ -21902,7 +21868,7 @@ declare module Ext {
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		parent?( selector?:string, returnDom?:bool ): undefined;
+		parent?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the previous sibling skipping text nodes  
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
@@ -21917,7 +21883,7 @@ declare module Ext {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
 		*/
-		prev?( selector?:string, returnDom?:bool ): undefined;
+		prev?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Removes all listeners for this object  */
 		purgeAllListeners?(): void;
 		/** [Method] Selects child nodes based on the passed CSS selector the selector should not contain an id 
@@ -22133,10 +22099,10 @@ declare module Ext {
 		* @param simpleSelector String The simple selector to test 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		*/
-		up?( simpleSelector?:string, maxDepth?:number ): undefined;
-		up?( simpleSelector?:string, maxDepth?:string ): undefined;
-		up?( simpleSelector?:string, maxDepth?:HTMLElement ): undefined;
-		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): undefined;
+		up?( simpleSelector?:string, maxDepth?:number ): any;
+		up?( simpleSelector?:string, maxDepth?:string ): any;
+		up?( simpleSelector?:string, maxDepth?:HTMLElement ): any;
+		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): any;
 		/** [Method] Sets the innerHTML of this element  
 		* @param html String The new HTML. 
 		*/
@@ -22289,10 +22255,10 @@ declare module Ext.dom {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 50 || document.body) 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Looks at parent nodes for a match of the passed simple selector e g  
 		* @param simpleSelector String The simple selector to test. 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
@@ -22308,10 +22274,10 @@ declare module Ext.dom {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
 		* @param eventName String The name of the event to fire. 
 		* @param args Array Arguments to pass to handers. 
@@ -22338,7 +22304,7 @@ declare module Ext.dom {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		first?( selector?:string, returnDom?:bool ): undefined;
+		first?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the x y coordinates to align this element with another element  
 		* @param element Mixed The element to align to. 
 		* @param position String The position to align to. 
@@ -22519,7 +22485,7 @@ declare module Ext.dom {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		last?( selector?:string, returnDom?:bool ): undefined;
+		last?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Puts a mask over this element to disable user interaction  */
 		mask?(): void;
 		/** [Method] Alias for addManagedListener  
@@ -22555,7 +22521,7 @@ declare module Ext.dom {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw dom node instead of an Ext.dom.Element. 
 		*/
-		next?( selector?:string, returnDom?:bool ): undefined;
+		next?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Alias for addListener  
 		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
@@ -22596,7 +22562,7 @@ declare module Ext.dom {
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		parent?( selector?:string, returnDom?:bool ): undefined;
+		parent?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the previous sibling skipping text nodes  
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
@@ -22611,7 +22577,7 @@ declare module Ext.dom {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
 		*/
-		prev?( selector?:string, returnDom?:bool ): undefined;
+		prev?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Removes all listeners for this object  */
 		purgeAllListeners?(): void;
 		/** [Method] Selects child nodes based on the passed CSS selector the selector should not contain an id 
@@ -22879,10 +22845,10 @@ declare module Ext.dom {
 		* @param simpleSelector String The simple selector to test 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		*/
-		up?( simpleSelector?:string, maxDepth?:number ): undefined;
-		up?( simpleSelector?:string, maxDepth?:string ): undefined;
-		up?( simpleSelector?:string, maxDepth?:HTMLElement ): undefined;
-		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): undefined;
+		up?( simpleSelector?:string, maxDepth?:number ): any;
+		up?( simpleSelector?:string, maxDepth?:string ): any;
+		up?( simpleSelector?:string, maxDepth?:HTMLElement ): any;
+		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): any;
 		/** [Method] Sets the innerHTML of this element  
 		* @param html String The new HTML. 
 		*/
@@ -23085,10 +23051,10 @@ declare module Ext {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 50 || document.body) 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParent?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParent?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Looks at parent nodes for a match of the passed simple selector e g  
 		* @param simpleSelector String The simple selector to test. 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
@@ -23104,10 +23070,10 @@ declare module Ext {
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		* @param returnEl Boolean true to return a Ext.Element object instead of DOM node. 
 		*/
-		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): undefined;
-		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): undefined;
+		findParentNode?( simpleSelector?:string, maxDepth?:number, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:string, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:HTMLElement, returnEl?:bool ): any;
+		findParentNode?( simpleSelector?:string, maxDepth?:Ext.IElement, returnEl?:bool ): any;
 		/** [Method] Fires the specified event with the passed parameters and execute a function action at the end if there are no liste  
 		* @param eventName String The name of the event to fire. 
 		* @param args Array Arguments to pass to handers. 
@@ -23134,7 +23100,7 @@ declare module Ext {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		first?( selector?:string, returnDom?:bool ): undefined;
+		first?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the x y coordinates to align this element with another element  
 		* @param element Mixed The element to align to. 
 		* @param position String The position to align to. 
@@ -23315,7 +23281,7 @@ declare module Ext {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		last?( selector?:string, returnDom?:bool ): undefined;
+		last?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Puts a mask over this element to disable user interaction  */
 		mask?(): void;
 		/** [Method] Alias for addManagedListener  
@@ -23351,7 +23317,7 @@ declare module Ext {
 		* @param selector String Find the next sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw dom node instead of an Ext.dom.Element. 
 		*/
-		next?( selector?:string, returnDom?:bool ): undefined;
+		next?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Alias for addListener  
 		* @param eventName String/String[]/Object The name of the event to listen for. May also be an object who's property names are event names. 
 		* @param fn Function/String The method the event invokes. Will be called with arguments given to fireEvent plus the options parameter described below. 
@@ -23392,7 +23358,7 @@ declare module Ext {
 		* @param selector String Find a parent node that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element. 
 		*/
-		parent?( selector?:string, returnDom?:bool ): undefined;
+		parent?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Gets the previous sibling skipping text nodes  
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
@@ -23407,7 +23373,7 @@ declare module Ext {
 		* @param selector String Find the previous sibling that matches the passed simple selector. 
 		* @param returnDom Boolean true to return a raw DOM node instead of an Ext.dom.Element 
 		*/
-		prev?( selector?:string, returnDom?:bool ): undefined;
+		prev?( selector?:string, returnDom?:bool ): any;
 		/** [Method] Removes all listeners for this object  */
 		purgeAllListeners?(): void;
 		/** [Method] Selects child nodes based on the passed CSS selector the selector should not contain an id 
@@ -23675,10 +23641,10 @@ declare module Ext {
 		* @param simpleSelector String The simple selector to test 
 		* @param maxDepth Number/String/HTMLElement/Ext.Element The max depth to search as a number or element (defaults to 10 || document.body). 
 		*/
-		up?( simpleSelector?:string, maxDepth?:number ): undefined;
-		up?( simpleSelector?:string, maxDepth?:string ): undefined;
-		up?( simpleSelector?:string, maxDepth?:HTMLElement ): undefined;
-		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): undefined;
+		up?( simpleSelector?:string, maxDepth?:number ): any;
+		up?( simpleSelector?:string, maxDepth?:string ): any;
+		up?( simpleSelector?:string, maxDepth?:HTMLElement ): any;
+		up?( simpleSelector?:string, maxDepth?:Ext.IElement ): any;
 		/** [Method] Sets the innerHTML of this element  
 		* @param html String The new HTML. 
 		*/
@@ -25118,9 +25084,9 @@ declare module Ext.draw {
 		*/
 		rotate?( angle?:any, rcx?:any, rcy?:any, prepend?:any ): any;
 		rotate?( angle?:number, rcx?:number, rcy?:number, prepend?:bool ): Ext.draw.IMatrix;
-		rotate?( angle?:number, rcx?:undefined, rcy?:number, prepend?:bool ): Ext.draw.IMatrix;
-		rotate?( angle?:number, rcx?:number, rcy?:undefined, prepend?:bool ): Ext.draw.IMatrix;
-		rotate?( angle?:number, rcx?:undefined, rcy?:undefined, prepend?:bool ): Ext.draw.IMatrix;
+		rotate?( angle?:number, rcx?:any, rcy?:number, prepend?:bool ): Ext.draw.IMatrix;
+		rotate?( angle?:number, rcx?:number, rcy?:any, prepend?:bool ): Ext.draw.IMatrix;
+		rotate?( angle?:number, rcx?:any, rcy?:any, prepend?:bool ): Ext.draw.IMatrix;
 		/** [Method] Rotate the matrix by the angle of a vector  
 		* @param x Number 
 		* @param y Number 
@@ -26094,7 +26060,7 @@ declare module Ext.draw.sprite {
 		/** [Method] Removes the sprite and clears all listeners  */
 		destroy?(): void;
 		/** [Method] Not supported  */
-		getBBox?(): undefined;
+		getBBox?(): any;
 		/** [Method] Returns the bounding box for the instance at the given index  
 		* @param index Number The index of the instance. 
 		* @param isWithoutTransform Boolean 'true' to not apply sprite transforms to the bounding box. 
@@ -28835,8 +28801,6 @@ declare module Ext.field {
 		getMinValue?(): number;
 		/** [Method] Returns the value of readOnly  */
 		getReadOnly?(): bool;
-		/** [Method] Returns the value of tabIndex  */
-		getTabIndex?(): any;
 		/** [Method] Returns the value of value  */
 		getValue?(): number;
 		/** [Method] Returns the value of value  */
@@ -28911,8 +28875,6 @@ declare module Ext.form {
 		getMinValue?(): number;
 		/** [Method] Returns the value of readOnly  */
 		getReadOnly?(): bool;
-		/** [Method] Returns the value of tabIndex  */
-		getTabIndex?(): any;
 		/** [Method] Returns the value of value  */
 		getValue?(): number;
 		/** [Method] Returns the value of value  */
@@ -29165,8 +29127,6 @@ declare module Ext.field {
 		getAutoComplete?(): bool;
 		/** [Method] Returns the value of autoCorrect  */
 		getAutoCorrect?(): bool;
-		/** [Method] Returns the value of bubbleEvents  */
-		getBubbleEvents?(): any[];
 		/** [Method] Returns the value of clearIcon  */
 		getClearIcon?(): bool;
 		/** [Method] Returns the value of component  */
@@ -29265,8 +29225,6 @@ declare module Ext.form {
 		getAutoComplete?(): bool;
 		/** [Method] Returns the value of autoCorrect  */
 		getAutoCorrect?(): bool;
-		/** [Method] Returns the value of bubbleEvents  */
-		getBubbleEvents?(): any[];
 		/** [Method] Returns the value of clearIcon  */
 		getClearIcon?(): bool;
 		/** [Method] Returns the value of component  */
@@ -32181,14 +32139,10 @@ declare module Ext {
 		getButtons?(): any;
 		/** [Method] Returns the value of defaultTextHeight  */
 		getDefaultTextHeight?(): number;
-		/** [Method] Returns the value of hideAnimation  */
-		getHideAnimation?(): any;
 		/** [Method] Returns the value of layout  */
 		getLayout?(): any;
 		/** [Method] Returns the value of prompt  */
 		getPrompt?(): any;
-		/** [Method] Returns the value of showAnimation  */
-		getShowAnimation?(): any;
 		/** [Method] Returns the value of title  */
 		getTitle?(): string;
 		/** [Method] Returns the value of ui  */
@@ -34527,14 +34481,8 @@ declare module Ext.picker {
 		getDoneButton?(): string;
 		/** [Method] Returns the value of doneButton  */
 		getDoneButton?(): any;
-		/** [Method] Returns the value of height  */
-		getHeight?(): number;
 		/** [Method] Returns the value of layout  */
 		getLayout?(): any;
-		/** [Method] Returns the value of left  */
-		getLeft?(): number;
-		/** [Method] Returns the value of right  */
-		getRight?(): number;
 		/** [Method] Returns the value of slots  */
 		getSlots?(): any[];
 		/** [Method] Returns the value of toolbar  */
@@ -34666,14 +34614,8 @@ declare module Ext {
 		getDoneButton?(): string;
 		/** [Method] Returns the value of doneButton  */
 		getDoneButton?(): any;
-		/** [Method] Returns the value of height  */
-		getHeight?(): number;
 		/** [Method] Returns the value of layout  */
 		getLayout?(): any;
-		/** [Method] Returns the value of left  */
-		getLeft?(): number;
-		/** [Method] Returns the value of right  */
-		getRight?(): number;
 		/** [Method] Returns the value of slots  */
 		getSlots?(): any[];
 		/** [Method] Returns the value of toolbar  */
@@ -34781,8 +34723,6 @@ declare module Ext.picker {
 		getAlign?(): string;
 		/** [Method] Returns the value of displayField  */
 		getDisplayField?(): string;
-		/** [Method] Returns the value of itemTpl  */
-		getItemTpl?(): string;
 		/** [Method] Returns the value of name  */
 		getName?(): string;
 		/** [Method] Returns the value of title  */
@@ -35376,12 +35316,8 @@ declare module Ext {
 		getEnter?(): string;
 		/** [Method] Returns the value of exit  */
 		getExit?(): string;
-		/** [Method] Returns the value of hideAnimation  */
-		getHideAnimation?(): any;
 		/** [Method] Returns the value of modal  */
 		getModal?(): bool;
-		/** [Method] Returns the value of showAnimation  */
-		getShowAnimation?(): any;
 		/** [Method] Returns the value of stretchX  */
 		getStretchX?(): bool;
 		/** [Method] Returns the value of stretchY  */
@@ -35594,8 +35530,6 @@ declare module Ext {
 		width?: number;
 		/** [Method] Returns the value of flex  */
 		getFlex?(): number;
-		/** [Method] Returns the value of width  */
-		getWidth?(): number;
 		/** [Method] Sets the value of flex  
 		* @param flex Number 
 		*/
@@ -36166,8 +36100,6 @@ declare module Ext {
 		getDefaultType?(): string;
 		/** [Method] Returns the value of items  */
 		getItems?(): any;
-		/** [Method] Returns the value of minHeight  */
-		getMinHeight?(): string;
 		/** [Method] Returns the value of title  */
 		getTitle?(): string;
 		/** [Method] Returns the value of ui  */
@@ -36230,8 +36162,6 @@ declare module Ext {
 		getDocked?(): string;
 		/** [Method] Returns the value of layout  */
 		getLayout?(): any;
-		/** [Method] Returns the value of minHeight  */
-		getMinHeight?(): string;
 		/** [Method] Returns an Ext Title component  */
 		getTitle?(): Ext.ITitle;
 		/** [Method] Returns the value of ui  */
@@ -38821,8 +38751,8 @@ declare module Ext {
 		* @param version String/Ext.Version The version, for example: '1.2.3alpha', '2.4.0-dev'. 
 		*/
 		setVersion?( packageName?:any, version?:any ): any;
-		setVersion?( packageName?:string, version?:string ): Ext;
-		setVersion?( packageName?:string, version?:Ext.IVersion ): Ext;
+		setVersion?( packageName?:string, version?:string ): any;
+		setVersion?( packageName?:string, version?:Ext.IVersion ): any;
 		/** [Method] Returns this format  major minor patch build release */
 		toArray?(): number[];
 		/** [Method]  
@@ -39810,8 +39740,6 @@ declare module Ext {
 		* @param parent Object 
 		*/
 		applyOut?( values?:any, out?:any[], parent?:any ): any[];
-		/** [Method] Does nothing  */
-		compile?(): Ext.IXTemplate;
 		/** [Method] Gets an XTemplate from an object an instance of an Ext define d class 
 		* @param instance Object The object from which to get the XTemplate (must be an instance of an Ext.define'd class). 
 		* @param name String The name of the property by which to get the XTemplate. 

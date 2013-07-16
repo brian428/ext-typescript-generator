@@ -33,4 +33,7 @@ class Config
 	// True to only output JSDoc comments once for each method (and not for overrides) to reduce file size.
 	def omitOverrideComments = false
 
+	// Custom namespace (beyond "Ext.")
+	def customNamespace = null
+
 }

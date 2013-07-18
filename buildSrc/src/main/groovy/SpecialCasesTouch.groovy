@@ -39,8 +39,6 @@ class SpecialCasesTouch extends SpecialCases
 		addReturnTypeOverride( "Ext.data.reader.Reader", "getTotalProperty", "any" )
 		addReturnTypeOverride( "Ext.Component", "getCls", "any" )
 		addReturnTypeOverride( "Ext.Component", "getBottom", "any" )
-		addReturnTypeOverride( "Ext", "setVersion", "any" )
-		addReturnTypeOverride( "Ext.Version", "setVersion", "any" )
 	}
 
 }

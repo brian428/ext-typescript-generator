@@ -6961,10 +6961,6 @@ declare module Ext.data.proxy {
 		format?: string;
 		/** [Property] (Object) */
 		actionMethods?: any;
-		/** [Method] Specialized version of buildUrl that incorporates the appendId and format options into the generated url  
-		* @param request Object 
-		*/
-		buildUrl?( request?:any ): void;
 	}
 }
 declare module Ext.data {
@@ -6977,10 +6973,6 @@ declare module Ext.data {
 		format?: string;
 		/** [Property] (Object) */
 		actionMethods?: any;
-		/** [Method] Specialized version of buildUrl that incorporates the appendId and format options into the generated url  
-		* @param request Object 
-		*/
-		buildUrl?( request?:any ): void;
 	}
 }
 declare module Ext.data.proxy {
@@ -24942,8 +24934,8 @@ declare module Ext {
 		* @param version String/Ext.Version The version, for example: '1.2.3alpha', '2.4.0-dev' 
 		*/
 		export function setVersion( packageName?:any, version?:any ): any;
-		export function setVersion( packageName?:string, version?:string ): Ext;
-		export function setVersion( packageName?:string, version?:Ext.IVersion ): Ext;
+		export function setVersion( packageName?:string, version?:string ): any;
+		export function setVersion( packageName?:string, version?:Ext.IVersion ): any;
 		/** [Method] Old alias to Ext Array sum 
 		* @param array Array The Array to calculate the sum value of. 
 		*/

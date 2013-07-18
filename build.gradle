@@ -14,7 +14,7 @@ class ConfigGroups {
 
 // Project-level extra properties
 project.ext {
-	def currentConfigGroup = ConfigGroups.DEFTJS_0_9
+	def currentConfigGroup = ConfigGroups.EXTJS_4_2_1
 
 	config = new Config(
 		libraryName: currentConfigGroup.name,

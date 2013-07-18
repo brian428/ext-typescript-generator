@@ -38,6 +38,7 @@ class SpecialCases implements ISpecialCases
 		addRemovedMethod( "Ext.tip.ToolTip", "show" )
 		addRemovedMethod( "Ext.tip.QuickTip", "show" )
 		addRemovedMethod( "Ext.XTemplate", "compile" )
+		addRemovedMethod( "Ext.data.proxy.Rest", "buildUrl" )
 
 		addConvertMethodToProperty( "Ext.AbstractComponent", "animate" )
 		addConvertMethodToProperty( "Ext.util.Animate", "animate" )
@@ -57,6 +58,8 @@ class SpecialCases implements ISpecialCases
 		addReturnTypeOverride( "Ext.form.field.Field", "getName", "string" )
 		addReturnTypeOverride( "Ext.form.field.Checkbox", "getSubmitValue", "any" )
 		addReturnTypeOverride( "Ext.form.field.Base", "getSubmitValue", "any" )
+		addReturnTypeOverride( "Ext", "setVersion", "any" )
+		addReturnTypeOverride( "Ext.Version", "setVersion", "any" )
 	}
 
 	def addRemovedProperty( className, propertyName ) {

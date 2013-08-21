@@ -74,7 +74,7 @@ class MethodProcessor
 			def methodWritten = false
 
 			if( methodParameters.hasOnlyOneSignature() ) {
-				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, methodParameters, returnType, shouldUseExport, isSingleton )
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, methodParameters, returnType, thisMethod.return, shouldUseExport, isSingleton )
 			}
 			else if( shouldCreateOverrideMethod( methodParameters.requiresOverrides, tokenizedTypes, returnType ) ) {
 				def overrideTypes = []
@@ -83,7 +83,7 @@ class MethodProcessor
 				}
 
 				def overriddenMethodParams = methodParameters.cloneWithNewParamTypes( overrideTypes )
-				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, overriddenMethodParams, "any", shouldUseExport, isSingleton )
+				writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, overriddenMethodParams, "any", thisMethod.return, shouldUseExport, isSingleton )
 				usedPermutations[ overrideTypes.join( ',' ) ] = true
 				methodWritten = true
 			}
@@ -103,7 +103,7 @@ class MethodProcessor
 
 				if( !usedPermutations[ thisPermutationAsString ] ) {
 					def permutationParams = methodParameters.cloneWithNewParamTypes( thisPermutation )
-					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, permutationParams, thisType, shouldUseExport, isSingleton, methodWritten )
+					writeMethod( thisMethod.shortDoc, thisMethod.name, optionalFlag, permutationParams, thisType, thisMethod.return, shouldUseExport, isSingleton, methodWritten )
 					usedPermutations[ thisPermutationAsString ] = true
 					methodWritten = true
 				}
@@ -111,7 +111,7 @@ class MethodProcessor
 		}
 	}
 
-	def writeMethod( comment, methodName, optionalFlag, methodParameters, returnType, useExport, isStatic=false, omitComment=false ) {
+	def writeMethod( comment, methodName, optionalFlag, methodParameters, returnType, returnMetadata, useExport, isStatic=false, omitComment=false ) {
 		def exportString = useExport ? "export function " : ""
 		def staticString = isStaticMethod( isStatic, useExport, methodName ) ? "static " : ""
 
@@ -125,7 +125,7 @@ class MethodProcessor
 
 			def methodOutput = "${ staticString }${ methodName }${ optionalFlag }("
 			def paramResult = appendMethodParamOutput( methodOutput, paramsDoc, methodParameters )
-			writeMethodComment( comment, paramResult.paramsDoc, omitComment )
+			writeMethodComment( comment, paramResult.paramsDoc, returnMetadata, omitComment )
 			writeMethodDefinition( paramResult.methodOutput, exportString, methodName, returnType )
 		}
 	}
@@ -168,15 +168,28 @@ class MethodProcessor
 		return [ methodOutput: methodOutput, paramsDoc: paramsDoc ]
 	}
 
-	def writeMethodComment( comment, paramsDoc, omitComment ) {
+	def writeMethodComment( comment, paramsDoc, returnMetadata, omitComment ) {
+		String returnComment = null
+		if( returnMetadata?.type || returnMetadata?.doc )
+			returnComment = "\t\t* @returns ${returnMetadata?.type} ${ definitionWriter.formatCommentText( returnMetadata?.doc ) }"
+
 		if( shouldIncludeComment( omitComment ) ) {
 			if( paramsDoc.length() > 0 ) {
 				definitionWriter.writeToDefinition( comment )
 				definitionWriter.writeToDefinition( paramsDoc )
+				if( returnComment )
+					definitionWriter.writeToDefinition( returnComment )
 				definitionWriter.writeToDefinition( "\t\t*/" )
 			}
 			else {
-				definitionWriter.writeToDefinition( "${ comment }*/" )
+				if( returnComment ) {
+					definitionWriter.writeToDefinition( comment )
+					definitionWriter.writeToDefinition( returnComment )
+					definitionWriter.writeToDefinition( "\t\t*/" )
+				}
+				else {
+					definitionWriter.writeToDefinition( "${ comment }*/" )
+				}
 			}
 		}
 	}
@@ -197,7 +210,9 @@ class MethodProcessor
 			if( ( !isInterface && ( !isSingleton || ( isSingleton && thisMethod.name != "constructor" ) ) ) || ( isInterface && thisMethod.name != "constructor" ) ) {
 				if( ( !config.includePrivate && thisMethod.private != true ) || thisMethod.meta?.protected || thisMethod.meta?.template ) {
 					if( !processedNames[ thisMethod.name ] && !thisMethod?.meta?.deprecated && !specialCases.shouldRemoveMethod( fileJson.name, thisMethod.name ) ) {
-						result = true
+						if( !thisMethod.doc || ( !thisMethod.doc.toLowerCase().contains( "overridden and disabled" ) ) ) {
+							result = true
+						}
 					}
 				}
 			}

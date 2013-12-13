@@ -49,6 +49,9 @@ class ClassProcessor
 			else {
 				definitionWriter.writeToDefinition( "\texport class ${ typeManager.getClassName( className ) } {" )
 				processedNames = [:]
+				if( fileJson.singleton ) {
+					processedNames = writeProperties( fileJson, false, false )
+				}
 			}
 
 			writeMethods( fileJson, processedNames, false, false, hasStaticMethods )

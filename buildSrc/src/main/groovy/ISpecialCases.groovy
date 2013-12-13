@@ -18,6 +18,8 @@ public interface ISpecialCases {
 
 	def addRewriteMethod( className, methodName, replacementJson )
 
+	def addPropertyTypeOverride( className, propertyName, newType )
+
 	def shouldRemoveProperty( className, propertyName )
 
 	def shouldRemoveMethod( className, methodName )
@@ -33,5 +35,7 @@ public interface ISpecialCases {
 	def getMethodParameterOverride( className, methodName, parameterName )
 
 	def getRewriteMethod( className, methodName, methodJson )
+
+	def getPropertyTypeOverride( className, propertyName )
 
 }

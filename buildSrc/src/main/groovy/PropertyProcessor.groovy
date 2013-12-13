@@ -27,6 +27,8 @@ class PropertyProcessor
 		def processedConfigNames = [:]
 		def exportString = useExport ? "export var " : ""
 
+		if( !useExport && !isInterface && fileJson.singleton ) exportString = "static "
+
 		classConfig.each { value ->
 			if( value?.owner == fileJson.name && value.name != "" ) {
 				if( !config.includePrivate && value.private != true ) {
@@ -34,6 +36,9 @@ class PropertyProcessor
 					// Don't output special cases where an item should be omitted due to incompatible ExtJS API overrides in subclasses
 					if( !specialCases.shouldRemoveProperty( fileJson.name, value.name ) ) {
 						thisType = value.type
+
+						if( specialCases.getPropertyTypeOverride( fileJson.name, value.name ) )
+							thisType = specialCases.getPropertyTypeOverride( fileJson.name, value.name )
 
 						// Property type conversions
 						if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
@@ -47,11 +52,19 @@ class PropertyProcessor
 			}
 		}
 
+		if( !isInterface && fileJson.name == "Ext.MessageBox" ) {
+			def temp = true
+		}
+
 		classProperties.each { value ->
-			if( value?.owner == fileJson.name && value.name != "" ) {
+			if( ( !isInterface && fileJson.singleton ) || ( value?.owner == fileJson.name && value.name != "" ) ) {
 				if( !config.includePrivate && value.private != true ) {
 					if( !processedConfigNames[ value.name ] && !specialCases.shouldRemoveProperty( fileJson.name, value.name ) ) {
 						thisType = value.type
+
+						if( specialCases.getPropertyTypeOverride( fileJson.name, value.name ) )
+							thisType = specialCases.getPropertyTypeOverride( fileJson.name, value.name )
+
 						if( thisType.contains( "/" ) || thisType.contains( "|" ) ) thisType = "any"
 
 						definitionWriter.writeToDefinition( "\t\t/** [Property] (${value.type}) ${ definitionWriter.formatCommentText( value.shortDoc ) } */" )

@@ -8,13 +8,14 @@ class ConfigGroups {
 	static EXTJS_4_2_0 = [ name: "ExtJS", version: "4.2.0", jsonDocPath: "./jsondocs_ExtJS_4.2.0", customNamespace: null ]
 	static EXTJS_4_2_1 = [ name: "ExtJS", version: "4.2.1", jsonDocPath: "./jsondocs_ExtJS_4.2.1", customNamespace: null ]
 	static TOUCH_2_2_1 = [ name: "Touch", version: "2.2.1", jsonDocPath: "./jsondocs_Touch_2.2.1", customNamespace: null ]
+	static TOUCH_2_3_1 = [ name: "Touch", version: "2.3.1", jsonDocPath: "./jsondocs_Touch_2.3.1", customNamespace: null ]
 	static DEFTJS_0_9 = [ name: "DeftJS", version: "0.9", jsonDocPath: "./jsondocs_DeftJS_0.9", customNamespace: "Deft" ]
 }
 
 
 // Project-level extra properties
 project.ext {
-	def currentConfigGroup = ConfigGroups.EXTJS_4_2_1
+	def currentConfigGroup = ConfigGroups.TOUCH_2_3_1
 
 	config = new Config(
 		libraryName: currentConfigGroup.name,
@@ -53,7 +54,7 @@ task readFiles( dependsOn: initialize ) << {
 	LibraryProcessor processor = new LibraryProcessor( config: config )
 	processor.init()
 
-	def jsonDocPath = new File( config.jsonDocPath )
+	def jsonDocPath = file( config.jsonDocPath )
 	def jsonDocCollection = files { jsonDocPath.listFiles() }
 	def jsonDocFiles = jsonDocCollection.getFiles()
 	processor.iterateFiles( jsonDocFiles )

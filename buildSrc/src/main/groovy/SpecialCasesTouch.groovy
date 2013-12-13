@@ -4,7 +4,7 @@ class SpecialCasesTouch extends SpecialCases
 	def createSpecialCases() {
 		super.createSpecialCases()
 
-		addRemovedProperty( "Ext.Video", "url" )
+		addRemovedProperty( "Ext.Video", "url")
 
 		addRemovedMethod( "Ext.chart.series.StackedCartesian", "getHidden" )
 		addRemovedMethod( "Ext.chart.series.Pie", "getHidden" )
@@ -29,6 +29,11 @@ class SpecialCasesTouch extends SpecialCases
 		addRemovedMethod( "Ext.picker.Picker", "getHeight" )
 		addRemovedMethod( "Ext.picker.Picker", "getLeft" )
 		addRemovedMethod( "Ext.picker.Picker", "getRight" )
+		addRemovedMethod( "Ext.form.Panel", "getScrollable" )
+		addRemovedMethod( "Ext.form.Panel", "setScrollable" )
+		addRemovedMethod( "Ext.dataview.DataView", "setScrollable" )
+		addRemovedMethod( "Ext.field.FileInput", "getName" )
+		addRemovedMethod( "Ext.chart.Legend", "setScrollable" )
 
 		addRewriteMethod( "Ext.data.Model", "setFields", ["name": "setFields", "params": [["type": "Array","name": "fields"]],"return": ["type": "any"]] )
 
@@ -42,6 +47,8 @@ class SpecialCasesTouch extends SpecialCases
 		addReturnTypeOverride( "Ext.mixin.Observable", "getId", "any" )
 		addReturnTypeOverride( "Ext.Video", "getUrl", "string" )
 		addReturnTypeOverride( "Ext.mixin.Identifiable", "getId", "any" )
+
+		addPropertyTypeOverride( "Ext.Component", "xtype", "string" )
 
 	}
 

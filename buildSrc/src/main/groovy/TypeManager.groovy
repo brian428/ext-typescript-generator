@@ -12,7 +12,7 @@ class TypeManager
 	}
 
 	def normalizeType( typeName="any", forceFullType=false ) {
-		if( ( !config.useFullTyping && !forceFullType ) || typeName == "any" )
+		if( ( !config.useFullTyping && !forceFullType ) || typeName == "any" || typeName == "" || typeName == null )
 			return "any"
 
 		typeName = typeName.replaceAll( "\\.\\.\\.", "" )
@@ -40,8 +40,11 @@ class TypeManager
 		if( capitalizedTypeName == "Ext.data.INodeinterface" ) typeName = "Ext.data.INodeInterface"
 		if( capitalizedTypeName == "Ext.dom.ICompositeelementlite" ) typeName = "Ext.dom.ICompositeElementLite"
 		if( capitalizedTypeName == "Google.maps.Map" ) typeName = "any"
+		if( capitalizedTypeName == "FileTransfer" ) typeName = "any"
+		if( capitalizedTypeName == "Ext.plugin.IPlugin" ) typeName = "Ext.IBase"
 
 		if( capitalizedTypeName == "Array" ) typeName = "any[]"
+		if( capitalizedTypeName == "Arrary" ) typeName = "any[]"
 		if( capitalizedTypeName == "String[]" ) typeName = "string[]"
 		if( capitalizedTypeName == "Boolean[]" ) typeName = "boolean[]"
 		if( capitalizedTypeName == "Number[]" ) typeName = "number[]"

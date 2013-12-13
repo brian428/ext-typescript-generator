@@ -18,6 +18,7 @@ class SpecialCases implements ISpecialCases
 		specialCases[ "convertParamType" ] = [:]
 		specialCases[ "forcedInclude" ] = [:]
 		specialCases[ "rewriteMethod" ] = [:]
+		specialCases[ "propertyTypeOverride" ] = [:]
 
 		addRemovedProperty( "Ext.grid.column.Action", "isDisabled" )
 		addRemovedProperty( "Ext.Component", "draggable" )
@@ -115,6 +116,11 @@ class SpecialCases implements ISpecialCases
 		specialCases[ "rewriteMethod" ][ className ][ methodName ] = replacementJson
 	}
 
+	def addPropertyTypeOverride( className, propertyName, newType="any" ) {
+		if( !specialCases[ "propertyTypeOverride" ][ className ] ) specialCases[ "propertyTypeOverride" ][ className ] = [:]
+		specialCases[ "propertyTypeOverride" ][ className ][ propertyName ] = newType
+	}
+
 	def shouldRemoveProperty( className, propertyName ) {
 		return ( specialCases[ "removeProperty" ][ className ] && specialCases[ "removeProperty" ][ className ][ propertyName ] )
 	}
@@ -154,4 +160,11 @@ class SpecialCases implements ISpecialCases
 
 		return null
 	}
+
+	def getPropertyTypeOverride( className, propertyName=null ) {
+		if( propertyName && specialCases[ "propertyTypeOverride" ][ className ] && specialCases[ "propertyTypeOverride" ][ className ][ propertyName ] )
+			return specialCases[ "propertyTypeOverride" ][ className ][ propertyName ]
+		return null
+	}
+
 }

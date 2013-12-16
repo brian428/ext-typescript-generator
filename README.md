@@ -15,7 +15,7 @@
 * The example below has been updated to show this approach.
 
 Example: CompanyGridPanel.ts:
-```
+```TypeScript
 /// <reference path="./definitions/ExtJS-4.2.1-Typed-Interfaces.d.ts" />
 
 Ext.define("CompanyGridPanel", <Ext.grid.IPanel>{
